@@ -39,16 +39,7 @@
 		<priority value="error" />
 	</category>
 	
-	
-	<category name="br.com.touchtec.dali.renderer">
-		<priority value="info" />
-	</category>
-	
-	<category name="br.com.touchtec.dali.crud">
-		<priority value="debug" />
-	</category>
-	
-	<category name="br.com.touchtec.dali.showcase">
+	<category name="br.com.touchtec.games">
 		<priority value="debug" />
 	</category>
 	

@@ -1,1 +1,0 @@
-Template para o label da property year para a view output.resources3

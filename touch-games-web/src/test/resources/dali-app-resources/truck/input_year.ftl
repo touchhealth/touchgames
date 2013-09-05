@@ -1,1 +1,0 @@
-Template para o valor da a property year para a view input.resources2

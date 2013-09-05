@@ -1,1 +1,0 @@
-Template para ovalor da property year para a view input.resources

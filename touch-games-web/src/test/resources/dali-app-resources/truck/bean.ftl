@@ -1,1 +1,0 @@
-Template de section para a view output.resources3
