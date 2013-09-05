@@ -7,6 +7,5 @@ build
 .project
 .classpath
 .factorypath
-*.properties
 *.script
 *.log
