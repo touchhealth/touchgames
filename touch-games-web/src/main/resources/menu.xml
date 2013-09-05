@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<mainMenu title="cadastro">
+		<topItems>
+			<item title="country" url="c/country/search.action"/>
+			<item title="state" url="c/state/search.action"/>
+			<item title="city" url="c/city/search.action"/>
+			<item title="neighborhood" url="c/neighborhood/search.action"/>
+			<item title="address" url="c/address/search.action"/>
+		</topItems>
+		<subMenu title="country">
+			<item title="country" url="c/country/search.action"/>
+			<item title="state" url="c/state/search.action"/>
+			<item title="city" url="c/city/search.action"/>
+			<item title="neighborhood" url="c/neighborhood/search.action"/>
+			<item title="address" url="c/address/search.action"/>
+		</subMenu>
+	</mainMenu>
+</menu>

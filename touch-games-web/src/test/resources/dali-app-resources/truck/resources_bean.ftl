@@ -1,0 +1,1 @@
+Template de section para a view input.resources

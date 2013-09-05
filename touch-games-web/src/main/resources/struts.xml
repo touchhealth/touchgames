@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<include file="twf-default.xml"/>
+	
+	<constant name="struts.enable.SlashesInActionNames" value="true" />
+	
+	<package name="showcase" namespace="/" extends="twf-default">
+		<action name="City" class="br.com.touchtec.dali.showcase.CityAction"/>
+		
+		<action name="Live" class="br.com.touchtec.dali.showcase.LiveAction">
+			<result>/live/bean.jsp</result>
+		</action>
+		
+		<action name="Sandbox" class="br.com.touchtec.dali.showcase.SandboxAction">
+			<result>/sandbox.jsp</result>
+		</action>
+		
+		<action name="*" class="br.com.touchtec.dali.showcase.ShowcaseAction">
+			<param name="activeSection">{1}</param>
+			<result>/showcase/showcase.jsp</result>
+		</action>
+		
+		<action name="*/*" class="br.com.touchtec.dali.showcase.ShowcaseAction">
+			<param name="activeSection">{1}/{2}</param>
+			<result>/showcase/showcase.jsp</result>
+		</action>
+	</package>
+	
+	<package name="showcase-ajax" namespace="/ajax" extends="twf-default">
+		<action name="*" class="br.com.touchtec.dali.showcase.ShowcaseAction">
+			<param name="activeSection">{1}</param>
+			<result>/{1}/{1}.jsp</result>
+		</action>
+		
+		<action name="*/*" class="br.com.touchtec.dali.showcase.ShowcaseAction">
+			<param name="activeSection">{1}/{2}</param>
+			<result>/{1}/{2}/{2}.jsp</result>
+		</action>
+	</package>
+</struts>

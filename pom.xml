@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>br.com.heals</groupId>
+		<artifactId>heals-base</artifactId>
+		<version>2.1.39</version>
+	</parent>
+
+	<modules>
+		<module>touch-games-core</module>
+		<module>touch-games-web</module>
+	</modules>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.touchtec.games</groupId>
+	<artifactId>touch-games</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<repositories>
+		<repository>
+			<id>touch-releases</id>
+			<url>http://nexus.touchtec.com.br/content/repositories/releases</url>
+		</repository>
+		<repository>
+			<id>touch-snapshots</id>
+			<url>http://nexus.touchtec.com.br/content/repositories/snapshots</url>
+		</repository>
+	</repositories>
+
+	<scm>
+		<connection>scm:git:ssh://git.touchtec.com.br:29418/touch-games</connection>
+		<developerConnection>scm:git:ssh://git.touchtec.com.br:29418/touch-games</developerConnection>
+ 	 </scm>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+				</configuration>
+			</plugin>
+
+			<!-- Javadoc -->
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<author>false</author>
+					<breakiterator>true</breakiterator>
+					<charset>UTF-8</charset>
+					<docencoding>UTF-8</docencoding>
+					<encoding>UTF-8</encoding>
+					<footer>${project.version}</footer>
+					<header>${project.version}</header>
+					<linksource>true</linksource>
+					<quiet>true</quiet>
+					<failOnError>false</failOnError>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<phase>install</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Anexação de código fonte -->
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>install</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,1 @@
+Template para a property year para a view output.resources3

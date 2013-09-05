@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    
+	<import resource="classpath*:META-INF/spring-web-beans.xml"/>
+	
+	<!-- Escopos web -->
+	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+	    <property name="scopes">
+	        <map>
+	            <entry key="request">
+	                <bean class="org.springframework.context.support.SimpleThreadScope"/>
+	            </entry>
+	            <entry key="session">
+	                <bean class="org.springframework.context.support.SimpleThreadScope"/>
+	            </entry>
+	        </map>
+	    </property>
+	</bean>
+	<bean id="request" class="org.springframework.mock.web.MockHttpServletRequest" scope="request"/>
+	<bean id="session" class="org.springframework.mock.web.MockHttpSession" scope="session"/>
+	<bean id="servletContext" class="org.springframework.mock.web.MockServletContext" scope="singleton"/>
+	
+	<bean id="br.com.touchtec.lang.ClassFinderService" class="br.com.touchtec.lang.ClassFinderService" />
+	<bean id="br.com.touchtec.lang.DefaultClassFinder" class="br.com.touchtec.lang.DefaultClassFinder" />
+	
+	<!-- Persistência e Transação -->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean"/>
+	
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />	
+</beans>

@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>br.com.touchtec.games</groupId>
+		<artifactId>touch-games</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>touch-games-web</artifactId>
+	<packaging>war</packaging>
+	<description>Módulo web. É a aplicação que será instalada no Tomcat.</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>br.com.touchtec.games</groupId>
+			<artifactId>touch-games-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<!-- TWF e TWFC -->
+		<dependency>
+			<groupId>br.com.touchtec.twf</groupId>
+			<artifactId>twf-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.touchtec.twf-components</groupId>
+			<artifactId>twf-components-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.touchtec.twf-components</groupId>
+			<artifactId>twf-components-resources</artifactId>
+			<type>war</type>
+		</dependency>
+
+		<!-- Dali -->
+		<dependency>
+			<groupId>br.com.touchtec.dali</groupId>
+			<artifactId>dali-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.touchtec.dali</groupId>
+			<artifactId>dali-crud</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.touchtec.dali</groupId>
+			<artifactId>dali-crud-web-resources</artifactId>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>br.com.touchtec.dali</groupId>
+			<artifactId>dali-web-resources</artifactId>
+			<type>war</type>
+		</dependency>
+
+		<!-- Bibliotecas de terceiros: que não são da Touch -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+		</dependency>
+		
+	</dependencies>
+
+</project>
