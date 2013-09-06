@@ -14,6 +14,7 @@ package br.com.touchtec.games.core.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 
@@ -30,6 +31,7 @@ public abstract class EntidadeRaiz implements Serializable {
     /**
      * @return id
      */
+    @Id
     public Long getId() {
         return this.id;
     }

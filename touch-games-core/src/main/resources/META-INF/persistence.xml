@@ -14,7 +14,7 @@
 			<property name="hibernate.connection.password" value="touch" />
 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost/touch-games" />
 
-			<property name="hibernate.hbm2ddl.auto" value="validate" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.max_fetch_depth" value="3" />
 			<property name="hibernate.archive.autodetection" value="class" />
