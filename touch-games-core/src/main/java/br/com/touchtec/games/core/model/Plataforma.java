@@ -21,11 +21,27 @@ import javax.persistence.Entity;
 @Entity
 public class Plataforma extends EntidadeRaiz {
 
+    private static final long serialVersionUID = 1L;
+
     private String nome;
 
     @Override
     protected String print() {
         return null;
+    }
+
+    /**
+     * @return nome
+     */
+    public String getNome() {
+        return this.nome;
+    }
+
+    /**
+     * @param nome
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
 }

@@ -1,0 +1,47 @@
+/*
+ * Copyright (c) 1999-2009 Touch Tecnologia e Informatica Ltda.
+ * Gomes de Carvalho, 1666, 3o. Andar, Vila Olimpia, Sao Paulo, SP, Brasil.
+ * Todos os direitos reservados.
+ * 
+ * Este software e confidencial e de propriedade da Touch Tecnologia e
+ * Informatica Ltda. (Informacao Confidencial). As informacoes contidas neste
+ * arquivo nao podem ser publicadas, e seu uso esta limitado de acordo com os
+ * termos do contrato de licenca.
+ */
+
+package br.com.touchtec.games.core.service;
+
+
+import br.com.touchtec.games.core.model.Jogo;
+
+
+/**
+ * @author bbviana
+ */
+public class JogoServiceImpl implements JogoService {
+
+    @Override
+    public void criar(Jogo jogo) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void remover(Jogo jogo) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void editar(Jogo jogo) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void recuperar(Long id) {
+        // TODO Auto-generated method stub
+
+    }
+
+}

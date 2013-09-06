@@ -14,11 +14,19 @@ package br.com.touchtec.games.core.model;
 
 import java.io.Serializable;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 
 /**
+ * abstract <br>
+ * serializable <br>
+ * MappedSuperclass <br>
+ * equals/hashcode <br>
+ * Id e GeneratedValue <br>
+ * 
  * @author filipe
  */
 @MappedSuperclass
@@ -26,12 +34,13 @@ public abstract class EntidadeRaiz implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     /**
      * @return id
      */
-    @Id
     public Long getId() {
         return this.id;
     }
