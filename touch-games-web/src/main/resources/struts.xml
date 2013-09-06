@@ -2,9 +2,10 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
 	"http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
+
+	<!-- O TWF é um framework da Touch que adiciona novas funcionalidades ao struts -->
 	<include file="twf-default.xml"/>
 	
-	<constant name="struts.enable.SlashesInActionNames" value="true" />
 	
 	
 </struts>
