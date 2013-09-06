@@ -13,22 +13,100 @@ package br.com.touchtec.games.core.model;
 
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 
 /**
  * @author filipe
+ * @author emesquita
  */
 @Entity
 public class Estoque extends EntidadeRaiz {
 
-    private int quantidade;
+    private static final long serialVersionUID = 1058715240939644326L;
 
+    private int quantidade;
     private Plataforma plataforma;
+    private Jogo jogo;
+
+    /**
+     * @return quantidade
+     */
+    public int getQuantidade() {
+        return this.quantidade;
+    }
+
+    /**
+     * @param quantidade
+     */
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    /**
+     * @return plataforma
+     */
+    @ManyToOne()
+    public Plataforma getPlataforma() {
+        return this.plataforma;
+    }
+
+    /**
+     * @param plataforma
+     */
+    public void setPlataforma(Plataforma plataforma) {
+        this.plataforma = plataforma;
+    }
+
+    /**
+     * @return jogo
+     */
+    @ManyToOne()
+    public Jogo getJogo() {
+        return this.jogo;
+    }
+
+    /**
+     * @param jogo
+     */
+    public void setJogo(Jogo jogo) {
+        this.jogo = jogo;
+    }
 
     @Override
     protected String print() {
-        // FIXME
-        return null;
+        return String.format("%d %s para %s", this.quantidade, this.jogo, this.plataforma);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        Estoque other = (Estoque) obj;
+        return new EqualsBuilder() //
+                .append(this.quantidade, other.quantidade) //
+                .append(this.plataforma, other.plataforma) //
+                .append(this.jogo, other.jogo) //
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder() //
+                .append(this.quantidade) //
+                .append(this.plataforma) //
+                .append(this.jogo) //
+                .toHashCode();
     }
 
 }

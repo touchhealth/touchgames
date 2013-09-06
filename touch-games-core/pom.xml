@@ -28,7 +28,11 @@
 			<groupId>br.com.touchtec.commons</groupId>
 			<artifactId>touch-persistence</artifactId>
 		</dependency>
-		
+		<dependency>
+			<groupId>br.com.touchtec.test</groupId>
+			<artifactId>touch-test-db</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- Bibliotecas de terceiros: que não são da Touch -->
 		<dependency>

@@ -34,13 +34,13 @@ public abstract class EntidadeRaiz implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     /**
      * @return id
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     public Long getId() {
         return this.id;
     }
@@ -58,9 +58,7 @@ public abstract class EntidadeRaiz implements Serializable {
     }
 
     /**
-     * FIXME
-     * 
-     * @return
+     * @return A descricao legivel para usuario.
      */
     protected abstract String print();
 

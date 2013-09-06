@@ -18,16 +18,19 @@ import javax.persistence.Lob;
 
 /**
  * @author filipe
+ * @author emesquita
  */
 @Entity
 public class Imagem extends EntidadeRaiz {
 
-    @Lob
+    private static final long serialVersionUID = 5633304640430559884L;
+
     private byte[] bytes;
 
     /**
      * @return bytes
      */
+    @Lob
     public byte[] getBytes() {
         return this.bytes;
     }
@@ -41,7 +44,7 @@ public class Imagem extends EntidadeRaiz {
 
     @Override
     protected String print() {
-        return null;
+        return String.format("%s", this.getId());
     }
 
 }

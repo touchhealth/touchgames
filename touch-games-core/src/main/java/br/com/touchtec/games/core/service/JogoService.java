@@ -17,14 +17,29 @@ import br.com.touchtec.games.core.model.Jogo;
 
 /**
  * @author bbviana
+ * @author emesquita
  */
 public interface JogoService {
 
+    /**
+     * @param jogo
+     */
     void criar(Jogo jogo);
 
+    /**
+     * @param jogo
+     */
     void remover(Jogo jogo);
 
-    void editar(Jogo jogo);
+    /**
+     * @param jogo
+     * @return O jogo editado.
+     */
+    Jogo editar(Jogo jogo);
 
-    void recuperar(Long id);
+    /**
+     * @param id
+     * @return O jogo procurado.
+     */
+    Jogo recuperar(Long id);
 }

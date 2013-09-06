@@ -13,21 +13,30 @@ package br.com.touchtec.games.core.model;
 
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 
 /**
  * @author filipe
+ * @author emesquita
  */
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "nome"))
 public class Plataforma extends EntidadeRaiz {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -2400143269814546492L;
 
     private String nome;
+    private Fabricante fabricante;
 
     @Override
     protected String print() {
-        return null;
+        return this.nome;
     }
 
     /**
@@ -44,4 +53,42 @@ public class Plataforma extends EntidadeRaiz {
         this.nome = nome;
     }
 
+    /**
+     * @return fabricante
+     */
+    @ManyToOne
+    public Fabricante getFabricante() {
+        return this.fabricante;
+    }
+
+    /**
+     * @param fabricante
+     */
+    public void setFabricante(Fabricante fabricante) {
+        this.fabricante = fabricante;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        Plataforma other = (Plataforma) obj;
+        return new EqualsBuilder() //
+                .append(this.nome, other.nome) //
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder() //
+                .append(this.nome) //
+                .toHashCode();
+    }
 }

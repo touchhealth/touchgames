@@ -12,36 +12,48 @@
 package br.com.touchtec.games.core.service;
 
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
 import br.com.touchtec.games.core.model.Jogo;
 
 
 /**
  * @author bbviana
+ * @author emesquita
  */
+@Component
+@Transactional
 public class JogoServiceImpl implements JogoService {
+
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
     public void criar(Jogo jogo) {
-        // TODO Auto-generated method stub
-
+        this.em.persist(jogo);
     }
 
     @Override
     public void remover(Jogo jogo) {
-        // TODO Auto-generated method stub
-
+        Jogo connectedEntity = this.recuperar(jogo.getId());
+        if (connectedEntity == null) {
+            return;
+        }
+        this.em.remove(connectedEntity);
     }
 
     @Override
-    public void editar(Jogo jogo) {
-        // TODO Auto-generated method stub
-
+    public Jogo editar(Jogo jogo) {
+        return this.em.merge(jogo);
     }
 
     @Override
-    public void recuperar(Long id) {
-        // TODO Auto-generated method stub
-
+    public Jogo recuperar(Long id) {
+        return this.em.find(Jogo.class, id);
     }
 
 }

@@ -13,21 +13,83 @@ package br.com.touchtec.games.core.model;
 
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.EqualsBuilder;
 
 
 /**
  * @author filipe
+ * @author emesquita
  */
 @Entity
 public class Pedido extends EntidadeRaiz {
 
+    private static final long serialVersionUID = -9113857980448358719L;
+
     private Date data;
+    private List<ItemPedido> itens;
+
+    /**
+     * @return data
+     */
+    public Date getData() {
+        return this.data;
+    }
+
+    /**
+     * @param data
+     */
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    /**
+     * @return itens
+     */
+    @OneToMany
+    public List<ItemPedido> getItens() {
+        return this.itens;
+    }
+
+    /**
+     * @param itens
+     */
+    public void setItens(List<ItemPedido> itens) {
+        this.itens = itens;
+    }
 
     @Override
     protected String print() {
-        return null;
+        return String.format("%s", this.getId());
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        Pedido other = (Pedido) obj;
+        return new EqualsBuilder() //
+                .append(this.data, other.data) //
+                .append(this.itens, other.itens) //
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder() //
+                .append(this.data) //
+                .append(this.itens) //
+                .toHashCode();
+    }
 }

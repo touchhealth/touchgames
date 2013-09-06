@@ -12,20 +12,59 @@
 package br.com.touchtec.games.core.model;
 
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 
 /**
  * @author filipe
- * @since
+ * @author emesquita
  */
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "nome"))
 public class Desenvolvedora extends EntidadeRaiz {
+
+    private static final long serialVersionUID = -3667462095435459034L;
+
+    private List<Jogo> jogos;
+    private String nome;
+
+    /**
+     * @return nome
+     */
+    public String getNome() {
+        return this.nome;
+    }
+
+    /**
+     * @param nome
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @return jogos
+     */
+    @ManyToMany(mappedBy = "desenvolvedora")
+    public List<Jogo> getJogos() {
+        return this.jogos;
+    }
+
+    /**
+     * @param jogos
+     */
+    public void setJogos(List<Jogo> jogos) {
+        this.jogos = jogos;
+    }
 
     @Override
     protected String print() {
-        // FIXME
-        return null;
+        return this.nome;
     }
 
 }

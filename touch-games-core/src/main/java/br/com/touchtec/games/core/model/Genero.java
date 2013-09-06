@@ -14,7 +14,15 @@ package br.com.touchtec.games.core.model;
 
 /**
  * @author filipe
+ * @author emesquita
  */
 public enum Genero {
-    ACAO, ESPORTE, RPG;
+    /***/
+    ACAO,
+
+    /***/
+    ESPORTE,
+
+    /***/
+    RPG;
 }

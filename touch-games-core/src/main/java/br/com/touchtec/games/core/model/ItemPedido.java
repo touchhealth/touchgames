@@ -13,20 +13,80 @@ package br.com.touchtec.games.core.model;
 
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.EqualsBuilder;
 
 
 /**
  * @author filipe
+ * @author emesquita
  */
 @Entity
 public class ItemPedido extends EntidadeRaiz {
 
+    private static final long serialVersionUID = -6159795502823858669L;
+
     private Jogo jogo;
     private int quantidade;
 
-    @Override
-    protected String print() {
-        return null;
+    /**
+     * @return jogo
+     */
+    @ManyToOne
+    public Jogo getJogo() {
+        return this.jogo;
     }
 
+    /**
+     * @param jogo
+     */
+    public void setJogo(Jogo jogo) {
+        this.jogo = jogo;
+    }
+
+    /**
+     * @return quantidade
+     */
+    public int getQuantidade() {
+        return this.quantidade;
+    }
+
+    /**
+     * @param quantidade
+     */
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    @Override
+    protected String print() {
+        return String.format("%d %s", this.quantidade, this.jogo);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        ItemPedido other = (ItemPedido) obj;
+        return new EqualsBuilder() //
+                .append(this.jogo, other.jogo) //
+                .append(this.quantidade, other.quantidade) //
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder() //
+                .append(this.jogo) //
+                .append(this.quantidade) //
+                .toHashCode();
+    }
 }
