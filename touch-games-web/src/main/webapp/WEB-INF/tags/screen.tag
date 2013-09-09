@@ -8,7 +8,7 @@
 <html lang="en">
 
 <head>
-	<title>Touch Games</title>
+	<title>Touch Games - Um toque de diversão</title>
 	
 	<link href="${app}/css/games.css" rel="stylesheet"/>
 </head>

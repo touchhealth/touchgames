@@ -11,5 +11,11 @@
 				<img src="${app}/img/logo.png" />
 			</a>
 		</div>
+		
+		<div id="search">
+			<form action="${app}/">
+				<input name="" placeholder="Buscar"/>
+			</form>
+		</div>
 	</div>
 </jsp:root>
