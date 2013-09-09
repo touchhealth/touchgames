@@ -64,6 +64,6 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>desenvolvedoras</servlet-name>
-  		<url-pattern>/desenvolvedoras</url-pattern>
+  		<url-pattern>/desenvolvedoras/*</url-pattern>
 	</servlet-mapping>
 </web-app>

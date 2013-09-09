@@ -53,7 +53,8 @@ public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
 
     @Override
     public Desenvolvedora recuperar(Long id) {
-        return null;
+        Desenvolvedora desenvolvedora = this.em.find(Desenvolvedora.class, id);
+        return desenvolvedora;
     }
 
     @Override
