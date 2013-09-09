@@ -5,6 +5,11 @@
 	xmlns:g="urn:jsptagdir:/WEB-INF/tags">
 <jsp:directive.page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" />
 	
-	
-	Cabeçalho
+	<div class="inner">
+		<div id="logo">
+			<a href="${app}/">
+				<img src="${app}/img/logo.png" />
+			</a>
+		</div>
+	</div>
 </jsp:root>

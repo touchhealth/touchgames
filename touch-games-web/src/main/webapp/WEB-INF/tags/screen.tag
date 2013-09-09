@@ -16,6 +16,9 @@
 <body data-contextpath="${app}">
  	<div id="header">
  		<jsp:include page="/jsp/screen/header.jsp"/>
+ 	</div>
+ 	
+ 	<div id="top-navigation">
  		<jsp:include page="/jsp/screen/menu_plataformas.jsp"/>
  	</div>
  	
