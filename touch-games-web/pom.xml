@@ -18,7 +18,7 @@
 			<version>${project.version}</version>
 		</dependency>
 		
-		<!-- TWF e TWFC -->
+		<!-- Bibliotecas da Touch -->
 		<dependency>
 			<groupId>br.com.touchtec.twf</groupId>
 			<artifactId>twf-core</artifactId>
@@ -32,16 +32,7 @@
 			<artifactId>twf-components-resources</artifactId>
 			<type>war</type>
 		</dependency>
-
-		<!-- Dali -->
-		<dependency>
-			<groupId>br.com.touchtec.dali</groupId>
-			<artifactId>dali-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>br.com.touchtec.dali</groupId>
-			<artifactId>dali-crud</artifactId>
-		</dependency>
+		
 		<dependency>
 			<groupId>br.com.touchtec.dali</groupId>
 			<artifactId>dali-crud-web-resources</artifactId>

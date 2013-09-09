@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="WebApp_ID" version="2.5">
-	<display-name>touch-games-web</display-name>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="touch-games" version="2.5">
+	
+	<display-name>touch-games</display-name>
 	
 	<filter>
 		<filter-name>ContextPath</filter-name>
@@ -38,6 +39,7 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
+	
 	<!-- Configurações para o Spring -->
 	<context-param>
 		<param-name>parentContextKey</param-name>
@@ -54,4 +56,14 @@
 	<welcome-file-list>
 		<welcome-file>/twfc/index.jsp</welcome-file>
 	</welcome-file-list>
+	
+	
+	<servlet>
+		<servlet-name>desenvolvedoras</servlet-name>
+		<servlet-class>br.com.touchtec.games.web.DesenvolvedoraServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>desenvolvedoras</servlet-name>
+  		<url-pattern>/desenvolvedoras</url-pattern>
+	</servlet-mapping>
 </web-app>

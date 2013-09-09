@@ -33,6 +33,14 @@
 			<artifactId>touch-test-db</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>br.com.touchtec.dali</groupId>
+			<artifactId>dali-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.touchtec.dali</groupId>
+			<artifactId>dali-crud</artifactId>
+		</dependency>
 
 		<!-- Bibliotecas de terceiros: que não são da Touch -->
 		<dependency>

@@ -2,8 +2,8 @@
 <menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<mainMenu title="cadastro">
 		<topItems>
-			<item title="jogos" url="jogos"/>
-			<item title="produtoras" url="produtoras"/>
+			<item title="jogos" url="crud/Jogo.action"/>
+			<item title="desenvolvedoras" url="crud/Desenvolvedora.action"/>
 		</topItems>
 	</mainMenu>
 </menu>

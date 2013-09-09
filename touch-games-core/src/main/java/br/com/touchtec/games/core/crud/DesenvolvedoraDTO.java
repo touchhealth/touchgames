@@ -9,32 +9,37 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.core.model;
+package br.com.touchtec.games.core.crud;
 
 
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
+import br.com.touchtec.dali.crud.api.CrudDTO;
+import br.com.touchtec.dali.crud.config.CrudMapping;
+import br.com.touchtec.dali.view.View;
+import br.com.touchtec.games.core.model.Desenvolvedora;
 import br.com.touchtec.message.Named;
 
 
 /**
- * @author filipe
- * @author emesquita
+ * @author bbviana
  */
-@Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "nome"))
+@View(config = "nome")
+@CrudMapping(entity = Desenvolvedora.class)
 @Named(key = "Desenvolvedora")
-public class Desenvolvedora extends EntidadeRaiz {
+public class DesenvolvedoraDTO implements CrudDTO<Long> {
 
     private static final long serialVersionUID = -3667462095435459034L;
 
-    private List<Jogo> jogos;
+    private Long id;
+
     private String nome;
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     /**
      * @return nome
@@ -50,23 +55,8 @@ public class Desenvolvedora extends EntidadeRaiz {
         this.nome = nome;
     }
 
-    /**
-     * @return jogos
-     */
-    @ManyToMany(mappedBy = "desenvolvedora")
-    public List<Jogo> getJogos() {
-        return this.jogos;
-    }
-
-    /**
-     * @param jogos
-     */
-    public void setJogos(List<Jogo> jogos) {
-        this.jogos = jogos;
-    }
-
     @Override
-    protected String print() {
+    public String toString() {
         return this.nome;
     }
 
