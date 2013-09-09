@@ -14,6 +14,7 @@ package br.com.touchtec.games.core.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -53,7 +54,7 @@ public class Fabricante extends EntidadeRaiz {
     /**
      * @return plataformas
      */
-    @OneToMany(mappedBy = "fabricante")
+    @OneToMany(mappedBy = "fabricante", cascade = CascadeType.ALL)
     public List<Plataforma> getPlataformas() {
         return this.plataformas;
     }

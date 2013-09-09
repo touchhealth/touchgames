@@ -14,39 +14,38 @@ package br.com.touchtec.games.core.service;
 
 import java.util.List;
 
-import br.com.touchtec.games.core.model.Jogo;
+import br.com.touchtec.games.core.model.Fabricante;
 
 
 /**
- * @author bbviana
  * @author emesquita
  */
-public interface JogoService {
+public interface FabricanteService {
 
     /**
-     * @param jogo
+     * @param fabricante
      */
-    void criar(Jogo jogo);
+    void criar(Fabricante fabricante);
 
     /**
-     * @param jogo
+     * @param fabricante
      */
-    void remover(Jogo jogo);
+    void remover(Fabricante fabricante);
 
     /**
-     * @param jogo
-     * @return O jogo editado.
+     * @param fabricante
+     * @return O fabricante editado.
      */
-    Jogo editar(Jogo jogo);
+    Fabricante editar(Fabricante fabricante);
 
     /**
      * @param id
-     * @return O jogo procurado.
+     * @return O fabricante procurado.
      */
-    Jogo recuperar(Long id);
+    Fabricante recuperar(Long id);
 
     /**
      * @return lista todos
      */
-    List<Jogo> listarTodos();
+    List<Fabricante> listarTodos();
 }

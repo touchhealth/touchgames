@@ -21,28 +21,27 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.touchtec.games.core.model.Jogo;
+import br.com.touchtec.games.core.model.Fabricante;
 
 
 /**
- * @author bbviana
  * @author emesquita
  */
 @Component
 @Transactional
-public class JogoServiceImpl implements JogoService {
+public class FabricanteServiceImpl implements FabricanteService {
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
-    public void criar(Jogo jogo) {
-        this.em.persist(jogo);
+    public void criar(Fabricante fabricante) {
+        this.em.persist(fabricante);
     }
 
     @Override
-    public void remover(Jogo jogo) {
-        Jogo connectedEntity = this.recuperar(jogo.getId());
+    public void remover(Fabricante fabricante) {
+        Fabricante connectedEntity = this.recuperar(fabricante.getId());
         if (connectedEntity == null) {
             return;
         }
@@ -50,20 +49,20 @@ public class JogoServiceImpl implements JogoService {
     }
 
     @Override
-    public Jogo editar(Jogo jogo) {
-        return this.em.merge(jogo);
+    public Fabricante editar(Fabricante fabricante) {
+        return this.em.merge(fabricante);
     }
 
     @Override
-    public Jogo recuperar(Long id) {
-        return this.em.find(Jogo.class, id);
+    public Fabricante recuperar(Long id) {
+        return this.em.find(Fabricante.class, id);
     }
 
     @SuppressWarnings("unchecked")
-    public List<Jogo> listarTodos() {
-        String queryString = "SELECT j FROM Jogo j ORDER BY j.nome";
+    public List<Fabricante> listarTodos() {
+        String queryString = "SELECT f FROM Fabricante f ORDER BY f.nome";
         Query query = this.em.createQuery(queryString);
-        List<Jogo> list = query.getResultList();
+        List<Fabricante> list = query.getResultList();
         return list;
     }
 
