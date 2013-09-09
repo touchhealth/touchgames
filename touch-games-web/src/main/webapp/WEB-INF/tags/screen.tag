@@ -32,6 +32,5 @@
 	
 	<script src="${app}/js/games.js" />
 </body>
-
 </html>
 </jsp:root>

@@ -5,17 +5,17 @@
 	xmlns:g="urn:jsptagdir:/WEB-INF/tags">
 <jsp:directive.page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" />
 	
-	<div class="inner">
-		<div id="logo">
-			<a href="${app}/">
-				<img src="${app}/img/logo.png" />
-			</a>
-		</div>
-		
-		<div id="search">
-			<form action="${app}/">
-				<input name="" placeholder="Buscar"/>
-			</form>
-		</div>
+	<div class="left">
+		<a href="${app}/">
+			<img src="${app}/img/logo.png" />
+		</a>
+	</div>
+	
+	<div class="right inline">
+		<a id="carrinho" href="${app}/">Carrinho</a>
+
+		<form action="${app}/">
+			<input id="search" name="" placeholder="Buscar"/>
+		</form>
 	</div>
 </jsp:root>

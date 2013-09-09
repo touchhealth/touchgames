@@ -5,7 +5,11 @@
 	xmlns:g="urn:jsptagdir:/WEB-INF/tags">
 <jsp:directive.page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" />
 	
-	<div>
-		Menu Plataformas
-	</div>
+	<ul id="menu-plataformas" class="clearfix">
+		<c:forEach items="${plataformas}" var="plataforma">
+			<li>
+				<a href="${app}/">${plataforma.nome}</a>
+			</li>
+		</c:forEach>
+	</ul>
 </jsp:root>

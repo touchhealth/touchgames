@@ -3,22 +3,70 @@ html, body {
 	padding: 0px;
 	margin: 0px;
 	border: 0px;
+	font-family: sans-serif;
+	color: #666;
 }
 
+a {
+	color: #666;
+	text-decoration: none;
+}
+
+.left {
+	float: left;	
+}
+
+.right {
+	float: right;	
+}
+
+.inline > *{
+	display: inline-block;
+}
+
+/* <div style='clear:both'></div> */ 
+.clearfix:after {
+  clear: both;
+  content: "";
+  display: block;
+}
 
 #header {
 	height: 90px;
 	background: #005680 url('../img/bg-header.jpg') no-repeat center;
 }
 
-#header .inner {
-	width: 1024px;
-	margin: auto;	
-	padding-top: 15px;
+#header .left {
+	margin-top: 15px;	
+}
+
+#header .right {
+	margin-top: 30px;	
+}
+
+#header .right > *{
+	margin-left: 10px;
 }
 
 #top-navigation {
-	
+}
+
+#menu-plataformas {
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	background: linear-gradient(to bottom, #FFF, #F2F2F2);
+	border: 1px solid #D4D4D4;
+	cursor: pointer;
+}
+
+#menu-plataformas li{
+	float: left;
+	margin: 10px 20px;
+}
+
+#menu-plataformas li:hover{
+	text-decoration: underline;
 }
 
 #center {	
@@ -33,17 +81,14 @@ html, body {
 	width: 100%;
 }
 
-#logo {
-	float: left;
+
+#carrinho {
+	color: orange;
+	font-weight: bold;
 }
 
 
 #search {
-	float: right;	
-	margin-top: 20px;
-}
-
-#search input {
 	border: 1px solid #666;
 	height: 26px;
 	border-radius: 10px;
