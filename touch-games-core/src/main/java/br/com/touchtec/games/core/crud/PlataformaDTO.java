@@ -12,6 +12,7 @@
 package br.com.touchtec.games.core.crud;
 
 
+import br.com.touchtec.dali.crud.api.AssociationDTO;
 import br.com.touchtec.dali.crud.api.CrudDTO;
 import br.com.touchtec.dali.crud.config.CrudMapping;
 import br.com.touchtec.dali.view.View;
@@ -32,6 +33,8 @@ public class PlataformaDTO implements CrudDTO<Long> {
     private Long id;
 
     private String nome;
+
+    private AssociationDTO<Long> fabricante;
 
     @Override
     public Long getId() {
@@ -55,6 +58,20 @@ public class PlataformaDTO implements CrudDTO<Long> {
      */
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    /**
+     * @return fabricante
+     */
+    public AssociationDTO<Long> getFabricante() {
+        return this.fabricante;
+    }
+
+    /**
+     * @param fabricante
+     */
+    public void setFabricante(AssociationDTO<Long> fabricante) {
+        this.fabricante = fabricante;
     }
 
 }
