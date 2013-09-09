@@ -4,6 +4,8 @@
 		<topItems>
 			<item title="jogos" url="crud/Jogo.action"/>
 			<item title="desenvolvedoras" url="crud/Desenvolvedora.action"/>
+			<item title="plataformas" url="crud/Plataforma.action"/>
+			<item title="fabricantes" url="crud/Fabricante.action"/>
 		</topItems>
 	</mainMenu>
 </menu>

@@ -12,24 +12,28 @@
 package br.com.touchtec.games.core.crud;
 
 
+import static br.com.touchtec.dali.crud.api.CrudViews.SEARCH;
+
 import java.util.Date;
 import java.util.List;
 
+import br.com.touchtec.dali.crud.api.AssociationDTO;
 import br.com.touchtec.dali.crud.api.CrudDTO;
 import br.com.touchtec.dali.crud.config.CrudMapping;
 import br.com.touchtec.dali.view.View;
-import br.com.touchtec.games.core.model.Desenvolvedora;
+import br.com.touchtec.dali.view.Views;
 import br.com.touchtec.games.core.model.Genero;
-import br.com.touchtec.games.core.model.Imagem;
 import br.com.touchtec.games.core.model.Jogo;
-import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.message.Named;
 
 
 /**
  * @author filipe
  */
-@View(config = "nome, descricao, genero, preco, desconto, dataLancamento")
+@Views({
+        @View(ids = SEARCH, config = "nome; descricao; genero; dataLancamento"),
+        @View(config = "nome; descricao; genero; preco; desconto; dataLancamento; plataformas; desenvolvedora")
+})
 @CrudMapping(entity = Jogo.class)
 @Named(key = "Jogo")
 public class JogoDTO implements CrudDTO<Long> {
@@ -37,15 +41,22 @@ public class JogoDTO implements CrudDTO<Long> {
     private static final long serialVersionUID = 7302375495720376865L;
 
     private Long id;
+
     private String nome;
+
     private String descricao;
-    private List<Plataforma> plataformas;
+
+    private List<AssociationDTO<Long>> plataformas;
+
     private Genero genero;
-    private Desenvolvedora desenvolvedora;
+
+    private AssociationDTO<Long> desenvolvedora;
+
     private Float preco;
+
     private int desconto;
+
     private Date dataLancamento;
-    private List<Imagem> imagens;
 
     @Override
     public Long getId() {
@@ -139,6 +150,34 @@ public class JogoDTO implements CrudDTO<Long> {
      */
     public void setDataLancamento(Date dataLancamento) {
         this.dataLancamento = dataLancamento;
+    }
+
+    /**
+     * @return plataformas
+     */
+    public List<AssociationDTO<Long>> getPlataformas() {
+        return this.plataformas;
+    }
+
+    /**
+     * @param plataformas
+     */
+    public void setPlataformas(List<AssociationDTO<Long>> plataformas) {
+        this.plataformas = plataformas;
+    }
+
+    /**
+     * @return desenvolvedora
+     */
+    public AssociationDTO<Long> getDesenvolvedora() {
+        return this.desenvolvedora;
+    }
+
+    /**
+     * @param desenvolvedora
+     */
+    public void setDesenvolvedora(AssociationDTO<Long> desenvolvedora) {
+        this.desenvolvedora = desenvolvedora;
     }
 
 }

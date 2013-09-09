@@ -12,12 +12,15 @@
 package br.com.touchtec.games.core.crud;
 
 
+import static br.com.touchtec.dali.crud.api.CrudViews.SEARCH;
+
 import java.util.List;
 
 import br.com.touchtec.dali.crud.api.AssociationDTO;
 import br.com.touchtec.dali.crud.api.CrudDTO;
 import br.com.touchtec.dali.crud.config.CrudMapping;
 import br.com.touchtec.dali.view.View;
+import br.com.touchtec.dali.view.Views;
 import br.com.touchtec.games.core.model.Fabricante;
 import br.com.touchtec.message.Named;
 
@@ -25,7 +28,10 @@ import br.com.touchtec.message.Named;
 /**
  * @author filipe
  */
-@View(config = "nome")
+@Views({
+        @View(ids = SEARCH, config = "nome"),
+        @View(config = "nome; plataformas")
+})
 @CrudMapping(entity = Fabricante.class)
 @Named(key = "Fabricante")
 public class FabricanteDTO implements CrudDTO<Long> {
