@@ -11,22 +11,41 @@
 
 package br.com.touchtec.games.web;
 
+import static org.springframework.web.context.WebApplicationContext.SCOPE_SESSION;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import br.com.touchtec.games.core.model.ItemPedido;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+import br.com.touchtec.games.core.model.ItemPedido;
 
 /**
  * @author bbviana
  */
+@Scope(SCOPE_SESSION)
+@Component
 public class CarrinhoDeCompras implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    // Não queremos repetições e queremos manter a ordem
-    private Set<ItemPedido> items = new LinkedHashSet<ItemPedido>();
+	// Não queremos repetições e queremos manter a ordem
+	private Set<ItemPedido> items = new LinkedHashSet<ItemPedido>();
+
+	/**
+	 * @return items
+	 */
+	public Set<ItemPedido> getItems() {
+		return this.items;
+	}
+
+	/**
+	 * @param items
+	 */
+	public void setItems(Set<ItemPedido> items) {
+		this.items = items;
+	}
 
 }
