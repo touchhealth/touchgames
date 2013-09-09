@@ -67,4 +67,14 @@ public class JogoServiceImpl implements JogoService {
         return list;
     }
 
+    @SuppressWarnings("unchecked")
+    public List<Jogo> buscar(String nome) {
+        String queryString = "SELECT j FROM Jogo j WHERE UPPER( j.nome) LIKE UPPER(:nome) ORDER BY j.nome";
+        Query query = this.em.createQuery(queryString);
+        String nomebusca = nome == null ? "" : nome;
+        query.setParameter("nome", String.format("%%%s%%", nomebusca));
+
+        List<Jogo> list = query.getResultList();
+        return list;
+    }
 }

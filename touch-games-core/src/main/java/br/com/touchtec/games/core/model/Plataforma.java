@@ -12,6 +12,7 @@
 package br.com.touchtec.games.core.model;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -56,7 +57,7 @@ public class Plataforma extends EntidadeRaiz {
     /**
      * @return fabricante
      */
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
     public Fabricante getFabricante() {
         return this.fabricante;
     }

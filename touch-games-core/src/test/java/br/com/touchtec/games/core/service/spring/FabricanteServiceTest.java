@@ -9,7 +9,7 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.core.service;
+package br.com.touchtec.games.core.service.spring;
 
 
 import java.util.ArrayList;
@@ -18,6 +18,7 @@ import java.util.List;
 import junit.framework.Assert;
 
 import org.apache.commons.lang.ArrayUtils;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.touchtec.games.core.model.Fabricante;
 import br.com.touchtec.games.core.model.Plataforma;
+import br.com.touchtec.games.core.service.FabricanteService;
+import br.com.touchtec.spring.SpringBeanUtil;
+import br.com.touchtec.spring.test.SpringTestUtil;
 import br.com.touchtec.spring.test.TouchSpringRunner;
 
 
 /**
  * @author emesquita
  */
-@Transactional
 @RunWith(TouchSpringRunner.class)
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class FabricanteServiceTest {
@@ -42,6 +45,7 @@ public class FabricanteServiceTest {
 
     /***/
     @Test
+    @Transactional
     public void criarTest() {
         Fabricante fabricante = this.criarFabricante("Sony", "Vita", "PS3", "PSP", "PS4");
         Fabricante fabricanteDB = this.service.recuperar(fabricante.getId());
@@ -57,6 +61,7 @@ public class FabricanteServiceTest {
 
     /***/
     @Test
+    @Transactional
     public void editarTest() {
         Fabricante fabricante = this.criarFabricante("Ñ intendo", "DS", "3DS", "WII", "WIIU");
         fabricante.setNome("Nintendo");
@@ -92,6 +97,12 @@ public class FabricanteServiceTest {
         Assert.assertEquals(2, fabricantes.size());
         Assert.assertTrue(fabricantes.contains(ouya));
         Assert.assertTrue(fabricantes.contains(sony));
+    }
+
+    /***/
+    @After
+    public void after() {
+        SpringTestUtil.restartContext(SpringBeanUtil.getContext());
     }
 
     private Fabricante criarFabricante(String nome, String... plataformas) {

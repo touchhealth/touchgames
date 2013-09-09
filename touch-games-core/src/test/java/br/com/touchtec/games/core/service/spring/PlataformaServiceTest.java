@@ -9,13 +9,14 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.core.service;
+package br.com.touchtec.games.core.service.spring;
 
 
 import java.util.List;
 
 import junit.framework.Assert;
 
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +25,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.touchtec.games.core.model.Fabricante;
 import br.com.touchtec.games.core.model.Plataforma;
+import br.com.touchtec.games.core.service.PlataformaService;
+import br.com.touchtec.spring.SpringBeanUtil;
+import br.com.touchtec.spring.test.SpringTestUtil;
 import br.com.touchtec.spring.test.TouchSpringRunner;
 
 
 /**
  * @author emesquita
  */
-@Transactional
 @RunWith(TouchSpringRunner.class)
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class PlataformaServiceTest {
@@ -52,18 +55,16 @@ public class PlataformaServiceTest {
     /***/
     @Test
     public void editarTest() {
-        // Plataforma plataforma = this.criarPlataforma("Ñ intendo", "DS", "3DS", "WII", "WIIU");
-        // plataforma.setNome("Nintendo");
-        // List<Plataforma> plataformasa = plataforma.getPlataformas();
-        // plataformasa.add(this.criarPlataforma("2DS (Bolachão)"));
-        // this.service.editar(plataforma);
-        //
-        // Plataforma plataformaDB = this.service.recuperar(plataforma.getId());
-        //
-        // Assert.assertEquals("Nintendo", plataformaDB.getNome());
-        // List<Plataforma> plataformas = plataformaDB.getPlataformas();
-        // Assert.assertEquals(5, plataformas.size());
-        // Assert.assertTrue(plataformas.contains(this.criarPlataforma("2DS (Bolachão)")));
+        Plataforma plataforma = this.criarPlataforma("WIIY", "Microsoft");
+        plataforma.setNome("WII");
+        Fabricante fabricante = this.criarFabricante("Nintendo");
+        plataforma.setFabricante(fabricante);
+        this.service.editar(plataforma);
+
+        Plataforma plataformaDB = this.service.recuperar(plataforma.getId());
+
+        Assert.assertEquals("WII", plataformaDB.getNome());
+        Assert.assertEquals(fabricante, plataformaDB.getFabricante());
     }
 
     /***/
@@ -77,6 +78,7 @@ public class PlataformaServiceTest {
 
     /***/
     @Test
+    @Transactional
     public void listarTodosTest() {
         Plataforma ps2 = this.criarPlataforma("PS2", "Sony");
         Plataforma gameBoy = this.criarPlataforma("GameBoy", "Nintendo");
@@ -85,6 +87,12 @@ public class PlataformaServiceTest {
         Assert.assertEquals(2, plataformas.size());
         Assert.assertTrue(plataformas.contains(ps2));
         Assert.assertTrue(plataformas.contains(gameBoy));
+    }
+
+    /***/
+    @After
+    public void after() {
+        SpringTestUtil.restartContext(SpringBeanUtil.getContext());
     }
 
     private Plataforma criarPlataforma(String nome, String fabricante) {
@@ -96,6 +104,9 @@ public class PlataformaServiceTest {
     }
 
     private Fabricante criarFabricante(String nome) {
+        if (nome == null) {
+            return null;
+        }
         Fabricante fabricante = new Fabricante();
         fabricante.setNome(nome);
         return fabricante;

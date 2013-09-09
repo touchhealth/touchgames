@@ -9,13 +9,15 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.core.service;
+package br.com.touchtec.games.core.service.spring;
 
 
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import junit.framework.Assert;
 
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ import org.springframework.test.context.ContextConfiguration;
 
 import br.com.touchtec.games.core.model.Genero;
 import br.com.touchtec.games.core.model.Jogo;
+import br.com.touchtec.games.core.service.JogoService;
+import br.com.touchtec.spring.SpringBeanUtil;
+import br.com.touchtec.spring.test.SpringTestUtil;
 import br.com.touchtec.spring.test.TouchSpringRunner;
 
 
@@ -63,6 +68,41 @@ public class JogoServiceTest {
         this.service.remover(jogo);
         Jogo jogoDB = this.service.recuperar(jogo.getId());
         Assert.assertNull(jogoDB);
+    }
+
+    /***/
+    @Test
+    public void listarTodosTest() {
+        Jogo ct = this.criarJogo("Chrono Trigger");
+        Jogo cc = this.criarJogo("Chrono Cross");
+
+        List<Jogo> jogos = this.service.listarTodos();
+
+        Assert.assertEquals(2, jogos.size());
+        Assert.assertTrue(jogos.contains(ct));
+        Assert.assertTrue(jogos.contains(cc));
+    }
+
+    /***/
+    @Test
+    public void buscarTest() {
+        Jogo ct = this.criarJogo("Chrono Trigger");
+        Jogo cc = this.criarJogo("Chrono Cross");
+        this.criarJogo("Final Fantasy VII");
+
+        List<Jogo> jogos = this.service.buscar("HrOnO");
+        Assert.assertEquals(2, jogos.size());
+        Assert.assertTrue(jogos.contains(ct));
+        Assert.assertTrue(jogos.contains(cc));
+
+        jogos = this.service.buscar("Bazinga");
+        Assert.assertEquals(0, jogos.size());
+    }
+
+    /***/
+    @After
+    public void after() {
+        SpringTestUtil.restartContext(SpringBeanUtil.getContext());
     }
 
     private Jogo criarJogo(String nome) {

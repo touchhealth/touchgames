@@ -49,4 +49,10 @@ public interface JogoService {
      * @return lista todos
      */
     List<Jogo> listarTodos();
+
+    /**
+     * @param nome
+     * @return O jogo procurado.
+     */
+    List<Jogo> buscar(String nome);
 }
