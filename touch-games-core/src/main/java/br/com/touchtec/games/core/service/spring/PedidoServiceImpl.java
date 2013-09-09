@@ -9,7 +9,7 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.core.service;
+package br.com.touchtec.games.core.service.spring;
 
 
 import java.util.List;
@@ -21,7 +21,8 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.touchtec.games.core.model.Plataforma;
+import br.com.touchtec.games.core.model.Pedido;
+import br.com.touchtec.games.core.service.PedidoService;
 
 
 /**
@@ -29,19 +30,19 @@ import br.com.touchtec.games.core.model.Plataforma;
  */
 @Component
 @Transactional
-public class PlataformaServiceImpl implements PlataformaService {
+public class PedidoServiceImpl implements PedidoService {
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
-    public void criar(Plataforma plataforma) {
-        this.em.persist(plataforma);
+    public void criar(Pedido pedido) {
+        this.em.persist(pedido);
     }
 
     @Override
-    public void remover(Plataforma plataforma) {
-        Plataforma connectedEntity = this.recuperar(plataforma.getId());
+    public void remover(Pedido pedido) {
+        Pedido connectedEntity = this.recuperar(pedido.getId());
         if (connectedEntity == null) {
             return;
         }
@@ -49,20 +50,20 @@ public class PlataformaServiceImpl implements PlataformaService {
     }
 
     @Override
-    public Plataforma editar(Plataforma plataforma) {
-        return this.em.merge(plataforma);
+    public Pedido editar(Pedido pedido) {
+        return this.em.merge(pedido);
     }
 
     @Override
-    public Plataforma recuperar(Long id) {
-        return this.em.find(Plataforma.class, id);
+    public Pedido recuperar(Long id) {
+        return this.em.find(Pedido.class, id);
     }
 
     @SuppressWarnings("unchecked")
-    public List<Plataforma> listarTodos() {
-        String queryString = "SELECT p FROM Plataforma p ORDER BY p.nome";
+    public List<Pedido> listarTodos() {
+        String queryString = "SELECT p FROM Pedido p ORDER BY p.data";
         Query query = this.em.createQuery(queryString);
-        List<Plataforma> list = query.getResultList();
+        List<Pedido> list = query.getResultList();
         return list;
     }
 

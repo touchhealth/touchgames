@@ -9,7 +9,7 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.core.service;
+package br.com.touchtec.games.core.service.spring;
 
 
 import java.util.List;
@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.touchtec.games.core.model.Genero;
 import br.com.touchtec.games.core.model.Jogo;
 import br.com.touchtec.games.core.model.Plataforma;
+import br.com.touchtec.games.core.service.JogoService;
 
 
 /**

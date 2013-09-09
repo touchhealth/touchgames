@@ -66,18 +66,16 @@ public class PedidoServiceTest {
     @Test
     @Transactional
     public void editarTest() {
-        // Date correctDate = new GregorianCalendar(2013, 9, 13).getTime();
-        // Pedido pedido = this.criarPedido(correctDate, ImmutableMap.of("StarBound", 3));
-        // pedido.setData(correctDate);
-        // pedido.getItens().get(0).setQuantidade(4);
-        // this.service.editar(pedido);
-        //
-        // Pedido pedidoDB = this.service.recuperar(pedido.getId());
-        //
-        // Assert.assertEquals("Nintendo", pedidoDB.getNome());
-        // List<Plataforma> plataformas = pedidoDB.getPlataformas();
-        // Assert.assertEquals(5, plataformas.size());
-        // Assert.assertTrue(plataformas.contains(this.criarPlataforma("2DS (Bolachão)")));
+        Date correctDate = new GregorianCalendar(2013, 9, 13).getTime();
+        Pedido pedido = this.criarPedido(correctDate, ImmutableMap.of("StarBound", 3));
+        pedido.setData(correctDate);
+        pedido.getItens().get(0).setQuantidade(4);
+        this.service.editar(pedido);
+
+        Pedido pedidoDB = this.service.recuperar(pedido.getId());
+
+        Assert.assertEquals(correctDate, pedidoDB.getData());
+        Assert.assertEquals(4, pedidoDB.getItens().get(0).getQuantidade());
     }
 
     /***/
