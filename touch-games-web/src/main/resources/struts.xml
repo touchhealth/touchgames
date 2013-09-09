@@ -7,6 +7,6 @@
 	<include file="twf-default.xml"/>
 	
 	<package name="default" extends="twf-default">
-		<action name="*" class="br.com.touchtec.games.web.{1}Action" />
+		<action name="*" class="br.com.touchtec.games.web.controller.{1}Action" />
 	</package>
 </struts>

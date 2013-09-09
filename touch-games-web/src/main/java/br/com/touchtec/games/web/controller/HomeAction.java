@@ -9,18 +9,22 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.core.model;
+package br.com.touchtec.games.web.controller;
+
+
+import br.com.touchtec.twf.core.TWFActionSupport;
 
 
 /**
- * @author filipe
- * @author emesquita
+ * @author bbviana
  */
-@SuppressWarnings("javadoc")
-public enum Genero {
-    ACAO,
+public class HomeAction extends TWFActionSupport {
 
-    ESPORTE,
+    private static final long serialVersionUID = 1L;
 
-    RPG;
+    @Override
+    public String execute() throws Exception {
+        return "jsp/home";
+    }
+
 }

@@ -9,18 +9,24 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.core.model;
+package br.com.touchtec.games.web;
+
+
+import java.io.Serializable;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+import br.com.touchtec.games.core.model.ItemPedido;
 
 
 /**
- * @author filipe
- * @author emesquita
+ * @author bbviana
  */
-@SuppressWarnings("javadoc")
-public enum Genero {
-    ACAO,
+public class CarrinhoDeCompras implements Serializable {
 
-    ESPORTE,
+    private static final long serialVersionUID = 1L;
 
-    RPG;
+    // Não queremos repetições e queremos manter a ordem
+    private Set<ItemPedido> items = new LinkedHashSet<ItemPedido>();
+
 }
