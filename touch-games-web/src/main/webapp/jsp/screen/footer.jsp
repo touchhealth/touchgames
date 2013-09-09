@@ -5,5 +5,5 @@
 	xmlns:g="urn:jsptagdir:/WEB-INF/tags">
 	
 	
-	Carrihno
+	Rodapé
 </jsp:root>

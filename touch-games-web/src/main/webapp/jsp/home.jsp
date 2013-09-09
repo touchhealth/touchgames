@@ -4,6 +4,7 @@
 	xmlns:t="http://www.touchtec.com.br/twfc-tags"
 	xmlns:g="urn:jsptagdir:/WEB-INF/tags">
 	
-	
-	Carrihno
+	<g:screen>
+		Home
+	</g:screen>
 </jsp:root>

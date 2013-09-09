@@ -6,6 +6,7 @@
 	<!-- O TWF é um framework da Touch que adiciona novas funcionalidades ao struts -->
 	<include file="twf-default.xml"/>
 	
-	
-	
+	<package name="default" extends="twf-default">
+		<action name="*" class="br.com.touchtec.games.web.{1}Action" />
+	</package>
 </struts>
