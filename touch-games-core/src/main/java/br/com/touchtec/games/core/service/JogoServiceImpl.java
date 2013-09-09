@@ -21,7 +21,9 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.touchtec.games.core.model.Genero;
 import br.com.touchtec.games.core.model.Jogo;
+import br.com.touchtec.games.core.model.Plataforma;
 
 
 /**
@@ -57,6 +59,24 @@ public class JogoServiceImpl implements JogoService {
     @Override
     public Jogo recuperar(Long id) {
         return this.em.find(Jogo.class, id);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Jogo> listar(Genero genero) {
+        String queryString = "SELECT j FROM Jogo j WHERE j.genero = :genero  ORDER BY j.nome";
+        Query query = this.em.createQuery(queryString);
+        query.setParameter("genero", genero);
+        List<Jogo> list = query.getResultList();
+        return list;
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Jogo> listar(Plataforma plataforma) {
+        String queryString = "SELECT j FROM Jogo j WHERE :plataforma IN (j.plataforma)  ORDER BY j.nome";
+        Query query = this.em.createQuery(queryString);
+        query.setParameter("plataforma", plataforma);
+        List<Jogo> list = query.getResultList();
+        return list;
     }
 
     @SuppressWarnings("unchecked")

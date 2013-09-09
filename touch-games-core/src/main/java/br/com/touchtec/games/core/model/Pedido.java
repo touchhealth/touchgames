@@ -15,8 +15,10 @@ package br.com.touchtec.games.core.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 
@@ -50,7 +52,7 @@ public class Pedido extends EntidadeRaiz {
     /**
      * @return itens
      */
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     public List<ItemPedido> getItens() {
         return this.itens;
     }

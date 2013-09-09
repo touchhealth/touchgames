@@ -14,7 +14,9 @@ package br.com.touchtec.games.core.service;
 
 import java.util.List;
 
+import br.com.touchtec.games.core.model.Genero;
 import br.com.touchtec.games.core.model.Jogo;
+import br.com.touchtec.games.core.model.Plataforma;
 
 
 /**
@@ -44,6 +46,18 @@ public interface JogoService {
      * @return O jogo procurado.
      */
     Jogo recuperar(Long id);
+
+    /**
+     * @param genero
+     * @return A lista de jogos por genero.
+     */
+    List<Jogo> listar(Genero genero);
+
+    /**
+     * @param plataforma
+     * @return A lista de jogos por plataforma.
+     */
+    List<Jogo> listar(Plataforma plataforma);
 
     /**
      * @return lista todos
