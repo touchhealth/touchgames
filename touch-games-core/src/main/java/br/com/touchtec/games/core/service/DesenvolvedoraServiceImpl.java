@@ -20,7 +20,6 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import br.com.touchtec.games.core.model.Desenvolvedora;
-import br.com.touchtec.games.core.model.Jogo;
 
 
 /**
@@ -43,12 +42,20 @@ public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
 
     @Override
     public void remover(Desenvolvedora desenvolvedora) {
+        this.em.getTransaction().begin();
 
+        this.em.remove(desenvolvedora);
+
+        this.em.getTransaction().commit();
     }
 
     @Override
-    public Desenvolvedora editar(Desenvolvedora desenvolvedora) {
-        return null;
+    public void editar(Desenvolvedora desenvolvedora) {
+        this.em.getTransaction().begin();
+
+        this.em.merge(desenvolvedora);
+
+        this.em.getTransaction().commit();
     }
 
     @Override

@@ -34,9 +34,8 @@ public interface DesenvolvedoraService {
 
     /**
      * @param desenvolvedora
-     * @return desenvolvedora
      */
-    Desenvolvedora editar(Desenvolvedora desenvolvedora);
+    void editar(Desenvolvedora desenvolvedora);
 
     /**
      * @param id

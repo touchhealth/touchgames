@@ -10,6 +10,8 @@
 </head>
 <body>
 	
+	<a href="${app}/desenvolvedoras/create">Adicionar</a>
+	
 	<table>
 		<thead>
 			<tr><th>Nome</th><th>Ações</th></tr>
@@ -19,8 +21,7 @@
 			<tr>
 				<td>${desenvolvedora.nome}</td>
 				<td>
-					<a href="${app}/desenvolvedoras/update?id=${desenvolvedora.id}" >Editar</a>
-					<a href="${app}/desenvolvedoras/method?id=${desenvolvedora.id}">Remover</a>
+					<a href="${app}/desenvolvedoras/update?id=${desenvolvedora.id}">Editar</a>
 				</td>
 			</tr>
 		</c:forEach>
@@ -28,7 +29,7 @@
 	</table>
 	
 	<c:if test="${method=='update'}">
-		<form action="${app}/desenvolvedoras/save?id=${desenvolvedora.id}" method="post">
+		<form action="${app}/desenvolvedoras?id=${desenvolvedora.id}" method="post">
 			<fieldset>
 				<legend>Editando ${desenvolvedora.nome}</legend>
 				
@@ -38,7 +39,24 @@
 				</div>		
 				
 				<div>
-					<input type="submit" value="Salvar"/>
+					<button type="submit" name="method" value="save">Salvar</button>
+					<button type="submit" name="method" value="remove">Remover</button>
+				</div>
+			</fieldset>
+		</form>
+	</c:if>
+	
+	<c:if test="${method=='create'}">
+		<form action="${app}/desenvolvedoras?id=${desenvolvedora.id}" method="post">
+			<fieldset>
+				<legend>Nova Desenvolvedora</legend>
+				
+				<div>
+					<input type="text" name="nome" value="${desenvolvedora.nome}"/>
+				</div>		
+				
+				<div>
+					<button type="submit" name="method" value="savenew">Criar</button>
 				</div>
 			</fieldset>
 		</form>
