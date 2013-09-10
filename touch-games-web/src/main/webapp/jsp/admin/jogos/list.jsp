@@ -18,6 +18,7 @@
 			<t:tablecolumn  property="genero" title="%{i18n.Jogo.genero}"/>
 			<t:tablecolumn  property="desenvolvedora" title="%{i18n.Jogo.desenvolvedora}"/>
 			<t:tablecolumn  property="preco" title="%{i18n.Jogo.preco}"/>
+			<t:tablecolumn  property="precoComDesconto" title="%{i18n.Jogo.precoComDesconto}"/>
 			<t:tablecolumn  property="dataLancamento" title="%{i18n.Jogo.dataLancamento}"/>
 		</t:table>
 	

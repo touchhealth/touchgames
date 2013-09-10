@@ -19,7 +19,9 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 
@@ -35,6 +37,28 @@ public class Pedido extends EntidadeRaiz {
 
     private Date data;
     private List<ItemPedido> itens;
+
+    /**
+     * !!!!!!!!!!!!!!!!!
+     * Esse método somente funciona quando a lista de pedidos for inicializada.
+     * Pode ser um bom exe
+     * !!!!!!!!!!!!!!!!!
+     * 
+     * @return O valor total do pedido.
+     */
+    @Transient
+    public Float getValorTotal() {
+        Float valorTotal = 0f;
+        List<ItemPedido> itens = this.getItens();
+
+        if (CollectionUtils.isEmpty(itens)) {
+            return valorTotal;
+        }
+        for (ItemPedido item : itens) {
+            valorTotal += item.getQuantidade() * item.getJogo().getPrecoComDesconto();
+        }
+        return valorTotal;
+    }
 
     /**
      * @return data

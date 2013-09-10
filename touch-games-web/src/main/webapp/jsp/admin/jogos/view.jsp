@@ -36,6 +36,10 @@
 			<t:textoutput value="${jogo.desconto}%"/>
 		</t:field>
 		<t:field>
+			<t:label value="%{i18n.Jogo.precoComDesconto}"/>
+			<t:textoutput value="%{jogo.precoComDesconto}"/>
+		</t:field>
+		<t:field>
 			<t:label value="%{i18n.Jogo.dataLancamento}"/>
 			<t:dateoutput format="dd/MM/yyyy HH:mm:ss" value="%{jogo.dataLancamento}"/>
 		</t:field>

@@ -14,7 +14,9 @@
 		
 		<t:table list="%{pedidos}">
 			<t:tablerowselector name="selectedId" multiple="false" property="id"/>
+			<t:tablecolumn  property="id" title="%{i18n.Pedido.id}"/>
 			<t:tablecolumn  property="data" title="%{i18n.Pedido.data}"/>
+			<t:tablecolumn  property="valorTotal" title="%{i18n.Pedido.valorTotal}"/>
 		</t:table>
 	
 		<t:toolbar>

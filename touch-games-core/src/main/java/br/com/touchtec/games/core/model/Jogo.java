@@ -27,9 +27,7 @@ import javax.persistence.UniqueConstraint;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-import br.com.touchtec.games.core.service.PlataformaService;
 import br.com.touchtec.message.Named;
-import br.com.touchtec.spring.SpringBeanUtil;
 
 
 /**
@@ -54,11 +52,22 @@ public class Jogo extends EntidadeRaiz {
     private Date dataLancamento;
     private List<Imagem> imagens;
 
+    /**
+     * @return O preco com desconto.
+     */
     @Transient
-    public List<Plataforma> getPlataformasDisponiveis() {
-        // FIXME recuperar do estoque
-        List<Plataforma> plataformas = SpringBeanUtil.getWebBean(PlataformaService.class).listarTodos();
-        return plataformas;
+    public Float getPrecoComDesconto() {
+        if (this.preco == null) {
+            return 0f;
+        }
+
+        Float precoComDesconto = this.preco - ((((float) this.desconto) / 100) * this.preco);
+        if (precoComDesconto < 0) {
+            return 0f;
+        }
+
+        precoComDesconto = (float) (Math.floor(precoComDesconto * 100) / 100);
+        return precoComDesconto;
     }
 
     /**

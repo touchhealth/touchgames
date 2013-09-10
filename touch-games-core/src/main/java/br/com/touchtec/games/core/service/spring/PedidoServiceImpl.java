@@ -18,6 +18,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -72,6 +73,16 @@ public class PedidoServiceImpl implements PedidoService {
         String queryString = "SELECT p FROM Pedido p ORDER BY p.data";
         Query query = this.em.createQuery(queryString);
         List<Pedido> list = query.getResultList();
+
+        // Adicionado para poder usar o valor total. Bom exercicio
+        if (CollectionUtils.isEmpty(list)) {
+            return list;
+        }
+        for (Pedido pedido : list) {
+            Hibernate.initialize(pedido.getItens());
+        }
+        // Adicionado para poder usar o valor total. Bom exercicio
+
         return list;
     }
 }

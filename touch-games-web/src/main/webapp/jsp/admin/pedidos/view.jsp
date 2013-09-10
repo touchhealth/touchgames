@@ -12,16 +12,26 @@
 		<t:set component="label" value="width:150px" property="style" />
 		
 		<t:field>
+			<t:label value="%{i18n.Pedido.id}"/>
+			<t:textoutput value="%{pedido.id}"/>
+		</t:field>
+		<t:field>
 			<t:label value="%{i18n.Pedido.data}"/>
 			<t:dateoutput format="dd/MM/yyyy HH:mm:ss" value="%{pedido.data}"/>
 		</t:field>
 		<t:field>
 			<t:label value="%{i18n.Pedido.itens}"/>
 			<t:table list="%{pedido.itens}">
-				<t:tablecolumn  property="jogo.nome" title="%{i18n.Jogo}"/>
 				<t:tablecolumn  property="quantidade" title="%{i18n.ItemPedido.quantidade}"/>
+				<t:tablecolumn  property="jogo.nome" title="%{i18n.Jogo}"/>
+				<t:tablecolumn  property="jogo.preco" title="%{i18n.Jogo.preco}"/>
+				<t:tablecolumn  property="jogo.desconto" title="%{i18n.Jogo.desconto}"/>
 				<t:tablecolumn  property="plataforma.nome" title="%{i18n.Plataforma}"/>
 			</t:table>
+		</t:field>
+		<t:field>
+			<t:label value="%{i18n.Pedido.valorTotal}"/>
+			<t:textoutput value="%{pedido.valorTotal}"/>
 		</t:field>
 		
 		<t:toolbar>
