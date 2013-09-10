@@ -21,12 +21,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+import br.com.touchtec.games.core.service.PlataformaService;
 import br.com.touchtec.message.Named;
+import br.com.touchtec.spring.SpringBeanUtil;
 
 
 /**
@@ -50,6 +53,13 @@ public class Jogo extends EntidadeRaiz {
     private int desconto;
     private Date dataLancamento;
     private List<Imagem> imagens;
+
+    @Transient
+    public List<Plataforma> getPlataformasDisponiveis() {
+        // FIXME recuperar do estoque
+        List<Plataforma> plataformas = SpringBeanUtil.getWebBean(PlataformaService.class).listarTodos();
+        return plataformas;
+    }
 
     /**
      * @return nome

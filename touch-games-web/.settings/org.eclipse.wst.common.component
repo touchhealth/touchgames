@@ -14,7 +14,7 @@
         <dependent-module deploy-path="/" handle="module:/overlay/var/M2_REPO/br/com/touchtec/dali/dali-crud-web-resources/2.15.2/dali-crud-web-resources-2.15.2.war?unpackFolder=target/m2e-wtp/overlays&amp;includes=**/**&amp;excludes=META-INF/MANIFEST.MF">
             <dependency-type>consumes</dependency-type>
         </dependent-module>
-        <dependent-module deploy-path="/" handle="module:/overlay/var/M2_REPO/br/com/touchtec/twf-components/twf-components-resources/2.13.1/twf-components-resources-2.13.1.war?unpackFolder=target/m2e-wtp/overlays&amp;includes=**/**&amp;excludes=META-INF/MANIFEST.MF">
+        <dependent-module deploy-path="/" handle="module:/overlay/var/M2_REPO/br/com/touchtec/twf-components/twf-components-resources/2.13.3/twf-components-resources-2.13.3.war?unpackFolder=target/m2e-wtp/overlays&amp;includes=**/**&amp;excludes=META-INF/MANIFEST.MF">
             <dependency-type>consumes</dependency-type>
         </dependent-module>
         <dependent-module deploy-path="/" handle="module:/overlay/slf/?includes=**/**&amp;excludes=META-INF/MANIFEST.MF">

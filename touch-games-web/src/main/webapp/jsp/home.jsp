@@ -4,8 +4,21 @@
 	xmlns:t="http://www.touchtec.com.br/twfc-tags"
 	xmlns:g="urn:jsptagdir:/WEB-INF/tags">
 <jsp:directive.page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" />
-	
 	<g:screen>
-		Home
+
+		<c:forEach items="${jogosDestaques}" var="jogo">
+		
+			<a href="${app}/Compras!jogoDetalhes.action?jogoSelecionado.id=${jogo.id}">
+				<div class="box">
+					<div>
+						${jogo.nome}
+					</div>
+					<div>
+						${jogo.preco}
+					</div>
+				</div>
+			</a>
+			
+		</c:forEach>
 	</g:screen>
 </jsp:root>

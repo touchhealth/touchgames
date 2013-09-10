@@ -11,7 +11,6 @@
 
 package br.com.touchtec.games.web;
 
-import static org.springframework.web.context.WebApplicationContext.SCOPE_SESSION;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -21,31 +20,42 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import br.com.touchtec.games.core.model.ItemPedido;
+import br.com.touchtec.games.core.model.Jogo;
+import br.com.touchtec.games.core.model.Plataforma;
+
 
 /**
  * @author bbviana
  */
-@Scope(SCOPE_SESSION)
+@Scope("session")
 @Component
 public class CarrinhoDeCompras implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	// Não queremos repetições e queremos manter a ordem
-	private Set<ItemPedido> items = new LinkedHashSet<ItemPedido>();
+    // Não queremos repetições e queremos manter a ordem
+    private Set<ItemPedido> items = new LinkedHashSet<ItemPedido>();
 
-	/**
-	 * @return items
-	 */
-	public Set<ItemPedido> getItems() {
-		return this.items;
-	}
+    public void addItem(Jogo jogo, Integer quantidade, Plataforma plataforma) {
+        ItemPedido itemPedido = new ItemPedido();
+        itemPedido.setJogo(jogo);
+        itemPedido.setQuantidade(quantidade);
+        itemPedido.setPlataforma(plataforma);
 
-	/**
-	 * @param items
-	 */
-	public void setItems(Set<ItemPedido> items) {
-		this.items = items;
-	}
+        this.items.add(itemPedido);
+    }
+
+    public Set<ItemPedido> getItems() {
+        return this.items;
+    }
+
+    public void clear() {
+        this.getItems().clear();
+    }
+
+    // FIXME apagar
+    public void setItems(Set<ItemPedido> items) {
+        this.items = items;
+    }
 
 }

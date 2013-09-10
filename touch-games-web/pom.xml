@@ -11,6 +11,11 @@
 	<packaging>war</packaging>
 	<description>Módulo web. É a aplicação que será instalada no Tomcat.</description>
 
+
+	<properties>
+		<heals.twfc>2.13.3</heals.twfc>
+	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>br.com.touchtec.games</groupId>

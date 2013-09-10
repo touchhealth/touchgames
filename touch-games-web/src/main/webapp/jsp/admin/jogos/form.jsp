@@ -45,7 +45,7 @@
 		
 		<t:toolbar>
 			<t:jsbutton template="cancel" action="$('jogoForm').remove()"/>
-			<t:submitbutton action="Jogos!save.action" template="save"/>
+			<t:submitbutton action="Jogos!save.action" template="save" primary="true"/>
 		</t:toolbar>
 	</t:panel>
 	
