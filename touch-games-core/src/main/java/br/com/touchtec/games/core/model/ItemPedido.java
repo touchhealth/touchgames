@@ -95,7 +95,6 @@ public class ItemPedido extends EntidadeRaiz {
         ItemPedido other = (ItemPedido) obj;
         return new EqualsBuilder() //
                 .append(this.jogo, other.jogo) //
-                .append(this.quantidade, other.quantidade) //
                 .append(this.plataforma, other.plataforma) //
                 .isEquals();
     }
@@ -104,7 +103,6 @@ public class ItemPedido extends EntidadeRaiz {
     public int hashCode() {
         return new HashCodeBuilder() //
                 .append(this.jogo) //
-                .append(this.quantidade) //
                 .append(this.plataforma) //
                 .toHashCode();
     }

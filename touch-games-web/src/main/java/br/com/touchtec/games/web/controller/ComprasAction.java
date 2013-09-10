@@ -12,14 +12,19 @@
 package br.com.touchtec.games.web.controller;
 
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import br.com.touchtec.games.core.model.ItemPedido;
 import br.com.touchtec.games.core.model.Jogo;
+import br.com.touchtec.games.core.model.Pedido;
 import br.com.touchtec.games.core.service.JogoService;
+import br.com.touchtec.games.core.service.PedidoService;
 import br.com.touchtec.games.web.CarrinhoDeCompras;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
@@ -43,6 +48,11 @@ public class ComprasAction extends TWFActionSupport {
 
     private Jogo jogoSelecionado;
 
+    @Autowired
+    private PedidoService pedidoService;
+
+    private Pedido pedido;
+
     @Override
     public String execute() throws Exception {
         this.jogosDestaques = this.jogoService.listarTodos();
@@ -55,7 +65,14 @@ public class ComprasAction extends TWFActionSupport {
     }
 
     public String finalizarCompra() throws Exception {
+        this.pedido = new Pedido();
+        this.pedido.setItens(new ArrayList<ItemPedido>(this.carrinhoDeCompras.getItems()));
+        this.pedido.setData(new Date());
+
+        this.pedidoService.criar(this.pedido);
+
         this.carrinhoDeCompras.clear();
+
         return "jsp/sucesso";
     }
 
@@ -69,6 +86,10 @@ public class ComprasAction extends TWFActionSupport {
 
     public void setJogoSelecionado(Jogo jogoSelecionado) {
         this.jogoSelecionado = jogoSelecionado;
+    }
+
+    public Pedido getPedido() {
+        return this.pedido;
     }
 
 }

@@ -1,34 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
-	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:c="http://java.sun.com/jsp/jstl/core" 
+	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:g="urn:jsptagdir:/WEB-INF/tags">
 <jsp:directive.page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" />
 	
+	<fmt:setLocale value="pt_BR"/>
+	
 	<g:screen>
-		<h1>Seu carrinho de compras</h1>
-		
-		<table>
-			<thead>
-				<tr>
-					<th>Jogo</th><th>Preço</th><th>Quantidade</th><th>Jogo</th><th>Total</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${carrinhoDeCompras.items}" var="item">
+		<div id="carrinho-compras">
+			<h1>Seu carrinho de compras</h1>
+			
+			<table>
+				<thead>
 					<tr>
-						<td>${item.jogo}</td>
-						<td>${item.jogo.preco}</td>
-						<td>${item.quantidade}</td>
-						<td>${item.jogo.preco * item.quantidade}</td>
-					</tr>				
-				</c:forEach>
-			</tbody>
-		</table>
-
-		
-		<form action="${app}/Compras!finalizarCompra.action">
-			<button type="submit">Comprar</button>
-		</form>
+						<th>Jogo</th>
+						<th>Plataforma</th>
+						<th class="text-right">Preço</th>
+						<th class="text-right">Quantidade</th>
+						<th class="text-right">Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${carrinhoDeCompras.items}" var="item">
+						<tr>
+							<td>${item.jogo}</td>
+							<td>${item.plataforma}</td>
+							<td class="text-right"><fmt:formatNumber type="currency" value="${item.jogo.preco}"/></td>
+							<td class="text-right">${item.quantidade}</td>
+							<td class="text-right"><fmt:formatNumber type="currency" value="${item.jogo.preco * item.quantidade}"/></td>
+						</tr>		
+					</c:forEach>
+				</tbody>
+				<tfoot class="total">
+					<tr>
+						<td colspan="5" class="text-right"><fmt:formatNumber type="currency" value="${carrinhoDeCompras.total}"/></td>
+					</tr>
+				</tfoot>
+			</table>
+			
+			<form  action="${app}/Compras!finalizarCompra.action" class="text-right">
+				<button type="submit">Comprar</button>
+			</form>
+		</div>
 	</g:screen>
 	
 </jsp:root>

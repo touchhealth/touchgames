@@ -12,6 +12,16 @@ a {
 	text-decoration: none;
 }
 
+button {
+	color: #FFF;
+	background-color: #005680;
+	border: none;
+	padding: 10px 20px;
+	font-size: 20px;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
 .left {
 	float: left;	
 }
@@ -30,6 +40,10 @@ a {
   clear: both;
   content: "";
   display: block;
+}
+
+.text-right {
+	text-align: right;
 }
 
 #header {
@@ -150,12 +164,18 @@ a {
 	font-size: 16px;
 }
 
-button {
-	color: #FFF;
-	background-color: #428BCA;
-	border: none;
-	padding: 10px 20px;
-	font-size: 20px;
-	cursor: pointer;
-	border-radius: 4px;
+#carrinho-compras table {
+	width: 100%;
+	text-align: left;
 }
+
+
+#carrinho-compras table td {
+	padding-top: 10px;
+}
+
+#carrinho-compras .total {
+	color: #005680;
+	font-size: 25px;
+}
+

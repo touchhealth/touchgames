@@ -42,6 +42,8 @@ public class CarrinhoDeCompras implements Serializable {
         itemPedido.setQuantidade(quantidade);
         itemPedido.setPlataforma(plataforma);
 
+        this.items.remove(itemPedido);
+
         this.items.add(itemPedido);
     }
 
@@ -53,9 +55,11 @@ public class CarrinhoDeCompras implements Serializable {
         this.getItems().clear();
     }
 
-    // FIXME apagar
-    public void setItems(Set<ItemPedido> items) {
-        this.items = items;
+    public Float getTotal() {
+        Float total = 0f;
+        for (ItemPedido item : this.items) {
+            total += item.getJogo().getPreco() * item.getQuantidade();
+        }
+        return total;
     }
-
 }
