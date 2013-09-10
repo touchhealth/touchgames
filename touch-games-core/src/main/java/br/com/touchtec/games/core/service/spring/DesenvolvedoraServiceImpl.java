@@ -22,9 +22,9 @@ import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.touchtec.games.core.model.Fabricante;
-import br.com.touchtec.games.core.model.Plataforma;
-import br.com.touchtec.games.core.service.FabricanteService;
+import br.com.touchtec.games.core.model.Desenvolvedora;
+import br.com.touchtec.games.core.model.Jogo;
+import br.com.touchtec.games.core.service.DesenvolvedoraService;
 
 
 /**
@@ -32,20 +32,20 @@ import br.com.touchtec.games.core.service.FabricanteService;
  */
 @Component
 @Transactional
-public class FabricanteServiceImpl implements FabricanteService {
+public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
-    public void criar(Fabricante fabricante) {
-        this.outroLadoPlataforma(fabricante);
-        this.em.persist(fabricante);
+    public void criar(Desenvolvedora desenvolvedora) {
+        this.outroLadoJogo(desenvolvedora);
+        this.em.persist(desenvolvedora);
     }
 
     @Override
-    public void remover(Fabricante fabricante) {
-        Fabricante connectedEntity = this.recuperar(fabricante.getId());
+    public void remover(Desenvolvedora desenvolvedora) {
+        Desenvolvedora connectedEntity = this.recuperar(desenvolvedora.getId());
         if (connectedEntity == null) {
             return;
         }
@@ -53,30 +53,31 @@ public class FabricanteServiceImpl implements FabricanteService {
     }
 
     @Override
-    public Fabricante editar(Fabricante fabricante) {
-        this.outroLadoPlataforma(fabricante);
-        return this.em.merge(fabricante);
+    public void editar(Desenvolvedora desenvolvedora) {
+        this.outroLadoJogo(desenvolvedora);
+        this.em.merge(desenvolvedora);
     }
 
     @Override
-    public Fabricante recuperar(Long id) {
-        return this.em.find(Fabricante.class, id);
+    public Desenvolvedora recuperar(Long id) {
+        return this.em.find(Desenvolvedora.class, id);
     }
 
     @SuppressWarnings("unchecked")
-    public List<Fabricante> listarTodos() {
-        String queryString = "SELECT f FROM Fabricante f ORDER BY f.nome";
+    public List<Desenvolvedora> listarTodos() {
+        String queryString = "SELECT d FROM Desenvolvedora d ORDER BY d.nome";
         Query query = this.em.createQuery(queryString);
-        List<Fabricante> list = query.getResultList();
+        List<Desenvolvedora> list = query.getResultList();
         return list;
     }
 
-    private void outroLadoPlataforma(Fabricante fabricante) {
-        if (CollectionUtils.isEmpty(fabricante.getPlataformas())) {
+    private void outroLadoJogo(Desenvolvedora desenvolvedora) {
+        if (CollectionUtils.isEmpty(desenvolvedora.getJogos())) {
             return;
         }
-        for (Plataforma plataforma : fabricante.getPlataformas()) {
-            plataforma.setFabricante(fabricante);
+        for (Jogo jogo : desenvolvedora.getJogos()) {
+            jogo.setDesenvolvedora(desenvolvedora);
         }
     }
+
 }

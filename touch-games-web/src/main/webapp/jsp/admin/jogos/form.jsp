@@ -6,7 +6,7 @@
 	
 	<t:loadbundle var="i18n" basename="Names" />
 	
-	<t:panel>
+	<t:panel cssClass="form">
 		<t:title value="%{formTitle}"/>
 		
 		<input type="hidden" name="jogo.id" value=""/>
@@ -44,7 +44,7 @@
 		</t:field>
 		
 		<t:toolbar>
-			<t:submitbutton action="Jogo!save.action" template="save"/>
+			<t:submitbutton action="Jogos!save.action" template="save"/>
 		</t:toolbar>
 	</t:panel>
 	

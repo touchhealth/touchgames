@@ -11,7 +11,7 @@
 		<t:title value="Lista"/>
 		
 		<t:table list="%{jogos}">
-			<t:tablerowselector name="selectedId" multiple="false"/>
+			<t:tablerowselector name="selectedId" multiple="false" property="id"/>
 			<t:tablecolumn  property="nome" title="Nome"/>
 			<t:tablecolumn  property="genero" title="Gênero"/>
 			<t:tablecolumn  property="desenvolvedora" title="Desenvolvedora"/>

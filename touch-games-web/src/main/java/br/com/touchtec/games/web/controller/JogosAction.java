@@ -69,6 +69,7 @@ public class JogosAction extends TWFActionSupport {
     }
 
     public String update() throws Exception {
+        this.jogo = this.jogoService.recuperar(this.selectedId);
         this.formTitle = "Edição";
         return "jsp/admin/jogos/form";
     }

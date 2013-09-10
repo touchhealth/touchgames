@@ -19,6 +19,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import junit.framework.Assert;
 
 import org.junit.After;
@@ -47,6 +50,9 @@ import br.com.touchtec.spring.test.TouchSpringRunner;
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class PedidoServiceTest {
 
+    @PersistenceContext
+    private EntityManager em;
+
     @Autowired
     private PedidoService service;
 
@@ -57,7 +63,11 @@ public class PedidoServiceTest {
     @Test
     @Transactional
     public void criarTest() {
-        Pedido pedido = this.criarPedido(new Date(), ImmutableMap.of("Puppeteer", 1, "GTAV", 2));
+        Date data = new GregorianCalendar(2013, 9, 13).getTime();
+        Pedido pedido = this.criarPedido(data, ImmutableMap.of("Puppeteer", 1, "GTAV", 2));
+        this.em.flush();
+        this.em.clear();
+
         Pedido pedidoDB = this.service.recuperar(pedido.getId());
         Assert.assertEquals(pedido, pedidoDB);
     }
@@ -68,14 +78,19 @@ public class PedidoServiceTest {
     public void editarTest() {
         Date correctDate = new GregorianCalendar(2013, 9, 13).getTime();
         Pedido pedido = this.criarPedido(correctDate, ImmutableMap.of("StarBound", 3));
+        this.em.flush();
+        this.em.clear();
+
         pedido.setData(correctDate);
         pedido.getItens().get(0).setQuantidade(4);
+
+        pedido.getItens().add(this.criarItemPedido("Puppeteer", 1));
         this.service.editar(pedido);
+        this.em.flush();
+        this.em.clear();
 
         Pedido pedidoDB = this.service.recuperar(pedido.getId());
-
-        Assert.assertEquals(correctDate, pedidoDB.getData());
-        Assert.assertEquals(4, pedidoDB.getItens().get(0).getQuantidade());
+        Assert.assertEquals(pedido, pedidoDB);
     }
 
     /***/
@@ -93,6 +108,8 @@ public class PedidoServiceTest {
     public void listarTodosTest() {
         Pedido rayman = this.criarPedido(new Date(), ImmutableMap.of("Rayman Legends", 2));
         Pedido amnesia = this.criarPedido(new Date(), ImmutableMap.of("Amnesia: Machine for Pigs", 1));
+        this.em.flush();
+        this.em.clear();
 
         List<Pedido> pedidos = this.service.listarTodos();
 

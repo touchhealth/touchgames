@@ -12,18 +12,21 @@
 package br.com.touchtec.games.core.service.spring;
 
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import junit.framework.Assert;
 
-import org.apache.commons.lang.ArrayUtils;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.touchtec.games.core.model.Genero;
 import br.com.touchtec.games.core.model.Jogo;
@@ -41,6 +44,9 @@ import br.com.touchtec.spring.test.TouchSpringRunner;
 @RunWith(TouchSpringRunner.class)
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class JogoServiceTest {
+
+    @PersistenceContext
+    private EntityManager em;
 
     @Autowired
     private JogoService service;
@@ -78,6 +84,7 @@ public class JogoServiceTest {
     }
 
     /***/
+    @Test
     public void listarPorGeneroTest() {
         Jogo ct = this.criarJogo("Chrono Trigger", Genero.RPG);
         Jogo cc = this.criarJogo("Chrono Cross", Genero.RPG);
@@ -97,20 +104,17 @@ public class JogoServiceTest {
     }
 
     /***/
+    @Test
+    @Transactional
     public void listarPorPlataformaTest() {
-        Jogo skyrin = this.criarJogo("The Elder Scrolls V: Skyrim", "Xbox 360", "PC", "PS3");
-        Jogo stc = this.criarJogo("Shadow of the Colossus", "PS3", "PS2");
-
-        Plataforma ps3 = null;
-        Plataforma pc = null;
-        for (Plataforma p : this.plataformaService.listarTodos()) {
-            if ("PS3".equals(p.getNome())) {
-                ps3 = p;
-            }
-            if ("PC".equals(p.getNome())) {
-                pc = p;
-            }
-        }
+        Plataforma xbox360 = this.criarPlataforma("Xbox 360");
+        Plataforma pc = this.criarPlataforma("PC");
+        Plataforma ps3 = this.criarPlataforma("PS3");
+        Plataforma ps2 = this.criarPlataforma("PS2");
+        Jogo skyrin = this.criarJogo("The Elder Scrolls V: Skyrim", xbox360, pc, ps3);
+        Jogo stc = this.criarJogo("Shadow of the Colossus", ps3, ps2);
+        this.em.flush();
+        this.em.clear();
 
         List<Jogo> jogos = this.service.listar(ps3);
         Assert.assertEquals(2, jogos.size());
@@ -161,11 +165,11 @@ public class JogoServiceTest {
         return this.criarJogo(nome, Genero.RPG);
     }
 
-    private Jogo criarJogo(String nome, String... plataformas) {
+    private Jogo criarJogo(String nome, Plataforma... plataformas) {
         return this.criarJogo(nome, Genero.RPG, plataformas);
     }
 
-    private Jogo criarJogo(String nome, Genero genero, String... plataformas) {
+    private Jogo criarJogo(String nome, Genero genero, Plataforma... plataformas) {
         Jogo jogo = new Jogo();
         jogo.setNome(nome);
         jogo.setDescricao("Melhor jogo de todos os tempos.");
@@ -173,14 +177,7 @@ public class JogoServiceTest {
         jogo.setDesconto(10);
         jogo.setGenero(genero);
         jogo.setPreco(15.0f);
-
-        if (ArrayUtils.isNotEmpty(plataformas)) {
-            List<Plataforma> listaPlataformas = new ArrayList<Plataforma>();
-            for (String plataforma : plataformas) {
-                listaPlataformas.add(this.criarPlataforma(plataforma));
-            }
-            jogo.setPlataformas(listaPlataformas);
-        }
+        jogo.setPlataformas(Arrays.asList(plataformas));
 
         this.service.criar(jogo);
         return jogo;

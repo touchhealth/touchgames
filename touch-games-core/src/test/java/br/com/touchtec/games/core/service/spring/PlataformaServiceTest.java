@@ -14,6 +14,9 @@ package br.com.touchtec.games.core.service.spring;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import junit.framework.Assert;
 
 import org.junit.After;
@@ -38,6 +41,9 @@ import br.com.touchtec.spring.test.TouchSpringRunner;
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class PlataformaServiceTest {
 
+    @PersistenceContext
+    private EntityManager em;
+
     @Autowired
     private PlataformaService service;
 
@@ -45,6 +51,7 @@ public class PlataformaServiceTest {
     @Test
     public void criarTest() {
         Plataforma plataforma = this.criarPlataforma("PS3", "Sony");
+
         Plataforma plataformaDB = this.service.recuperar(plataforma.getId());
         Assert.assertEquals(plataforma, plataformaDB);
 
@@ -82,6 +89,8 @@ public class PlataformaServiceTest {
     public void listarTodosTest() {
         Plataforma ps2 = this.criarPlataforma("PS2", "Sony");
         Plataforma gameBoy = this.criarPlataforma("GameBoy", "Nintendo");
+        this.em.flush();
+        this.em.clear();
 
         List<Plataforma> plataformas = this.service.listarTodos();
         Assert.assertEquals(2, plataformas.size());

@@ -73,7 +73,7 @@ public class JogoServiceImpl implements JogoService {
 
     @SuppressWarnings("unchecked")
     public List<Jogo> listar(Plataforma plataforma) {
-        String queryString = "SELECT j FROM Jogo j WHERE :plataforma IN (j.plataforma)  ORDER BY j.nome";
+        String queryString = "SELECT j FROM Jogo j WHERE :plataforma IN ELEMENTS(j.plataformas)  ORDER BY j.nome";
         Query query = this.em.createQuery(queryString);
         query.setParameter("plataforma", plataforma);
         List<Jogo> list = query.getResultList();

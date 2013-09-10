@@ -12,6 +12,7 @@
 package br.com.touchtec.games.core.model;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -83,7 +84,8 @@ public class Pedido extends EntidadeRaiz {
         Pedido other = (Pedido) obj;
         return new EqualsBuilder() //
                 .append(this.data, other.data) //
-                .append(this.itens, other.itens) //
+                .append(this.itens == null ? null : new ArrayList<ItemPedido>(this.itens), //
+                        other.itens == null ? null : new ArrayList<ItemPedido>(this.itens)) //
                 .isEquals();
     }
 

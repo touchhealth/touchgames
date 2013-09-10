@@ -15,6 +15,9 @@ package br.com.touchtec.games.core.service.spring;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import junit.framework.Assert;
 
 import org.apache.commons.lang.ArrayUtils;
@@ -40,6 +43,9 @@ import br.com.touchtec.spring.test.TouchSpringRunner;
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class FabricanteServiceTest {
 
+    @PersistenceContext
+    private EntityManager em;
+
     @Autowired
     private FabricanteService service;
 
@@ -48,6 +54,9 @@ public class FabricanteServiceTest {
     @Transactional
     public void criarTest() {
         Fabricante fabricante = this.criarFabricante("Sony", "Vita", "PS3", "PSP", "PS4");
+        this.em.flush();
+        this.em.clear();
+
         Fabricante fabricanteDB = this.service.recuperar(fabricante.getId());
         Assert.assertEquals(fabricante, fabricanteDB);
 
@@ -64,15 +73,20 @@ public class FabricanteServiceTest {
     @Transactional
     public void editarTest() {
         Fabricante fabricante = this.criarFabricante("Ñ intendo", "DS", "3DS", "WII", "WIIU");
+        this.em.flush();
+        this.em.clear();
+
         fabricante.setNome("Nintendo");
-        List<Plataforma> plataformasa = fabricante.getPlataformas();
-        plataformasa.add(this.criarPlataforma("2DS (Bolachão)"));
+        List<Plataforma> plataformas = fabricante.getPlataformas();
+        plataformas.add(this.criarPlataforma("2DS (Bolachão)"));
         this.service.editar(fabricante);
+        this.em.flush();
+        this.em.clear();
 
         Fabricante fabricanteDB = this.service.recuperar(fabricante.getId());
 
         Assert.assertEquals("Nintendo", fabricanteDB.getNome());
-        List<Plataforma> plataformas = fabricanteDB.getPlataformas();
+        plataformas = fabricanteDB.getPlataformas();
         Assert.assertEquals(5, plataformas.size());
         Assert.assertTrue(plataformas.contains(this.criarPlataforma("2DS (Bolachão)")));
     }
@@ -105,13 +119,13 @@ public class FabricanteServiceTest {
         SpringTestUtil.restartContext(SpringBeanUtil.getContext());
     }
 
-    private Fabricante criarFabricante(String nome, String... plataformas) {
+    private Fabricante criarFabricante(String nome, String... nomesPlataforma) {
         Fabricante fabricante = new Fabricante();
         fabricante.setNome(nome);
-        if (ArrayUtils.isNotEmpty(plataformas)) {
+        if (ArrayUtils.isNotEmpty(nomesPlataforma)) {
             List<Plataforma> listaPlataformas = new ArrayList<Plataforma>();
-            for (String plataforma : plataformas) {
-                listaPlataformas.add(this.criarPlataforma(plataforma));
+            for (String nomePlataforma : nomesPlataforma) {
+                listaPlataformas.add(this.criarPlataforma(nomePlataforma));
             }
             fabricante.setPlataformas(listaPlataformas);
         }
