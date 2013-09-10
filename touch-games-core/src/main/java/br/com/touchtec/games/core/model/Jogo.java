@@ -26,6 +26,8 @@ import javax.persistence.UniqueConstraint;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+import br.com.touchtec.message.Named;
+
 
 /**
  * @author filipe
@@ -33,6 +35,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 @Entity
 @Table(name = "jogos", uniqueConstraints = { @UniqueConstraint(columnNames = "nome") })
+@Named(key = "Jogo")
 public class Jogo extends EntidadeRaiz {
 
     private static final long serialVersionUID = 242685942375730911L;

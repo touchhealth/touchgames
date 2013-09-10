@@ -24,7 +24,7 @@ public class AdminAction extends TWFActionSupport {
 
     @Override
     public String execute() throws Exception {
-        return "jsp/admin/admin";
+        return "jsp/admin/pedidos/list";
     }
 
 }

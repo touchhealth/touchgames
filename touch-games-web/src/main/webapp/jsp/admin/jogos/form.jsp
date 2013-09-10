@@ -4,7 +4,48 @@
 	xmlns:t="http://www.touchtec.com.br/twfc-tags">
 <jsp:directive.page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" />
 	
+	<t:loadbundle var="i18n" basename="Names" />
 	
-	
+	<t:panel>
+		<t:title value="%{formTitle}"/>
+		
+		<input type="hidden" name="jogo.id" value=""/>
+		
+		<t:set component="label" value="width:150px" property="style" />
+		
+		<t:field>
+			<t:label value="%{i18n.Jogo.nome}"/>
+			<t:textinput name="jogo.nome" value="%{jogo.nome}"/>
+		</t:field>
+		<t:field>
+			<t:label value="%{i18n.Jogo.descricao}"/>
+			<t:textinput template="textarea" name="jogo.nome" value="%{jogo.nome}"/>
+		</t:field>
+		<t:field>
+			<t:label value="%{i18n.Jogo.genero}"/>
+			<t:singleselect name="jogo.genero" value="%{jogo.genero}" enumList="br.com.touchtec.games.core.model.Genero"/>
+		</t:field>
+		<t:field>
+			<t:label value="%{i18n.Jogo.desenvolvedora}"/>
+			<t:singleselect name="jogo.desenvolvedora" value="%{jogo.desenvolvedora}" 
+				list="%{desenvolvedoras}" optionLabel="nome"  optionValue="id"/>
+		</t:field>
+		<t:field>
+			<t:label value="%{i18n.Jogo.preco}"/>
+			<t:numberinput name="jogo.preco" value="%{jogo.preco}"/>
+		</t:field>
+		<t:field>
+			<t:label value="%{i18n.Jogo.desconto}"/>
+			<t:numberinput name="jogo.desconto" value="%{jogo.desconto}"/>
+		</t:field>
+		<t:field>
+			<t:label value="%{i18n.Jogo.dataLancamento}"/>
+			<t:datepicker name="jogo.dataLancamento" value="%{jogo.dataLancamento}"/>
+		</t:field>
+		
+		<t:toolbar>
+			<t:submitbutton action="Jogo!save.action" template="save"/>
+		</t:toolbar>
+	</t:panel>
 	
 </jsp:root>
