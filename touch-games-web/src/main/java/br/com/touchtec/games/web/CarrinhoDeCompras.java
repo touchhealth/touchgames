@@ -58,7 +58,7 @@ public class CarrinhoDeCompras implements Serializable {
     public Float getTotal() {
         Float total = 0f;
         for (ItemPedido item : this.items) {
-            total += item.getJogo().getPreco() * item.getQuantidade();
+            total += item.getJogo().getPrecoComDesconto() * item.getQuantidade();
         }
         return total;
     }

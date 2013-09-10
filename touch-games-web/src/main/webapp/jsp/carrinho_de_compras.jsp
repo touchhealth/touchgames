@@ -27,9 +27,9 @@
 						<tr>
 							<td>${item.jogo}</td>
 							<td>${item.plataforma}</td>
-							<td class="text-right"><fmt:formatNumber type="currency" value="${item.jogo.preco}"/></td>
+							<td class="text-right"><fmt:formatNumber type="currency" value="${item.jogo.precoComDesconto}"/></td>
 							<td class="text-right">${item.quantidade}</td>
-							<td class="text-right"><fmt:formatNumber type="currency" value="${item.jogo.preco * item.quantidade}"/></td>
+							<td class="text-right"><fmt:formatNumber type="currency" value="${item.jogo.precoComDesconto * item.quantidade}"/></td>
 						</tr>		
 					</c:forEach>
 				</tbody>
