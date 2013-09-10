@@ -55,7 +55,7 @@ public class Pedido extends EntidadeRaiz {
             return valorTotal;
         }
         for (ItemPedido item : itens) {
-            valorTotal += item.getQuantidade() * item.getJogo().getPrecoComDesconto();
+            valorTotal += item.getValorTotalItem();
         }
         return valorTotal;
     }

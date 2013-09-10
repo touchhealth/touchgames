@@ -30,7 +30,9 @@
 			<t:tablecolumn  title="%{i18n.Jogo.preco}">
 				<fmt:formatNumber type="currency" value="${jogo.preco}" />
 			</t:tablecolumn>
-			<t:tablecolumn  property="precoComDesconto" title="%{i18n.Jogo.precoComDesconto}"/>
+			<t:tablecolumn  title="%{i18n.Jogo.precoComDesconto}">
+				<fmt:formatNumber type="currency" value="${jogo.precoComDesconto}" />
+			</t:tablecolumn>
 			<t:tablecolumn  title="%{i18n.Jogo.dataLancamento}">
 					<fmt:formatDate value="${jogo.dataLancamento}" />
 			</t:tablecolumn>

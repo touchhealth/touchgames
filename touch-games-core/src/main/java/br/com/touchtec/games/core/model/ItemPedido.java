@@ -14,6 +14,7 @@ package br.com.touchtec.games.core.model;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -31,6 +32,14 @@ public class ItemPedido extends EntidadeRaiz {
     private Jogo jogo;
     private int quantidade;
     private Plataforma plataforma;
+
+    /**
+     * @return O valor total do item.
+     */
+    @Transient
+    public Float getValorTotalItem() {
+        return this.getQuantidade() * this.getJogo().getPrecoComDesconto();
+    }
 
     /**
      * @return jogo
