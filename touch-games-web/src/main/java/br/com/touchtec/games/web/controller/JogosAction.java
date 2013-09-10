@@ -22,8 +22,10 @@ import org.springframework.stereotype.Component;
 
 import br.com.touchtec.games.core.model.Desenvolvedora;
 import br.com.touchtec.games.core.model.Jogo;
+import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.DesenvolvedoraService;
 import br.com.touchtec.games.core.service.JogoService;
+import br.com.touchtec.games.core.service.PlataformaService;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
 
@@ -39,22 +41,28 @@ public class JogosAction extends TWFActionSupport {
     @Autowired
     private JogoService jogoService;
 
-    @Autowired
-    private DesenvolvedoraService desenvolvedoraService;
-
     private String formTitle;
 
     private Jogo jogo;
 
     private List<Jogo> jogos;
 
+    @Autowired
+    private DesenvolvedoraService desenvolvedoraService;
+
     private List<Desenvolvedora> desenvolvedoras;
+
+    @Autowired
+    private PlataformaService plataformaService;
+
+    private List<Plataforma> plataformas;
 
     private Long selectedId;
 
     @PostConstruct
     public void prepare() {
         this.desenvolvedoras = this.desenvolvedoraService.listarTodos();
+        this.plataformas = this.plataformaService.listarTodos();
     }
 
     @Override
@@ -69,7 +77,7 @@ public class JogosAction extends TWFActionSupport {
     }
 
     public String update() throws Exception {
-        this.jogo = this.jogoService.recuperar(this.selectedId);
+        this.jogo = this.jogoService.recuperarComListas(this.selectedId);
         this.formTitle = "Edição";
         return "jsp/admin/jogos/form";
     }
@@ -124,6 +132,10 @@ public class JogosAction extends TWFActionSupport {
 
     public List<Desenvolvedora> getDesenvolvedoras() {
         return this.desenvolvedoras;
+    }
+
+    public List<Plataforma> getPlataformas() {
+        return this.plataformas;
     }
 
 }

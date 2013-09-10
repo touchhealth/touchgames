@@ -31,6 +31,11 @@
 				list="%{desenvolvedoras}" optionLabel="nome"  optionValue="id"/>
 		</t:field>
 		<t:field>
+			<t:label value="%{i18n.Jogo.plataformas}"/>
+			<t:multipleselect name="jogo.plataformas" optionValueName="id" value="%{jogo.plataformas}"  
+				list="%{plataformas}" optionLabel="nome" optionValue="id" />
+		</t:field>
+		<t:field>
 			<t:label value="%{i18n.Jogo.preco}"/>
 			<t:numberinput name="jogo.preco" value="%{jogo.preco}"/>
 		</t:field>

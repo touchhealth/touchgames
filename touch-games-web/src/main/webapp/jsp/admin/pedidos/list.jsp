@@ -5,13 +5,12 @@
 <jsp:directive.page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" />
 
 <t:loadbundle var="i18n" basename="Names" />
-<t:loadbundle var="msg" basename="TGames-Messages" />
 
 <t:userinterface>
-	<t:title value="%{msg.tittle.pedidos}"/>
+	<t:title value="Pedidos"/>
 	
 	<t:panel id="list" cssClass="form">
-		<t:title value="%{msg.lista}"/>
+		<t:title value="Lista"/>
 		
 		<t:table list="%{pedidos}">
 			<t:tablerowselector name="selectedId" multiple="false" property="id"/>
@@ -19,8 +18,8 @@
 		</t:table>
 	
 		<t:toolbar>
-			<t:ajaxbutton action="Pedidos!view.action" responseTarget="response" postAction="" template="view"/>
-			<t:submitbutton action="Pedidos!remove.action" postAction="" template="remove" confirmMsg="%{msg.cfmMessage.deletar}"/>
+			<t:ajaxbutton action="Pedidos!view.action" responseTarget="response" template="view"/>
+			<t:submitbutton action="Pedidos!remove.action" template="remove" confirmMsg="%{i18n.msg.remover}"/>
 		</t:toolbar>
 	</t:panel>
 	

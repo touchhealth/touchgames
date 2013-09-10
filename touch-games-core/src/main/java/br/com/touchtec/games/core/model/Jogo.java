@@ -92,7 +92,7 @@ public class Jogo extends EntidadeRaiz {
     /**
      * @return plataformas
      */
-    @ManyToMany(targetEntity = Plataforma.class)
+    @ManyToMany
     public List<Plataforma> getPlataformas() {
         return this.plataformas;
     }

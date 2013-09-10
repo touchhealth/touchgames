@@ -33,6 +33,7 @@ public class Plataforma extends EntidadeRaiz {
     private static final long serialVersionUID = -2400143269814546492L;
 
     private String nome;
+
     private Fabricante fabricante;
 
     @Override

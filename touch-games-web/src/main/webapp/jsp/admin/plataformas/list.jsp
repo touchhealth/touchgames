@@ -4,13 +4,12 @@
 	xmlns:t="http://www.touchtec.com.br/twfc-tags">
 	
 <t:loadbundle var="i18n" basename="Names" />
-<t:loadbundle var="msg" basename="TGames-Messages" />
 
 <t:userinterface>
-	<t:title value="%{msg.tittle.plataformas}"/>
+	<t:title value="Plataformas"/>
 	
 	<t:panel id="list" cssClass="form">
-		<t:title value="%{msg.lista}"/>
+		<t:title value="Lista"/>
 		
 		<t:table list="%{plataformas}">
 			<t:tablerowselector name="selectedId" multiple="false" property="id"/>
@@ -19,10 +18,10 @@
 		</t:table>
 	
 		<t:toolbar>
-			<t:ajaxbutton action="Plataformas!create.action" responseTarget="response" postAction="" template="create"/>
-			<t:ajaxbutton action="Plataformas!update.action" responseTarget="response" postAction="" template="update"/>
-			<t:ajaxbutton action="Plataformas!view.action" responseTarget="response" postAction="" template="view"/>
-			<t:submitbutton action="Plataformas!remove.action" postAction="" template="remove" confirmMsg="%{msg.cfmMessage.deletar}"/>
+			<t:ajaxbutton action="Plataformas!create.action" responseTarget="response" template="create"/>
+			<t:ajaxbutton action="Plataformas!update.action" responseTarget="response" template="update"/>
+			<t:ajaxbutton action="Plataformas!view.action" responseTarget="response" template="view"/>
+			<t:submitbutton action="Plataformas!remove.action" template="remove" confirmMsg="%{i18n.msg.remover}"/>
 		</t:toolbar>
 	</t:panel>
 	

@@ -5,10 +5,9 @@
 <jsp:directive.page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" />
 
 	<t:loadbundle var="i18n" basename="Names" />
-	<t:loadbundle var="msg" basename="TGames-Messages" />
 	
 	<t:panel id="fabricanteForm" cssClass="form">
-		<t:title value="%{msg.consulta}"/>
+		<t:title value="Consulta"/>
 		
 		<t:set component="label" value="width:150px" property="style" />
 		

@@ -5,13 +5,12 @@
 <jsp:directive.page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" />
 
 <t:loadbundle var="i18n" basename="Names" />
-<t:loadbundle var="msg" basename="TGames-Messages" />
 
 <t:userinterface>
-	<t:title value="%{msg.tittle.deselvolvedoras}"/>
+	<t:title value="Deselvolvedoras"/>
 	
 	<t:panel id="list" cssClass="form">
-		<t:title value="%{msg.lista}"/>
+		<t:title value="Lista"/>
 		
 		<t:table list="%{desenvolvedoras}">
 			<t:tablerowselector name="selectedId" multiple="false" property="id"/>
@@ -19,10 +18,10 @@
 		</t:table>
 	
 		<t:toolbar>
-			<t:ajaxbutton action="Desenvolvedoras!create.action" responseTarget="response" postAction="" template="create"/>
-			<t:ajaxbutton action="Desenvolvedoras!update.action" responseTarget="response" postAction="" template="update"/>
-			<t:ajaxbutton action="Desenvolvedoras!view.action" responseTarget="response" postAction="" template="view"/>
-			<t:submitbutton action="Desenvolvedoras!remove.action" postAction="" template="remove" confirmMsg="%{msg.cfmMessage.deletar}"/>
+			<t:ajaxbutton action="Desenvolvedoras!create.action" responseTarget="response" template="create"/>
+			<t:ajaxbutton action="Desenvolvedoras!update.action" responseTarget="response" template="update"/>
+			<t:ajaxbutton action="Desenvolvedoras!view.action" responseTarget="response" template="view"/>
+			<t:submitbutton action="Desenvolvedoras!remove.action" template="remove" confirmMsg="%{i18n.msg.remover}"/>
 		</t:toolbar>
 	</t:panel>
 	
