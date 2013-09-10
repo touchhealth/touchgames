@@ -6,6 +6,8 @@
 	<!-- O TWF é um framework da Touch que adiciona novas funcionalidades ao struts -->
 	<include file="twf-default.xml"/>
 	
+	<constant name="struts.multipart.parser" value="br.com.touchtec.twf.core.MonitoredMultiPartRequest"/>
+	
 	<package name="default" extends="twf-default">
 		<interceptors>
 			<interceptor name="navigation" class="br.com.touchtec.games.web.controller.NavigationInterceptor" />

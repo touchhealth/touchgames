@@ -12,15 +12,19 @@
 package br.com.touchtec.games.web.controller;
 
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import br.com.touchtec.games.core.model.Desenvolvedora;
+import br.com.touchtec.games.core.model.Imagem;
 import br.com.touchtec.games.core.model.Jogo;
 import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.DesenvolvedoraService;
@@ -44,6 +48,8 @@ public class JogosAction extends TWFActionSupport {
     private String formTitle;
 
     private Jogo jogo;
+
+    private List<File> imagens;
 
     private List<Jogo> jogos;
 
@@ -88,17 +94,26 @@ public class JogosAction extends TWFActionSupport {
     }
 
     public String save() throws Exception {
+        FileInputStream inputStream = new FileInputStream(this.imagens.get(0));
+        byte[] bytes = IOUtils.toByteArray(inputStream);
+
+        this.jogo.getImagens().add(new Imagem(bytes));
+
         if (this.jogo.getId() != null) {
             this.jogoService.editar(this.jogo);
+            this.addSuccessMessage(this.jogo + " atualizado com sucesso");
         } else {
             this.jogoService.criar(this.jogo);
+            this.addSuccessMessage(this.jogo + " criado com sucesso");
         }
+
         return this.execute();
     }
 
     public String remove() throws Exception {
         this.jogo = this.jogoService.recuperar(this.selectedId);
         this.jogoService.remover(this.jogo);
+        this.addSuccessMessage(this.jogo + " removido com sucesso");
         return this.execute();
     }
 
@@ -108,6 +123,14 @@ public class JogosAction extends TWFActionSupport {
 
     public void setJogo(Jogo jogo) {
         this.jogo = jogo;
+    }
+
+    public List<File> getImagens() {
+        return this.imagens;
+    }
+
+    public void setImagens(List<File> imagens) {
+        this.imagens = imagens;
     }
 
     public List<Jogo> getJogos() {

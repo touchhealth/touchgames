@@ -27,7 +27,9 @@ import javax.persistence.UniqueConstraint;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+import br.com.touchtec.games.core.service.PlataformaService;
 import br.com.touchtec.message.Named;
+import br.com.touchtec.spring.SpringBeanUtil;
 
 
 /**
@@ -50,7 +52,7 @@ public class Jogo extends EntidadeRaiz {
     private Float preco;
     private int desconto;
     private Date dataLancamento;
-    private List<Imagem> imagens;
+    private List<Imagem> imagens = new ArrayList<Imagem>();
 
     /**
      * @return O preco com desconto.
@@ -102,6 +104,7 @@ public class Jogo extends EntidadeRaiz {
      * @return plataformas
      */
     @ManyToMany
+    @OrderBy("nome")
     public List<Plataforma> getPlataformas() {
         return this.plataformas;
     }
@@ -200,9 +203,12 @@ public class Jogo extends EntidadeRaiz {
     }
 
     /**
+     * Vamos usar EAGER mesmo, pois vamos listar as imagens sempre e isso vai facilitar nossa vida. Mas cuidado com essa
+     * estratégia.
+     * 
      * @return imagens
      */
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public List<Imagem> getImagens() {
         return this.imagens;
     }

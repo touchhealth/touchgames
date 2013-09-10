@@ -58,7 +58,7 @@
 		</t:field>
 		
 		<t:toolbar>
-			<t:jsbutton template="cancel" action="$('jogoForm').remove()"/>
+			<t:jsbutton template="cancel" action="$('jogoForm').remove(); $t('list').open()"/>
 		</t:toolbar>
 	</t:panel>
 

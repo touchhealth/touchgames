@@ -67,6 +67,7 @@ public class JogoServiceImpl implements JogoService {
         Jogo jogo = this.recuperar(id);
         Hibernate.initialize(jogo.getPlataformas());
         Hibernate.initialize(jogo.getEstoques());
+        Hibernate.initialize(jogo.getImagens());
         return jogo;
     }
 

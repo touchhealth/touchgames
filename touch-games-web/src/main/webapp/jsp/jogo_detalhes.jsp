@@ -54,7 +54,7 @@
 					</div>
 					
 					<div class="plataforma">
-						<c:forEach items="${jogoSelecionado.plataformasDisponiveis}" var="plataforma">
+						<c:forEach items="${jogoSelecionado.plataformas}" var="plataforma">
 							<label>
 								<input required="required" type="radio" value="${plataforma.id}" name="plataformaId" /> ${plataforma}
 							</label>

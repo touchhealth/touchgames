@@ -28,6 +28,20 @@ public class Imagem extends EntidadeRaiz {
     private byte[] bytes;
 
     /**
+     * esse construtor é necessário para o Hibernate
+     */
+    public Imagem() {
+        super();
+    }
+
+    /**
+     * @param bytes
+     */
+    public Imagem(byte[] bytes) {
+        this.bytes = bytes;
+    }
+
+    /**
      * @return bytes
      */
     @Lob

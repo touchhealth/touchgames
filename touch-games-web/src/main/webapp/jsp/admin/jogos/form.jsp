@@ -13,43 +13,78 @@
 		
 		<t:set component="label" value="width:150px" property="style" />
 		
-		<t:field>
-			<t:label value="%{i18n.Jogo.nome}"/>
-			<t:textinput name="jogo.nome" value="%{jogo.nome}"/>
-		</t:field>
-		<t:field>
-			<t:label value="%{i18n.Jogo.descricao}"/>
-			<t:textinput template="textarea" name="jogo.descricao" value="%{jogo.descricao}"/>
-		</t:field>
-		<t:field>
-			<t:label value="%{i18n.Jogo.genero}"/>
-			<t:singleselect name="jogo.genero" value="%{jogo.genero}" enumList="br.com.touchtec.games.core.model.Genero"/>
-		</t:field>
-		<t:field>
-			<t:label value="%{i18n.Jogo.desenvolvedora}"/>
-			<t:singleselect name="jogo.desenvolvedora" value="%{jogo.desenvolvedora}" 
-				list="%{desenvolvedoras}" optionLabel="nome"  optionValue="id"/>
-		</t:field>
-		<t:field>
-			<t:label value="%{i18n.Jogo.plataformas}"/>
-			<t:multipleselect name="jogo.plataformas" optionValueName="id" value="%{jogo.plataformas}"  
-				list="%{plataformas}" optionLabel="nome" optionValue="id" />
-		</t:field>
-		<t:field>
-			<t:label value="%{i18n.Jogo.preco}"/>
-			<t:numberinput name="jogo.preco" value="%{jogo.preco}"/>
-		</t:field>
-		<t:field>
-			<t:label value="%{i18n.Jogo.desconto}"/>
-			<t:numberinput name="jogo.desconto" value="%{jogo.desconto}"/>
-		</t:field>
-		<t:field>
-			<t:label value="%{i18n.Jogo.dataLancamento}"/>
-			<t:datepicker name="jogo.dataLancamento" value="%{jogo.dataLancamento}"/>
-		</t:field>
+		<t:tabbox>
+			<t:tabpanel>
+				<t:title>Geral</t:title>
+				<t:field>
+					<t:label value="%{i18n.Jogo.nome}"/>
+					<t:textinput name="jogo.nome" value="%{jogo.nome}"/>
+				</t:field>
+				<t:field>
+					<t:label value="%{i18n.Jogo.descricao}"/>
+					<t:textinput template="textarea" name="jogo.descricao" value="%{jogo.descricao}"/>
+				</t:field>
+				<t:field>
+					<t:label value="%{i18n.Jogo.genero}"/>
+					<t:singleselect name="jogo.genero" value="%{jogo.genero}" enumList="br.com.touchtec.games.core.model.Genero"/>
+				</t:field>
+				<t:field>
+					<t:label value="%{i18n.Jogo.desenvolvedora}"/>
+					<t:singleselect name="jogo.desenvolvedora" value="%{jogo.desenvolvedora}" 
+						list="%{desenvolvedoras}" optionLabel="nome"  optionValue="id"/>
+				</t:field>
+				<t:field>
+					<t:label value="%{i18n.Jogo.plataformas}"/>
+					<t:multipleselect name="jogo.plataformas" optionValueName="id" value="%{jogo.plataformas}"  
+						list="%{plataformas}" optionLabel="nome" optionValue="id" />
+				</t:field>
+				<t:field>
+					<t:label value="%{i18n.Jogo.dataLancamento}"/>
+					<t:datepicker name="jogo.dataLancamento" value="%{jogo.dataLancamento}"/>
+				</t:field>
+			</t:tabpanel>
+			
+			<t:tabpanel>
+				<t:title>Preço</t:title>
+				
+				<t:field>
+					<t:label value="%{i18n.Jogo.preco}"/>
+					<t:numberinput name="jogo.preco" value="%{jogo.preco}"/>
+				</t:field>
+				<t:field>
+					<t:label value="%{i18n.Jogo.desconto}"/>
+					<t:numberinput name="jogo.desconto" value="%{jogo.desconto}"/>
+				</t:field>
+			</t:tabpanel>
+			
+			<t:tabpanel>
+				<t:title>Imagens</t:title>
+				
+				<t:field>
+					<t:label>Imagem 1</t:label>
+					<t:fileupload name="imagens[0]" />
+				</t:field>
+				<t:field>
+					<t:label>Imagem 2</t:label>
+					<t:fileupload name="imagens[1]" />
+				</t:field>
+				<t:field>
+					<t:label>Imagem 3</t:label>
+					<t:fileupload name="imagens[2]" />
+				</t:field>
+				<t:field>
+					<t:label>Imagem 4</t:label>
+					<t:fileupload name="imagens[3]" />
+				</t:field>
+				<t:field>
+					<t:label>Imagem 5</t:label>
+					<t:fileupload name="imagens[4]" />
+				</t:field>
+			</t:tabpanel>
+		</t:tabbox>
 		
 		<t:toolbar>
-			<t:jsbutton template="cancel" action="$('jogoForm').remove()"/>
+			<t:jsbutton template="cancel" action="$('jogoForm').remove(); $t('list').open()"/>
 			<t:submitbutton action="Jogos!save.action" template="save" primary="true"/>
 		</t:toolbar>
 	</t:panel>
