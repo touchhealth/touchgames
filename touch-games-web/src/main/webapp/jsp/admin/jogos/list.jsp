@@ -19,7 +19,9 @@
 			<t:tablerowselector name="selectedId" multiple="false" property="id"/>
 			
 			<t:tablecolumn title="Imagem">
-				img: ${fn:length(jogo.imagens)}	
+				<c:if test="${!empty jogo.imagens}">
+					<img src="${app}/imagens?id=${jogo.imagens[0].id}" width="50px"/>
+				</c:if>
 			</t:tablecolumn>
 			
 			<t:tablecolumn  property="nome" title="%{i18n.Jogo.nome}"/>

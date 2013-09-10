@@ -18,6 +18,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -94,10 +95,12 @@ public class JogosAction extends TWFActionSupport {
     }
 
     public String save() throws Exception {
-        FileInputStream inputStream = new FileInputStream(this.imagens.get(0));
-        byte[] bytes = IOUtils.toByteArray(inputStream);
+        if (CollectionUtils.isNotEmpty(this.imagens)) {
+            FileInputStream inputStream = new FileInputStream(this.imagens.get(0));
+            byte[] bytes = IOUtils.toByteArray(inputStream);
 
-        this.jogo.getImagens().add(new Imagem(bytes));
+            this.jogo.getImagens().add(new Imagem(bytes));
+        }
 
         if (this.jogo.getId() != null) {
             this.jogoService.editar(this.jogo);
