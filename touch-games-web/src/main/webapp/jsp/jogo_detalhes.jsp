@@ -48,7 +48,7 @@
 						${jogoSelecionado.descricao}
 					</div>
 					
-					<div class="preco">
+					<div class="preco destaque">
 						<fmt:setLocale value="pt_BR"/>
 						<fmt:formatNumber type="currency" value="${jogoSelecionado.preco}" />
 					</div>

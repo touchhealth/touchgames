@@ -54,7 +54,7 @@
 	
 	<!-- Qual nossa página padrão para quando digitarmos http://localhost:8080/touch-games/ ?-->
 	<welcome-file-list>
-		<welcome-file>/twfc/index.jsp</welcome-file>
+		<welcome-file>/index.jsp</welcome-file>
 	</welcome-file-list>
 	
 	

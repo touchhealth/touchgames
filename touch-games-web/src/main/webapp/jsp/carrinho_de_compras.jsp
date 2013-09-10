@@ -40,9 +40,14 @@
 				</tfoot>
 			</table>
 			
-			<form  action="${app}/Compras!finalizarCompra.action" class="text-right">
-				<button type="submit">Comprar</button>
-			</form>
+			<div>
+				<a href="${app}/Compras.action">&lt;&lt; Continuar Comprando</a>
+
+				<form  action="${app}/Compras!finalizarCompra.action" class="right">
+					<button type="submit">Comprar</button>
+				</form>
+			</div>
+			
 		</div>
 	</g:screen>
 	

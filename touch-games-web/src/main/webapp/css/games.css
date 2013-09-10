@@ -5,6 +5,7 @@ html, body {
 	border: 0px;
 	font-family: sans-serif;
 	color: #666;
+	height: 100%;
 }
 
 a {
@@ -44,6 +45,16 @@ button {
 
 .text-right {
 	text-align: right;
+}
+
+.destaque {
+	color: orange;	
+}
+
+#screen {
+	position: relative;
+	padding-bottom: 100px;
+	min-height: 100%;
 }
 
 #header {
@@ -98,12 +109,9 @@ button {
 	width: 100%;
 }
 
-
 #carrinho {
-	color: orange;
 	font-weight: bold;
 }
-
 
 #search {
 	border: 1px solid #ccc;
@@ -113,13 +121,28 @@ button {
 	outline: none;
 }
 
-.box {
+.jogo {
+	text-align: center;
 	width: 150px;
-	height: 150px;
+	height: 170px;
 	display: inline-block;
 	vertical-align: top;
 	margin: 20px;
+	padding: 10px;
 	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+#jogos-lista .jogo img{
+	width: 100px;
+}
+
+#jogos-lista .jogo .nome,
+#jogos-lista .jogo .preco {
+	margin: 5px;
+}
+
+#jogos-lista .jogo .preco{
+	
 }
 
 #jogo-detalhes > * {
@@ -147,7 +170,6 @@ button {
 #jogo-detalhes  .preco {
 	margin-bottom: 30px;
 	font-size: 30px;
-	color: orange;
 }
 
 #jogo-detalhes  .plataforma {

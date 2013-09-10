@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import br.com.touchtec.games.core.model.ItemPedido;
 import br.com.touchtec.games.core.model.Jogo;
 import br.com.touchtec.games.core.model.Pedido;
+import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.JogoService;
 import br.com.touchtec.games.core.service.PedidoService;
 import br.com.touchtec.games.web.CarrinhoDeCompras;
@@ -44,9 +45,11 @@ public class ComprasAction extends TWFActionSupport {
     @Autowired
     private JogoService jogoService;
 
-    private List<Jogo> jogosDestaques;
+    private List<Jogo> jogos;
 
     private Jogo jogoSelecionado;
+
+    private Plataforma plataformaSelecionada;
 
     @Autowired
     private PedidoService pedidoService;
@@ -55,8 +58,8 @@ public class ComprasAction extends TWFActionSupport {
 
     @Override
     public String execute() throws Exception {
-        this.jogosDestaques = this.jogoService.listarTodos();
-        return "jsp/home";
+        this.jogos = this.jogoService.listarTodos();
+        return "jsp/jogos_lista";
     }
 
     public String jogoDetalhes() throws Exception {
@@ -76,8 +79,13 @@ public class ComprasAction extends TWFActionSupport {
         return "jsp/sucesso";
     }
 
-    public List<Jogo> getJogosDestaques() {
-        return this.jogosDestaques;
+    public String jogosPorPlataforma() {
+        this.jogos = this.jogoService.listar(this.plataformaSelecionada);
+        return "jsp/jogos_lista";
+    }
+
+    public List<Jogo> getJogos() {
+        return this.jogos;
     }
 
     public Jogo getJogoSelecionado() {
@@ -86,6 +94,14 @@ public class ComprasAction extends TWFActionSupport {
 
     public void setJogoSelecionado(Jogo jogoSelecionado) {
         this.jogoSelecionado = jogoSelecionado;
+    }
+
+    public Plataforma getPlataformaSelecionada() {
+        return this.plataformaSelecionada;
+    }
+
+    public void setPlataformaSelecionada(Plataforma plataformaSelecionada) {
+        this.plataformaSelecionada = plataformaSelecionada;
     }
 
     public Pedido getPedido() {

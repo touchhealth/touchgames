@@ -8,7 +8,7 @@
 	<ul id="menu-plataformas" class="clearfix">
 		<c:forEach items="${plataformas}" var="plataforma">
 			<li>
-				<a href="${app}/">${plataforma.nome}</a>
+				<a href="${app}/Compras!jogosPorPlataforma.action?plataformaSelecionada.id=${plataforma.id}">${plataforma.nome}</a>
 			</li>
 		</c:forEach>
 	</ul>
