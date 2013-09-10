@@ -19,6 +19,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.hibernate.Hibernate;
+
 import br.com.touchtec.games.core.model.Desenvolvedora;
 
 
@@ -65,11 +67,18 @@ public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
     }
 
     @Override
+    public Desenvolvedora recuperarComListas(Long id) {
+        Desenvolvedora desenvolvedora = this.recuperar(id);
+        Hibernate.initialize(desenvolvedora.getJogos());
+        return desenvolvedora;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
     public List<Desenvolvedora> listarTodos() {
         String queryString = "SELECT d FROM Desenvolvedora d ORDER BY d.nome";
         Query query = this.em.createQuery(queryString);
         List<Desenvolvedora> list = query.getResultList();
         return list;
     }
-
 }

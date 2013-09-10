@@ -3,6 +3,29 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:t="http://www.touchtec.com.br/twfc-tags">
 	
+	<t:loadbundle var="i18n" basename="Names" />
 	
+	<t:panel id="plataformaForm" cssClass="form">
+		<t:title value="%{formTitle}"/>
+		
+		<input type="hidden" name="plataforma.id" value="${plataforma.id}"/>
+		
+		<t:set component="label" value="width:150px" property="style" />
+		
+		<t:field>
+			<t:label value="%{i18n.Plataforma.nome}"/>
+			<t:textinput name="plataforma.nome" value="%{plataforma.nome}"/>
+		</t:field>
+		<t:field>
+			<t:label value="%{i18n.Plataforma.fabricante}"/>
+			<t:singleselect name="plataforma.fabricante" value="%{plataforma.fabricante}" 
+				list="%{fabricantes}" optionLabel="nome"  optionValue="id"/>
+		</t:field>
+		
+		<t:toolbar>
+			<t:jsbutton template="cancel" action="$('plataformaForm').remove()"/>
+			<t:submitbutton action="Plataformas!save.action" template="save"/>
+		</t:toolbar>
+	</t:panel>
 	
 </jsp:root>

@@ -18,6 +18,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,6 +60,13 @@ public class PedidoServiceImpl implements PedidoService {
         return this.em.find(Pedido.class, id);
     }
 
+    @Override
+    public Pedido recuperarComListas(Long id) {
+        Pedido pedido = this.recuperar(id);
+        Hibernate.initialize(pedido.getItens());
+        return pedido;
+    }
+
     @SuppressWarnings("unchecked")
     public List<Pedido> listarTodos() {
         String queryString = "SELECT p FROM Pedido p ORDER BY p.data";
@@ -66,5 +74,4 @@ public class PedidoServiceImpl implements PedidoService {
         List<Pedido> list = query.getResultList();
         return list;
     }
-
 }

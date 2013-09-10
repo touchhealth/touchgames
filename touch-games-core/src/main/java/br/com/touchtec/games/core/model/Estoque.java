@@ -49,7 +49,7 @@ public class Estoque extends EntidadeRaiz {
     /**
      * @return plataforma
      */
-    @ManyToOne()
+    @ManyToOne
     public Plataforma getPlataforma() {
         return this.plataforma;
     }
@@ -64,7 +64,7 @@ public class Estoque extends EntidadeRaiz {
     /**
      * @return jogo
      */
-    @ManyToOne()
+    @ManyToOne
     public Jogo getJogo() {
         return this.jogo;
     }

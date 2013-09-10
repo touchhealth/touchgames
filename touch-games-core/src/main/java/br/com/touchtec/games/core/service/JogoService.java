@@ -48,6 +48,12 @@ public interface JogoService {
     Jogo recuperar(Long id);
 
     /**
+     * @param id
+     * @return O jogo procurado.
+     */
+    Jogo recuperarComListas(Long id);
+
+    /**
      * @param genero
      * @return A lista de jogos por genero.
      */

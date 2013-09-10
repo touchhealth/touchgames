@@ -18,6 +18,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,6 +61,13 @@ public class JogoServiceImpl implements JogoService {
     @Override
     public Jogo recuperar(Long id) {
         return this.em.find(Jogo.class, id);
+    }
+
+    public Jogo recuperarComListas(Long id) {
+        Jogo jogo = this.recuperar(id);
+        Hibernate.initialize(jogo.getPlataformas());
+        Hibernate.initialize(jogo.getEstoques());
+        return jogo;
     }
 
     @SuppressWarnings("unchecked")

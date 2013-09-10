@@ -45,6 +45,12 @@ public interface FabricanteService {
     Fabricante recuperar(Long id);
 
     /**
+     * @param id
+     * @return O fabricante procurado.
+     */
+    Fabricante recuperarComListas(Long id);
+
+    /**
      * @return lista todos
      */
     List<Fabricante> listarTodos();

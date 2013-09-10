@@ -45,6 +45,12 @@ public interface PedidoService {
     Pedido recuperar(Long id);
 
     /**
+     * @param id
+     * @return O pedido procurado.
+     */
+    Pedido recuperarComListas(Long id);
+
+    /**
      * @return lista todos
      */
     List<Pedido> listarTodos();

@@ -20,6 +20,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import br.com.touchtec.message.Named;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.EqualsBuilder;
 
 
 /**
@@ -70,4 +72,27 @@ public class Desenvolvedora extends EntidadeRaiz {
         return this.nome;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        Desenvolvedora other = (Desenvolvedora) obj;
+        return new EqualsBuilder() //
+                .append(this.nome, other.nome) //
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder() //
+                .append(this.nome) //
+                .toHashCode();
+    }
 }

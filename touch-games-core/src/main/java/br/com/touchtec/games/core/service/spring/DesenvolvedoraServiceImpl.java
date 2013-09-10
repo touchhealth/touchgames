@@ -18,12 +18,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.touchtec.games.core.model.Desenvolvedora;
-import br.com.touchtec.games.core.model.Jogo;
 import br.com.touchtec.games.core.service.DesenvolvedoraService;
 
 
@@ -39,7 +38,6 @@ public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
 
     @Override
     public void criar(Desenvolvedora desenvolvedora) {
-        this.outroLadoJogo(desenvolvedora);
         this.em.persist(desenvolvedora);
     }
 
@@ -54,13 +52,19 @@ public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
 
     @Override
     public void editar(Desenvolvedora desenvolvedora) {
-        this.outroLadoJogo(desenvolvedora);
         this.em.merge(desenvolvedora);
     }
 
     @Override
     public Desenvolvedora recuperar(Long id) {
         return this.em.find(Desenvolvedora.class, id);
+    }
+
+    @Override
+    public Desenvolvedora recuperarComListas(Long id) {
+        Desenvolvedora desenvolvedora = this.recuperar(id);
+        Hibernate.initialize(desenvolvedora.getJogos());
+        return desenvolvedora;
     }
 
     @SuppressWarnings("unchecked")
@@ -70,14 +74,4 @@ public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
         List<Desenvolvedora> list = query.getResultList();
         return list;
     }
-
-    private void outroLadoJogo(Desenvolvedora desenvolvedora) {
-        if (CollectionUtils.isEmpty(desenvolvedora.getJogos())) {
-            return;
-        }
-        for (Jogo jogo : desenvolvedora.getJogos()) {
-            jogo.setDesenvolvedora(desenvolvedora);
-        }
-    }
-
 }

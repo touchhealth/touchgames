@@ -12,15 +12,10 @@
 package br.com.touchtec.games.core.service.spring;
 
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import junit.framework.Assert;
 
@@ -29,15 +24,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.google.common.collect.ImmutableMap;
 
 import br.com.touchtec.games.core.model.ItemPedido;
 import br.com.touchtec.games.core.model.Jogo;
 import br.com.touchtec.games.core.model.Pedido;
+import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.JogoService;
 import br.com.touchtec.games.core.service.PedidoService;
+import br.com.touchtec.games.core.service.PlataformaService;
 import br.com.touchtec.spring.SpringBeanUtil;
 import br.com.touchtec.spring.test.SpringTestUtil;
 import br.com.touchtec.spring.test.TouchSpringRunner;
@@ -50,53 +44,51 @@ import br.com.touchtec.spring.test.TouchSpringRunner;
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class PedidoServiceTest {
 
-    @PersistenceContext
-    private EntityManager em;
-
     @Autowired
     private PedidoService service;
 
     @Autowired
     private JogoService jogoService;
 
+    @Autowired
+    private PlataformaService plataformaService;
+
     /***/
     @Test
-    @Transactional
     public void criarTest() {
+        Plataforma ps3 = this.criarPlataforma("PS3");
+        ItemPedido puppeteer = this.criarItemPedido("Puppeteer", 1, ps3);
+        ItemPedido gtav = this.criarItemPedido("GTAV", 2, ps3);
         Date data = new GregorianCalendar(2013, 9, 13).getTime();
-        Pedido pedido = this.criarPedido(data, ImmutableMap.of("Puppeteer", 1, "GTAV", 2));
-        this.em.flush();
-        this.em.clear();
+        Pedido pedido = this.criarPedido(data, puppeteer, gtav);
 
-        Pedido pedidoDB = this.service.recuperar(pedido.getId());
+        Pedido pedidoDB = this.service.recuperarComListas(pedido.getId());
         Assert.assertEquals(pedido, pedidoDB);
     }
 
     /***/
     @Test
-    @Transactional
     public void editarTest() {
+        Plataforma pc = this.criarPlataforma("PC");
         Date correctDate = new GregorianCalendar(2013, 9, 13).getTime();
-        Pedido pedido = this.criarPedido(correctDate, ImmutableMap.of("StarBound", 3));
-        this.em.flush();
-        this.em.clear();
+        Pedido pedido = this.criarPedido(correctDate, this.criarItemPedido("StarBound", 3, pc));
 
+        pedido = this.service.recuperarComListas(pedido.getId());
         pedido.setData(correctDate);
         pedido.getItens().get(0).setQuantidade(4);
-
-        pedido.getItens().add(this.criarItemPedido("Puppeteer", 1));
+        Plataforma ps3 = this.criarPlataforma("PS3");
+        pedido.getItens().add(this.criarItemPedido("Puppeteer", 1, ps3));
         this.service.editar(pedido);
-        this.em.flush();
-        this.em.clear();
 
-        Pedido pedidoDB = this.service.recuperar(pedido.getId());
+        Pedido pedidoDB = this.service.recuperarComListas(pedido.getId());
         Assert.assertEquals(pedido, pedidoDB);
     }
 
     /***/
     @Test
     public void removerTest() {
-        Pedido pedido = this.criarPedido(new Date(), ImmutableMap.of("Saints Row 4", 1));
+        Plataforma pc = this.criarPlataforma("PC");
+        Pedido pedido = this.criarPedido(new Date(), this.criarItemPedido("Saints Row 4", 1, pc));
         this.service.remover(pedido);
         Pedido pedidoDB = this.service.recuperar(pedido.getId());
         Assert.assertNull(pedidoDB);
@@ -104,12 +96,10 @@ public class PedidoServiceTest {
 
     /***/
     @Test
-    @Transactional
     public void listarTodosTest() {
-        Pedido rayman = this.criarPedido(new Date(), ImmutableMap.of("Rayman Legends", 2));
-        Pedido amnesia = this.criarPedido(new Date(), ImmutableMap.of("Amnesia: Machine for Pigs", 1));
-        this.em.flush();
-        this.em.clear();
+        Plataforma pc = this.criarPlataforma("PC");
+        Pedido rayman = this.criarPedido(new Date(), this.criarItemPedido("Rayman Legends", 2, pc));
+        Pedido amnesia = this.criarPedido(new Date(), this.criarItemPedido("Amnesia: Machine for Pigs", 1, pc));
 
         List<Pedido> pedidos = this.service.listarTodos();
 
@@ -124,19 +114,15 @@ public class PedidoServiceTest {
         SpringTestUtil.restartContext(SpringBeanUtil.getContext());
     }
 
-    private Pedido criarPedido(Date data, Map<String, Integer> itens) {
+    private Pedido criarPedido(Date data, ItemPedido... itens) {
         Pedido pedido = new Pedido();
         pedido.setData(data);
-        List<ItemPedido> intensPedido = new ArrayList<ItemPedido>();
-        for (Entry<String, Integer> entry : itens.entrySet()) {
-            intensPedido.add(this.criarItemPedido(entry.getKey(), entry.getValue()));
-        }
-        pedido.setItens(intensPedido);
+        pedido.setItens(Arrays.asList(itens));
         this.service.criar(pedido);
         return pedido;
     }
 
-    private ItemPedido criarItemPedido(String nomeDoJogo, int quantidade) {
+    private ItemPedido criarItemPedido(String nomeDoJogo, int quantidade, Plataforma plataforma) {
         Jogo jogo = new Jogo();
         jogo.setNome(nomeDoJogo);
         this.jogoService.criar(jogo);
@@ -144,6 +130,14 @@ public class PedidoServiceTest {
         ItemPedido item = new ItemPedido();
         item.setJogo(jogo);
         item.setQuantidade(quantidade);
+        item.setPlataforma(plataforma);
         return item;
+    }
+
+    private Plataforma criarPlataforma(String nome) {
+        Plataforma p = new Plataforma();
+        p.setNome(nome);
+        this.plataformaService.criar(p);
+        return p;
     }
 }

@@ -15,9 +15,6 @@ package br.com.touchtec.games.core.service.spring;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import junit.framework.Assert;
 
 import org.apache.commons.lang.ArrayUtils;
@@ -26,7 +23,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 import br.com.touchtec.games.core.model.Fabricante;
 import br.com.touchtec.games.core.model.Plataforma;
@@ -43,21 +39,15 @@ import br.com.touchtec.spring.test.TouchSpringRunner;
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class FabricanteServiceTest {
 
-    @PersistenceContext
-    private EntityManager em;
-
     @Autowired
     private FabricanteService service;
 
     /***/
     @Test
-    @Transactional
     public void criarTest() {
         Fabricante fabricante = this.criarFabricante("Sony", "Vita", "PS3", "PSP", "PS4");
-        this.em.flush();
-        this.em.clear();
 
-        Fabricante fabricanteDB = this.service.recuperar(fabricante.getId());
+        Fabricante fabricanteDB = this.service.recuperarComListas(fabricante.getId());
         Assert.assertEquals(fabricante, fabricanteDB);
 
         List<Plataforma> plataformas = fabricanteDB.getPlataformas();
@@ -70,20 +60,15 @@ public class FabricanteServiceTest {
 
     /***/
     @Test
-    @Transactional
     public void editarTest() {
         Fabricante fabricante = this.criarFabricante("Ñ intendo", "DS", "3DS", "WII", "WIIU");
-        this.em.flush();
-        this.em.clear();
 
         fabricante.setNome("Nintendo");
         List<Plataforma> plataformas = fabricante.getPlataformas();
         plataformas.add(this.criarPlataforma("2DS (Bolachão)"));
         this.service.editar(fabricante);
-        this.em.flush();
-        this.em.clear();
 
-        Fabricante fabricanteDB = this.service.recuperar(fabricante.getId());
+        Fabricante fabricanteDB = this.service.recuperarComListas(fabricante.getId());
 
         Assert.assertEquals("Nintendo", fabricanteDB.getNome());
         plataformas = fabricanteDB.getPlataformas();

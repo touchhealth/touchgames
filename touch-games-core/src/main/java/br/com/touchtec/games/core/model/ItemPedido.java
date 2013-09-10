@@ -14,8 +14,9 @@ package br.com.touchtec.games.core.model;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import org.apache.commons.lang.builder.HashCodeBuilder;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 
 /**
@@ -29,6 +30,7 @@ public class ItemPedido extends EntidadeRaiz {
 
     private Jogo jogo;
     private int quantidade;
+    private Plataforma plataforma;
 
     /**
      * @return jogo
@@ -59,9 +61,24 @@ public class ItemPedido extends EntidadeRaiz {
         this.quantidade = quantidade;
     }
 
+    /**
+     * @return plataforma
+     */
+    @ManyToOne
+    public Plataforma getPlataforma() {
+        return this.plataforma;
+    }
+
+    /**
+     * @param plataforma
+     */
+    public void setPlataforma(Plataforma plataforma) {
+        this.plataforma = plataforma;
+    }
+
     @Override
     protected String print() {
-        return String.format("%d %s", this.quantidade, this.jogo);
+        return String.format("%d x %s de %s", this.quantidade, this.jogo, this.plataforma);
     }
 
     @Override
@@ -79,6 +96,7 @@ public class ItemPedido extends EntidadeRaiz {
         return new EqualsBuilder() //
                 .append(this.jogo, other.jogo) //
                 .append(this.quantidade, other.quantidade) //
+                .append(this.plataforma, other.plataforma) //
                 .isEquals();
     }
 
@@ -87,6 +105,7 @@ public class ItemPedido extends EntidadeRaiz {
         return new HashCodeBuilder() //
                 .append(this.jogo) //
                 .append(this.quantidade) //
+                .append(this.plataforma) //
                 .toHashCode();
     }
 }

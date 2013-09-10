@@ -16,9 +16,6 @@ import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import junit.framework.Assert;
 
 import org.junit.After;
@@ -26,7 +23,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 import br.com.touchtec.games.core.model.Genero;
 import br.com.touchtec.games.core.model.Jogo;
@@ -44,9 +40,6 @@ import br.com.touchtec.spring.test.TouchSpringRunner;
 @RunWith(TouchSpringRunner.class)
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class JogoServiceTest {
-
-    @PersistenceContext
-    private EntityManager em;
 
     @Autowired
     private JogoService service;
@@ -105,7 +98,6 @@ public class JogoServiceTest {
 
     /***/
     @Test
-    @Transactional
     public void listarPorPlataformaTest() {
         Plataforma xbox360 = this.criarPlataforma("Xbox 360");
         Plataforma pc = this.criarPlataforma("PC");
@@ -113,8 +105,6 @@ public class JogoServiceTest {
         Plataforma ps2 = this.criarPlataforma("PS2");
         Jogo skyrin = this.criarJogo("The Elder Scrolls V: Skyrim", xbox360, pc, ps3);
         Jogo stc = this.criarJogo("Shadow of the Colossus", ps3, ps2);
-        this.em.flush();
-        this.em.clear();
 
         List<Jogo> jogos = this.service.listar(ps3);
         Assert.assertEquals(2, jogos.size());

@@ -14,100 +14,82 @@ package br.com.touchtec.games.web.controller;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import br.com.touchtec.games.core.model.Desenvolvedora;
-import br.com.touchtec.games.core.model.Jogo;
 import br.com.touchtec.games.core.service.DesenvolvedoraService;
-import br.com.touchtec.games.core.service.JogoService;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
 
 /**
- * @author bbviana
+ * @author emesquita
  */
 @Component
 @Scope("request")
-public class JogosAction extends TWFActionSupport {
+public class DesenvolvedorasAction extends TWFActionSupport {
 
     private static final long serialVersionUID = 1L;
-
-    @Autowired
-    private JogoService jogoService;
 
     @Autowired
     private DesenvolvedoraService desenvolvedoraService;
 
     private String formTitle;
 
-    private Jogo jogo;
-
-    private List<Jogo> jogos;
+    private Desenvolvedora desenvolvedora;
 
     private List<Desenvolvedora> desenvolvedoras;
 
     private Long selectedId;
 
-    @PostConstruct
-    public void prepare() {
-        this.desenvolvedoras = this.desenvolvedoraService.listarTodos();
-    }
-
     @Override
     public String execute() throws Exception {
-        this.jogos = this.jogoService.listarTodos();
-        return "jsp/admin/jogos/list";
+        this.desenvolvedoras = this.desenvolvedoraService.listarTodos();
+        return "jsp/admin/desenvolvedoras/list";
     }
 
     public String create() throws Exception {
         this.formTitle = "Criação";
-        return "jsp/admin/jogos/form";
+        return "jsp/admin/desenvolvedoras/form";
     }
 
     public String update() throws Exception {
-        this.jogo = this.jogoService.recuperar(this.selectedId);
+        this.desenvolvedora = this.desenvolvedoraService.recuperar(this.selectedId);
         this.formTitle = "Edição";
-        return "jsp/admin/jogos/form";
+        return "jsp/admin/desenvolvedoras/form";
     }
 
     public String view() throws Exception {
-        this.jogo = this.jogoService.recuperarComListas(this.selectedId);
-        return "jsp/admin/jogos/view";
+        this.desenvolvedora = this.desenvolvedoraService.recuperarComListas(this.selectedId);
+        return "jsp/admin/desenvolvedoras/view";
     }
 
     public String save() throws Exception {
-        if (this.jogo.getId() != null) {
-            this.jogoService.editar(this.jogo);
+        if (this.desenvolvedora.getId() != null) {
+            this.desenvolvedoraService.editar(this.desenvolvedora);
         } else {
-            this.jogoService.criar(this.jogo);
+            this.desenvolvedoraService.criar(this.desenvolvedora);
         }
         return this.execute();
     }
 
     public String remove() throws Exception {
-        this.jogo = this.jogoService.recuperar(this.selectedId);
-        this.jogoService.remover(this.jogo);
+        this.desenvolvedora = this.desenvolvedoraService.recuperar(this.selectedId);
+        this.desenvolvedoraService.remover(this.desenvolvedora);
         return this.execute();
     }
 
-    public Jogo getJogo() {
-        return this.jogo;
+    public Desenvolvedora getDesenvolvedora() {
+        return this.desenvolvedora;
     }
 
-    public void setJogo(Jogo jogo) {
-        this.jogo = jogo;
+    public void setDesenvolvedora(Desenvolvedora desenvolvedora) {
+        this.desenvolvedora = desenvolvedora;
     }
 
-    public List<Jogo> getJogos() {
-        return this.jogos;
-    }
-
-    public void setJogos(List<Jogo> jogos) {
-        this.jogos = jogos;
+    public void setDesenvolvedoras(List<Desenvolvedora> desenvolvedoras) {
+        this.desenvolvedoras = desenvolvedoras;
     }
 
     public Long getSelectedId() {

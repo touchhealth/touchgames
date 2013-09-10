@@ -3,6 +3,30 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:t="http://www.touchtec.com.br/twfc-tags">
 	
+<t:loadbundle var="i18n" basename="Names" />
+<t:loadbundle var="msg" basename="TGames-Messages" />
+
+<t:userinterface>
+	<t:title value="%{msg.tittle.plataformas}"/>
 	
+	<t:panel id="list" cssClass="form">
+		<t:title value="%{msg.lista}"/>
+		
+		<t:table list="%{plataformas}">
+			<t:tablerowselector name="selectedId" multiple="false" property="id"/>
+			<t:tablecolumn  property="nome" title="%{i18n.Plataforma.nome}"/>
+			<t:tablecolumn  property="fabricante" title="%{i18n.Plataforma.fabricante}"/>
+		</t:table>
+	
+		<t:toolbar>
+			<t:ajaxbutton action="Plataformas!create.action" responseTarget="response" postAction="" template="create"/>
+			<t:ajaxbutton action="Plataformas!update.action" responseTarget="response" postAction="" template="update"/>
+			<t:ajaxbutton action="Plataformas!view.action" responseTarget="response" postAction="" template="view"/>
+			<t:submitbutton action="Plataformas!remove.action" postAction="" template="remove" confirmMsg="%{msg.cfmMessage.deletar}"/>
+		</t:toolbar>
+	</t:panel>
+	
+	<div id="response"><!--  --></div>
+</t:userinterface>
 	
 </jsp:root>

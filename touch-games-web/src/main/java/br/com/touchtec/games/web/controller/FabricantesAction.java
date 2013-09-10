@@ -14,100 +14,86 @@ package br.com.touchtec.games.web.controller;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import br.com.touchtec.games.core.model.Desenvolvedora;
-import br.com.touchtec.games.core.model.Jogo;
-import br.com.touchtec.games.core.service.DesenvolvedoraService;
-import br.com.touchtec.games.core.service.JogoService;
+import br.com.touchtec.games.core.model.Fabricante;
+import br.com.touchtec.games.core.service.FabricanteService;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
 
 /**
- * @author bbviana
+ * @author emesquita
  */
 @Component
 @Scope("request")
-public class JogosAction extends TWFActionSupport {
+public class FabricantesAction extends TWFActionSupport {
 
     private static final long serialVersionUID = 1L;
 
     @Autowired
-    private JogoService jogoService;
-
-    @Autowired
-    private DesenvolvedoraService desenvolvedoraService;
+    private FabricanteService fabricantesService;
 
     private String formTitle;
 
-    private Jogo jogo;
+    private Fabricante fabricante;
 
-    private List<Jogo> jogos;
-
-    private List<Desenvolvedora> desenvolvedoras;
+    private List<Fabricante> fabricantes;
 
     private Long selectedId;
 
-    @PostConstruct
-    public void prepare() {
-        this.desenvolvedoras = this.desenvolvedoraService.listarTodos();
-    }
-
     @Override
     public String execute() throws Exception {
-        this.jogos = this.jogoService.listarTodos();
-        return "jsp/admin/jogos/list";
+        this.fabricantes = this.fabricantesService.listarTodos();
+        return "jsp/admin/fabricantes/list";
     }
 
     public String create() throws Exception {
         this.formTitle = "Criação";
-        return "jsp/admin/jogos/form";
+        return "jsp/admin/fabricantes/form";
     }
 
     public String update() throws Exception {
-        this.jogo = this.jogoService.recuperar(this.selectedId);
+        this.fabricante = this.fabricantesService.recuperar(this.selectedId);
         this.formTitle = "Edição";
-        return "jsp/admin/jogos/form";
+        return "jsp/admin/fabricantes/form";
     }
 
     public String view() throws Exception {
-        this.jogo = this.jogoService.recuperarComListas(this.selectedId);
-        return "jsp/admin/jogos/view";
+        this.fabricante = this.fabricantesService.recuperarComListas(this.selectedId);
+        return "jsp/admin/fabricantes/view";
     }
 
     public String save() throws Exception {
-        if (this.jogo.getId() != null) {
-            this.jogoService.editar(this.jogo);
+        if (this.fabricante.getId() != null) {
+            this.fabricantesService.editar(this.fabricante);
         } else {
-            this.jogoService.criar(this.jogo);
+            this.fabricantesService.criar(this.fabricante);
         }
         return this.execute();
     }
 
     public String remove() throws Exception {
-        this.jogo = this.jogoService.recuperar(this.selectedId);
-        this.jogoService.remover(this.jogo);
+        this.fabricante = this.fabricantesService.recuperar(this.selectedId);
+        this.fabricantesService.remover(this.fabricante);
         return this.execute();
     }
 
-    public Jogo getJogo() {
-        return this.jogo;
+    public Fabricante getFabricante() {
+        return this.fabricante;
     }
 
-    public void setJogo(Jogo jogo) {
-        this.jogo = jogo;
+    public void setFabricante(Fabricante fabricante) {
+        this.fabricante = fabricante;
     }
 
-    public List<Jogo> getJogos() {
-        return this.jogos;
+    public List<Fabricante> getFabricantes() {
+        return this.fabricantes;
     }
 
-    public void setJogos(List<Jogo> jogos) {
-        this.jogos = jogos;
+    public void setFabricantes(List<Fabricante> fabricantes) {
+        this.fabricantes = fabricantes;
     }
 
     public Long getSelectedId() {
@@ -121,9 +107,4 @@ public class JogosAction extends TWFActionSupport {
     public String getFormTitle() {
         return this.formTitle;
     }
-
-    public List<Desenvolvedora> getDesenvolvedoras() {
-        return this.desenvolvedoras;
-    }
-
 }

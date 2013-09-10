@@ -3,6 +3,24 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:t="http://www.touchtec.com.br/twfc-tags">
 	
+	<t:loadbundle var="i18n" basename="Names" />
 	
+	<t:panel id="fabricanteForm" cssClass="form">
+		<t:title value="%{formTitle}"/>
+		
+		<input type="hidden" name="fabricante.id" value="${fabricante.id}"/>
+		
+		<t:set component="label" value="width:150px" property="style" />
+		
+		<t:field>
+			<t:label value="%{i18n.Fabricante.nome}"/>
+			<t:textinput name="fabricante.nome" value="%{fabricante.nome}"/>
+		</t:field>
+		
+		<t:toolbar>
+			<t:jsbutton template="cancel" action="$('fabricanteForm').remove()"/>
+			<t:submitbutton action="Fabricantes!save.action" template="save"/>
+		</t:toolbar>
+	</t:panel>
 	
 </jsp:root>

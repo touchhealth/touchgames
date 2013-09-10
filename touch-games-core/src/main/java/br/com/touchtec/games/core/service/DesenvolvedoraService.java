@@ -44,6 +44,12 @@ public interface DesenvolvedoraService {
     Desenvolvedora recuperar(Long id);
 
     /**
+     * @param id
+     * @return desenvolvedora
+     */
+    Desenvolvedora recuperarComListas(Long id);
+
+    /**
      * @return lista todos
      */
     List<Desenvolvedora> listarTodos();

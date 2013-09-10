@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<mainMenu title="cadastro">
+	<mainMenu title="cadastroAction">
+		<topItems>
+			<item title="jogos" url="Jogos.action"/>
+			<item title="desenvolvedoras" url="Desenvolvedoras.action"/>
+			<item title="plataformas" url="Plataformas.action"/>
+			<item title="fabricantes" url="Fabricantes.action"/>
+			<item title="pedidos" url="Pedidos.action"/>
+		</topItems>
+	</mainMenu>
+
+	<mainMenu title="cadastroCrud">
 		<topItems>
 			<item title="jogos" url="crud/Jogo.action"/>
 			<item title="desenvolvedoras" url="crud/Desenvolvedora.action"/>

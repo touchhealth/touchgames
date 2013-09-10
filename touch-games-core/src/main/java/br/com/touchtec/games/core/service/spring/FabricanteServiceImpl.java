@@ -19,6 +19,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -63,6 +64,12 @@ public class FabricanteServiceImpl implements FabricanteService {
         return this.em.find(Fabricante.class, id);
     }
 
+    public Fabricante recuperarComListas(Long id) {
+        Fabricante fabricante = this.recuperar(id);
+        Hibernate.initialize(fabricante.getPlataformas());
+        return fabricante;
+    }
+
     @SuppressWarnings("unchecked")
     public List<Fabricante> listarTodos() {
         String queryString = "SELECT f FROM Fabricante f ORDER BY f.nome";
@@ -79,4 +86,5 @@ public class FabricanteServiceImpl implements FabricanteService {
             plataforma.setFabricante(fabricante);
         }
     }
+
 }

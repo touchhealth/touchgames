@@ -12,11 +12,7 @@
 package br.com.touchtec.games.core.service.spring;
 
 
-import java.util.Arrays;
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import junit.framework.Assert;
 
@@ -25,7 +21,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 import br.com.touchtec.games.core.model.Desenvolvedora;
 import br.com.touchtec.games.core.model.Jogo;
@@ -43,9 +38,6 @@ import br.com.touchtec.spring.test.TouchSpringRunner;
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class DesenvolvedoraServiceTest {
 
-    @PersistenceContext
-    private EntityManager em;
-
     @Autowired
     private DesenvolvedoraService service;
 
@@ -54,15 +46,12 @@ public class DesenvolvedoraServiceTest {
 
     /***/
     @Test
-    @Transactional
     public void criarTest() {
-        Jogo fallout = this.criarJogo("Fallout 3");
-        Jogo skyrim = this.criarJogo("The Elder Scrolls V: Skyrim");
-        Desenvolvedora desenvolvedora = this.criarDesenvolvedora("Bethesda Game Studios", fallout, skyrim);
-        this.em.flush();
-        this.em.clear();
+        Desenvolvedora desenvolvedora = this.criarDesenvolvedora("Bethesda Game Studios");
+        Jogo fallout = this.criarJogo("Fallout 3", desenvolvedora);
+        Jogo skyrim = this.criarJogo("The Elder Scrolls V: Skyrim", desenvolvedora);
 
-        Desenvolvedora desenvolvedoraDB = this.service.recuperar(desenvolvedora.getId());
+        Desenvolvedora desenvolvedoraDB = this.service.recuperarComListas(desenvolvedora.getId());
         Assert.assertEquals(desenvolvedora, desenvolvedoraDB);
 
         List<Jogo> jogos = desenvolvedoraDB.getJogos();
@@ -73,27 +62,21 @@ public class DesenvolvedoraServiceTest {
 
     /***/
     @Test
-    @Transactional
     public void editarTest() {
-        Jogo disgaea = this.criarJogo("Disgaea D2");
-        Jogo gfp = this.criarJogo("The Guided Fate Paradox");
+        Desenvolvedora desenvolvedora = this.criarDesenvolvedora("Nipon Ichi");
+        Jogo disgaea = this.criarJogo("Disgaea D2", desenvolvedora);
+        Jogo gfp = this.criarJogo("The Guided Fate Paradox", desenvolvedora);
 
-        Desenvolvedora desenvolvedora = this.criarDesenvolvedora("Nipon Ichi", disgaea, gfp);
-        this.em.flush();
-        this.em.clear();
-
-        desenvolvedora = this.service.recuperar(desenvolvedora.getId());
+        desenvolvedora = this.service.recuperarComListas(desenvolvedora.getId());
         desenvolvedora.setNome("Nippon Ichi");
-        Jogo zettaiHero = this.criarJogo("Zettai Hero Project: Unlosing Ranger VS. Darkdeath Evilman");
+        Jogo zettaiHero = this.criarJogo("Zettai Hero Project: Unlosing Ranger VS. Darkdeath Evilman", desenvolvedora);
         List<Jogo> jogos = desenvolvedora.getJogos();
         jogos.add(zettaiHero);
         this.service.editar(desenvolvedora);
-        this.em.flush();
-        this.em.clear();
 
-        Desenvolvedora desenvolvedoraDB = this.service.recuperar(desenvolvedora.getId());
+        Desenvolvedora desenvolvedoraDB = this.service.recuperarComListas(desenvolvedora.getId());
 
-        Assert.assertEquals("Nippon Ichi", desenvolvedoraDB.getNome());
+        Assert.assertEquals(desenvolvedora, desenvolvedoraDB);
         jogos = desenvolvedoraDB.getJogos();
         Assert.assertEquals(3, jogos.size());
         Assert.assertTrue(jogos.contains(disgaea));
@@ -129,17 +112,17 @@ public class DesenvolvedoraServiceTest {
         SpringTestUtil.restartContext(SpringBeanUtil.getContext());
     }
 
-    private Desenvolvedora criarDesenvolvedora(String nome, Jogo... jogos) {
+    private Desenvolvedora criarDesenvolvedora(String nome) {
         Desenvolvedora desenvolvedora = new Desenvolvedora();
         desenvolvedora.setNome(nome);
-        desenvolvedora.setJogos(Arrays.asList(jogos));
         this.service.criar(desenvolvedora);
         return desenvolvedora;
     }
 
-    private Jogo criarJogo(String nome) {
+    private Jogo criarJogo(String nome, Desenvolvedora desenvolvedora) {
         Jogo jogo = new Jogo();
         jogo.setNome(nome);
+        jogo.setDesenvolvedora(desenvolvedora);
         this.jogoService.criar(jogo);
         return jogo;
     }
