@@ -23,8 +23,8 @@
 		</t:field>
 		
 		<t:toolbar>
-			<t:jsbutton template="cancel" action="$('plataformaForm').remove()"/>
-			<t:submitbutton action="Plataformas!save.action" template="save"/>
+			<t:jsbutton template="cancel" action="$('plataformaForm').remove(); $t('list').open()"/>
+			<t:submitbutton action="Plataformas!save.action" template="save" primary="true"/>
 		</t:toolbar>
 	</t:panel>
 	

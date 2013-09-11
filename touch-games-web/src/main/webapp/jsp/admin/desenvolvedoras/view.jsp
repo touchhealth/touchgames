@@ -23,7 +23,7 @@
 		</t:field>
 		
 		<t:toolbar>
-			<t:jsbutton template="cancel" action="$('desenvolvedoraForm').remove()"/>
+			<t:jsbutton template="cancel" action="$('desenvolvedoraForm').remove(); $t('list').open()"/>
 		</t:toolbar>
 	</t:panel>
 

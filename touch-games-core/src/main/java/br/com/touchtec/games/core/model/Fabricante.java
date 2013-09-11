@@ -68,7 +68,7 @@ public class Fabricante extends EntidadeRaiz {
 
     @Override
     protected String print() {
-        return this.nome;
+        return String.format("Fabricante %s", this.nome);
     }
 
     @Override

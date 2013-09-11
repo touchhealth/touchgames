@@ -18,8 +18,8 @@
 		</t:field>
 		
 		<t:toolbar>
-			<t:jsbutton template="cancel" action="$('fabricanteForm').remove()"/>
-			<t:submitbutton action="Fabricantes!save.action" template="save"/>
+			<t:jsbutton template="cancel" action="$('fabricanteForm').remove(); $t('list').open()"/>
+			<t:submitbutton action="Fabricantes!save.action" template="save" primary="true"/>
 		</t:toolbar>
 	</t:panel>
 	

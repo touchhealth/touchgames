@@ -9,7 +9,7 @@
 <t:userinterface>
 	<t:title value="Pedidos"/>
 	
-	<t:panel id="list" cssClass="form">
+	<t:panel id="list" cssClass="form" collapsible="true">
 		<t:title value="Lista"/>
 		
 		<t:table list="%{pedidos}" var="pedido">
@@ -22,7 +22,7 @@
 		</t:table>
 	
 		<t:toolbar>
-			<t:ajaxbutton action="Pedidos!view.action" responseTarget="response" template="view"/>
+			<t:ajaxbutton action="Pedidos!view.action" responseTarget="response" postAction="$t('list').close()" template="view"/>
 			<t:submitbutton action="Pedidos!remove.action" template="remove" confirmMsg="%{i18n.msg.remover}"/>
 		</t:toolbar>
 	</t:panel>

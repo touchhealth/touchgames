@@ -91,7 +91,7 @@ public class Pedido extends EntidadeRaiz {
 
     @Override
     protected String print() {
-        return String.format("%s", this.getId());
+        return String.format("Pedido #%s", this.getId());
     }
 
     @Override

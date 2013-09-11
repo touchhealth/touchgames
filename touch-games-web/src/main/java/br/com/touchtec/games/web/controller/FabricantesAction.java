@@ -68,8 +68,10 @@ public class FabricantesAction extends TWFActionSupport {
     public String save() throws Exception {
         if (this.fabricante.getId() != null) {
             this.fabricantesService.editar(this.fabricante);
+            this.addSuccessMessage(this.fabricante + " atualizado com sucesso");
         } else {
             this.fabricantesService.criar(this.fabricante);
+            this.addSuccessMessage(this.fabricante + " criado com sucesso");
         }
         return this.execute();
     }
@@ -77,6 +79,7 @@ public class FabricantesAction extends TWFActionSupport {
     public String remove() throws Exception {
         this.fabricante = this.fabricantesService.recuperar(this.selectedId);
         this.fabricantesService.remover(this.fabricante);
+        this.addSuccessMessage(this.fabricante + " removido com sucesso");
         return this.execute();
     }
 

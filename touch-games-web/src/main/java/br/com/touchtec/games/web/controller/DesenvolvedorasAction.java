@@ -68,8 +68,10 @@ public class DesenvolvedorasAction extends TWFActionSupport {
     public String save() throws Exception {
         if (this.desenvolvedora.getId() != null) {
             this.desenvolvedoraService.editar(this.desenvolvedora);
+            this.addSuccessMessage(this.desenvolvedora + " atualizada com sucesso");
         } else {
             this.desenvolvedoraService.criar(this.desenvolvedora);
+            this.addSuccessMessage(this.desenvolvedora + " criada com sucesso");
         }
         return this.execute();
     }
@@ -77,6 +79,7 @@ public class DesenvolvedorasAction extends TWFActionSupport {
     public String remove() throws Exception {
         this.desenvolvedora = this.desenvolvedoraService.recuperar(this.selectedId);
         this.desenvolvedoraService.remover(this.desenvolvedora);
+        this.addSuccessMessage(this.desenvolvedora + " removida com sucesso");
         return this.execute();
     }
 

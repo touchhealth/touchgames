@@ -19,8 +19,8 @@
 		</t:field>
 
 		<t:toolbar>
-			<t:jsbutton template="cancel" action="$('desenvolvedoraForm').remove()"/>
-			<t:submitbutton action="Desenvolvedoras!save.action" template="save"/>
+			<t:jsbutton template="cancel" action="$('desenvolvedoraForm').remove(); $t('list').open()"/>
+			<t:submitbutton action="Desenvolvedoras!save.action" template="save" primary="true"/>
 		</t:toolbar>
 	</t:panel>
 	

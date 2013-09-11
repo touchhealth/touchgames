@@ -7,7 +7,7 @@
 <t:loadbundle var="i18n" basename="Names" />
 
 <t:userinterface>
-	<t:title value="Deselvolvedoras"/>
+	<t:title value="Deselvolvedoras" collapsible="true"/>
 	
 	<t:panel id="list" cssClass="form">
 		<t:title value="Lista"/>
@@ -18,9 +18,9 @@
 		</t:table>
 	
 		<t:toolbar>
-			<t:ajaxbutton action="Desenvolvedoras!create.action" responseTarget="response" template="create"/>
-			<t:ajaxbutton action="Desenvolvedoras!update.action" responseTarget="response" template="update"/>
-			<t:ajaxbutton action="Desenvolvedoras!view.action" responseTarget="response" template="view"/>
+			<t:ajaxbutton action="Desenvolvedoras!create.action" responseTarget="response" postAction="$t('list').close()" template="create"/>
+			<t:ajaxbutton action="Desenvolvedoras!update.action" responseTarget="response" postAction="$t('list').close()" template="update"/>
+			<t:ajaxbutton action="Desenvolvedoras!view.action" responseTarget="response" postAction="$t('list').close()" template="view"/>
 			<t:submitbutton action="Desenvolvedoras!remove.action" template="remove" confirmMsg="%{i18n.msg.remover}"/>
 		</t:toolbar>
 	</t:panel>

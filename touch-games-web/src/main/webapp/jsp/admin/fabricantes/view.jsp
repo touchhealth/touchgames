@@ -23,7 +23,7 @@
 		</t:field>
 		
 		<t:toolbar>
-			<t:jsbutton template="cancel" action="$('fabricanteForm').remove()"/>
+			<t:jsbutton template="cancel" action="$('fabricanteForm').remove(); $t('list').open()"/>
 		</t:toolbar>
 	</t:panel>
 

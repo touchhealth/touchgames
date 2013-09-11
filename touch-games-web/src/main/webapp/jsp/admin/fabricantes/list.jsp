@@ -8,7 +8,7 @@
 <t:userinterface>
 	<t:title value="Fabricantes"/>
 	
-	<t:panel id="list" cssClass="form">
+	<t:panel id="list" cssClass="form" collapsible="true">
 		<t:title value="Lista"/>
 		
 		<t:table list="%{fabricantes}">
@@ -17,9 +17,9 @@
 		</t:table>
 	
 		<t:toolbar>
-			<t:ajaxbutton action="Fabricantes!create.action" responseTarget="response" template="create"/>
-			<t:ajaxbutton action="Fabricantes!update.action" responseTarget="response" template="update"/>
-			<t:ajaxbutton action="Fabricantes!view.action" responseTarget="response" template="view"/>
+			<t:ajaxbutton action="Fabricantes!create.action" responseTarget="response" postAction="$t('list').close()" template="create"/>
+			<t:ajaxbutton action="Fabricantes!update.action" responseTarget="response" postAction="$t('list').close()" template="update"/>
+			<t:ajaxbutton action="Fabricantes!view.action" responseTarget="response" postAction="$t('list').close()" template="view"/>
 			<t:submitbutton action="Fabricantes!remove.action" template="remove" confirmMsg="%{i18n.msg.remover}"/>
 		</t:toolbar>
 	</t:panel>

@@ -55,6 +55,7 @@ public class PedidosAction extends TWFActionSupport {
     public String remove() throws Exception {
         this.pedido = this.pedidoService.recuperar(this.selectedId);
         this.pedidoService.remover(this.pedido);
+        this.addSuccessMessage(this.pedido + " removido com sucesso");
         return this.execute();
     }
 

@@ -82,8 +82,10 @@ public class PlataformasAction extends TWFActionSupport {
     public String save() throws Exception {
         if (this.plataforma.getId() != null) {
             this.plataformaService.editar(this.plataforma);
+            this.addSuccessMessage(this.plataforma + " atualizada com sucesso");
         } else {
             this.plataformaService.criar(this.plataforma);
+            this.addSuccessMessage(this.plataforma + " criada com sucesso");
         }
         return this.execute();
     }
@@ -91,6 +93,7 @@ public class PlataformasAction extends TWFActionSupport {
     public String remove() throws Exception {
         this.plataforma = this.plataformaService.recuperar(this.selectedId);
         this.plataformaService.remover(this.plataforma);
+        this.addSuccessMessage(this.plataforma + " removida com sucesso");
         return this.execute();
     }
 
