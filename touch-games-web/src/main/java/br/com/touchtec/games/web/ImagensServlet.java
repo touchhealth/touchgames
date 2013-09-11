@@ -39,6 +39,8 @@ public class ImagensServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("image/jpeg");
+
         String imagemId = req.getParameter("id");
 
         if (Strings.isNullOrEmpty(imagemId)) {
@@ -53,8 +55,6 @@ public class ImagensServlet extends HttpServlet {
         em.getTransaction().commit();
 
         byte[] bytes = imagem.getBytes();
-
-        resp.setContentType("image/jpeg");
 
         ServletOutputStream os = resp.getOutputStream();
         resp.getOutputStream().write(bytes);

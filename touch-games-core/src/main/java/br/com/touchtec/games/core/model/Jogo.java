@@ -29,6 +29,7 @@ import javax.persistence.UniqueConstraint;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.hibernate.annotations.Cascade;
 
 import br.com.touchtec.message.Named;
 
@@ -210,6 +211,7 @@ public class Jogo extends EntidadeRaiz {
      * @return imagens
      */
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public List<Imagem> getImagens() {
         return this.imagens;
     }
