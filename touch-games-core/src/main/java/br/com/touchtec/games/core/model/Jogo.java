@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -25,7 +26,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.persistence.UniqueConstraint;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -39,7 +39,7 @@ import br.com.touchtec.message.Named;
  * @author emesquita
  */
 @Entity
-@Table(name = "jogos", uniqueConstraints = { @UniqueConstraint(columnNames = "nome") })
+@Table(name = "jogos")
 @Named(key = "Jogo")
 public class Jogo extends EntidadeRaiz {
 
@@ -76,6 +76,7 @@ public class Jogo extends EntidadeRaiz {
     /**
      * @return nome
      */
+    @Column(unique = true)
     public String getNome() {
         return this.nome;
     }

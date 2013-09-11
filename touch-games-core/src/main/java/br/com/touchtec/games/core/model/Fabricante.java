@@ -15,13 +15,12 @@ package br.com.touchtec.games.core.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 
 /**
@@ -29,7 +28,6 @@ import org.apache.commons.lang.builder.EqualsBuilder;
  * @author emesquita
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "nome"))
 public class Fabricante extends EntidadeRaiz {
 
     private static final long serialVersionUID = -771887121092129872L;
@@ -40,6 +38,7 @@ public class Fabricante extends EntidadeRaiz {
     /**
      * @return nome
      */
+    @Column(unique = true)
     public String getNome() {
         return this.nome;
     }

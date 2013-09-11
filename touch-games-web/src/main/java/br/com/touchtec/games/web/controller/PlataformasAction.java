@@ -80,12 +80,16 @@ public class PlataformasAction extends TWFActionSupport {
     }
 
     public String save() throws Exception {
-        if (this.plataforma.getId() != null) {
-            this.plataformaService.editar(this.plataforma);
-            this.addSuccessMessage(this.plataforma + " atualizada com sucesso");
-        } else {
-            this.plataformaService.criar(this.plataforma);
-            this.addSuccessMessage(this.plataforma + " criada com sucesso");
+        try {
+            if (this.plataforma.getId() != null) {
+                this.plataformaService.editar(this.plataforma);
+                this.addSuccessMessage(this.plataforma + " atualizada com sucesso");
+            } else {
+                this.plataformaService.criar(this.plataforma);
+                this.addSuccessMessage(this.plataforma + " criada com sucesso");
+            }
+        } catch (Exception e) {
+            this.addErrorMessage(e.getMessage());
         }
         return this.execute();
     }
