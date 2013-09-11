@@ -96,10 +96,11 @@ public class JogosAction extends TWFActionSupport {
 
     public String save() throws Exception {
         if (CollectionUtils.isNotEmpty(this.imagens)) {
-            FileInputStream inputStream = new FileInputStream(this.imagens.get(0));
-            byte[] bytes = IOUtils.toByteArray(inputStream);
-
-            this.jogo.getImagens().add(new Imagem(bytes));
+            for (File imagem : this.imagens) {
+                FileInputStream inputStream = new FileInputStream(imagem);
+                byte[] bytes = IOUtils.toByteArray(inputStream);
+                this.jogo.getImagens().add(new Imagem(bytes));
+            }
         }
 
         if (this.jogo.getId() != null) {

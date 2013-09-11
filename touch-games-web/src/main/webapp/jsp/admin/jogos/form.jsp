@@ -60,31 +60,15 @@
 			<t:tabpanel>
 				<t:title>Imagens</t:title>
 				
-				<t:field>
-					<t:label>Imagem 1</t:label>
-					<t:fileupload style="vertical-align: top" name="imagens[0]" />
-					<img src="${app}/imagens?id=${jogo.imagens[0].id}" width="40px"/>
-				</t:field>
-				<t:field>
-					<t:label>Imagem 2</t:label>
-					<t:fileupload style="vertical-align: top" name="imagens[1]" />
-					<img src="${app}/imagens?id=${jogo.imagens[1].id}" width="40px"/>
-				</t:field>
-				<t:field>
-					<t:label>Imagem 3</t:label>
-					<t:fileupload style="vertical-align: top" name="imagens[2]" />
-					<img src="${app}/imagens?id=${jogo.imagens[2].id}" width="40px"/>
-				</t:field>
-				<t:field>
-					<t:label>Imagem 4</t:label>
-					<t:fileupload style="vertical-align: top" name="imagens[3]" />
-					<img src="${app}/imagens?id=${jogo.imagens[3].id}" width="40px"/>
-				</t:field>
-				<t:field>
-					<t:label>Imagem 5</t:label>
-					<t:fileupload style="vertical-align: top" name="imagens[4]" />
-					<img src="${app}/imagens?id=${jogo.imagens[4].id}" width="40px"/>
-				</t:field>
+				<c:forEach begin="0" end="4" var="index">
+					<t:field>
+						<t:label>Imagem ${index + 1}</t:label>
+						<t:fileupload style="vertical-align: top" name="imagens[${index}]" />
+						<c:if test="${jogo.imagens[index] != null}">
+							<img src="${app}/imagens?id=${jogo.imagens[index].id}" width="40px"/>
+						</c:if>
+					</t:field>
+				</c:forEach>
 			</t:tabpanel>
 		</t:tabbox>
 		
