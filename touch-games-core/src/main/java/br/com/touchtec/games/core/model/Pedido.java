@@ -34,9 +34,10 @@ import org.hibernate.annotations.Cascade;
 @Entity
 public class Pedido extends EntidadeRaiz {
 
-    private static final long serialVersionUID = -9113857980448358719L;
+    private static final long serialVersionUID = 1L;
 
     private Date data;
+
     private List<ItemPedido> itens;
 
     /**

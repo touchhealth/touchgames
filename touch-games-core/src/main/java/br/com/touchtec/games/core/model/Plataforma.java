@@ -12,10 +12,9 @@
 package br.com.touchtec.games.core.model;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -27,7 +26,6 @@ import org.hibernate.annotations.Cascade;
  * @author emesquita
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "nome"))
 public class Plataforma extends EntidadeRaiz {
 
     private static final long serialVersionUID = -2400143269814546492L;
@@ -44,6 +42,7 @@ public class Plataforma extends EntidadeRaiz {
     /**
      * @return nome
      */
+    @Column(unique = true)
     public String getNome() {
         return this.nome;
     }

@@ -70,6 +70,10 @@ public class CarrinhoDeCompras implements Serializable {
         this.getItems().clear();
     }
 
+    public Integer getSize() {
+        return this.items.size();
+    }
+
     public Float getTotal() {
         Float total = 0f;
         for (ItemPedido item : this.items) {

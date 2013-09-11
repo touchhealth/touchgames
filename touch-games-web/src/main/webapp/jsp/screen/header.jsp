@@ -12,8 +12,9 @@
 	</div>
 	
 	<div class="right inline">
-		<a href="${app}/Carrinho.action">
-			<img class="imagemBusca" src="${app}/img/cart.png"/>
+		<a href="${app}/Carrinho.action" class="destaque">
+			<img class="imagemBusca" src="${app}/img/cart.png"/> 
+			<span>(${carrinhoDeCompras.size})</span>
 		</a>
 
 		<form id="buscaForm" action="${app}/Compras!buscarPorNome.action">

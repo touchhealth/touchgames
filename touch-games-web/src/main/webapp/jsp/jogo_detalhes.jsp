@@ -28,7 +28,7 @@
 				
 				<div>
 					<h1 class="nome">
-						${jogoSelecionado.nome}
+						${jogoSelecionado.nome} (${jogoSelecionado.desenvolvedora})
 					</h1>
 					
 					<div class="descricao">
@@ -58,5 +58,15 @@
 				</div>
 			</form>
 		</div>
+		
+		<div id="jogos-relacionados">
+			<h2>Você tabém pode gostar:</h2>
+			
+			<div class="content loading"><!-- Será carregado por AJAX --></div>
+				
+		</div>
+		
+		<script src="${app}/js/prototype.js" type="text/javascript" />
+		<script src="${app}/js/jogos-recomendados.js" type="text/javascript" />
 	</g:screen>
 </jsp:root>

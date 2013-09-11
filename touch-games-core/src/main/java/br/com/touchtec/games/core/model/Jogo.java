@@ -48,7 +48,6 @@ public class Jogo extends EntidadeRaiz {
     private String nome;
     private String descricao;
     private List<Plataforma> plataformas;
-    private List<Estoque> estoques;
     private Genero genero;
     private Desenvolvedora desenvolvedora;
     private Float preco;
@@ -116,21 +115,6 @@ public class Jogo extends EntidadeRaiz {
      */
     public void setPlataformas(List<Plataforma> plataformas) {
         this.plataformas = plataformas;
-    }
-
-    /**
-     * @return estoques
-     */
-    @OneToMany(mappedBy = "jogo", cascade = CascadeType.ALL)
-    public List<Estoque> getEstoques() {
-        return this.estoques;
-    }
-
-    /**
-     * @param estoques
-     */
-    public void setEstoques(List<Estoque> estoques) {
-        this.estoques = estoques;
     }
 
     /**

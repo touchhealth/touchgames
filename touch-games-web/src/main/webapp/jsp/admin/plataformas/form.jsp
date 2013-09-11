@@ -18,7 +18,7 @@
 		</t:field>
 		<t:field>
 			<t:label value="%{i18n.Plataforma.fabricante}"/>
-			<t:singleselect name="plataforma.fabricante" value="%{plataforma.fabricante}" 
+			<t:singleselect name="plataforma.fabricante.id" value="%{plataforma.fabricante}" 
 				list="%{fabricantes}" optionLabel="nome"  optionValue="id"/>
 		</t:field>
 		

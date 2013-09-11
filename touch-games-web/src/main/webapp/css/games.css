@@ -22,6 +22,15 @@ button {
 	border-radius: 4px;
 }
 
+.loading {
+	background: url('../img/loading.gif') no-repeat center;
+	height: 32px;
+}
+
+.loading *{
+	visibility: hidden;
+}
+
 .left {
 	float: left;	
 }
@@ -137,17 +146,13 @@ button {
 	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-#jogos-lista .jogo img{
+.jogo img{
 	width: 100px;
 }
 
-#jogos-lista .jogo .nome,
-#jogos-lista .jogo .preco {
+.jogo .nome,
+.jogo .preco {
 	margin: 5px;
-}
-
-#jogos-lista .jogo .preco{
-	
 }
 
 #jogo-detalhes > * {
