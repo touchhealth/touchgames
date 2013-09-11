@@ -2,12 +2,13 @@ Fabricante
 Microsoft
 Nintendo
 Sony
+Muitos
 
 Plataformas
 SNES		->	Nintendo
 3DS			->	Nintendo
 PS3			->	Sony
-PC
+PC			->	Muitos
 XBOX 360	->	Microsoft
 WIIU		->	Nintendo
 
