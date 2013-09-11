@@ -175,4 +175,8 @@ public class ComprasAction extends TWFActionSupport {
         this.generoSelecionado = generoSelecionado;
     }
 
+    public CarrinhoDeCompras getCarrinhoDeCompras() {
+        return this.carrinhoDeCompras;
+    }
+
 }

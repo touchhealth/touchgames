@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <twf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://touchtec.com.br/twf" xsi:schemaLocation="http://touchtec.com.br/twf twf.xsd ">
 
-
+	<user-interface>
+		<dashboard url="Pedidos.action" />
+	</user-interface>
 </twf>
