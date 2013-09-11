@@ -41,7 +41,7 @@ public class NavigationInterceptor extends AbstractInterceptor {
         HttpServletRequest request = ServletActionContext.getRequest();
 
         List<Plataforma> plataformas = this.plataformaService.listarTodos();
-        request.setAttribute("plataformas", plataformas);
+        request.setAttribute("todasPlataformas", plataformas);
 
         return invocation.invoke();
     }

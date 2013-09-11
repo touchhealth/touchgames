@@ -6,7 +6,7 @@
 <jsp:directive.page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" />
 	
 	<ul id="menu-plataformas" class="clearfix">
-		<c:forEach items="${plataformas}" var="plataforma">
+		<c:forEach items="${todasPlataformas}" var="plataforma">
 			<li>
 				<a href="${app}/Compras!jogosPorPlataforma.action?plataformaSelecionada.id=${plataforma.id}">${plataforma.nome}</a>
 			</li>

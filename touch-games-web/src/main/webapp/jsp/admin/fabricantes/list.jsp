@@ -6,7 +6,7 @@
 <t:loadbundle var="i18n" basename="Names" />
 
 <t:userinterface>
-	<t:title value="%{i18n.Fabricante}"/>
+	<t:title value="Fabricantes"/>
 	
 	<t:panel id="list" cssClass="form">
 		<t:title value="Lista"/>
