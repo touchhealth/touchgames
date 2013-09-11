@@ -25,6 +25,7 @@ Bethesda
 Firaxis Games
 Irrational Games
 Konami
+Nintendo
 
 Chrono Trigger -> SquareEnix -> RPG
 SNES
@@ -45,7 +46,7 @@ PS3
 Disgaea D2 -> Nippon Ichi -> RPG
 PS3
 
-FFXIV -> SquareEnix -> RPG
+Final Fantasy XIV -> SquareEnix -> RPG
 PC
 PS3
 

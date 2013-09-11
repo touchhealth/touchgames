@@ -50,13 +50,6 @@
 				<t:tablecolumn  property="nome" title="%{i18n.Plataforma.nome}"/>
 			</t:table>
 		</t:field>
-		<t:field>
-			<t:label value="%{i18n.Jogo.estoques}"/>
-			<t:table list="%{jogo.estoques}">
-				<t:tablecolumn  property="plataforma.nome" title="%{i18n.Plataforma}"/>
-				<t:tablecolumn  property="quantidade" title="%{i18n.Estoque.quantidade}"/>
-			</t:table>
-		</t:field>
 		
 		<t:toolbar>
 			<t:jsbutton template="cancel" action="$('jogoForm').remove(); $t('list').open()"/>
