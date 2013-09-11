@@ -15,6 +15,7 @@
 			<table>
 				<thead>
 					<tr>
+						<th>Remover</th>
 						<th>Jogo</th>
 						<th>Plataforma</th>
 						<th class="text-right">Preço</th>
@@ -23,8 +24,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${carrinhoDeCompras.items}" var="item">
+					<c:forEach items="${carrinhoDeCompras.items}" var="item" varStatus="status">
 						<tr>
+							<td><a href="${app}/Carrinho!remover.action?indexItem=${status.count-1}">X</a></td>
 							<td>${item.jogo}</td>
 							<td>${item.plataforma}</td>
 							<td class="text-right"><fmt:formatNumber type="currency" value="${item.jogo.precoComDesconto}"/></td>
@@ -35,7 +37,7 @@
 				</tbody>
 				<tfoot class="total">
 					<tr>
-						<td colspan="5" class="text-right"><fmt:formatNumber type="currency" value="${carrinhoDeCompras.total}"/></td>
+						<td colspan="6" class="text-right"><fmt:formatNumber type="currency" value="${carrinhoDeCompras.total}"/></td>
 					</tr>
 				</tfoot>
 			</table>
@@ -43,9 +45,11 @@
 			<div>
 				<a href="${app}/Compras.action">&lt;&lt; Continuar Comprando</a>
 
-				<form  action="${app}/Compras!finalizarCompra.action" class="right">
-					<button type="submit">Comprar</button>
-				</form>
+				<c:if test="${not empty carrinhoDeCompras.items}">
+					<form  action="${app}/Compras!finalizarCompra.action" class="right">
+						<button type="submit">Comprar</button>
+					</form>
+				</c:if>
 			</div>
 			
 		</div>

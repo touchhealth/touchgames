@@ -48,6 +48,8 @@ public class CarrinhoAction extends TWFActionSupport {
 
     private Long plataformaId;
 
+    private Integer indexItem;
+
     @Override
     public String execute() throws Exception {
         return "jsp/carrinho_de_compras";
@@ -57,6 +59,11 @@ public class CarrinhoAction extends TWFActionSupport {
         Jogo jogo = this.jogoService.recuperar(this.jogoId);
         Plataforma plataforma = this.plataformaService.recuperar(this.plataformaId);
         this.carrinhoDeCompras.addItem(jogo, this.quantidade, plataforma);
+        return this.execute();
+    }
+
+    public String remover() throws Exception {
+        this.carrinhoDeCompras.removeItem(this.indexItem);
         return this.execute();
     }
 
@@ -88,4 +95,11 @@ public class CarrinhoAction extends TWFActionSupport {
         return this.carrinhoDeCompras;
     }
 
+    public Integer getIndexItem() {
+        return this.indexItem;
+    }
+
+    public void setIndexItem(Integer indexItem) {
+        this.indexItem = indexItem;
+    }
 }

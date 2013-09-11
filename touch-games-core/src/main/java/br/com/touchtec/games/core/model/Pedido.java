@@ -24,6 +24,7 @@ import javax.persistence.Transient;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
+import org.hibernate.annotations.Cascade;
 
 
 /**
@@ -78,6 +79,7 @@ public class Pedido extends EntidadeRaiz {
      * @return itens
      */
     @OneToMany(cascade = CascadeType.ALL)
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public List<ItemPedido> getItens() {
         return this.itens;
     }

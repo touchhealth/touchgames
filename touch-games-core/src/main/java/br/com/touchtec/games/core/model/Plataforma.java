@@ -38,7 +38,7 @@ public class Plataforma extends EntidadeRaiz {
 
     @Override
     protected String print() {
-        return String.format("Plataforma %s", this.nome);
+        return this.nome;
     }
 
     /**

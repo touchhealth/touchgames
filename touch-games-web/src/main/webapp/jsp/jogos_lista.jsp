@@ -11,7 +11,12 @@
 				<a href="${app}/Compras!jogoDetalhes.action?jogoSelecionado.id=${jogo.id}">
 					<div class="jogo">
 						<div>
-							<img src="${app}/img/games/chrono-trigger.jpg"/>
+							<c:if test="${empty jogo.imagens}">
+								<img src="${app}/img/jogo_padrao.png"/>
+							</c:if>
+							<c:if test="${not empty jogo.imagens}">
+								<img src="${app}/imagens?id=${jogo.imagens[0].id}"/>
+							</c:if>
 						</div>
 						<div class="nome">
 							${jogo.nome}

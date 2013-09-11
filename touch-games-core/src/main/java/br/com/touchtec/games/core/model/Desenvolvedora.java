@@ -69,7 +69,7 @@ public class Desenvolvedora extends EntidadeRaiz {
 
     @Override
     protected String print() {
-        return String.format("Desenvolvedora %s", this.nome);
+        return this.nome;
     }
 
     @Override

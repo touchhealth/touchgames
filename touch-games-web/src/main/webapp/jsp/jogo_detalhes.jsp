@@ -10,29 +10,22 @@
 		<div id="jogo-detalhes" class="inline">
 			<div class="images">
 				<div class="main-image">
-					<img src="${app}/img/games/chrono-trigger.jpg"/>
+					<c:if test="${empty jogoSelecionado.imagens}">
+						<img src="${app}/img/jogo_padrao.png"/>
+					</c:if>
+					<c:if test="${not empty jogoSelecionado.imagens}">
+						<img src="${app}/imagens?id=${jogoSelecionado.imagens[0].id}"/>
+					</c:if>
 				</div>
 				<div class="tiny-images">
-					<!-- FIXME usar imagens do jogo -->
-					<a href="${app}/img/games/chrono-trigger.jpg" target="_blank">
-						<img src="${app}/img/games/chrono-trigger.jpg" width="50px"/>
-					</a>
-					<a href="${app}/img/games/chrono-trigger.jpg" target="_blank">
-						<img src="${app}/img/games/chrono-trigger.jpg" width="50px"/>
-					</a>
-					<a href="${app}/img/games/chrono-trigger.jpg" target="_blank">
-						<img src="${app}/img/games/chrono-trigger.jpg" width="50px"/>
-					</a>
-					<a href="${app}/img/games/chrono-trigger.jpg" target="_blank">
-						<img src="${app}/img/games/chrono-trigger.jpg" width="50px"/>
-					</a>
-					<a href="${app}/img/games/chrono-trigger.jpg" target="_blank">
-						<img src="${app}/img/games/chrono-trigger.jpg" width="50px"/>
-					</a>
-					<a href="${app}/img/games/chrono-trigger.jpg" target="_blank">
-						<img src="${app}/img/games/chrono-trigger.jpg" width="50px"/>
-					</a>
-
+					<c:if test="${not empty jogoSelecionado.imagens}">
+						<c:forEach items="${jogoSelecionado.imagens}" var="image" varStatus="status">
+							<c:set var="imageURL" value="${app}/imagens?id=${jogoSelecionado.imagens[status.count - 1].id}"/>
+							<a href="${imageURL}" target="_blank">
+								<img src="${imageURL}" width="50px"/>
+							</a>
+						</c:forEach> 
+					</c:if>
 				</div>
 			</div>
 			

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -70,6 +71,11 @@ public class ComprasAction extends TWFActionSupport {
     }
 
     public String finalizarCompra() throws Exception {
+        // se está vazio o carrinho apenas ignora
+        if (CollectionUtils.isEmpty(this.carrinhoDeCompras.getItems())) {
+            return "jsp/jogos_lista";
+        }
+
         this.pedido = new Pedido();
         this.pedido.setItens(new ArrayList<ItemPedido>(this.carrinhoDeCompras.getItems()));
         this.pedido.setData(new Date());

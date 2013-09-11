@@ -13,6 +13,7 @@ package br.com.touchtec.games.web;
 
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -45,6 +46,19 @@ public class CarrinhoDeCompras implements Serializable {
         this.items.remove(itemPedido);
 
         this.items.add(itemPedido);
+    }
+
+    public void removeItem(Integer index) {
+        // como garantimos a ordem do set eh possivel encontrar um item iterando
+        Iterator<ItemPedido> it = this.items.iterator();
+        int i = 0;
+        while (it.hasNext()) {
+            ItemPedido item = it.next();
+            if (i == index) {
+                this.items.remove(item);
+            }
+            i++;
+        }
     }
 
     public Set<ItemPedido> getItems() {

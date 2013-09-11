@@ -17,7 +17,6 @@
 			<t:tablecolumn  property="id" title="%{i18n.Pedido.id}"/>
 			<t:tablecolumn  property="data" title="%{i18n.Pedido.data}"/>
 			<t:tablecolumn  title="%{i18n.Pedido.valorTotal}">
-				<fmt:formatNumber type="currency" value="${pedido.valorTotal}" />
 			</t:tablecolumn>
 		</t:table>
 	
