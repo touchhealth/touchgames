@@ -11,12 +11,7 @@
 				<a href="${app}/Compras!jogoDetalhes.action?jogoSelecionado.id=${jogo.id}">
 					<div class="jogo">
 						<div>
-							<c:if test="${empty jogo.imagens}">
-								<img src="${app}/img/jogo_padrao.png"/>
-							</c:if>
-							<c:if test="${not empty jogo.imagens}">
-								<img src="${app}/imagens?id=${jogo.imagens[0].id}"/>
-							</c:if>
+							<img src="${app}/imagens?id=${jogo.imagens[0].id}" onerror="this.src='${app}/img/jogo_padrao.png'"/>
 						</div>
 						<div class="nome">
 							${jogo.nome}

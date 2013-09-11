@@ -20,4 +20,24 @@
 			<property name="hibernate.archive.autodetection" value="class" />
 		</properties>
 	</persistence-unit>
+	
+	
+	<persistence-unit name="touch-games-test">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+			<property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" />
+			<property name="hibernate.connection.username" value="sa" />
+			<property name="hibernate.connection.password" value="" />
+			<property name="hibernate.connection.url" value="jdbc:hsqldb:mem:test" />
+
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.max_fetch_depth" value="0" />
+			<property name="hibernate.archive.autodetection" value="class" />
+			<property name="hibernate.ejb.event.load" value="org.hibernate.event.def.DefaultLoadEventListener"/>
+			<property name="hibernate.cache.use_second_level_cache" value="false" />
+		</properties>
+	</persistence-unit>
 </persistence>

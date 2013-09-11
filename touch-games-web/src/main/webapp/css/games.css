@@ -10,7 +10,6 @@ html, body {
 
 a {
 	color: #666;
-	text-decoration: none;
 }
 
 button {
@@ -60,6 +59,7 @@ button {
 #header {
 	height: 90px;
 	background: #005680 url('../img/bg-header.jpg') no-repeat center;
+	padding: 0px 20px;
 }
 
 #header .left {
@@ -79,9 +79,6 @@ button {
 	top: 6px;	
 }
 
-#top-navigation {
-}
-
 #menu-plataformas {
 	list-style: none;
 	padding: 0px;
@@ -96,8 +93,12 @@ button {
 	margin: 10px 20px;
 }
 
-#menu-plataformas li:hover{
+#menu-plataformas li:hover {
 	text-decoration: underline;
+}
+
+#menu-plataformas a {
+	text-decoration: none;
 }
 
 #center {	

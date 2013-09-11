@@ -19,6 +19,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,11 +35,14 @@ import br.com.touchtec.games.core.service.PedidoService;
 @Transactional
 public class PedidoServiceImpl implements PedidoService {
 
+    private static final Logger LOGGER = Logger.getLogger(PedidoServiceImpl.class);
+
     @PersistenceContext
     private EntityManager em;
 
     @Override
     public void criar(Pedido pedido) {
+        LOGGER.info("Pedido criado");
         this.em.persist(pedido);
     }
 

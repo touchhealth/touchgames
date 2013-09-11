@@ -49,16 +49,17 @@ public class CarrinhoDeCompras implements Serializable {
     }
 
     public void removeItem(Integer index) {
-        // como garantimos a ordem do set eh possivel encontrar um item iterando
-        Iterator<ItemPedido> it = this.items.iterator();
+        // como garantimos a ordem do set, é possivel encontrar um item iterando
+
         int i = 0;
-        while (it.hasNext()) {
-            ItemPedido item = it.next();
+        for (Iterator iterator = this.items.iterator(); iterator.hasNext(); i++) {
+            iterator.next();
             if (i == index) {
-                this.items.remove(item);
+                iterator.remove();
+                break;
             }
-            i++;
         }
+
     }
 
     public Set<ItemPedido> getItems() {

@@ -19,9 +19,7 @@
 			<t:tablerowselector name="selectedId" multiple="false" property="id"/>
 			
 			<t:tablecolumn title="Imagem">
-				<c:if test="${!empty jogo.imagens}">
-					<img src="${app}/imagens?id=${jogo.imagens[0].id}" width="50px"/>
-				</c:if>
+				<img src="${app}/imagens?id=${jogo.imagens[0].id}" onerror="this.src='${app}/img/jogo_padrao.png'" width="50px"/>
 			</t:tablecolumn>
 			
 			<t:tablecolumn  property="nome" title="%{i18n.Jogo.nome}"/>

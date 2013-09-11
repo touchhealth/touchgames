@@ -15,7 +15,6 @@
 			<table>
 				<thead>
 					<tr>
-						<th>Remover</th>
 						<th>Jogo</th>
 						<th>Plataforma</th>
 						<th class="text-right">Preço</th>
@@ -26,11 +25,13 @@
 				<tbody>
 					<c:forEach items="${carrinhoDeCompras.items}" var="item" varStatus="status">
 						<tr>
-							<td><a href="${app}/Carrinho!remover.action?indexItem=${status.count-1}">X</a></td>
 							<td>${item.jogo}</td>
 							<td>${item.plataforma}</td>
 							<td class="text-right"><fmt:formatNumber type="currency" value="${item.jogo.precoComDesconto}"/></td>
-							<td class="text-right">${item.quantidade}</td>
+							<td class="text-right">
+								${item.quantidade}
+								<a href="${app}/Carrinho!remover.action?indexItem=${status.index}">remover</a>
+							</td>
 							<td class="text-right"><fmt:formatNumber type="currency" value="${item.jogo.precoComDesconto * item.quantidade}"/></td>
 						</tr>		
 					</c:forEach>
