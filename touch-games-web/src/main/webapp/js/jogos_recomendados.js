@@ -11,12 +11,13 @@
 
 $(document).observe("dom:loaded", function(){
 	var contentNode = $('jogos-relacionados').down('.content');
-
+	var genero = $('jogos-relacionados').dataset.genero;
+	
 	setInterval(function(){
 		contentNode.addClassName("loading");
 		contentNode.update("");
 		
-		new Ajax.Request("Compras!jogosRecomendados.action?generoSelecionado=RPG", {
+		new Ajax.Request("Compras!jogosRecomendados.action?generoSelecionado=" + genero, {
 			onSuccess : function(transport) {
 				var jogos = transport.responseJSON.twfOriginalJSON;
 				criarElementos(jogos);

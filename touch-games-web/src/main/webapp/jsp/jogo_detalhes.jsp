@@ -59,7 +59,7 @@
 			</form>
 		</div>
 		
-		<div id="jogos-relacionados">
+		<div id="jogos-relacionados" data-genero="${jogoSelecionado.genero}">
 			<h2>Você tabém pode gostar:</h2>
 			
 			<div class="content loading"><!-- Será carregado por AJAX --></div>
