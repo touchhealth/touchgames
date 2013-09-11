@@ -5,6 +5,7 @@
 <jsp:directive.page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" />
 
 <t:loadbundle var="i18n" basename="Names" />
+<fmt:setLocale value="pt_BR"/>
 
 <t:userinterface>
 	<t:title value="Pedidos"/>
@@ -15,8 +16,11 @@
 		<t:table list="%{pedidos}" var="pedido">
 			<t:tablerowselector name="selectedId" multiple="false" property="id"/>
 			<t:tablecolumn  property="id" title="%{i18n.Pedido.id}"/>
-			<t:tablecolumn  property="data" title="%{i18n.Pedido.data}"/>
+			<t:tablecolumn title="%{i18n.Pedido.data}">
+				<fmt:formatDate value="${pedido.data}" />
+			</t:tablecolumn>
 			<t:tablecolumn  title="%{i18n.Pedido.valorTotal}">
+				<fmt:formatNumber type="currency" value="${pedido.valorTotal}" />
 			</t:tablecolumn>
 		</t:table>
 	
