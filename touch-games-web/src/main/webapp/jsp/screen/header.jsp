@@ -12,7 +12,9 @@
 	</div>
 	
 	<div class="right inline">
-		<a id="carrinho" href="${app}/Carrinho.action" class="destaque">Carrinho</a>
+		<a id="carrinho" href="${app}/Carrinho.action" class="destaque">
+			<img src="${app}/img/cart.png"/>
+		</a>
 
 		<form action="${app}/">
 			<input id="search" name="" placeholder="Buscar"/>
