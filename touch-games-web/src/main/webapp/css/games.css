@@ -74,6 +74,11 @@ button {
 	margin-left: 10px;
 }
 
+.imagemBusca {
+	position: relative;
+	top: 6px;	
+}
+
 #top-navigation {
 }
 
@@ -110,10 +115,6 @@ button {
 	text-align: center;
 	line-height: 100px;
 	font-size: 12px;
-}
-
-#carrinho {
-	font-weight: bold;
 }
 
 #search {

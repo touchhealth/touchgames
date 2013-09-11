@@ -56,6 +56,8 @@ public class ComprasAction extends TWFActionSupport {
 
     private Pedido pedido;
 
+    private String nomeDoJogo;
+
     @Override
     public String execute() throws Exception {
         this.jogos = this.jogoService.listarTodos();
@@ -84,6 +86,11 @@ public class ComprasAction extends TWFActionSupport {
         return "jsp/jogos_lista";
     }
 
+    public String buscarPorNome() {
+        this.jogos = this.jogoService.buscar(this.nomeDoJogo);
+        return "jsp/jogos_lista";
+    }
+
     public List<Jogo> getJogos() {
         return this.jogos;
     }
@@ -108,4 +115,11 @@ public class ComprasAction extends TWFActionSupport {
         return this.pedido;
     }
 
+    public String getNomeDoJogo() {
+        return this.nomeDoJogo;
+    }
+
+    public void setNomeDoJogo(String nomeDoJogo) {
+        this.nomeDoJogo = nomeDoJogo;
+    }
 }

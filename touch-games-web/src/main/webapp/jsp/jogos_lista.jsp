@@ -23,6 +23,19 @@
 					</div>
 				</a>
 			</c:forEach>
+			<c:if test="${empty jogos}">
+				<c:choose>
+					<c:when test="${not empty nomeDoJogo}">
+						Nenhum jogo foi encontrado para a busca "${nomeDoJogo}".
+					</c:when>
+					<c:when test="${not empty plataformaSelecionada}">
+						Nenhum jogo foi encontrado para essa plataforma.
+					</c:when>
+					<c:otherwise>
+						Nenhum jogo foi encontrado.
+					</c:otherwise>
+				</c:choose>
+			</c:if>
 		</div>
 	</g:screen>
 </jsp:root>

@@ -12,12 +12,15 @@
 	</div>
 	
 	<div class="right inline">
-		<a id="carrinho" href="${app}/Carrinho.action" class="destaque">
-			<img src="${app}/img/cart.png"/>
+		<a href="${app}/Carrinho.action">
+			<img class="imagemBusca" src="${app}/img/cart.png"/>
 		</a>
 
-		<form action="${app}/">
-			<input id="search" name="" placeholder="Buscar"/>
+		<form id="buscaForm" action="${app}/Compras!buscarPorNome.action">
+			<input id="search" name="nomeDoJogo" placeholder="Buscar"/>
+			<a href="javascript:void(0);" onclick="document.getElementById('buscaForm').submit();">
+				<img class="imagemBusca" src="${app}/img/lupa.png"/>
+			</a>
 		</form>
 	</div>
 </jsp:root>
