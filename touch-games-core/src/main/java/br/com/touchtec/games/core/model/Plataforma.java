@@ -18,7 +18,6 @@ import javax.persistence.ManyToOne;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.hibernate.annotations.Cascade;
 
 
 /**
@@ -28,7 +27,7 @@ import org.hibernate.annotations.Cascade;
 @Entity
 public class Plataforma extends EntidadeRaiz {
 
-    private static final long serialVersionUID = -2400143269814546492L;
+    private static final long serialVersionUID = 1L;
 
     private String nome;
 
@@ -58,9 +57,6 @@ public class Plataforma extends EntidadeRaiz {
      * @return fabricante
      */
     @ManyToOne
-    // !!!!!!!!!!!!!!!!!!!!!!! mto importante para ex.
-    // http://www.mkyong.com/hibernate/cascade-jpa-hibernate-annotation-common-mistake/
-    @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     public Fabricante getFabricante() {
         return this.fabricante;
     }

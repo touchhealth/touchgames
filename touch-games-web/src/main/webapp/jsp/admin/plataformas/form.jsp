@@ -14,12 +14,16 @@
 		
 		<t:field>
 			<t:label value="%{i18n.Plataforma.nome}"/>
-			<t:textinput name="plataforma.nome" value="%{plataforma.nome}"/>
+			<t:textinput name="plataforma.nome" value="%{plataforma.nome}">
+				<t:validate criteria="required" />
+			</t:textinput>
 		</t:field>
 		<t:field>
 			<t:label value="%{i18n.Plataforma.fabricante}"/>
 			<t:singleselect name="plataforma.fabricante.id" value="%{plataforma.fabricante}" 
-				list="%{fabricantes}" optionLabel="nome"  optionValue="id"/>
+				list="%{fabricantes}" optionLabel="nome"  optionValue="id">
+				<t:validate criteria="required" />
+			</t:singleselect>
 		</t:field>
 		
 		<t:toolbar>

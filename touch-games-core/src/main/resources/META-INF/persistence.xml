@@ -33,11 +33,12 @@
 			<property name="hibernate.connection.url" value="jdbc:hsqldb:mem:test" />
 
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
-			<property name="hibernate.show_sql" value="false" />
-			<property name="hibernate.max_fetch_depth" value="0" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.max_fetch_depth" value="3" />
 			<property name="hibernate.archive.autodetection" value="class" />
 			<property name="hibernate.ejb.event.load" value="org.hibernate.event.def.DefaultLoadEventListener"/>
 			<property name="hibernate.cache.use_second_level_cache" value="false" />
+			<property name="hibernate.jdbc.batch_size" value="0"/>
 		</properties>
 	</persistence-unit>
 </persistence>

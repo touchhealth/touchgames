@@ -49,6 +49,7 @@ public class PlataformaServiceTest {
 
     /***/
     @Test
+    @Transactional
     public void criarTest() {
         Plataforma plataforma = this.criarPlataforma("PS3", "Sony");
 
@@ -61,6 +62,7 @@ public class PlataformaServiceTest {
 
     /***/
     @Test
+    @Transactional
     public void editarTest() {
         Plataforma plataforma = this.criarPlataforma("WIIY", "Microsoft");
         plataforma.setNome("WII");
@@ -76,6 +78,7 @@ public class PlataformaServiceTest {
 
     /***/
     @Test
+    @Transactional
     public void removerTest() {
         Plataforma plataforma = this.criarPlataforma("WII", "Nintendo");
         this.service.remover(plataforma);
@@ -113,11 +116,11 @@ public class PlataformaServiceTest {
     }
 
     private Fabricante criarFabricante(String nome) {
-        if (nome == null) {
-            return null;
-        }
         Fabricante fabricante = new Fabricante();
         fabricante.setNome(nome);
+
+        this.em.persist(fabricante);
+
         return fabricante;
     }
 }

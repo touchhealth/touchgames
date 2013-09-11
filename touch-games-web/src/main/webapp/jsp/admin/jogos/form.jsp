@@ -18,7 +18,9 @@
 				<t:title>Geral</t:title>
 				<t:field>
 					<t:label value="%{i18n.Jogo.nome}"/>
-					<t:textinput name="jogo.nome" value="%{jogo.nome}"/>
+					<t:textinput name="jogo.nome" value="%{jogo.nome}">
+						<t:validate criteria="required" />
+					</t:textinput>
 				</t:field>
 				<t:field>
 					<t:label value="%{i18n.Jogo.descricao}"/>
@@ -31,7 +33,9 @@
 				<t:field>
 					<t:label value="%{i18n.Jogo.desenvolvedora}"/>
 					<t:singleselect name="jogo.desenvolvedora.id" value="%{jogo.desenvolvedora}" 
-						list="%{desenvolvedoras}" optionLabel="nome"  optionValue="id"/>
+						list="%{desenvolvedoras}" optionLabel="nome"  optionValue="id">
+						<t:validate criteria="required" />
+					</t:singleselect>
 				</t:field>
 				<t:field>
 					<t:label value="%{i18n.Jogo.plataformas}"/>
