@@ -13,14 +13,14 @@
 	<t:panel id="list" cssClass="form" collapsible="true">
 		<t:title value="Lista"/>
 		
-		<t:table list="%{pedidos}" var="pedido">
+		<t:table list="%{pedidos}" var="item">
 			<t:tablerowselector name="selectedId" multiple="false" property="id"/>
 			<t:tablecolumn  property="id" title="%{i18n.Pedido.id}"/>
 			<t:tablecolumn title="%{i18n.Pedido.data}">
-				<fmt:formatDate value="${pedido.data}" />
+				<fmt:formatDate value="${item.data}" />
 			</t:tablecolumn>
 			<t:tablecolumn  title="%{i18n.Pedido.valorTotal}">
-				<fmt:formatNumber type="currency" value="${pedido.valorTotal}" />
+				<fmt:formatNumber type="currency" value="${item.valorTotal}" />
 			</t:tablecolumn>
 		</t:table>
 	

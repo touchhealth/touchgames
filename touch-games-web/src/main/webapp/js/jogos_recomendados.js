@@ -20,6 +20,7 @@ $(document).observe("dom:loaded", function(){
 			onSuccess : function(transport) {
 				var jogos = transport.responseJSON.twfOriginalJSON;
 				criarElementos(jogos);
+				contentNode.removeClassName("loading");
 			},
 		});
 	}, 5000);
@@ -43,8 +44,6 @@ $(document).observe("dom:loaded", function(){
 			boxNode.appendChild(nomeNode);
 			
 			contentNode.appendChild(anchorNode);
-			
-			contentNode.removeClassName("loading");
 		});
 	};
 });
