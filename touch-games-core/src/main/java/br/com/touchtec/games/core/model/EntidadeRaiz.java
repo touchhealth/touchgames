@@ -21,12 +21,6 @@ import javax.persistence.MappedSuperclass;
 
 
 /**
- * abstract <br>
- * serializable <br>
- * MappedSuperclass <br>
- * equals/hashcode <br>
- * Id e GeneratedValue <br>
- * 
  * @author filipe
  */
 @MappedSuperclass

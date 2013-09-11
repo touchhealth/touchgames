@@ -1,0 +1,51 @@
+[dia 1]
+- Objetivo 
+
+- Git (git clone ssh://bbviana@git.touchtec.com.br:29418/touch-games)
+
+- Estrutura projeto
+-- web.xml
+-- persistence.xml
+-- Names.properties
+
+- Banco
+-- instalar postgres
+-- comando para criar usuario e banco no postgres
+
+- UML
+
+- JPA
+-- imagem mostrando classe java virando tabela no banco
+
+- Java
+-- enum
+-- abstract
+-- @Override
+-- template method
+-- Serializable
+-- toString()
+
+- Implementar
+-- Genero
+-- EntidadeRaiz
+-- Fabricante, Plataforma
+-- Desenvolvedora, Jogo
+-- Pedido, ItemPedido
+-- Imagem
+
+- Anotações JPA
+-- @Entity, @MappedSuperclass
+-- @Id e @GeneratedValue(strategy = GenerationType.SEQUENCE)
+-- mudar nome da tabela Jogo - @Table("jogos")
+-- unicidade nos nomes  - @Column(unique = true)
+-- @ManyToOne,  @OneToMany,  @ManyToMany
+
+-- Almoço --
+
+- EntityManager
+-- DAO (Interfaces)
+-- EntityManagerFactory, EntityManager
+-- Transação
+
+- Testes Junit
+- @Test, @After, @Before 

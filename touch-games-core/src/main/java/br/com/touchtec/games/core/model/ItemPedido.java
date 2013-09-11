@@ -27,7 +27,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 @Entity
 public class ItemPedido extends EntidadeRaiz {
 
-    private static final long serialVersionUID = -6159795502823858669L;
+    private static final long serialVersionUID = 1L;
 
     private Jogo jogo;
     private int quantidade;

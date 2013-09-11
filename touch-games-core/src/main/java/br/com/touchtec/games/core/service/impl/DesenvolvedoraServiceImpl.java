@@ -9,7 +9,7 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.core.service;
+package br.com.touchtec.games.core.service.impl;
 
 
 import java.util.List;
@@ -22,6 +22,7 @@ import javax.persistence.Query;
 import org.hibernate.Hibernate;
 
 import br.com.touchtec.games.core.model.Desenvolvedora;
+import br.com.touchtec.games.core.service.DesenvolvedoraService;
 
 
 /**

@@ -1,0 +1,4 @@
+- equals em ItemPedido, Plataforma, Jogo
+- OrderBy
+- Transient 
+-- Lazy DeleteOrphan no relacionamento entre Jogo e Imagem

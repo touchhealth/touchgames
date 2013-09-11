@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.touchtec.games.core.model.Desenvolvedora;
 import br.com.touchtec.games.core.service.DesenvolvedoraService;
-import br.com.touchtec.games.core.service.DesenvolvedoraServiceImpl;
+import br.com.touchtec.games.core.service.impl.DesenvolvedoraServiceImpl;
 
 
 /**

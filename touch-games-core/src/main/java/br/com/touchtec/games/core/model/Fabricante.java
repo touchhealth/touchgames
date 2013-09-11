@@ -32,9 +32,10 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 @Entity
 public class Fabricante extends EntidadeRaiz {
 
-    private static final long serialVersionUID = -771887121092129872L;
+    private static final long serialVersionUID = 1L;
 
     private String nome;
+
     private List<Plataforma> plataformas;
 
     /**

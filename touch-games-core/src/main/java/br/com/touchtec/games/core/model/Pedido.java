@@ -41,10 +41,7 @@ public class Pedido extends EntidadeRaiz {
     private List<ItemPedido> itens;
 
     /**
-     * !!!!!!!!!!!!!!!!!
      * Esse método somente funciona quando a lista de pedidos for inicializada.
-     * Pode ser um bom exe
-     * !!!!!!!!!!!!!!!!!
      * 
      * @return O valor total do pedido.
      */

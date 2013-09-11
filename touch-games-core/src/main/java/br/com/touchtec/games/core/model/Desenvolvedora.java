@@ -17,6 +17,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OrderBy;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -35,6 +36,7 @@ public class Desenvolvedora extends EntidadeRaiz {
     private static final long serialVersionUID = -3667462095435459034L;
 
     private List<Jogo> jogos;
+
     private String nome;
 
     /**
@@ -56,6 +58,7 @@ public class Desenvolvedora extends EntidadeRaiz {
      * @return jogos
      */
     @ManyToMany(mappedBy = "desenvolvedora")
+    @OrderBy("nome")
     public List<Jogo> getJogos() {
         return this.jogos;
     }
