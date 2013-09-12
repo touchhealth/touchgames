@@ -14,9 +14,6 @@ package br.com.touchtec.games.core.service.spring;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import junit.framework.Assert;
 
 import org.junit.After;
@@ -40,9 +37,6 @@ import br.com.touchtec.spring.test.TouchSpringRunner;
 @RunWith(TouchSpringRunner.class)
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class PlataformaServiceTest {
-
-    @PersistenceContext
-    private EntityManager em;
 
     @Autowired
     private PlataformaService service;
