@@ -38,7 +38,7 @@ import br.com.touchtec.message.Named;
 @Named(key = "Jogo")
 public class JogoDTO implements CrudDTO<Long> {
 
-    private static final long serialVersionUID = 7302375495720376865L;
+    private static final long serialVersionUID = 1L;
 
     private Long id;
 

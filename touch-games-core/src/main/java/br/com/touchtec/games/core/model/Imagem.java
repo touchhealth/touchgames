@@ -23,7 +23,7 @@ import javax.persistence.Lob;
 @Entity
 public class Imagem extends EntidadeRaiz {
 
-    private static final long serialVersionUID = 5633304640430559884L;
+    private static final long serialVersionUID = 1L;
 
     private byte[] bytes;
 

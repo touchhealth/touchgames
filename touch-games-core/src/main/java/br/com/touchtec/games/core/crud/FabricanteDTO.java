@@ -36,7 +36,7 @@ import br.com.touchtec.message.Named;
 @Named(key = "Fabricante")
 public class FabricanteDTO implements CrudDTO<Long> {
 
-    private static final long serialVersionUID = -5552331567032635573L;
+    private static final long serialVersionUID = 1L;
 
     private Long id;
 

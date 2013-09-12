@@ -24,7 +24,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 import br.com.touchtec.games.core.model.Fabricante;
 import br.com.touchtec.games.core.model.Plataforma;
@@ -53,7 +52,6 @@ public class PlataformaServiceTest {
 
     /***/
     @Test
-    @Transactional
     public void criarTest() {
         Plataforma plataforma = this.criarPlataforma("PS3", "Sony");
 
@@ -65,7 +63,6 @@ public class PlataformaServiceTest {
 
     /***/
     @Test
-    @Transactional
     public void editarTest() {
         Plataforma plataforma = this.criarPlataforma("WIIY", "Microsoft");
         plataforma.setNome("WII");
@@ -81,7 +78,6 @@ public class PlataformaServiceTest {
 
     /***/
     @Test
-    @Transactional
     public void removerTest() {
         Plataforma plataforma = this.criarPlataforma("WII", "Nintendo");
         this.service.remover(plataforma);
@@ -91,7 +87,6 @@ public class PlataformaServiceTest {
 
     /***/
     @Test
-    @Transactional
     public void listarTodosTest() {
         Plataforma ps2 = this.criarPlataforma("PS2", "Sony");
         Plataforma gameBoy = this.criarPlataforma("GameBoy", "Nintendo");

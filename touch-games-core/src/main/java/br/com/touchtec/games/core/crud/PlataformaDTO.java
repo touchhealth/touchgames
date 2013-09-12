@@ -28,7 +28,7 @@ import br.com.touchtec.message.Named;
 @Named(key = "Plataforma")
 public class PlataformaDTO implements CrudDTO<Long> {
 
-    private static final long serialVersionUID = 4250160720695830152L;
+    private static final long serialVersionUID = 1L;
 
     private Long id;
 

@@ -33,7 +33,7 @@ import br.com.touchtec.message.Named;
 @Named(key = "Desenvolvedora")
 public class Desenvolvedora extends EntidadeRaiz {
 
-    private static final long serialVersionUID = -3667462095435459034L;
+    private static final long serialVersionUID = 1L;
 
     private List<Jogo> jogos;
 
