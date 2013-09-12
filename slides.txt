@@ -1,51 +1,25 @@
-[dia 1]
-- Objetivo 
+[dia 2]
 
-- Git (git clone ssh://bbviana@git.touchtec.com.br:29418/touch-games)
+[3h]
+- web.xml
+- servlets, filters
+- hello, servlet
+- get post
+- vamos falar de jsps, foreach, if, $
+- hello com jsp usando $, if e foreach
+- html, head, body, forms, button, inputs, fieldset, tabel, div, a
 
-- Estrutura projeto
--- web.xml
--- persistence.xml
--- Names.properties
+- Servlet de Desenvolvedoras
+-- form de criação
+-- tabela com coluna Nome
+-- link Adicionar
+-- form de edição
+-- remoção no form de edição
 
-- Banco
--- instalar postgres
--- comando para criar usuario e banco no postgres
 
-- UML
+[3h]
+- Servlet de Jogos: nome, descricao, genero, desenvolvedora, preco , imagens
+- mais componentes html: select, textarea, input(type=number), input(type=radio) (para o genero)
+- colocar a imagem (img) na tabela
+- implementar servlet
 
-- JPA
--- imagem mostrando classe java virando tabela no banco
-
-- Java
--- enum
--- abstract
--- @Override
--- template method
--- Serializable
--- toString()
-
-- Implementar
--- Genero
--- EntidadeRaiz
--- Fabricante, Plataforma
--- Desenvolvedora, Jogo
--- Pedido, ItemPedido
--- Imagem
-
-- Anotações JPA
--- @Entity, @MappedSuperclass
--- @Id e @GeneratedValue(strategy = GenerationType.SEQUENCE)
--- mudar nome da tabela Jogo - @Table("jogos")
--- unicidade nos nomes  - @Column(unique = true)
--- @ManyToOne,  @OneToMany,  @ManyToMany
-
--- Almoço --
-
-- EntityManager
--- DAO (Interfaces)
--- EntityManagerFactory, EntityManager
--- Transação
-
-- Testes Junit
-- @Test, @After, @Before 

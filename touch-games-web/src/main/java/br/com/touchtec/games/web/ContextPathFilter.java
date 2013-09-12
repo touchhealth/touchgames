@@ -14,9 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
- * Filtro que adiciona o contextPath na request sob a variável "app". <br>
- * Precisa ser um filter mesmo e não um interceptor do vraptor. Desta forma, podemos expor a varivael "app" para as
- * páginas de segurança, que não passam pelo vraptor.
+ * TODO DIA 2: Adicionar o contextPath à request sob a variável "app"
  * 
  * @author bbviana
  */
