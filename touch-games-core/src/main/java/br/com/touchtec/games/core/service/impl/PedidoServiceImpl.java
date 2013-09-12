@@ -19,33 +19,37 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
 
-import br.com.touchtec.games.core.model.Desenvolvedora;
-import br.com.touchtec.games.core.service.DesenvolvedoraService;
+import br.com.touchtec.games.core.model.Pedido;
+import br.com.touchtec.games.core.service.PedidoService;
 
 
 /**
- * @author bbviana
+ * @author emesquita
  */
-public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
+public class PedidoServiceImpl implements PedidoService {
 
+    private static final Logger LOGGER = Logger.getLogger(PedidoServiceImpl.class);
     private static final EntityManagerFactory EM_FACTORY = Persistence.createEntityManagerFactory("touch-games");
 
     private EntityManager em = EM_FACTORY.createEntityManager();
 
     @Override
-    public void criar(Desenvolvedora desenvolvedora) {
+    public void criar(Pedido pedido) {
         this.em.getTransaction().begin();
-        this.em.persist(desenvolvedora);
+        LOGGER.info("Pedido criado");
+        this.em.persist(pedido);
         this.em.getTransaction().commit();
         this.em.clear();
     }
 
     @Override
-    public void remover(Desenvolvedora desenvolvedora) {
+    public void remover(Pedido pedido) {
         this.em.getTransaction().begin();
-        Desenvolvedora connectedEntity = this.recuperar(desenvolvedora.getId());
+        Pedido connectedEntity = this.recuperar(pedido.getId());
         if (connectedEntity == null) {
             return;
         }
@@ -55,35 +59,44 @@ public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
     }
 
     @Override
-    public void editar(Desenvolvedora desenvolvedora) {
+    public Pedido editar(Pedido pedido) {
         this.em.getTransaction().begin();
-        this.em.merge(desenvolvedora);
+        Pedido editado = this.em.merge(pedido);
         this.em.getTransaction().commit();
         this.em.clear();
+        return editado;
     }
 
     @Override
-    public Desenvolvedora recuperar(Long id) {
-        Desenvolvedora desenvolvedora = this.em.find(Desenvolvedora.class, id);
-        return desenvolvedora;
+    public Pedido recuperar(Long id) {
+        return this.em.find(Pedido.class, id);
     }
 
     @Override
-    public Desenvolvedora recuperarComListas(Long id) {
+    public Pedido recuperarComListas(Long id) {
         this.em.getTransaction().begin();
-        Desenvolvedora desenvolvedora = this.recuperar(id);
-        Hibernate.initialize(desenvolvedora.getJogos());
+        Pedido pedido = this.recuperar(id);
+        Hibernate.initialize(pedido.getItens());
         this.em.getTransaction().commit();
         this.em.clear();
-        return desenvolvedora;
+        return pedido;
     }
 
-    @Override
     @SuppressWarnings("unchecked")
-    public List<Desenvolvedora> listarTodos() {
-        String queryString = "SELECT d FROM Desenvolvedora d ORDER BY d.nome";
+    public List<Pedido> listarTodos() {
+        String queryString = "SELECT p FROM Pedido p ORDER BY p.data";
         Query query = this.em.createQuery(queryString);
-        List<Desenvolvedora> list = query.getResultList();
+        List<Pedido> list = query.getResultList();
+
+        // Adicionado para poder usar o valor total. Bom exercicio
+        if (CollectionUtils.isEmpty(list)) {
+            return list;
+        }
+        for (Pedido pedido : list) {
+            Hibernate.initialize(pedido.getItens());
+        }
+        // Adicionado para poder usar o valor total. Bom exercicio
+
         return list;
     }
 }

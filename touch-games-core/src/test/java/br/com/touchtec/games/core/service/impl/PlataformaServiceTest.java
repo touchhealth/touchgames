@@ -9,47 +9,33 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.core.service.spring;
+package br.com.touchtec.games.core.service.impl;
 
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.Persistence;
 
 import junit.framework.Assert;
 
 import org.junit.After;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.touchtec.games.core.model.Fabricante;
 import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.FabricanteService;
 import br.com.touchtec.games.core.service.PlataformaService;
-import br.com.touchtec.spring.SpringBeanUtil;
-import br.com.touchtec.spring.test.SpringTestUtil;
-import br.com.touchtec.spring.test.TouchSpringRunner;
 
 
 /**
  * @author emesquita
  */
-@RunWith(TouchSpringRunner.class)
-@ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class PlataformaServiceTest {
 
-    @PersistenceContext
-    private EntityManager em;
+    private PlataformaService service = new PlataformaServiceImpl();
 
-    @Autowired
-    private PlataformaService service;
-
-    @Autowired
-    private FabricanteService fabricanteService;
+    private FabricanteService fabricanteService = new FabricanteServiceImpl();
 
     /***/
     @Test
@@ -97,7 +83,6 @@ public class PlataformaServiceTest {
         Plataforma gameBoy = this.criarPlataforma("GameBoy", "Nintendo");
 
         List<Plataforma> plataformas = this.service.listarTodos();
-
         Assert.assertEquals(2, plataformas.size());
         Assert.assertTrue(plataformas.contains(ps2));
         Assert.assertTrue(plataformas.contains(gameBoy));
@@ -106,7 +91,7 @@ public class PlataformaServiceTest {
     /***/
     @After
     public void after() {
-        SpringTestUtil.restartContext(SpringBeanUtil.getContext());
+        Persistence.createEntityManagerFactory("touch-games");
     }
 
     private Plataforma criarPlataforma(String nome, String fabricante) {

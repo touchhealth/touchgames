@@ -12,7 +12,7 @@
 	<context:component-scan base-package="br.com.touchtec.games.core" name-generator="br.com.touchtec.spring.FullQualifiedNameGenerator" />
 	
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="touch-games-test" />
+		<property name="persistenceUnitName" value="touch-games" />
 	</bean>
 	
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">

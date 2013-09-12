@@ -19,33 +19,36 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.hibernate.Hibernate;
 
-import br.com.touchtec.games.core.model.Desenvolvedora;
-import br.com.touchtec.games.core.service.DesenvolvedoraService;
+import br.com.touchtec.games.core.model.Fabricante;
+import br.com.touchtec.games.core.model.Plataforma;
+import br.com.touchtec.games.core.service.FabricanteService;
 
 
 /**
- * @author bbviana
+ * @author emesquita
  */
-public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
+public class FabricanteServiceImpl implements FabricanteService {
 
     private static final EntityManagerFactory EM_FACTORY = Persistence.createEntityManagerFactory("touch-games");
 
     private EntityManager em = EM_FACTORY.createEntityManager();
 
     @Override
-    public void criar(Desenvolvedora desenvolvedora) {
+    public void criar(Fabricante fabricante) {
         this.em.getTransaction().begin();
-        this.em.persist(desenvolvedora);
+        this.outroLadoPlataforma(fabricante);
+        this.em.persist(fabricante);
         this.em.getTransaction().commit();
         this.em.clear();
     }
 
     @Override
-    public void remover(Desenvolvedora desenvolvedora) {
+    public void remover(Fabricante fabricante) {
         this.em.getTransaction().begin();
-        Desenvolvedora connectedEntity = this.recuperar(desenvolvedora.getId());
+        Fabricante connectedEntity = this.recuperar(fabricante.getId());
         if (connectedEntity == null) {
             return;
         }
@@ -55,35 +58,42 @@ public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
     }
 
     @Override
-    public void editar(Desenvolvedora desenvolvedora) {
+    public Fabricante editar(Fabricante fabricante) {
         this.em.getTransaction().begin();
-        this.em.merge(desenvolvedora);
+        this.outroLadoPlataforma(fabricante);
+        Fabricante editado = this.em.merge(fabricante);
         this.em.getTransaction().commit();
         this.em.clear();
+        return editado;
     }
 
     @Override
-    public Desenvolvedora recuperar(Long id) {
-        Desenvolvedora desenvolvedora = this.em.find(Desenvolvedora.class, id);
-        return desenvolvedora;
+    public Fabricante recuperar(Long id) {
+        return this.em.find(Fabricante.class, id);
     }
 
-    @Override
-    public Desenvolvedora recuperarComListas(Long id) {
+    public Fabricante recuperarComListas(Long id) {
         this.em.getTransaction().begin();
-        Desenvolvedora desenvolvedora = this.recuperar(id);
-        Hibernate.initialize(desenvolvedora.getJogos());
-        this.em.getTransaction().commit();
-        this.em.clear();
-        return desenvolvedora;
+        Fabricante fabricante = this.recuperar(id);
+        Hibernate.initialize(fabricante.getPlataformas());
+        return fabricante;
     }
 
-    @Override
     @SuppressWarnings("unchecked")
-    public List<Desenvolvedora> listarTodos() {
-        String queryString = "SELECT d FROM Desenvolvedora d ORDER BY d.nome";
+    public List<Fabricante> listarTodos() {
+        String queryString = "SELECT f FROM Fabricante f ORDER BY f.nome";
         Query query = this.em.createQuery(queryString);
-        List<Desenvolvedora> list = query.getResultList();
+        List<Fabricante> list = query.getResultList();
         return list;
     }
+
+    private void outroLadoPlataforma(Fabricante fabricante) {
+        if (CollectionUtils.isEmpty(fabricante.getPlataformas())) {
+            return;
+        }
+        for (Plataforma plataforma : fabricante.getPlataformas()) {
+            plataforma.setFabricante(fabricante);
+        }
+    }
+
 }

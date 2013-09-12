@@ -19,33 +19,31 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import org.hibernate.Hibernate;
-
-import br.com.touchtec.games.core.model.Desenvolvedora;
-import br.com.touchtec.games.core.service.DesenvolvedoraService;
+import br.com.touchtec.games.core.model.Plataforma;
+import br.com.touchtec.games.core.service.PlataformaService;
 
 
 /**
- * @author bbviana
+ * @author emesquita
  */
-public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
+public class PlataformaServiceImpl implements PlataformaService {
 
     private static final EntityManagerFactory EM_FACTORY = Persistence.createEntityManagerFactory("touch-games");
 
     private EntityManager em = EM_FACTORY.createEntityManager();
 
     @Override
-    public void criar(Desenvolvedora desenvolvedora) {
+    public void criar(Plataforma plataforma) {
         this.em.getTransaction().begin();
-        this.em.persist(desenvolvedora);
+        this.em.persist(plataforma);
         this.em.getTransaction().commit();
         this.em.clear();
     }
 
     @Override
-    public void remover(Desenvolvedora desenvolvedora) {
+    public void remover(Plataforma plataforma) {
         this.em.getTransaction().begin();
-        Desenvolvedora connectedEntity = this.recuperar(desenvolvedora.getId());
+        Plataforma connectedEntity = this.recuperar(plataforma.getId());
         if (connectedEntity == null) {
             return;
         }
@@ -55,35 +53,25 @@ public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
     }
 
     @Override
-    public void editar(Desenvolvedora desenvolvedora) {
+    public Plataforma editar(Plataforma plataforma) {
         this.em.getTransaction().begin();
-        this.em.merge(desenvolvedora);
+        Plataforma editada = this.em.merge(plataforma);
         this.em.getTransaction().commit();
         this.em.clear();
+        return editada;
     }
 
     @Override
-    public Desenvolvedora recuperar(Long id) {
-        Desenvolvedora desenvolvedora = this.em.find(Desenvolvedora.class, id);
-        return desenvolvedora;
+    public Plataforma recuperar(Long id) {
+        return this.em.find(Plataforma.class, id);
     }
 
-    @Override
-    public Desenvolvedora recuperarComListas(Long id) {
-        this.em.getTransaction().begin();
-        Desenvolvedora desenvolvedora = this.recuperar(id);
-        Hibernate.initialize(desenvolvedora.getJogos());
-        this.em.getTransaction().commit();
-        this.em.clear();
-        return desenvolvedora;
-    }
-
-    @Override
     @SuppressWarnings("unchecked")
-    public List<Desenvolvedora> listarTodos() {
-        String queryString = "SELECT d FROM Desenvolvedora d ORDER BY d.nome";
+    public List<Plataforma> listarTodos() {
+        String queryString = "SELECT p FROM Plataforma p ORDER BY p.nome";
         Query query = this.em.createQuery(queryString);
-        List<Desenvolvedora> list = query.getResultList();
+        List<Plataforma> list = query.getResultList();
         return list;
     }
+
 }
