@@ -16,7 +16,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -57,7 +57,7 @@ public class Desenvolvedora extends EntidadeRaiz {
     /**
      * @return jogos
      */
-    @ManyToMany(mappedBy = "desenvolvedora")
+    @OneToMany(mappedBy = "desenvolvedora")
     @OrderBy("nome")
     public List<Jogo> getJogos() {
         return this.jogos;
