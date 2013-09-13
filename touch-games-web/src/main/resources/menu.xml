@@ -10,27 +10,11 @@
 	
 	<mainMenu title="cadastroStruts">
 		<topItems>
-			<item title="hello" url="struts/Hello.action"/>
-			<item title="jogos" url="struts/Jogos.action"/>
-			<item title="desenvolvedoras" url="struts/Desenvolvedoras.action"/>
-		</topItems>
-	</mainMenu>
-	
-	<mainMenu title="cadastroSpring">
-		<topItems>
-			<item title="hello" url="spring/Hello.action"/>
-			<item title="jogos" url="spring/Jogos.action"/>
-			<item title="desenvolvedoras" url="spring/Desenvolvedoras.action"/>
-		</topItems>
-	</mainMenu>
-
-	<mainMenu title="cadastroTWFC">
-		<topItems>
-			<item title="jogos" url="twfcmagic/Jogos.action"/>
-			<item title="desenvolvedoras" url="twfcmagic/Desenvolvedoras.action"/>
-			<item title="plataformas" url="twfcmagic/Plataformas.action"/>
-			<item title="fabricantes" url="twfcmagic/Fabricantes.action"/>
-			<item title="pedidos" url="twfcmagic/Pedidos.action"/>
+			<item title="jogos" url="Jogos.action"/>
+			<item title="desenvolvedoras" url="Desenvolvedoras.action"/>
+			<item title="plataformas" url="Plataformas.action"/>
+			<item title="fabricantes" url="Fabricantes.action"/>
+			<item title="pedidos" url="Pedidos.action"/>
 		</topItems>
 	</mainMenu>
 

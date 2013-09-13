@@ -10,7 +10,7 @@
 </head>
 <body>
 	
-	<a href="${app}/struts/Desenvolvedoras!create.action">Adicionar</a>
+	<a href="${app}/Desenvolvedoras!create.action">Adicionar</a>
 	
 	<table>
 		<thead>
@@ -21,10 +21,10 @@
 			<tr>
 				<td>${desenvolvedora.nome}</td>
 				<td>
-					<a href="${app}/struts/Desenvolvedoras!update.action?id=${desenvolvedora.id}">Editar</a>
+					<a href="${app}/Desenvolvedoras!update.action?id=${desenvolvedora.id}">Editar</a>
 				</td>
 				<td>
-					<a href="${app}/struts/Desenvolvedoras!remove.action?id=${desenvolvedora.id}">Remover</a>
+					<a href="${app}/Desenvolvedoras!remove.action?id=${desenvolvedora.id}">Remover</a>
 				</td>
 			</tr>
 		</c:forEach>
@@ -32,7 +32,7 @@
 	</table>
 	
 	<c:if test="${method=='update'}">
-		<form action="${app}/struts/Desenvolvedoras!save.action" method="post">
+		<form action="${app}/Desenvolvedoras!save.action" method="post">
 			<fieldset>
 				<legend>Editando ${desenvolvedora.nome}</legend>
 				
@@ -49,7 +49,7 @@
 	</c:if>
 	
 	<c:if test="${method=='create'}">
-		<form action="${app}/struts/Desenvolvedoras!save.action" method="post">
+		<form action="${app}/Desenvolvedoras!save.action" method="post">
 			<fieldset>
 				<legend>Nova Desenvolvedora</legend>
 				

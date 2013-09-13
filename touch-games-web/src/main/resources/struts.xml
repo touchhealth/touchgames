@@ -19,25 +19,21 @@
 		</action>
 	</package>
 	
-	<package name="twfcmagic" namespace="/twfcmagic" extends="twf-default">
-		<action name="*" class="br.com.touchtec.games.web.twfcmagic.{1}Action"/>
-	</package>
-	
-	<package name="struts" namespace="/struts" extends="twf-default">
-		<action name="Hello" class="br.com.touchtec.games.web.struts.HelloAction">
-			<result name="">/jsp/struts/Hello.jsp</result>
-		</action>
+<!-- 	<package name="struts" extends="twf-default"> -->
+<!-- 		<action name="Hello" class="br.com.touchtec.games.web.struts.HelloAction"> -->
+<!-- 			<result name="success">/jsp/struts/Hello.jsp</result> -->
+<!-- 		</action> -->
 		
-		<action name="Desenvolvedoras" class="br.com.touchtec.games.web.struts.DesenvolvedorasAction">
-			<result>/jsp/struts/Desenvolvedoras.jsp</result>
-		</action>
+<!-- 		<action name="Desenvolvedoras" class="br.com.touchtec.games.web.struts.DesenvolvedorasAction"> -->
+<!-- 			<result>/jsp/struts/Desenvolvedoras.jsp</result> -->
+<!-- 		</action> -->
 		
-		<action name="Jogos" class="br.com.touchtec.games.web.struts.JogosAction">
-			<result>/jsp/struts/Jogos.jsp</result>
-		</action>
-	</package>
+<!-- 		<action name="Jogos" class="br.com.touchtec.games.web.struts.JogosAction"> -->
+<!-- 			<result>/jsp/struts/Jogos.jsp</result> -->
+<!-- 		</action> -->
+<!-- 	</package> -->
 	
-	<package name="spring" namespace="/spring" extends="twf-default">
-		<action name="*" class="br.com.touchtec.games.web.spring.{1}Action"/>
-	</package>
+<!-- 	<package name="spring" extends="twf-default"> -->
+<!-- 		<action name="*" class="br.com.touchtec.games.web.spring.{1}Action"/> -->
+<!-- 	</package> -->
 </struts>
