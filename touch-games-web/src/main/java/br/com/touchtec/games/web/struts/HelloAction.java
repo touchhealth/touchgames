@@ -34,12 +34,12 @@ public class HelloAction extends TWFActionSupport {
         return SUCCESS;
     }
 
-    public String getHelloMessage() {
+    public String getMessage() {
         return this.message;
     }
 
-    public void setHelloMessage(String helloMessage) {
-        this.message = helloMessage;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
 }
