@@ -53,11 +53,13 @@
 				
 				<t:field>
 					<t:label value="%{i18n.Jogo.preco}"/>
-					<t:numberinput name="jogo.preco" value="%{jogo.preco}"/>
+					<t:textinput name="jogo.preco" value="%{jogo.preco}">
+						<t:mask mask="99,999.999.999.999" type="reverse" />
+					</t:textinput>
 				</t:field>
 				<t:field>
 					<t:label value="%{i18n.Jogo.desconto}"/>
-					<t:numberinput name="jogo.desconto" value="%{jogo.desconto}"/>
+					<t:numberinput name="jogo.desconto" value="%{jogo.desconto}"/>%
 				</t:field>
 			</t:tabpanel>
 			

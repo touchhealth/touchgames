@@ -7,8 +7,16 @@
 			<item title="desenvolvedoras" url="desenvolvedoras"/>
 		</topItems>
 	</mainMenu>
+	
+	<mainMenu title="cadastroStruts">
+		<topItems>
+			<item title="hello" url="struts/Hello.action"/>
+			<item title="jogos" url="struts/Jogos.action"/>
+			<item title="desenvolvedoras" url="struts/Desenvolvedoras.action"/>
+		</topItems>
+	</mainMenu>
 
-	<mainMenu title="cadastroAction">
+	<mainMenu title="cadastroSpring">
 		<topItems>
 			<item title="jogos" url="Jogos.action"/>
 			<item title="desenvolvedoras" url="Desenvolvedoras.action"/>

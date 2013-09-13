@@ -18,4 +18,18 @@
 			<interceptor-ref name="twfDefaultStack" />
 		</action>
 	</package>
+	
+	<package name="struts" namespace="/struts" extends="twf-default">
+		<action name="Hello" class="br.com.touchtec.games.web.struts.HelloAction">
+			<result>/jsp/struts/Hello.jsp</result>
+		</action>
+		
+		<action name="Desenvolvedoras" class="br.com.touchtec.games.web.struts.DesenvolvedorasAction">
+			<result>/jsp/struts/Desenvolvedoras.jsp</result>
+		</action>
+		
+		<action name="Jogos" class="br.com.touchtec.games.web.struts.JogosAction">
+			<result>/jsp/struts/Jogos.jsp</result>
+		</action>
+	</package>
 </struts>
