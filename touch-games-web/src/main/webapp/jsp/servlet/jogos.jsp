@@ -51,10 +51,14 @@
 				<input type="hidden" name="id" value="${jogo.id}" />
 				
 				<div>
-					Nome: <input type="text" name="nome" value="${jogo.nome}"/>
+					Nome: 
+					<input type="text" name="nome" value="${jogo.nome}"/>
 				</div>		
 				<div>
-					Descrição: <textarea type="text" name="descricao" rows="5" cols="30">${jogo.descricao}</textarea>
+					Descrição: 
+					<textarea type="text" name="descricao" rows="5" cols="30">
+						${jogo.descricao}
+					</textarea>
 				</div>
 				<div>
 					Desenvolvedora:
@@ -115,10 +119,12 @@
 				<legend>Novo Jogo</legend>
 				
 				<div>
-					Nome: <input type="text" name="nome"/>
+					Nome: 
+					<input type="text" name="nome"/>
 				</div>		
 				<div>
-					Descrição: <textarea name="descricao" rows="5" cols="30"><!-- vazio --></textarea>
+					Descrição: 
+					<textarea name="descricao" rows="5" cols="30"><!-- vazio --></textarea>
 				</div>
 				<div>
 					Desenvolvedora:
