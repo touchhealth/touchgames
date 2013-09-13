@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<mainMenu title="cadastroServlet">
+		<topItems>
+			<item title="hello" url="hello"/>
+			<item title="jogos" url="jogos"/>
+			<item title="desenvolvedoras" url="desenvolvedoras"/>
+		</topItems>
+	</mainMenu>
+
 	<mainMenu title="cadastroAction">
 		<topItems>
 			<item title="jogos" url="Jogos.action"/>

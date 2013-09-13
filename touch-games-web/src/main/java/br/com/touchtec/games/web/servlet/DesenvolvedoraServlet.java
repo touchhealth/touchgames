@@ -9,7 +9,7 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.web;
+package br.com.touchtec.games.web.servlet;
 
 
 import static com.google.common.base.Strings.isNullOrEmpty;
@@ -34,18 +34,6 @@ public class DesenvolvedoraServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    // protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    // String page = "<html><head><title>Desenvolvedoras</title></head><body> Hello! </body></html>";
-    // resp.getWriter().write(page);
-    // }
-
-    // FIXME fazer um jsp hello
-
-    // protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    // String page = "<html><head><title>Desenvolvedoras</title></head><body> Hello! </body></html>";
-    // resp.getWriter().write(page);
-    // }
-
     // list, create, update
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -69,7 +57,7 @@ public class DesenvolvedoraServlet extends HttpServlet {
         req.getRequestDispatcher("/jsp/servlet/desenvolvedoras.jsp").forward(req, resp);
     }
 
-    // save, remove
+    // save, savenew, remove
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DesenvolvedoraService service = new DesenvolvedoraServiceImpl();

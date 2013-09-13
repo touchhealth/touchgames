@@ -74,7 +74,6 @@ public class JogoServiceImpl implements JogoService {
         this.em.getTransaction().begin();
         Jogo jogo = this.recuperar(id);
         Hibernate.initialize(jogo.getPlataformas());
-        Hibernate.initialize(jogo.getImagens());
         this.em.getTransaction().commit();
         this.em.clear();
         return jogo;
@@ -104,7 +103,9 @@ public class JogoServiceImpl implements JogoService {
     public List<Jogo> listarTodos() {
         String queryString = "SELECT j FROM Jogo j ORDER BY j.nome";
         Query query = this.em.createQuery(queryString);
+        this.em.getTransaction().begin();
         List<Jogo> list = query.getResultList();
+        this.em.getTransaction().commit();
         return list;
     }
 

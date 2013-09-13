@@ -9,10 +9,15 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.web;
+package br.com.touchtec.games.web.servlet;
 
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 /**
@@ -22,11 +27,11 @@ public class HelloServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    // @Override
-    // protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    // String page = "<html><head><title>Desenvolvedoras</title></head><body> Hello! </body></html>";
-    // resp.getWriter().write(page);
-    // }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String page = "<html><head><title>Desenvolvedoras</title></head><body> Hello! </body></html>";
+        resp.getWriter().write(page);
+    }
 
     // @Override
     // protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

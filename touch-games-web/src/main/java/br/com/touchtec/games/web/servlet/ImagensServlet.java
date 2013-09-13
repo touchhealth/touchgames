@@ -9,7 +9,7 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.web;
+package br.com.touchtec.games.web.servlet;
 
 
 import java.io.IOException;

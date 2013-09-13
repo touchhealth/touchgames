@@ -60,7 +60,7 @@
 	
 	<servlet>
 		<servlet-name>hello</servlet-name>
-		<servlet-class>br.com.touchtec.games.web.HelloServlet</servlet-class>
+		<servlet-class>br.com.touchtec.games.web.servlet.HelloServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>hello</servlet-name>
@@ -69,26 +69,26 @@
 	
 	<servlet>
 		<servlet-name>desenvolvedoras</servlet-name>
-		<servlet-class>br.com.touchtec.games.web.DesenvolvedoraServlet</servlet-class>
+		<servlet-class>br.com.touchtec.games.web.servlet.DesenvolvedoraServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>desenvolvedoras</servlet-name>
   		<url-pattern>/desenvolvedoras/*</url-pattern>
 	</servlet-mapping>
 	
-<!-- 	<servlet> -->
-<!-- 		<servlet-name>jogos</servlet-name> -->
-<!-- 		<servlet-class>br.com.touchtec.games.web.JogosServlet</servlet-class> -->
-<!-- 	</servlet> -->
-<!-- 	<servlet-mapping> -->
-<!-- 		<servlet-name>jogos</servlet-name> -->
-<!--   		<url-pattern>/jogos/*</url-pattern> -->
-<!-- 	</servlet-mapping> -->
+	<servlet>
+		<servlet-name>jogos</servlet-name>
+		<servlet-class>br.com.touchtec.games.web.servlet.JogosServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jogos</servlet-name>
+  		<url-pattern>/jogos/*</url-pattern>
+	</servlet-mapping>
 	
 	
 	<servlet>
 		<servlet-name>imagens</servlet-name>
-		<servlet-class>br.com.touchtec.games.web.ImagensServlet</servlet-class>
+		<servlet-class>br.com.touchtec.games.web.servlet.ImagensServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>imagens</servlet-name>

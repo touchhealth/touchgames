@@ -29,7 +29,7 @@
 	</table>
 	
 	<c:if test="${method=='update'}">
-		<form action="${app}/desenvolvedoras?id=${desenvolvedora.id}" method="post">
+		<form action="${app}/desenvolvedoras" method="post">
 			<fieldset>
 				<legend>Editando ${desenvolvedora.nome}</legend>
 				
@@ -47,12 +47,12 @@
 	</c:if>
 	
 	<c:if test="${method=='create'}">
-		<form action="${app}/desenvolvedoras?id=${desenvolvedora.id}" method="post">
+		<form action="${app}/desenvolvedoras" method="post">
 			<fieldset>
 				<legend>Nova Desenvolvedora</legend>
 				
 				<div>
-					<input type="text" name="nome" value="${desenvolvedora.nome}"/>
+					<input type="text" name="nome"/>
 				</div>		
 				
 				<div>
