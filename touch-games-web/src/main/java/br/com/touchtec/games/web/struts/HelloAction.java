@@ -22,19 +22,24 @@ public class HelloAction extends TWFActionSupport {
 
     private static final long serialVersionUID = 1L;
 
-    private String helloMessage = "Hello!";
+    private String message = "Hello!";
 
     @Override
     public String execute() throws Exception {
         return SUCCESS;
     }
 
+    public String goodbye() throws Exception {
+        this.message = "Goodbye";
+        return SUCCESS;
+    }
+
     public String getHelloMessage() {
-        return this.helloMessage;
+        return this.message;
     }
 
     public void setHelloMessage(String helloMessage) {
-        this.helloMessage = helloMessage;
+        this.message = helloMessage;
     }
 
 }

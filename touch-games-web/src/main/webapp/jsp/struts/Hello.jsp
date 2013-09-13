@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	${helloMessage}
+	${message}
 	
 </body>
 </html>
