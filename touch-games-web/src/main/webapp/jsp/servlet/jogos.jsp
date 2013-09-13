@@ -131,9 +131,9 @@
 				</div>
 				<div>
 					Gênero: 
-					<input type="radio" name="genero" value="ACAO"> Ação</input>
-					<input type="radio" name="genero" value="ESPORTE"> Esporte</input>
-					<input type="radio" name="genero" value="RPG"> RPG</input>
+					<c:forEach items="${generos}" var="genero">
+						<input type="radio" name="genero" value="${genero}" >${genero}</input>
+					</c:forEach>
 				</div>
 				<div>
 					Data de Lançamento:
