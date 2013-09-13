@@ -49,7 +49,7 @@ public class JogosAction extends TWFActionSupport {
     @Override
     public String execute() throws Exception {
         this.jogos = this.jogoService.listarTodos();
-        return super.execute();
+        return SUCCESS;
     }
 
     public String create() throws Exception {

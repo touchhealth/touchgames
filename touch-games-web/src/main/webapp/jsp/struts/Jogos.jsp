@@ -24,7 +24,6 @@
 				<th>Preço</th>
 				<th>Preço com Desconto</th>
 				<th>Data de Lançamento</th>
-				<th>Ações</th>
 				<th>Editar</th>
 				<th>Remover</th>	
 			</tr>
@@ -62,9 +61,7 @@
 				</div>		
 				<div>
 					Descrição: 
-					<textarea type="text" name="jogo.descricao" rows="5" cols="30">
-						${jogo.descricao}
-					</textarea>
+					<textarea type="text" name="jogo.descricao" rows="5" cols="30">${jogo.descricao}</textarea>
 				</div>
 				<div>
 					Desenvolvedora:

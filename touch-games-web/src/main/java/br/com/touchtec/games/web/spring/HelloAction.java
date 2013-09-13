@@ -9,8 +9,11 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.web.struts;
+package br.com.touchtec.games.web.spring;
 
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import br.com.touchtec.twf.core.TWFActionSupport;
 
@@ -18,6 +21,8 @@ import br.com.touchtec.twf.core.TWFActionSupport;
 /**
  * @author emesquita
  */
+@Component
+@Scope("request")
 public class HelloAction extends TWFActionSupport {
 
     private static final long serialVersionUID = 1L;
@@ -26,7 +31,7 @@ public class HelloAction extends TWFActionSupport {
 
     @Override
     public String execute() throws Exception {
-        return SUCCESS;
+        return "jsp/struts/Hello";
     }
 
     public String getHelloMessage() {

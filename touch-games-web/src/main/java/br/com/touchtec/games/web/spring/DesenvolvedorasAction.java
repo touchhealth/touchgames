@@ -9,7 +9,7 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.web.controller;
+package br.com.touchtec.games.web.spring;
 
 
 import java.util.List;
@@ -35,52 +35,52 @@ public class DesenvolvedorasAction extends TWFActionSupport {
     @Autowired
     private DesenvolvedoraService desenvolvedoraService;
 
-    private String formTitle;
+    private String method;
 
     private Desenvolvedora desenvolvedora;
 
     private List<Desenvolvedora> desenvolvedoras;
 
-    private Long selectedId;
+    private Long id;
+
+    // ACOES -----------------------------------------------------------------------
 
     @Override
     public String execute() throws Exception {
         this.desenvolvedoras = this.desenvolvedoraService.listarTodos();
-        return "jsp/admin/desenvolvedoras/list";
+        return "jsp/struts/Desenvolvedoras";
     }
 
     public String create() throws Exception {
-        this.formTitle = "Criação";
-        return "jsp/admin/desenvolvedoras/form";
+        this.method = "create";
+        return this.execute();
     }
 
     public String update() throws Exception {
-        this.desenvolvedora = this.desenvolvedoraService.recuperar(this.selectedId);
-        this.formTitle = "Edição";
-        return "jsp/admin/desenvolvedoras/form";
-    }
-
-    public String view() throws Exception {
-        this.desenvolvedora = this.desenvolvedoraService.recuperarComListas(this.selectedId);
-        return "jsp/admin/desenvolvedoras/view";
+        this.desenvolvedora = this.desenvolvedoraService.recuperar(this.id);
+        this.method = "update";
+        return this.execute();
     }
 
     public String save() throws Exception {
         if (this.desenvolvedora.getId() != null) {
             this.desenvolvedoraService.editar(this.desenvolvedora);
-            this.addSuccessMessage(this.desenvolvedora + " atualizada com sucesso");
         } else {
             this.desenvolvedoraService.criar(this.desenvolvedora);
-            this.addSuccessMessage(this.desenvolvedora + " criada com sucesso");
         }
         return this.execute();
     }
 
     public String remove() throws Exception {
-        this.desenvolvedora = this.desenvolvedoraService.recuperar(this.selectedId);
+        this.desenvolvedora = this.desenvolvedoraService.recuperar(this.id);
         this.desenvolvedoraService.remover(this.desenvolvedora);
-        this.addSuccessMessage(this.desenvolvedora + " removida com sucesso");
         return this.execute();
+    }
+
+    // GETTERS e SETTERS ------------------------------------------------------------
+
+    public String getMethod() {
+        return this.method;
     }
 
     public Desenvolvedora getDesenvolvedora() {
@@ -95,20 +95,15 @@ public class DesenvolvedorasAction extends TWFActionSupport {
         this.desenvolvedoras = desenvolvedoras;
     }
 
-    public Long getSelectedId() {
-        return this.selectedId;
-    }
-
-    public void setSelectedId(Long selectedId) {
-        this.selectedId = selectedId;
-    }
-
-    public String getFormTitle() {
-        return this.formTitle;
-    }
-
     public List<Desenvolvedora> getDesenvolvedoras() {
         return this.desenvolvedoras;
     }
 
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

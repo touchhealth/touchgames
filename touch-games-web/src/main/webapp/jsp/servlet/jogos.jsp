@@ -56,9 +56,7 @@
 				</div>		
 				<div>
 					Descrição: 
-					<textarea type="text" name="descricao" rows="5" cols="30">
-						${jogo.descricao}
-					</textarea>
+					<textarea type="text" name="descricao" rows="5" cols="30">${jogo.descricao}</textarea>
 				</div>
 				<div>
 					Desenvolvedora:

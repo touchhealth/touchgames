@@ -9,7 +9,7 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.web.controller;
+package br.com.touchtec.games.web.twfcmagic;
 
 
 import java.util.List;
