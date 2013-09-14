@@ -76,6 +76,8 @@ public class FabricanteServiceImpl implements FabricanteService {
         this.em.getTransaction().begin();
         Fabricante fabricante = this.recuperar(id);
         Hibernate.initialize(fabricante.getPlataformas());
+        this.em.getTransaction().commit();
+        this.em.clear();
         return fabricante;
     }
 
