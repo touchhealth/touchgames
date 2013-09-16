@@ -9,31 +9,38 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.core.service.impl;
+package br.com.touchtec.games.core.service.spring;
 
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.Persistence;
 
 import junit.framework.Assert;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.junit.After;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 
 import br.com.touchtec.games.core.model.Fabricante;
 import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.FabricanteService;
+import br.com.touchtec.spring.SpringBeanUtil;
+import br.com.touchtec.spring.test.SpringTestUtil;
+import br.com.touchtec.spring.test.TouchSpringRunner;
 
 
 /**
  * @author emesquita
  */
-public class FabricanteServiceTest {
+@RunWith(TouchSpringRunner.class)
+@ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
+public class FabricanteServiceBeanTest {
 
-    private FabricanteService service = new FabricanteServiceImpl();
+    @Autowired
+    private FabricanteService service;
 
     /***/
     @Test
@@ -94,7 +101,7 @@ public class FabricanteServiceTest {
     /***/
     @After
     public void after() {
-        Persistence.createEntityManagerFactory("touch-games");
+        SpringTestUtil.restartContext(SpringBeanUtil.getContext());
     }
 
     private Fabricante criarFabricante(String nome, String... nomesPlataforma) {

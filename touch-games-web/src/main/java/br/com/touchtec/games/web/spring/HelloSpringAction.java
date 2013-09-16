@@ -23,23 +23,28 @@ import br.com.touchtec.twf.core.TWFActionSupport;
  */
 @Component
 @Scope("request")
-public class HelloAction extends TWFActionSupport {
+public class HelloSpringAction extends TWFActionSupport {
 
     private static final long serialVersionUID = 1L;
 
-    private String helloMessage = "Hello!";
+    private String message = "Hello!";
 
     @Override
     public String execute() throws Exception {
         return "jsp/struts/Hello";
     }
 
-    public String getHelloMessage() {
-        return this.helloMessage;
+    public String goodbye() throws Exception {
+        this.message = "Goodbye";
+        return "jsp/struts/Hello";
     }
 
-    public void setHelloMessage(String helloMessage) {
-        this.helloMessage = helloMessage;
+    public String getMessage() {
+        return this.message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
 }

@@ -9,7 +9,7 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.core.service.impl;
+package br.com.touchtec.games.core.service.spring;
 
 
 import java.util.Arrays;
@@ -17,12 +17,13 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import javax.persistence.Persistence;
-
 import junit.framework.Assert;
 
 import org.junit.After;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 
 import br.com.touchtec.games.core.model.ItemPedido;
 import br.com.touchtec.games.core.model.Jogo;
@@ -31,18 +32,26 @@ import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.JogoService;
 import br.com.touchtec.games.core.service.PedidoService;
 import br.com.touchtec.games.core.service.PlataformaService;
+import br.com.touchtec.spring.SpringBeanUtil;
+import br.com.touchtec.spring.test.SpringTestUtil;
+import br.com.touchtec.spring.test.TouchSpringRunner;
 
 
 /**
  * @author emesquita
  */
-public class PedidoServiceTest {
+@RunWith(TouchSpringRunner.class)
+@ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
+public class PedidoServiceBeanTest {
 
-    private PedidoService service = new PedidoServiceImpl();
+    @Autowired
+    private PedidoService service;
 
-    private JogoService jogoService = new JogoServiceImpl();
+    @Autowired
+    private JogoService jogoService;
 
-    private PlataformaService plataformaService = new PlataformaServiceImpl();
+    @Autowired
+    private PlataformaService plataformaService;
 
     /***/
     @Test
@@ -102,7 +111,7 @@ public class PedidoServiceTest {
     /***/
     @After
     public void after() {
-        Persistence.createEntityManagerFactory("touch-games");
+        SpringTestUtil.restartContext(SpringBeanUtil.getContext());
     }
 
     private Pedido criarPedido(Date data, ItemPedido... itens) {

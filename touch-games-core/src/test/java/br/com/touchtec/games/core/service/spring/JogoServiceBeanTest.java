@@ -39,7 +39,7 @@ import br.com.touchtec.spring.test.TouchSpringRunner;
  */
 @RunWith(TouchSpringRunner.class)
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
-public class JogoServiceTest {
+public class JogoServiceBeanTest {
 
     @Autowired
     private JogoService service;

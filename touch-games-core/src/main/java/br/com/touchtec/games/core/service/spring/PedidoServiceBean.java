@@ -33,9 +33,9 @@ import br.com.touchtec.games.core.service.PedidoService;
  */
 @Component
 @Transactional
-public class PedidoServiceImpl implements PedidoService {
+public class PedidoServiceBean implements PedidoService {
 
-    private static final Logger LOGGER = Logger.getLogger(PedidoServiceImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(PedidoServiceBean.class);
 
     @PersistenceContext
     private EntityManager em;

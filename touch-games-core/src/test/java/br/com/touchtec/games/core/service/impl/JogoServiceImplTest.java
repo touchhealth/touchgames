@@ -33,7 +33,7 @@ import br.com.touchtec.games.core.service.PlataformaService;
 /**
  * @author emesquita
  */
-public class JogoServiceTest {
+public class JogoServiceImplTest {
 
     private JogoService service = new JogoServiceImpl();
 

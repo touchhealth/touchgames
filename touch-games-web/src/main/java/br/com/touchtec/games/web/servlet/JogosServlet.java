@@ -72,7 +72,7 @@ public class JogosServlet extends HttpServlet {
             req.setAttribute("jogo", jogo);
         }
 
-        req.getRequestDispatcher("/jsp/servlet/jogos.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/servlet/jogos_servlet.jsp").forward(req, resp);
     }
 
     @Override
@@ -104,7 +104,7 @@ public class JogosServlet extends HttpServlet {
         List<Jogo> jogos = service.listarTodos();
         req.setAttribute("jogos", jogos);
 
-        req.getRequestDispatcher("/jsp/servlet/jogos.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/servlet/jogos_servlet.jsp").forward(req, resp);
     }
 
     private void toEntity(HttpServletRequest req, Jogo jogo) {

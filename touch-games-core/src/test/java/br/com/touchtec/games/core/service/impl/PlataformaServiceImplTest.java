@@ -30,7 +30,7 @@ import br.com.touchtec.games.core.service.PlataformaService;
 /**
  * @author emesquita
  */
-public class PlataformaServiceTest {
+public class PlataformaServiceImplTest {
 
     private PlataformaService service = new PlataformaServiceImpl();
 

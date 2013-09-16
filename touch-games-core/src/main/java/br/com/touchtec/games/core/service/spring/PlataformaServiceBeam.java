@@ -18,12 +18,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.touchtec.games.core.model.Desenvolvedora;
-import br.com.touchtec.games.core.service.DesenvolvedoraService;
+import br.com.touchtec.games.core.model.Plataforma;
+import br.com.touchtec.games.core.service.PlataformaService;
 
 
 /**
@@ -31,19 +30,19 @@ import br.com.touchtec.games.core.service.DesenvolvedoraService;
  */
 @Component
 @Transactional
-public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
+public class PlataformaServiceBeam implements PlataformaService {
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
-    public void criar(Desenvolvedora desenvolvedora) {
-        this.em.persist(desenvolvedora);
+    public void criar(Plataforma plataforma) {
+        this.em.persist(plataforma);
     }
 
     @Override
-    public void remover(Desenvolvedora desenvolvedora) {
-        Desenvolvedora connectedEntity = this.recuperar(desenvolvedora.getId());
+    public void remover(Plataforma plataforma) {
+        Plataforma connectedEntity = this.recuperar(plataforma.getId());
         if (connectedEntity == null) {
             return;
         }
@@ -51,27 +50,21 @@ public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
     }
 
     @Override
-    public void editar(Desenvolvedora desenvolvedora) {
-        this.em.merge(desenvolvedora);
+    public Plataforma editar(Plataforma plataforma) {
+        return this.em.merge(plataforma);
     }
 
     @Override
-    public Desenvolvedora recuperar(Long id) {
-        return this.em.find(Desenvolvedora.class, id);
-    }
-
-    @Override
-    public Desenvolvedora recuperarComListas(Long id) {
-        Desenvolvedora desenvolvedora = this.recuperar(id);
-        Hibernate.initialize(desenvolvedora.getJogos());
-        return desenvolvedora;
+    public Plataforma recuperar(Long id) {
+        return this.em.find(Plataforma.class, id);
     }
 
     @SuppressWarnings("unchecked")
-    public List<Desenvolvedora> listarTodos() {
-        String queryString = "SELECT d FROM Desenvolvedora d ORDER BY d.nome";
+    public List<Plataforma> listarTodos() {
+        String queryString = "SELECT p FROM Plataforma p ORDER BY p.nome";
         Query query = this.em.createQuery(queryString);
-        List<Desenvolvedora> list = query.getResultList();
+        List<Plataforma> list = query.getResultList();
         return list;
     }
+
 }

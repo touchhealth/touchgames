@@ -34,7 +34,7 @@ import br.com.touchtec.games.core.service.JogoService;
  */
 @Component
 @Transactional
-public class JogoServiceImpl implements JogoService {
+public class JogoServiceBean implements JogoService {
 
     @PersistenceContext
     private EntityManager em;

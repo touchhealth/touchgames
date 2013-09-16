@@ -7,9 +7,9 @@
 <t:loadbundle var="i18n" basename="Names" />
 
 <t:userinterface>
-	<t:title value="Deselvolvedoras" collapsible="true"/>
+	<t:title value="Deselvolvedoras"/>
 	
-	<t:panel id="list" cssClass="form">
+	<t:panel id="list" cssClass="form" collapsible="true">
 		<t:title value="Lista"/>
 		
 		<t:table list="%{desenvolvedoras}">

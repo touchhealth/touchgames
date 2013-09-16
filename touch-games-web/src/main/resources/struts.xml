@@ -20,20 +20,20 @@
 	</package>
 	
 <!-- 	<package name="struts" extends="twf-default"> -->
-<!-- 		<action name="Hello" class="br.com.touchtec.games.web.struts.HelloAction"> -->
+<!-- 		<action name="Hello" class="br.com.touchtec.games.web.struts.HelloStrutsAction"> -->
 <!-- 			<result name="success">/jsp/struts/Hello.jsp</result> -->
 <!-- 		</action> -->
 		
-<!-- 		<action name="Desenvolvedoras" class="br.com.touchtec.games.web.struts.DesenvolvedorasAction"> -->
+<!-- 		<action name="Desenvolvedoras" class="br.com.touchtec.games.web.struts.DesenvolvedorasStrutsAction"> -->
 <!-- 			<result>/jsp/struts/Desenvolvedoras.jsp</result> -->
 <!-- 		</action> -->
 		
-<!-- 		<action name="Jogos" class="br.com.touchtec.games.web.struts.JogosAction"> -->
+<!-- 		<action name="Jogos" class="br.com.touchtec.games.web.struts.JogosStrutsAction"> -->
 <!-- 			<result>/jsp/struts/Jogos.jsp</result> -->
 <!-- 		</action> -->
 <!-- 	</package> -->
 	
 <!-- 	<package name="spring" extends="twf-default"> -->
-<!-- 		<action name="*" class="br.com.touchtec.games.web.spring.{1}Action"/> -->
+<!-- 		<action name="*" class="br.com.touchtec.games.web.spring.{1}SpringAction"/> -->
 <!-- 	</package> -->
 </struts>

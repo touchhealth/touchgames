@@ -33,7 +33,7 @@ import br.com.touchtec.games.core.service.FabricanteService;
  */
 @Component
 @Transactional
-public class FabricanteServiceImpl implements FabricanteService {
+public class FabricanteServiceBean implements FabricanteService {
 
     @PersistenceContext
     private EntityManager em;

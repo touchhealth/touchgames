@@ -30,7 +30,7 @@ import br.com.touchtec.games.core.service.JogoService;
 /**
  * @author emesquita
  */
-public class DesenvolvedoraServiceTest {
+public class DesenvolvedoraServiceImplTest {
 
     private DesenvolvedoraService service = new DesenvolvedoraServiceImpl();
 

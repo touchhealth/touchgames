@@ -9,44 +9,31 @@
  * termos do contrato de licenca.
  */
 
-package br.com.touchtec.games.web.spring;
+package br.com.touchtec.games.web.struts;
 
 
-import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import br.com.touchtec.games.core.model.Desenvolvedora;
-import br.com.touchtec.games.core.model.Genero;
-import br.com.touchtec.games.core.model.Jogo;
 import br.com.touchtec.games.core.service.DesenvolvedoraService;
-import br.com.touchtec.games.core.service.JogoService;
+import br.com.touchtec.games.core.service.impl.DesenvolvedoraServiceImpl;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
 
 /**
  * @author emesquita
  */
-@Component
-@Scope("request")
-public class JogosAction extends TWFActionSupport {
+public class DesenvolvedorasStrutsAction extends TWFActionSupport {
 
     private static final long serialVersionUID = 1L;
 
-    @Autowired
-    private JogoService jogoService;
-
-    @Autowired
-    private DesenvolvedoraService desenvolvedoraService;
+    private DesenvolvedoraService desenvolvedoraService = new DesenvolvedoraServiceImpl();
 
     private String method;
 
-    private Jogo jogo;
+    private Desenvolvedora desenvolvedora;
 
-    private List<Jogo> jogos;
+    private List<Desenvolvedora> desenvolvedoras;
 
     private Long id;
 
@@ -54,8 +41,8 @@ public class JogosAction extends TWFActionSupport {
 
     @Override
     public String execute() throws Exception {
-        this.jogos = this.jogoService.listarTodos();
-        return "jsp/struts/Jogos";
+        this.desenvolvedoras = this.desenvolvedoraService.listarTodos();
+        return SUCCESS;
     }
 
     public String create() throws Exception {
@@ -64,23 +51,23 @@ public class JogosAction extends TWFActionSupport {
     }
 
     public String update() throws Exception {
-        this.jogo = this.jogoService.recuperarComListas(this.id);
+        this.desenvolvedora = this.desenvolvedoraService.recuperar(this.id);
         this.method = "update";
         return this.execute();
     }
 
     public String save() throws Exception {
-        if (this.jogo.getId() != null) {
-            this.jogoService.editar(this.jogo);
+        if (this.desenvolvedora.getId() != null) {
+            this.desenvolvedoraService.editar(this.desenvolvedora);
         } else {
-            this.jogoService.criar(this.jogo);
+            this.desenvolvedoraService.criar(this.desenvolvedora);
         }
         return this.execute();
     }
 
     public String remove() throws Exception {
-        this.jogo = this.jogoService.recuperarComListas(this.id);
-        this.jogoService.remover(this.jogo);
+        this.desenvolvedora = this.desenvolvedoraService.recuperar(this.id);
+        this.desenvolvedoraService.remover(this.desenvolvedora);
         return this.execute();
     }
 
@@ -90,28 +77,20 @@ public class JogosAction extends TWFActionSupport {
         return this.method;
     }
 
-    public List<Genero> getGeneros() {
-        return Arrays.asList(Genero.values());
+    public Desenvolvedora getDesenvolvedora() {
+        return this.desenvolvedora;
+    }
+
+    public void setDesenvolvedora(Desenvolvedora desenvolvedora) {
+        this.desenvolvedora = desenvolvedora;
+    }
+
+    public void setDesenvolvedoras(List<Desenvolvedora> desenvolvedoras) {
+        this.desenvolvedoras = desenvolvedoras;
     }
 
     public List<Desenvolvedora> getDesenvolvedoras() {
-        return this.desenvolvedoraService.listarTodos();
-    }
-
-    public Jogo getJogo() {
-        return this.jogo;
-    }
-
-    public void setJogo(Jogo jogo) {
-        this.jogo = jogo;
-    }
-
-    public List<Jogo> getJogos() {
-        return this.jogos;
-    }
-
-    public void setJogos(List<Jogo> jogos) {
-        this.jogos = jogos;
+        return this.desenvolvedoras;
     }
 
     public Long getId() {

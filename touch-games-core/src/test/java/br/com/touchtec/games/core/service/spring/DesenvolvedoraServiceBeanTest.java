@@ -36,7 +36,7 @@ import br.com.touchtec.spring.test.TouchSpringRunner;
  */
 @RunWith(TouchSpringRunner.class)
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
-public class DesenvolvedoraServiceTest {
+public class DesenvolvedoraServiceBeanTest {
 
     @Autowired
     private DesenvolvedoraService service;

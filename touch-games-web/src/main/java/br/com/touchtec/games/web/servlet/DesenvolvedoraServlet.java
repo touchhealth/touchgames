@@ -54,7 +54,7 @@ public class DesenvolvedoraServlet extends HttpServlet {
             req.setAttribute("desenvolvedora", desenvolvedora);
         }
 
-        req.getRequestDispatcher("/jsp/servlet/desenvolvedoras.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/servlet/desenvolvedoras_servlet.jsp").forward(req, resp);
     }
 
     // save, savenew, remove
@@ -89,7 +89,7 @@ public class DesenvolvedoraServlet extends HttpServlet {
         List<Desenvolvedora> desenvolvedoras = service.listarTodos();
         req.setAttribute("desenvolvedoras", desenvolvedoras);
 
-        req.getRequestDispatcher("/jsp/servlet/desenvolvedoras.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/servlet/desenvolvedoras_servlet.jsp").forward(req, resp);
     }
 
 }

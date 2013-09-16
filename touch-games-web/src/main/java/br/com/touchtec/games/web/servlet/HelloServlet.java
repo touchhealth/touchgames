@@ -35,7 +35,7 @@ public class HelloServlet extends HttpServlet {
 
     // @Override
     // protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    // req.getRequestDispatcher("/jsp/servlet/hello.jsp").forward(req, resp);
+    // req.getRequestDispatcher("/jsp/servlet/hello_servlet.jsp").forward(req, resp);
     // }
 
 }
