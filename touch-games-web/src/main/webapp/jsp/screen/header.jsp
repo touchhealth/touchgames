@@ -11,7 +11,7 @@
 		</a>
 	</div>
 	
-	<div class="right inline">
+	<div id="cart-search" class="right">
 		<a href="${app}/Carrinho.action" class="destaque">
 			<img class="imagemBusca" src="${app}/img/cart.png"/> 
 			<span>(${carrinhoDeCompras.size})</span>

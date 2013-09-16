@@ -1,4 +1,4 @@
 - equals em ItemPedido, Plataforma, Jogo
 - OrderBy
-- Transient 
--- Lazy DeleteOrphan no relacionamento entre Jogo e Imagem
+- Lazy DeleteOrphan no relacionamento entre Jogo e Imagem
+- verificar lista vazia antes no preaction dos botoes

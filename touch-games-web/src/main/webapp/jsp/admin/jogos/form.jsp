@@ -28,7 +28,9 @@
 				</t:field>
 				<t:field>
 					<t:label value="%{i18n.Jogo.genero}"/>
-					<t:singleselect name="jogo.genero" value="%{jogo.genero}" enumList="br.com.touchtec.games.core.model.Genero"/>
+					<t:singleselect template="radio-horizontal" 
+						name="jogo.genero" value="%{jogo.genero}" 
+						enumList="br.com.touchtec.games.core.model.Genero"/>
 				</t:field>
 				<t:field>
 					<t:label value="%{i18n.Jogo.desenvolvedora}"/>

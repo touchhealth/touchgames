@@ -1,26 +1,41 @@
-[dia 2]
+[dia 4]
 
-[3h]
-- web.xml
-- servlets, filters
-- hello, servlet
-- get post
-- vamos falar de jsps, foreach, if, $
-- hello com jsp usando $, if e foreach
-- html, head, body, forms, button, inputs, fieldset, tabel, div, a
-
-- Servlet de Desenvolvedoras
--- form de criação
--- tabela com coluna Nome
--- link Adicionar
--- form de edição
--- como diferenciar edição de criação e remoção? method
--- remoção no form de edição
+- taglibs (resolvendo mais uma coisa chata)
+- twfc, showcase
+- api js dos componentes (fechar o panel)
+- i18n com  Names e loadBundle
+- O que é ajax?
+- fazer cruds de jogos e desenvolvedoras
+- plataformas e fabricantes estao criadas
 
 
-[3h]
-- Servlet de Jogos: nome, descricao, genero, desenvolvedora, preco , imagens
-- mais componentes html: select, textarea, input(type=number), input(type=radio) (para o genero)
-- colocar a imagem (img) na tabela
-- implementar servlet
+- TWFC
+- o operador % vs $
+- userinterface
+- panel, toolbar, collapsible
+- field
+- js, ajax, submitbutton, templates buttons, primary
+- table, tablecolumn, tablerowselector
+- loadbundle
+- set
+- tabbox
+- textinput, textarea
+- singleselect, enumList, template=radio
+- validate
+- multipleselect
+- datepicker
+- mask
+
+- Posso misturar <t: com html puro?
+
+- dump do banco
+
+
+Tela de Compras
+- tela principal
+- doctype
+- esqueleto, screen, header, top-navigation, center, footer
+- jsp include
+
+
 

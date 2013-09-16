@@ -13,7 +13,7 @@
 	<link href="${app}/css/games.css" rel="stylesheet"/>
 </head>
 
-<body data-contextpath="${app}">
+<body>
 	<div id="screen">
 	 	<div id="header">
 	 		<jsp:include page="/jsp/screen/header.jsp"/>
