@@ -12,14 +12,21 @@
 package br.com.touchtec.games.core.crud;
 
 
+import static br.com.touchtec.dali.crud.api.CrudViews.CREATE;
 import static br.com.touchtec.dali.crud.api.CrudViews.SEARCH;
+import static br.com.touchtec.dali.crud.api.CrudViews.UPDATE;
+import static br.com.touchtec.dali.template.DaliTemplates.RADIO_SELECT;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
 import br.com.touchtec.dali.crud.api.AssociationDTO;
 import br.com.touchtec.dali.crud.api.CrudDTO;
 import br.com.touchtec.dali.crud.config.CrudMapping;
+import br.com.touchtec.dali.crud.converter.CustomPropertyConverter;
+import br.com.touchtec.dali.crud.search.SearchClause;
+import br.com.touchtec.dali.template.Template;
 import br.com.touchtec.dali.view.View;
 import br.com.touchtec.dali.view.Views;
 import br.com.touchtec.games.core.model.Genero;
@@ -32,7 +39,8 @@ import br.com.touchtec.message.Named;
  */
 @Views({
         @View(ids = SEARCH, config = "nome; descricao; genero; dataLancamento"),
-        @View(config = "nome; descricao; genero; preco; desconto; dataLancamento; plataformas; desenvolvedora")
+        @View(ids = { CREATE, UPDATE, "input.tabs" }, config = "{geral[nome; descricao; genero;desenvolvedora;plataformas;dataLancamento],preco[preco; desconto],imagens[imagem1; imagem2; imagem3; imagem4; imagem5]}"),
+        @View(config = "nome; descricao; genero;dataLancamento; plataformas; desenvolvedora;preco; desconto")
 })
 @CrudMapping(entity = Jogo.class)
 @Named(key = "Jogo")
@@ -57,6 +65,10 @@ public class JogoDTO implements CrudDTO<Long> {
     private int desconto;
 
     private Date dataLancamento;
+
+    private File imagem1, imagem2, imagem3, imagem4, imagem5;
+
+    private Long imagemId;
 
     @Override
     public Long getId() {
@@ -99,6 +111,7 @@ public class JogoDTO implements CrudDTO<Long> {
     /**
      * @return genero
      */
+    @Template(views = { SEARCH, CREATE }, value = RADIO_SELECT)
     public Genero getGenero() {
         return this.genero;
     }
@@ -141,6 +154,7 @@ public class JogoDTO implements CrudDTO<Long> {
     /**
      * @return dataLancamento
      */
+    @SearchClause("dataLancamento >= :dataLancamento")
     public Date getDataLancamento() {
         return this.dataLancamento;
     }
@@ -178,6 +192,95 @@ public class JogoDTO implements CrudDTO<Long> {
      */
     public void setDesenvolvedora(AssociationDTO<Long> desenvolvedora) {
         this.desenvolvedora = desenvolvedora;
+    }
+
+    /**
+     * @return imagem1
+     */
+    @CustomPropertyConverter(ImagemPropertyConverter.class)
+    public File getImagem1() {
+        return this.imagem1;
+    }
+
+    /**
+     * @param imagem1
+     */
+    public void setImagem1(File imagem1) {
+        this.imagem1 = imagem1;
+    }
+
+    /**
+     * @return imagen2
+     */
+    @CustomPropertyConverter(ImagemPropertyConverter.class)
+    public File getImagem2() {
+        return this.imagem2;
+    }
+
+    /**
+     * @param imagem2
+     */
+    public void setImagem2(File imagem2) {
+        this.imagem2 = imagem2;
+    }
+
+    /**
+     * @return imagem3
+     */
+    @CustomPropertyConverter(ImagemPropertyConverter.class)
+    public File getImagem3() {
+        return this.imagem3;
+    }
+
+    /**
+     * @param imagem3
+     */
+    public void setImagem3(File imagem3) {
+        this.imagem3 = imagem3;
+    }
+
+    /**
+     * @return imagem4
+     */
+    @CustomPropertyConverter(ImagemPropertyConverter.class)
+    public File getImagem4() {
+        return this.imagem4;
+    }
+
+    /**
+     * @param imagem4
+     */
+    public void setImagem4(File imagem4) {
+        this.imagem4 = imagem4;
+    }
+
+    /**
+     * @return imagem5
+     */
+    @CustomPropertyConverter(ImagemPropertyConverter.class)
+    public File getImagem5() {
+        return this.imagem5;
+    }
+
+    /**
+     * @param imagem5
+     */
+    public void setImagem5(File imagem5) {
+        this.imagem5 = imagem5;
+    }
+
+    /**
+     * @return imagemId
+     */
+    public Long getImagemId() {
+        return this.imagemId;
+    }
+
+    /**
+     * @param imagemId
+     */
+    public void setImagemId(Long imagemId) {
+        this.imagemId = imagemId;
     }
 
 }

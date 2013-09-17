@@ -15,6 +15,7 @@ package br.com.touchtec.games.core.crud;
 import br.com.touchtec.dali.crud.api.AssociationDTO;
 import br.com.touchtec.dali.crud.api.CrudDTO;
 import br.com.touchtec.dali.crud.config.CrudMapping;
+import br.com.touchtec.dali.crud.search.OrderBy;
 import br.com.touchtec.dali.view.View;
 import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.message.Named;
@@ -25,6 +26,7 @@ import br.com.touchtec.message.Named;
  */
 @View(config = "nome")
 @CrudMapping(entity = Plataforma.class)
+@OrderBy("nome")
 @Named(key = "Plataforma")
 public class PlataformaDTO implements CrudDTO<Long> {
 
