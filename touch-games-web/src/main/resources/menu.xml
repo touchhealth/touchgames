@@ -24,6 +24,7 @@
 			<item title="desenvolvedoras" url="crud/Desenvolvedora.action"/>
 			<item title="plataformas" url="crud/Plataforma.action"/>
 			<item title="fabricantes" url="crud/Fabricante.action"/>
+			<item title="pedidos" url="crud/Pedido.action"/>
 		</topItems>
 	</mainMenu>
 </menu>
