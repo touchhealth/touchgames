@@ -12,11 +12,10 @@
 package br.com.touchtec.games.core.crud;
 
 
-import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
 
@@ -34,44 +33,15 @@ public class ImagemPropertyConverter implements PropertyConverter<JogoDTO, Jogo>
 
     @Override
     public void setToDTO(Target arg0, Jogo entity, JogoDTO dto, CrudManager arg3) {
-        if ((entity != null) && (entity.getImagens() != null) && entity.getImagens().iterator().hasNext()) {
-            Imagem imagem = entity.getImagens().iterator().next();
-            dto.setImagemId(imagem.getId());
-        }
+        // TODO
     }
 
     @Override
     public void setToEntity(Target arg0, Jogo entity, JogoDTO dto, CrudManager arg3) {
-
         try {
-            FileInputStream in = null;
-            if (arg0.getSimpleName().equals("imagem1")) {
-                if (dto.getImagem1() != null) {
-                    in = new FileInputStream(dto.getImagem1());
-                }
-            } else if (arg0.getSimpleName().equals("imagem2")) {
-                if (dto.getImagem2() != null) {
-                    in = new FileInputStream(dto.getImagem2());
-                }
-            } else if (arg0.getSimpleName().equals("imagem3")) {
-                if (dto.getImagem3() != null) {
-                    in = new FileInputStream(dto.getImagem3());
-                }
-            } else if (arg0.getSimpleName().equals("imagem4")) {
-                if (dto.getImagem4() != null) {
-                    in = new FileInputStream(dto.getImagem4());
-                }
-            } else if (arg0.getSimpleName().equals("imagem5")) {
-                if (dto.getImagem5() != null) {
-                    in = new FileInputStream(dto.getImagem5());
-                }
-            }
-            if (in != null) {
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                IOUtils.copy(in, out);
-                entity.getImagens().add(new Imagem(out.toByteArray()));
-            } else {
-                entity.setImagens(new ArrayList<Imagem>());
+            for (File file : dto.getImagens()) {
+                FileInputStream in = new FileInputStream(file);
+                entity.getImagens().add(new Imagem(IOUtils.toByteArray(in)));
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -80,5 +50,4 @@ public class ImagemPropertyConverter implements PropertyConverter<JogoDTO, Jogo>
         }
 
     }
-
 }

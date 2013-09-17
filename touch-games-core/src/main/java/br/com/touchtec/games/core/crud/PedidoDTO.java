@@ -15,7 +15,6 @@ package br.com.touchtec.games.core.crud;
 import static br.com.touchtec.dali.crud.api.CrudViews.LIST;
 import static br.com.touchtec.dali.crud.api.CrudViews.SEARCH;
 import static br.com.touchtec.dali.crud.api.CrudViews.VIEW;
-import static br.com.touchtec.dali.template.DaliTemplates.COMPOSITION_TABLE;
 import static br.com.touchtec.dali.template.DaliTemplates.NUMBER_OUTPUT;
 
 import java.util.Date;
@@ -23,14 +22,11 @@ import java.util.List;
 
 import br.com.touchtec.dali.crud.api.AssociationDTO;
 import br.com.touchtec.dali.crud.api.CrudDTO;
-import br.com.touchtec.dali.crud.api.CrudViews;
 import br.com.touchtec.dali.crud.command.CreateCommand;
 import br.com.touchtec.dali.crud.command.ExcludeCommands;
-import br.com.touchtec.dali.crud.command.RemoveCommand;
 import br.com.touchtec.dali.crud.command.UpdateCommand;
 import br.com.touchtec.dali.crud.config.CrudMapping;
 import br.com.touchtec.dali.crud.converter.CustomPropertyConverter;
-import br.com.touchtec.dali.template.DaliTemplates;
 import br.com.touchtec.dali.template.Template;
 import br.com.touchtec.dali.view.View;
 import br.com.touchtec.dali.view.Views;
