@@ -31,6 +31,7 @@ import br.com.touchtec.dali.crud.api.CrudDTO;
 import br.com.touchtec.dali.crud.config.CrudMapping;
 import br.com.touchtec.dali.crud.converter.CustomPropertyConverter;
 import br.com.touchtec.dali.crud.search.SearchClause;
+import br.com.touchtec.dali.options.Options;
 import br.com.touchtec.dali.template.Template;
 import br.com.touchtec.dali.template.Templates;
 import br.com.touchtec.dali.view.View;
@@ -177,6 +178,7 @@ public class JogoDTO implements CrudDTO<Long> {
     /**
      * @return plataformas
      */
+    @Options(provider = PlataformaProvider.class, optionValue = "id", optionLabel = "nome")
     public List<AssociationDTO<Long>> getPlataformas() {
         return this.plataformas;
     }
