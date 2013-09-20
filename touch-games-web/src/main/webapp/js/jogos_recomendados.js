@@ -37,7 +37,7 @@ $(document).observe("dom:loaded", function(){
 			var boxNode = new Element('div', { class: 'jogo'});
 			anchorNode.appendChild(boxNode);
 			
-			var imagemNode = new Element('img', { src: "imagens?id=" + imagemId});
+			var imagemNode = new Element('img', { src: "imagens?id=" + imagemId, onerror : "this.src='img/jogo_padrao.png'"});
 			boxNode.appendChild(imagemNode);
 			
 			var nomeNode = new Element('div', { class: 'nome'});

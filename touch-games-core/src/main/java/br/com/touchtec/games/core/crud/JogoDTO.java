@@ -31,7 +31,6 @@ import br.com.touchtec.dali.crud.api.CrudDTO;
 import br.com.touchtec.dali.crud.config.CrudMapping;
 import br.com.touchtec.dali.crud.converter.CustomPropertyConverter;
 import br.com.touchtec.dali.crud.search.SearchClause;
-import br.com.touchtec.dali.options.Options;
 import br.com.touchtec.dali.template.Template;
 import br.com.touchtec.dali.template.Templates;
 import br.com.touchtec.dali.view.View;
@@ -46,7 +45,7 @@ import br.com.touchtec.message.Named;
  */
 @Views({
         @View(ids = SEARCH, config = "nome; descricao; genero; dataLancamento"),
-        @View(ids = { CREATE, UPDATE, "input.tabs" }, config = "{geral[nome; descricao; genero;desenvolvedora;plataformas;dataLancamento],preco[preco; desconto],imagens[imagens]}"),
+        @View(ids = { CREATE, UPDATE }, config = "{geral[nome; descricao; genero;desenvolvedora;plataformas;dataLancamento],preco[preco; desconto],imagens[imagens]}"),
         @View(config = "nome; descricao; genero;dataLancamento; plataformas; desenvolvedora;preco; desconto")
 })
 @CrudMapping(entity = Jogo.class)
@@ -178,7 +177,6 @@ public class JogoDTO implements CrudDTO<Long> {
     /**
      * @return plataformas
      */
-    @Options(provider = PlataformaProvider.class, optionValue = "id", optionLabel = "nome")
     public List<AssociationDTO<Long>> getPlataformas() {
         return this.plataformas;
     }
@@ -219,4 +217,8 @@ public class JogoDTO implements CrudDTO<Long> {
         this.imagens = imagens;
     }
 
+    @Override
+    public String toString() {
+        return this.nome;
+    }
 }
