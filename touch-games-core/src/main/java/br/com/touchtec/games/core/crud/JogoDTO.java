@@ -68,7 +68,7 @@ public class JogoDTO implements CrudDTO<Long> {
 
     private Float preco;
 
-    private int desconto;
+    private Integer desconto;
 
     private Date dataLancamento;
 
@@ -148,14 +148,14 @@ public class JogoDTO implements CrudDTO<Long> {
     /**
      * @return desconto
      */
-    public int getDesconto() {
+    public Integer getDesconto() {
         return this.desconto;
     }
 
     /**
      * @param desconto
      */
-    public void setDesconto(int desconto) {
+    public void setDesconto(Integer desconto) {
         this.desconto = desconto;
     }
 
