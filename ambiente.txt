@@ -3,4 +3,4 @@
 sudo apt-get install postgresql-9.1
 sudo su - postgres
 psql -d postgres -U postgres
-alter user postgres with password 'postgres'; ALTER ROLE
+alter user postgres with password 'postgres';
