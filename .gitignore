@@ -6,3 +6,13 @@ bin
 build
 .project
 .classpath
+generated
+
+com.bea.workshop.common.upgrade.log.xml
+org.maven.ide.eclipse.prefs
+org.eclipse.core.resources.prefs
+org.eclipse.m2e.core.prefs
+org.eclipse.wst.*
+org.eclipse.jst.*
+org.eclipse.ltk.*
+.jsdtscope
