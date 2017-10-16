@@ -16,3 +16,12 @@ org.eclipse.wst.*
 org.eclipse.jst.*
 org.eclipse.ltk.*
 .jsdtscope
+
+
+# IntelliJ
+/.idea
+*.iml
+overlays
+
+
+
