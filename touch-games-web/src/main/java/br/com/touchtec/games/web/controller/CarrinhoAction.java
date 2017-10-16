@@ -20,6 +20,7 @@ import br.com.touchtec.games.core.model.Jogo;
 import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.JogoService;
 import br.com.touchtec.games.core.service.PlataformaService;
+import br.com.touchtec.games.core.service.impl.JogoServiceImpl;
 import br.com.touchtec.games.web.CarrinhoDeCompras;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
@@ -33,8 +34,9 @@ public class CarrinhoAction extends TWFActionSupport {
 
     private static final long serialVersionUID = 1L;
 
-    @Autowired
-    private JogoService jogoService;
+    // Lembre-se, JogoService não foi implementado como um bean Spring.
+    // Logo, não podemos injetá-lo com @Autowired
+    private JogoService jogoService = new JogoServiceImpl();
 
     @Autowired
     private PlataformaService plataformaService;

@@ -30,7 +30,7 @@ public class PedidoPropertyConverter implements PropertyConverter<PedidoDTO, Ped
 
     @Override
     public void setToEntity(Target target, Pedido entity, PedidoDTO dto, CrudManager manager) {
-        // TODO Auto-generated method stub
+        // vazio
 
     }
 

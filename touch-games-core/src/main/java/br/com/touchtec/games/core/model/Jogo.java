@@ -41,13 +41,21 @@ public class Jogo extends EntidadeRaiz {
     private static final long serialVersionUID = 1L;
 
     private String nome;
+
     private String descricao;
+
     private List<Plataforma> plataformas;
+
     private Genero genero;
+
     private Desenvolvedora desenvolvedora;
+
     private Float preco;
+
     private int desconto;
+
     private Date dataLancamento;
+
     private List<Imagem> imagens = new ArrayList<Imagem>();
 
     /**

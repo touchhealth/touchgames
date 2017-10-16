@@ -19,11 +19,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import br.com.touchtec.games.core.model.Plataforma;
-import br.com.touchtec.games.core.service.PlataformaService;
-
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+
+import br.com.touchtec.games.core.model.Plataforma;
+import br.com.touchtec.games.core.service.PlataformaService;
 
 /**
  * @see "struts.xml"

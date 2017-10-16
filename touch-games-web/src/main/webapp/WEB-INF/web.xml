@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="touch-games" version="2.5">
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+		 id="touch-games" version="2.5">
 	
 	<display-name>touch-games</display-name>
 
@@ -17,15 +17,6 @@
 	<servlet-mapping>
 		<servlet-name>hello</servlet-name>
 		<url-pattern>/hello</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>desenvolvedoras</servlet-name>
-		<servlet-class>br.com.touchtec.games.web.servlet.DesenvolvedoraServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>desenvolvedoras</servlet-name>
-		<url-pattern>/desenvolvedoras/*</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -55,7 +46,7 @@
 
 	<filter>
 		<filter-name>ContextPath</filter-name>
-		<filter-class>br.com.touchtec.games.web.ContextPathFilter</filter-class>
+		<filter-class>br.com.touchtec.games.web.servlet.ContextPathFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>ContextPath</filter-name>

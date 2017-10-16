@@ -14,23 +14,32 @@ package br.com.touchtec.games.core.service.impl;
 
 import java.util.List;
 
-import javax.persistence.Persistence;
-
 import org.junit.After;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 
 import br.com.touchtec.games.core.model.Fabricante;
 import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.FabricanteService;
 import br.com.touchtec.games.core.service.PlataformaService;
+import br.com.touchtec.spring.SpringBeanUtil;
+import br.com.touchtec.spring.test.SingletonContextLoader;
+import br.com.touchtec.spring.test.SpringTestUtil;
+import br.com.touchtec.spring.test.TouchSpringRunner;
 import junit.framework.Assert;
 
 
+@RunWith(TouchSpringRunner.class)
+@ContextConfiguration(loader = SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class PlataformaServiceImplTest {
 
-    private PlataformaService service = new PlataformaServiceImpl();
+    @Autowired
+    private PlataformaService service;
 
-    private FabricanteService fabricanteService = new FabricanteServiceImpl();
+    @Autowired
+    private FabricanteService fabricanteService;
 
     @Test
     public void criarTest() {
@@ -70,6 +79,7 @@ public class PlataformaServiceImplTest {
         Plataforma gameBoy = this.criarPlataforma("GameBoy", "Nintendo");
 
         List<Plataforma> plataformas = this.service.listarTodos();
+
         Assert.assertEquals(2, plataformas.size());
         Assert.assertTrue(plataformas.contains(ps2));
         Assert.assertTrue(plataformas.contains(gameBoy));
@@ -77,7 +87,7 @@ public class PlataformaServiceImplTest {
 
     @After
     public void after() {
-        Persistence.createEntityManagerFactory("touch-games");
+        SpringTestUtil.restartContext(SpringBeanUtil.getContext());
     }
 
     private Plataforma criarPlataforma(String nome, String fabricante) {

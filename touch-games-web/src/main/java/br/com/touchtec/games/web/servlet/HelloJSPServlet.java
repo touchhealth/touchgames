@@ -13,30 +13,24 @@ package br.com.touchtec.games.web.servlet;
 
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-/**
- * @see "web.xml"
- */
-public class HelloServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/hellojsp")
+public class HelloJSPServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String page = "" +
-                "<html>" +
-                "<head>" +
-                "<title>Servlets</title>" +
-                "</head>" +
-                "<body> Um dia eu serei uma pagina util... </body>" +
-                "</html>";
-        resp.getWriter().write(page);
+        req.setAttribute("serverTime", new Date());
+        req.getRequestDispatcher("/jsp/servlet/result.jsp").forward(req, resp);
     }
 
 

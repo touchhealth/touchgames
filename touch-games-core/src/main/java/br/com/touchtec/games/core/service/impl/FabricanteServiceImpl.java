@@ -15,53 +15,45 @@ package br.com.touchtec.games.core.service.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.hibernate.Hibernate;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.touchtec.games.core.model.Fabricante;
 import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.FabricanteService;
 
 
+@Component
+@Transactional
 public class FabricanteServiceImpl implements FabricanteService {
 
-    private static final EntityManagerFactory EM_FACTORY = Persistence.createEntityManagerFactory("touch-games");
-
-    private EntityManager em = EM_FACTORY.createEntityManager();
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
     public void criar(Fabricante fabricante) {
-        this.em.getTransaction().begin();
         this.outroLadoPlataforma(fabricante);
         this.em.persist(fabricante);
-        this.em.getTransaction().commit();
-        this.em.clear();
     }
 
     @Override
     public void remover(Fabricante fabricante) {
-        this.em.getTransaction().begin();
         Fabricante connectedEntity = this.recuperar(fabricante.getId());
         if (connectedEntity == null) {
             return;
         }
         this.em.remove(connectedEntity);
-        this.em.getTransaction().commit();
-        this.em.clear();
     }
 
     @Override
     public Fabricante editar(Fabricante fabricante) {
-        this.em.getTransaction().begin();
         this.outroLadoPlataforma(fabricante);
-        Fabricante editado = this.em.merge(fabricante);
-        this.em.getTransaction().commit();
-        this.em.clear();
-        return editado;
+        return this.em.merge(fabricante);
     }
 
     @Override
@@ -70,11 +62,8 @@ public class FabricanteServiceImpl implements FabricanteService {
     }
 
     public Fabricante recuperarComListas(Long id) {
-        this.em.getTransaction().begin();
         Fabricante fabricante = this.recuperar(id);
         Hibernate.initialize(fabricante.getPlataformas());
-        this.em.getTransaction().commit();
-        this.em.clear();
         return fabricante;
     }
 

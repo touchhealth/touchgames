@@ -14,6 +14,10 @@
 		<!--<class>br.com.touchtec.games.core.model.Desenvolvedora</class>-->
 
 		<properties>
+			<!--
+			Aqui, vamos configurar um Postgres.
+			Nossos clientes usam Postgres ou Oracle.
+			-->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
 			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
 			<property name="hibernate.connection.username" value="touch" />
@@ -26,8 +30,21 @@
 			Nas nossas aplicações reais usamos uma ferramenta chamda 'liquibase'.
 			-->
 			<property name="hibernate.hbm2ddl.auto" value="update" />
+
+			<!--
+			Em DEV, muitas vezes é útil exibir o SQL que o Hibernate está gerando. Ajuda a depurar.
+			Em Produção, nunca deixamos ligado. Polui os logs e deixa as coisas um pouco mais lentas.
+			-->
 			<property name="hibernate.show_sql" value="true" />
+
+			<!--
+			Diz ao Hibernate quantos níveis de relacionamentos ele deve carregar quando recuperamos
+			uma entidade do banco. Na prática, está relacionado aos JOIN que ele terá que fazer entre
+			as tabelas.
+			Guardem essa regra: JOINs são lentos. Quanto menos, melhor.
+			-->
 			<property name="hibernate.max_fetch_depth" value="3" />
+
 			<!--
 			Pede que o Hibernate esacaneie as entidades do nosso projeto automaticamente;
 			Nao usamos isto em aplicaçõe reais, pois temos entidades em vários modulos e não apenas

@@ -14,25 +14,19 @@ package br.com.touchtec.games.web.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import br.com.touchtec.games.core.model.Desenvolvedora;
 import br.com.touchtec.games.core.service.DesenvolvedoraService;
+import br.com.touchtec.games.core.service.impl.DesenvolvedoraServiceImpl;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
 /**
  * @see "struts.xml"
  */
-@Component
-@Scope("request")
 public class DesenvolvedorasAction extends TWFActionSupport {
 
     private static final long serialVersionUID = 1L;
 
-    @Autowired
-    private DesenvolvedoraService desenvolvedoraService;
+    private DesenvolvedoraService desenvolvedoraService = new DesenvolvedoraServiceImpl();
 
     private String formTitle;
 

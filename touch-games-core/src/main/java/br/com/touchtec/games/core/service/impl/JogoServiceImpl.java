@@ -16,6 +16,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -25,95 +26,125 @@ import br.com.touchtec.games.core.model.Genero;
 import br.com.touchtec.games.core.model.Jogo;
 import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.JogoService;
+import br.com.touchtec.persistence.QueryTyper;
 
 
 public class JogoServiceImpl implements JogoService {
 
-    private static final EntityManagerFactory EM_FACTORY = Persistence.createEntityManagerFactory("touch-games");
-
-    private EntityManager em = EM_FACTORY.createEntityManager();
+    private static final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("touch-games");
 
     @Override
     public void criar(Jogo jogo) {
-        this.em.getTransaction().begin();
-        this.em.persist(jogo);
-        this.em.getTransaction().commit();
-        this.em.clear();
+        EntityManager em = EMF.createEntityManager();
+
+        em.getTransaction().begin();
+        em.persist(jogo);
+        em.getTransaction().commit();
     }
 
     @Override
     public void remover(Jogo jogo) {
-        this.em.getTransaction().begin();
-        Jogo connectedEntity = this.recuperar(jogo.getId());
+        EntityManager em = EMF.createEntityManager();
+
+        Jogo connectedEntity = em.find(Jogo.class, jogo.getId());
         if (connectedEntity == null) {
             return;
         }
-        this.em.remove(connectedEntity);
-        this.em.getTransaction().commit();
-        this.em.clear();
+
+        em.getTransaction().begin();
+        em.remove(connectedEntity);
+        em.getTransaction().commit();
     }
 
     @Override
     public Jogo editar(Jogo jogo) {
-        this.em.getTransaction().begin();
-        Jogo editado = this.em.merge(jogo);
-        this.em.getTransaction().commit();
-        this.em.clear();
+        EntityManager em = EMF.createEntityManager();
+
+        em.getTransaction().begin();
+        Jogo editado = em.merge(jogo);
+        em.getTransaction().commit();
+
         return editado;
     }
 
     @Override
     public Jogo recuperar(Long id) {
-        return this.em.find(Jogo.class, id);
+        EntityManager em = EMF.createEntityManager();
+
+        // Precisa da transação por conta de Jogo -> Imagem -> byte[]
+        em.getTransaction().begin();
+        Jogo jogo = em.find(Jogo.class, id);
+        em.getTransaction().commit();
+
+        return jogo;
     }
 
     public Jogo recuperarComListas(Long id) {
-        this.em.getTransaction().begin();
-        Jogo jogo = this.recuperar(id);
+        EntityManager em = EMF.createEntityManager();
+
+        em.getTransaction().begin();
+        Jogo jogo =  em.find(Jogo.class, id);
         Hibernate.initialize(jogo.getPlataformas());
-        this.em.getTransaction().commit();
-        this.em.clear();
+        em.getTransaction().commit();
+
         return jogo;
     }
 
     @SuppressWarnings("unchecked")
     public List<Jogo> listar(Genero genero) {
+        EntityManager em = EMF.createEntityManager();
+
         String queryString = "SELECT j FROM Jogo j WHERE j.genero = :genero  ORDER BY j.nome";
-        Query query = this.em.createQuery(queryString);
+        Query query = em.createQuery(queryString);
         query.setParameter("genero", genero);
-        List<Jogo> list = query.getResultList();
-        return list;
+
+        return executarTransacionalmente(query, em.getTransaction());
     }
 
     @SuppressWarnings("unchecked")
     public List<Jogo> listar(Plataforma plataforma) {
-        Plataforma plataformaConectada = this.em.find(Plataforma.class, plataforma.getId());
+        EntityManager em = EMF.createEntityManager();
 
-        String queryString = "SELECT j FROM Jogo j WHERE :plataforma IN ELEMENTS(j.plataformas)  ORDER BY j.nome";
-        Query query = this.em.createQuery(queryString);
+        String queryString = "SELECT j FROM Jogo j WHERE :plataforma MEMBER OF j.plataformas ORDER BY j.nome";
+        Query query = em.createQuery(queryString);
+
+        Plataforma plataformaConectada = em.find(Plataforma.class, plataforma.getId());
         query.setParameter("plataforma", plataformaConectada);
-        List<Jogo> list = query.getResultList();
-        return list;
+
+        return executarTransacionalmente(query, em.getTransaction());
     }
 
     @SuppressWarnings("unchecked")
     public List<Jogo> listarTodos() {
+        EntityManager em = EMF.createEntityManager();
+
         String queryString = "SELECT j FROM Jogo j ORDER BY j.nome";
-        Query query = this.em.createQuery(queryString);
-        this.em.getTransaction().begin();
-        List<Jogo> list = query.getResultList();
-        this.em.getTransaction().commit();
-        return list;
+        Query query = em.createQuery(queryString);
+
+        return executarTransacionalmente(query, em.getTransaction());
     }
 
     @SuppressWarnings("unchecked")
     public List<Jogo> buscar(String nome) {
+        EntityManager em = EMF.createEntityManager();
+
         String queryString = "SELECT j FROM Jogo j WHERE UPPER( j.nome) LIKE UPPER(:nome) ORDER BY j.nome";
-        Query query = this.em.createQuery(queryString);
+        Query query = em.createQuery(queryString);
         String nomebusca = nome == null ? "" : nome;
         query.setParameter("nome", String.format("%%%s%%", nomebusca));
 
-        List<Jogo> list = query.getResultList();
-        return list;
+        return executarTransacionalmente(query, em.getTransaction());
+    }
+
+
+    /**
+     * Relacionamentos eager precisam de transação para serem carregados
+     */
+    private List<Jogo> executarTransacionalmente(Query query, EntityTransaction transaction) {
+        transaction.begin();
+        List<Jogo> jogos = QueryTyper.getResultList(query);
+        transaction.commit();
+
+        return jogos;
     }
 }

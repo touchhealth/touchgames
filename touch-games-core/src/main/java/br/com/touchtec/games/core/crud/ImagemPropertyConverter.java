@@ -28,12 +28,12 @@ import br.com.touchtec.games.core.model.Jogo;
 public class ImagemPropertyConverter implements PropertyConverter<JogoDTO, Jogo> {
 
     @Override
-    public void setToDTO(Target arg0, Jogo entity, JogoDTO dto, CrudManager arg3) {
+    public void setToDTO(Target target, Jogo entity, JogoDTO dto, CrudManager manager) {
         // vazio
     }
 
     @Override
-    public void setToEntity(Target arg0, Jogo entity, JogoDTO dto, CrudManager arg3) {
+    public void setToEntity(Target target, Jogo entity, JogoDTO dto, CrudManager manager) {
         try {
             for (File file : dto.getImagens()) {
                 FileInputStream in = new FileInputStream(file);

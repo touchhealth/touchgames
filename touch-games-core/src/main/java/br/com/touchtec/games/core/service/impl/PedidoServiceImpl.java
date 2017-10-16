@@ -15,53 +15,46 @@ package br.com.touchtec.games.core.service.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.touchtec.games.core.model.Pedido;
 import br.com.touchtec.games.core.service.PedidoService;
 
 
+@Component
+@Transactional
 public class PedidoServiceImpl implements PedidoService {
 
     private static final Logger LOGGER = Logger.getLogger(PedidoServiceImpl.class);
-    private static final EntityManagerFactory EM_FACTORY = Persistence.createEntityManagerFactory("touch-games");
 
-    private EntityManager em = EM_FACTORY.createEntityManager();
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
     public void criar(Pedido pedido) {
-        this.em.getTransaction().begin();
         LOGGER.info("Pedido criado");
         this.em.persist(pedido);
-        this.em.getTransaction().commit();
-        this.em.clear();
     }
 
     @Override
     public void remover(Pedido pedido) {
-        this.em.getTransaction().begin();
         Pedido connectedEntity = this.recuperar(pedido.getId());
         if (connectedEntity == null) {
             return;
         }
         this.em.remove(connectedEntity);
-        this.em.getTransaction().commit();
-        this.em.clear();
     }
 
     @Override
     public Pedido editar(Pedido pedido) {
-        this.em.getTransaction().begin();
-        Pedido editado = this.em.merge(pedido);
-        this.em.getTransaction().commit();
-        this.em.clear();
-        return editado;
+        return this.em.merge(pedido);
     }
 
     @Override
@@ -71,11 +64,8 @@ public class PedidoServiceImpl implements PedidoService {
 
     @Override
     public Pedido recuperarComListas(Long id) {
-        this.em.getTransaction().begin();
         Pedido pedido = this.recuperar(id);
         Hibernate.initialize(pedido.getItens());
-        this.em.getTransaction().commit();
-        this.em.clear();
         return pedido;
     }
 

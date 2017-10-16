@@ -15,47 +15,40 @@ package br.com.touchtec.games.core.service.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.PlataformaService;
 
 
+@Component
+@Transactional
 public class PlataformaServiceImpl implements PlataformaService {
 
-    private static final EntityManagerFactory EM_FACTORY = Persistence.createEntityManagerFactory("touch-games");
-
-    private EntityManager em = EM_FACTORY.createEntityManager();
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
     public void criar(Plataforma plataforma) {
-        this.em.getTransaction().begin();
         this.em.persist(plataforma);
-        this.em.getTransaction().commit();
-        this.em.clear();
     }
 
     @Override
     public void remover(Plataforma plataforma) {
-        this.em.getTransaction().begin();
         Plataforma connectedEntity = this.recuperar(plataforma.getId());
         if (connectedEntity == null) {
             return;
         }
         this.em.remove(connectedEntity);
-        this.em.getTransaction().commit();
-        this.em.clear();
     }
 
     @Override
     public Plataforma editar(Plataforma plataforma) {
-        this.em.getTransaction().begin();
-        Plataforma editada = this.em.merge(plataforma);
-        this.em.getTransaction().commit();
-        this.em.clear();
-        return editada;
+        return this.em.merge(plataforma);
     }
 
     @Override

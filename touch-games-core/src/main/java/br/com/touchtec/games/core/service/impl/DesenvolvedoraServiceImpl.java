@@ -29,57 +29,64 @@ public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
 
     private static final EntityManagerFactory EM_FACTORY = Persistence.createEntityManagerFactory("touch-games");
 
-    private EntityManager em = EM_FACTORY.createEntityManager();
-
     @Override
     public void criar(Desenvolvedora desenvolvedora) {
-        this.em.getTransaction().begin();
-        this.em.persist(desenvolvedora);
-        this.em.getTransaction().commit();
-        this.em.clear();
+        EntityManager em = EM_FACTORY.createEntityManager();
+
+        em.getTransaction().begin();
+        em.persist(desenvolvedora);
+        em.getTransaction().commit();
     }
 
     @Override
     public void remover(Desenvolvedora desenvolvedora) {
-        this.em.getTransaction().begin();
-        Desenvolvedora connectedEntity = this.recuperar(desenvolvedora.getId());
+        EntityManager em = EM_FACTORY.createEntityManager();
+
+        Desenvolvedora connectedEntity = em.find(Desenvolvedora.class, desenvolvedora.getId());
         if (connectedEntity == null) {
             return;
         }
-        this.em.remove(connectedEntity);
-        this.em.getTransaction().commit();
-        this.em.clear();
+
+        em.getTransaction().begin();
+        em.remove(connectedEntity);
+        em.getTransaction().commit();
     }
 
     @Override
     public void editar(Desenvolvedora desenvolvedora) {
-        this.em.getTransaction().begin();
-        this.em.merge(desenvolvedora);
-        this.em.getTransaction().commit();
-        this.em.clear();
+        EntityManager em = EM_FACTORY.createEntityManager();
+
+        em.getTransaction().begin();
+        em.merge(desenvolvedora);
+        em.getTransaction().commit();
     }
 
     @Override
     public Desenvolvedora recuperar(Long id) {
-        Desenvolvedora desenvolvedora = this.em.find(Desenvolvedora.class, id);
-        return desenvolvedora;
+        EntityManager em = EM_FACTORY.createEntityManager();
+        return em.find(Desenvolvedora.class, id);
     }
 
     @Override
     public Desenvolvedora recuperarComListas(Long id) {
-        this.em.getTransaction().begin();
-        Desenvolvedora desenvolvedora = this.recuperar(id);
+        EntityManager em = EM_FACTORY.createEntityManager();
+
+        Desenvolvedora desenvolvedora = em.find(Desenvolvedora.class, id);
+
+        em.getTransaction().begin();
+        // Necessita da transação aberta
         Hibernate.initialize(desenvolvedora.getJogos());
-        this.em.getTransaction().commit();
-        this.em.clear();
+        em.getTransaction().commit();
+
         return desenvolvedora;
     }
 
-    @Override
     @SuppressWarnings("unchecked")
     public List<Desenvolvedora> listarTodos() {
+        EntityManager em = EM_FACTORY.createEntityManager();
+
         String queryString = "SELECT d FROM Desenvolvedora d ORDER BY d.nome";
-        Query query = this.em.createQuery(queryString);
+        Query query = em.createQuery(queryString);
         List<Desenvolvedora> list = query.getResultList();
         return list;
     }
