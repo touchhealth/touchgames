@@ -25,7 +25,9 @@ import br.com.touchtec.games.core.service.PlataformaService;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
-
+/**
+ * @see "struts.xml"
+ */
 public class NavigationInterceptor extends AbstractInterceptor {
 
     private static final long serialVersionUID = 1L;

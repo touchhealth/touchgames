@@ -22,7 +22,9 @@ import br.com.touchtec.games.core.model.Desenvolvedora;
 import br.com.touchtec.games.core.service.DesenvolvedoraService;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
-
+/**
+ * @see "struts.xml"
+ */
 @Component
 @Scope("request")
 public class DesenvolvedorasAction extends TWFActionSupport {

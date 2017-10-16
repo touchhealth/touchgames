@@ -3,7 +3,56 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="touch-games" version="2.5">
 	
 	<display-name>touch-games</display-name>
-	
+
+	<!--
+	###############################################################################################
+	SERVLETS
+	###############################################################################################
+	-->
+
+	<servlet>
+		<servlet-name>hello</servlet-name>
+		<servlet-class>br.com.touchtec.games.web.servlet.HelloServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>hello</servlet-name>
+		<url-pattern>/hello</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>desenvolvedoras</servlet-name>
+		<servlet-class>br.com.touchtec.games.web.servlet.DesenvolvedoraServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>desenvolvedoras</servlet-name>
+		<url-pattern>/desenvolvedoras/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>jogos</servlet-name>
+		<servlet-class>br.com.touchtec.games.web.servlet.JogosServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jogos</servlet-name>
+		<url-pattern>/jogos/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>imagens</servlet-name>
+		<servlet-class>br.com.touchtec.games.web.servlet.ImagensServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>imagens</servlet-name>
+		<url-pattern>/imagens</url-pattern>
+	</servlet-mapping>
+
+
+	<!--
+	###############################################################################################
+	FILTERS
+	###############################################################################################
+	-->
+
 	<filter>
 		<filter-name>ContextPath</filter-name>
 		<filter-class>br.com.touchtec.games.web.ContextPathFilter</filter-class>
@@ -32,14 +81,25 @@
 		<url-pattern>*.action</url-pattern>
 	</filter-mapping>
 
+	<!--
+	###############################################################################################
+	TWFC
+	###############################################################################################
+	-->
+
 	<!-- Um dia vcs saberão para que serve...-->
 	<servlet>
 		<servlet-name>JspSupportServlet</servlet-name>
 		<servlet-class>br.com.touchtec.twfc.JspSupportServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	
-	
+
+
+	<!--
+	###############################################################################################
+	SPRING
+	###############################################################################################
+	-->
 	<!-- Configurações para o Spring -->
 	<context-param>
 		<param-name>parentContextKey</param-name>
@@ -51,47 +111,17 @@
 	<listener>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
-	
+
+
+	<!--
+	###############################################################################################
+	PAGINAS
+	###############################################################################################
+	-->
+
 	<!-- Qual nossa página padrão para quando digitarmos http://localhost:8080/touch-games/ ?-->
 	<welcome-file-list>
 		<welcome-file>/index.jsp</welcome-file>
 	</welcome-file-list>
-	
-	
-	<servlet>
-		<servlet-name>hello</servlet-name>
-		<servlet-class>br.com.touchtec.games.web.servlet.HelloServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>hello</servlet-name>
-  		<url-pattern>/hello</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>desenvolvedoras</servlet-name>
-		<servlet-class>br.com.touchtec.games.web.servlet.DesenvolvedoraServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>desenvolvedoras</servlet-name>
-  		<url-pattern>/desenvolvedoras/*</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>jogos</servlet-name>
-		<servlet-class>br.com.touchtec.games.web.servlet.JogosServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>jogos</servlet-name>
-  		<url-pattern>/jogos/*</url-pattern>
-	</servlet-mapping>
-	
-	
-	<servlet>
-		<servlet-name>imagens</servlet-name>
-		<servlet-class>br.com.touchtec.games.web.servlet.ImagensServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>imagens</servlet-name>
-  		<url-pattern>/imagens</url-pattern>
-	</servlet-mapping>
+
 </web-app>

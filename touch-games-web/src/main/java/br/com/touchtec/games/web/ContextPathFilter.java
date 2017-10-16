@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
- * @author bbviana
+ * @see "web.xml"
  */
 public class ContextPathFilter implements Filter {
 

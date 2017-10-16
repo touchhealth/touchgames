@@ -33,7 +33,9 @@ import br.com.touchtec.games.core.service.JogoService;
 import br.com.touchtec.games.core.service.PlataformaService;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
-
+/**
+ * @see "struts.xml"
+ */
 @Component
 @Scope("request")
 public class JogosAction extends TWFActionSupport {

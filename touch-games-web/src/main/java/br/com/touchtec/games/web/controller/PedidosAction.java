@@ -22,7 +22,9 @@ import br.com.touchtec.games.core.model.Pedido;
 import br.com.touchtec.games.core.service.PedidoService;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
-
+/**
+ * @see "struts.xml"
+ */
 @Component
 @Scope("request")
 public class PedidosAction extends TWFActionSupport {

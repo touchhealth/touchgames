@@ -24,7 +24,9 @@ import br.com.touchtec.games.core.service.impl.DesenvolvedoraServiceImpl;
 import br.com.touchtec.games.core.service.impl.JogoServiceImpl;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
-
+/**
+ * @see "struts.xml"
+ */
 public class JogosStrutsAction extends TWFActionSupport {
 
     private static final long serialVersionUID = 1L;

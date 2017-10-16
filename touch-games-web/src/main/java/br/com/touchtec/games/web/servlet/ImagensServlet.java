@@ -28,6 +28,9 @@ import com.google.common.base.Strings;
 import br.com.touchtec.games.core.model.Imagem;
 
 
+/**
+ * @see "Mapeamnto no web.xml"
+ */
 public class ImagensServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;

@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /**
- * @author bbviana
+ * @see "web.xml"
  */
 public class HelloServlet extends HttpServlet {
 

@@ -17,7 +17,9 @@ import org.springframework.stereotype.Component;
 
 import br.com.touchtec.twf.core.TWFActionSupport;
 
-
+/**
+ * @see "struts.xml"
+ */
 @Component
 @Scope("request")
 public class HelloSpringAction extends TWFActionSupport {

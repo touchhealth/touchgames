@@ -35,7 +35,9 @@ import br.com.touchtec.games.core.service.JogoService;
 import br.com.touchtec.games.core.service.impl.DesenvolvedoraServiceImpl;
 import br.com.touchtec.games.core.service.impl.JogoServiceImpl;
 
-
+/**
+ * @see "web.xml"
+ */
 public class JogosServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;

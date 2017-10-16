@@ -26,7 +26,9 @@ import br.com.touchtec.games.core.service.DesenvolvedoraService;
 import br.com.touchtec.games.core.service.JogoService;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
-
+/**
+ * @see "struts.xml"
+ */
 @Component
 @Scope("request")
 public class JogosSpringAction extends TWFActionSupport {

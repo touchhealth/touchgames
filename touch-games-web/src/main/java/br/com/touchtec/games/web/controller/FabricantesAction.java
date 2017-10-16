@@ -22,7 +22,9 @@ import br.com.touchtec.games.core.model.Fabricante;
 import br.com.touchtec.games.core.service.FabricanteService;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
-
+/**
+ * @see "struts.xml"
+ */
 @Component
 @Scope("request")
 public class FabricantesAction extends TWFActionSupport {
