@@ -16,10 +16,6 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 
 
-/**
- * @author filipe
- * @author emesquita
- */
 @Entity
 public class Imagem extends EntidadeRaiz {
 
@@ -28,30 +24,22 @@ public class Imagem extends EntidadeRaiz {
     private byte[] bytes;
 
     /**
-     * esse construtor é necessário para o Hibernate
+     * Este construtor é necessário para o Hibernate e pode ser private (Como o Hibernate acessa?)
      */
-    public Imagem() {
+    @SuppressWarnings("unused")
+    private Imagem() {
         super();
     }
 
-    /**
-     * @param bytes
-     */
     public Imagem(byte[] bytes) {
         this.bytes = bytes;
     }
 
-    /**
-     * @return bytes
-     */
     @Lob
     public byte[] getBytes() {
         return this.bytes;
     }
 
-    /**
-     * @param bytes
-     */
     public void setBytes(byte[] bytes) {
         this.bytes = bytes;
     }

@@ -29,15 +29,10 @@ import javax.persistence.Transient;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.hibernate.annotations.Cascade;
 
 import br.com.touchtec.message.Named;
 
 
-/**
- * @author filipe
- * @author emesquita
- */
 @Entity
 @Table(name = "jogos")
 @Named(key = "Jogo")
@@ -73,118 +68,70 @@ public class Jogo extends EntidadeRaiz {
         return precoComDesconto;
     }
 
-    /**
-     * @return nome
-     */
     @Column(unique = true)
     public String getNome() {
         return this.nome;
     }
 
-    /**
-     * @param nome
-     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    /**
-     * @return descricao
-     */
     public String getDescricao() {
         return this.descricao;
     }
 
-    /**
-     * @param descricao
-     */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
-    /**
-     * @return plataformas
-     */
     @ManyToMany
     @OrderBy("nome")
     public List<Plataforma> getPlataformas() {
         return this.plataformas;
     }
 
-    /**
-     * @param plataformas
-     */
     public void setPlataformas(List<Plataforma> plataformas) {
         this.plataformas = plataformas;
     }
 
-    /**
-     * @return genero
-     */
     public Genero getGenero() {
         return this.genero;
     }
 
-    /**
-     * @param genero
-     */
     public void setGenero(Genero genero) {
         this.genero = genero;
     }
 
-    /**
-     * @return desenvolvedora
-     */
     @ManyToOne
     public Desenvolvedora getDesenvolvedora() {
         return this.desenvolvedora;
     }
 
-    /**
-     * @param desenvolvedora
-     */
     public void setDesenvolvedora(Desenvolvedora desenvolvedora) {
         this.desenvolvedora = desenvolvedora;
     }
 
-    /**
-     * @return preco
-     */
     public Float getPreco() {
         return this.preco;
     }
 
-    /**
-     * @param preco
-     */
     public void setPreco(Float preco) {
         this.preco = preco;
     }
 
-    /**
-     * @return desconto
-     */
     public int getDesconto() {
         return this.desconto;
     }
 
-    /**
-     * @param desconto
-     */
     public void setDesconto(int desconto) {
         this.desconto = desconto;
     }
 
-    /**
-     * @return dataLancamento
-     */
     public Date getDataLancamento() {
         return this.dataLancamento;
     }
 
-    /**
-     * @param dataLancamento
-     */
     public void setDataLancamento(Date dataLancamento) {
         this.dataLancamento = dataLancamento;
     }
@@ -192,18 +139,14 @@ public class Jogo extends EntidadeRaiz {
     /**
      * Vamos usar EAGER mesmo, pois vamos listar as imagens sempre e isso vai facilitar nossa vida. Mas cuidado com essa
      * estratégia.
-     * 
+     *
      * @return imagens
      */
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     public List<Imagem> getImagens() {
         return this.imagens;
     }
 
-    /**
-     * @param imagens
-     */
     public void setImagens(List<Imagem> imagens) {
         this.imagens = imagens;
     }

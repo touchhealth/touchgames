@@ -20,10 +20,6 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 
-/**
- * @author filipe
- * @author emesquita
- */
 @Entity
 public class Plataforma extends EntidadeRaiz {
 
@@ -38,32 +34,20 @@ public class Plataforma extends EntidadeRaiz {
         return this.nome;
     }
 
-    /**
-     * @return nome
-     */
     @Column(unique = true)
     public String getNome() {
         return this.nome;
     }
 
-    /**
-     * @param nome
-     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    /**
-     * @return fabricante
-     */
     @ManyToOne
     public Fabricante getFabricante() {
         return this.fabricante;
     }
 
-    /**
-     * @param fabricante
-     */
     public void setFabricante(Fabricante fabricante) {
         this.fabricante = fabricante;
     }

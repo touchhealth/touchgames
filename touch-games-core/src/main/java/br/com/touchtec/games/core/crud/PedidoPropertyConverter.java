@@ -20,8 +20,6 @@ import br.com.touchtec.games.core.model.Pedido;
 
 /**
  * Usado somente para setar o valor total do pedido usando o método já implementado na entidade para isso.
- * 
- * @author filipe
  */
 public class PedidoPropertyConverter implements PropertyConverter<PedidoDTO, Pedido> {
 

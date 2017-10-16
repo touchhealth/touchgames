@@ -22,15 +22,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.hibernate.annotations.Cascade;
 
 
-/**
- * @author filipe
- * @author emesquita
- */
 @Entity
 public class Pedido extends EntidadeRaiz {
 
@@ -41,8 +37,8 @@ public class Pedido extends EntidadeRaiz {
     private List<ItemPedido> itens;
 
     /**
-     * Esse método somente funciona quando a lista de pedidos for inicializada.
-     * 
+     * Este método somente funciona quando a lista de pedidos for inicializada.
+     *
      * @return O valor total do pedido.
      */
     @Transient
@@ -59,32 +55,20 @@ public class Pedido extends EntidadeRaiz {
         return valorTotal;
     }
 
-    /**
-     * @return data
-     */
     public Date getData() {
         return this.data;
     }
 
-    /**
-     * @param data
-     */
     public void setData(Date data) {
         this.data = data;
     }
 
-    /**
-     * @return itens
-     */
     @OneToMany(cascade = CascadeType.ALL)
     @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public List<ItemPedido> getItens() {
         return this.itens;
     }
 
-    /**
-     * @param itens
-     */
     public void setItens(List<ItemPedido> itens) {
         this.itens = itens;
     }

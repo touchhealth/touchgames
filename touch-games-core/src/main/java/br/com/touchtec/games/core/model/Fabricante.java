@@ -25,10 +25,6 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 
-/**
- * @author filipe
- * @author emesquita
- */
 @Entity
 public class Fabricante extends EntidadeRaiz {
 
@@ -38,32 +34,20 @@ public class Fabricante extends EntidadeRaiz {
 
     private List<Plataforma> plataformas;
 
-    /**
-     * @return nome
-     */
     @Column(unique = true)
     public String getNome() {
         return this.nome;
     }
 
-    /**
-     * @param nome
-     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    /**
-     * @return plataformas
-     */
     @OneToMany(mappedBy = "fabricante", cascade = CascadeType.ALL)
     public List<Plataforma> getPlataformas() {
         return this.plataformas;
     }
 
-    /**
-     * @param plataformas
-     */
     public void setPlataformas(List<Plataforma> plataformas) {
         this.plataformas = plataformas;
     }

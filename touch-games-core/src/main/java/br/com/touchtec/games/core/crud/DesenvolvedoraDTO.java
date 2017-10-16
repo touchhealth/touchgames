@@ -19,9 +19,6 @@ import br.com.touchtec.games.core.model.Desenvolvedora;
 import br.com.touchtec.message.Named;
 
 
-/**
- * @author bbviana
- */
 @View(config = "nome")
 @CrudMapping(entity = Desenvolvedora.class)
 @Named(key = "Desenvolvedora")
@@ -41,16 +38,10 @@ public class DesenvolvedoraDTO implements CrudDTO<Long> {
         this.id = id;
     }
 
-    /**
-     * @return nome
-     */
     public String getNome() {
         return this.nome;
     }
 
-    /**
-     * @param nome
-     */
     public void setNome(String nome) {
         this.nome = nome;
     }

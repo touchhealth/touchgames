@@ -25,9 +25,6 @@ import br.com.touchtec.games.core.model.Fabricante;
 import br.com.touchtec.message.Named;
 
 
-/**
- * @author filipe
- */
 @Views({
         @View(ids = SEARCH, config = "nome"),
         @View(config = "nome; plataformas")
@@ -54,30 +51,18 @@ public class FabricanteDTO implements CrudDTO<Long> {
         this.id = id;
     }
 
-    /**
-     * @return nome
-     */
     public String getNome() {
         return this.nome;
     }
 
-    /**
-     * @param nome
-     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    /**
-     * @return plataformas
-     */
     public List<AssociationDTO<Long>> getPlataformas() {
         return this.plataformas;
     }
 
-    /**
-     * @param plataformas
-     */
     public void setPlataformas(List<AssociationDTO<Long>> plataformas) {
         this.plataformas = plataformas;
     }

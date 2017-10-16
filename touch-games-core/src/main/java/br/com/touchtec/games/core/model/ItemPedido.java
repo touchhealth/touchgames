@@ -20,10 +20,6 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 
-/**
- * @author filipe
- * @author emesquita
- */
 @Entity
 public class ItemPedido extends EntidadeRaiz {
 
@@ -33,54 +29,33 @@ public class ItemPedido extends EntidadeRaiz {
     private int quantidade;
     private Plataforma plataforma;
 
-    /**
-     * @return O valor total do item.
-     */
     @Transient
     public Float getValorTotalItem() {
         return this.getQuantidade() * this.getJogo().getPrecoComDesconto();
     }
 
-    /**
-     * @return jogo
-     */
     @ManyToOne
     public Jogo getJogo() {
         return this.jogo;
     }
 
-    /**
-     * @param jogo
-     */
     public void setJogo(Jogo jogo) {
         this.jogo = jogo;
     }
 
-    /**
-     * @return quantidade
-     */
     public int getQuantidade() {
         return this.quantidade;
     }
 
-    /**
-     * @param quantidade
-     */
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
 
-    /**
-     * @return plataforma
-     */
     @ManyToOne
     public Plataforma getPlataforma() {
         return this.plataforma;
     }
 
-    /**
-     * @param plataforma
-     */
     public void setPlataforma(Plataforma plataforma) {
         this.plataforma = plataforma;
     }

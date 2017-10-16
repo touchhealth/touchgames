@@ -40,12 +40,9 @@ import br.com.touchtec.games.core.model.Jogo;
 import br.com.touchtec.message.Named;
 
 
-/**
- * @author filipe
- */
 @Views({
         @View(ids = SEARCH, config = "nome; descricao; genero; dataLancamento"),
-        @View(ids = { CREATE, UPDATE }, config = "{geral[nome; descricao; genero;desenvolvedora;plataformas;dataLancamento],preco[preco; desconto],imagens[imagens]}"),
+        @View(ids = {CREATE, UPDATE}, config = "{geral[nome; descricao; genero;desenvolvedora;plataformas;dataLancamento],preco[preco; desconto],imagens[imagens]}"),
         @View(config = "nome; descricao; genero;dataLancamento; plataformas; desenvolvedora;preco; desconto")
 })
 @CrudMapping(entity = Jogo.class)
@@ -84,135 +81,81 @@ public class JogoDTO implements CrudDTO<Long> {
         this.id = id;
     }
 
-    /**
-     * @return nome
-     */
     public String getNome() {
         return this.nome;
     }
 
-    /**
-     * @param nome
-     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    /**
-     * @return descricao
-     */
     public String getDescricao() {
         return this.descricao;
     }
 
-    /**
-     * @param descricao
-     */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
-    /**
-     * @return genero
-     */
-    @Template(views = { SEARCH, CREATE }, value = RADIO_SELECT)
+    @Template(views = {SEARCH, CREATE}, value = RADIO_SELECT)
     public Genero getGenero() {
         return this.genero;
     }
 
-    /**
-     * @param genero
-     */
     public void setGenero(Genero genero) {
         this.genero = genero;
     }
 
-    /**
-     * @return preco
-     */
     @Templates({
-            @Template(views = { CREATE, UPDATE }, value = NUMBER_INPUT, params = "format = #.00"),
-            @Template(views = { VIEW, LIST }, value = NUMBER_OUTPUT, params = "format = \u00A4 #.00"),
+            @Template(views = {CREATE, UPDATE}, value = NUMBER_INPUT, params = "format = #.00"),
+            @Template(views = {VIEW, LIST}, value = NUMBER_OUTPUT, params = "format = \u00A4 #.00"),
     })
     public Float getPreco() {
         return this.preco;
     }
 
-    /**
-     * @param preco
-     */
     public void setPreco(Float preco) {
         this.preco = preco;
     }
 
-    /**
-     * @return desconto
-     */
     public Integer getDesconto() {
         return this.desconto;
     }
 
-    /**
-     * @param desconto
-     */
     public void setDesconto(Integer desconto) {
         this.desconto = desconto;
     }
 
-    /**
-     * @return dataLancamento
-     */
     @SearchClause("dataLancamento >= :dataLancamento")
     public Date getDataLancamento() {
         return this.dataLancamento;
     }
 
-    /**
-     * @param dataLancamento
-     */
     public void setDataLancamento(Date dataLancamento) {
         this.dataLancamento = dataLancamento;
     }
 
-    /**
-     * @return plataformas
-     */
     public List<AssociationDTO<Long>> getPlataformas() {
         return this.plataformas;
     }
 
-    /**
-     * @param plataformas
-     */
     public void setPlataformas(List<AssociationDTO<Long>> plataformas) {
         this.plataformas = plataformas;
     }
 
-    /**
-     * @return desenvolvedora
-     */
     public AssociationDTO<Long> getDesenvolvedora() {
         return this.desenvolvedora;
     }
 
-    /**
-     * @param desenvolvedora
-     */
     public void setDesenvolvedora(AssociationDTO<Long> desenvolvedora) {
         this.desenvolvedora = desenvolvedora;
     }
 
-    /**
-     * @return imagens
-     */
     @CustomPropertyConverter(ImagemPropertyConverter.class)
     public List<File> getImagens() {
         return this.imagens;
     }
 
-    /**
-     * @param imagens
-     */
     public void setImagens(List<File> imagens) {
         this.imagens = imagens;
     }

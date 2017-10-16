@@ -21,9 +21,6 @@ import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.message.Named;
 
 
-/**
- * @author filipe
- */
 @View(config = "nome")
 @CrudMapping(entity = Plataforma.class)
 @OrderBy("nome")
@@ -48,30 +45,18 @@ public class PlataformaDTO implements CrudDTO<Long> {
         this.id = id;
     }
 
-    /**
-     * @return nome
-     */
     public String getNome() {
         return this.nome;
     }
 
-    /**
-     * @param nome
-     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    /**
-     * @return fabricante
-     */
     public AssociationDTO<Long> getFabricante() {
         return this.fabricante;
     }
 
-    /**
-     * @param fabricante
-     */
     public void setFabricante(AssociationDTO<Long> fabricante) {
         this.fabricante = fabricante;
     }

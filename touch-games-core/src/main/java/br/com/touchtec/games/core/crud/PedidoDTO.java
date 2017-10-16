@@ -34,15 +34,12 @@ import br.com.touchtec.games.core.model.Pedido;
 import br.com.touchtec.message.Named;
 
 
-/**
- * @author filipe
- */
 @Views({
         @View(ids = SEARCH, config = "data"),
         @View(ids = LIST, config = "id;data;valorTotal"),
-        @View(ids = VIEW, config = "id;data;itens;valorTotal") })
+        @View(ids = VIEW, config = "id;data;itens;valorTotal")})
 @CrudMapping(entity = Pedido.class)
-@ExcludeCommands({ CreateCommand.class, UpdateCommand.class })
+@ExcludeCommands({CreateCommand.class, UpdateCommand.class})
 @Named(key = "Pedido")
 public class PedidoDTO implements CrudDTO<Long> {
 
@@ -56,18 +53,12 @@ public class PedidoDTO implements CrudDTO<Long> {
 
     private Float valorTotal;
 
-    /**
-     * @return valor total do pedido
-     */
     @Template(value = NUMBER_OUTPUT, params = "format = \u00A4 #.00")
     @CustomPropertyConverter(PedidoPropertyConverter.class)
     public Float getValorTotal() {
         return this.valorTotal;
     }
 
-    /**
-     * @param valorTotal
-     */
     public void setValorTotal(Float valorTotal) {
         this.valorTotal = valorTotal;
     }
@@ -82,30 +73,18 @@ public class PedidoDTO implements CrudDTO<Long> {
         this.id = id;
     }
 
-    /**
-     * @return data
-     */
     public Date getData() {
         return this.data;
     }
 
-    /**
-     * @param data
-     */
     public void setData(Date data) {
         this.data = data;
     }
 
-    /**
-     * @return itens
-     */
     public List<AssociationDTO<Long>> getItens() {
         return this.itens;
     }
 
-    /**
-     * @param itens
-     */
     public void setItens(List<AssociationDTO<Long>> itens) {
         this.itens = itens;
     }

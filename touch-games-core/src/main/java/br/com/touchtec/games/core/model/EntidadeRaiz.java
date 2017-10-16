@@ -20,9 +20,6 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 
-/**
- * @author filipe
- */
 @MappedSuperclass
 public abstract class EntidadeRaiz implements Serializable {
 
@@ -30,18 +27,12 @@ public abstract class EntidadeRaiz implements Serializable {
 
     private Long id;
 
-    /**
-     * @return id
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     public Long getId() {
         return this.id;
     }
 
-    /**
-     * @param id
-     */
     public void setId(Long id) {
         this.id = id;
     }

@@ -14,7 +14,6 @@ package br.com.touchtec.games.core.crud;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.apache.commons.io.IOUtils;
@@ -26,14 +25,11 @@ import br.com.touchtec.games.core.model.Imagem;
 import br.com.touchtec.games.core.model.Jogo;
 
 
-/**
- * @author filipe
- */
 public class ImagemPropertyConverter implements PropertyConverter<JogoDTO, Jogo> {
 
     @Override
     public void setToDTO(Target arg0, Jogo entity, JogoDTO dto, CrudManager arg3) {
-        // TODO
+        // vazio
     }
 
     @Override
@@ -43,8 +39,6 @@ public class ImagemPropertyConverter implements PropertyConverter<JogoDTO, Jogo>
                 FileInputStream in = new FileInputStream(file);
                 entity.getImagens().add(new Imagem(IOUtils.toByteArray(in)));
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

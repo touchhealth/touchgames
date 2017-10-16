@@ -25,10 +25,6 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import br.com.touchtec.message.Named;
 
 
-/**
- * @author filipe
- * @author emesquita
- */
 @Entity
 @Named(key = "Desenvolvedora")
 public class Desenvolvedora extends EntidadeRaiz {
@@ -39,33 +35,21 @@ public class Desenvolvedora extends EntidadeRaiz {
 
     private String nome;
 
-    /**
-     * @return nome
-     */
     @Column(unique = true)
     public String getNome() {
         return this.nome;
     }
 
-    /**
-     * @param nome
-     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    /**
-     * @return jogos
-     */
     @OneToMany(mappedBy = "desenvolvedora")
     @OrderBy("nome")
     public List<Jogo> getJogos() {
         return this.jogos;
     }
 
-    /**
-     * @param jogos
-     */
     public void setJogos(List<Jogo> jogos) {
         this.jogos = jogos;
     }

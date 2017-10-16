@@ -15,10 +15,6 @@ package br.com.touchtec.games.core.model;
 import br.com.touchtec.message.Named;
 
 
-/**
- * @author filipe
- * @author emesquita
- */
 @SuppressWarnings("javadoc")
 @Named(key = "Genero")
 public enum Genero {
