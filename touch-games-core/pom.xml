@@ -11,9 +11,7 @@
 	<description>Módulo que contém as classes do modelo.</description>
 
 	<dependencies>
-		<!-- 
-			Procure manter as declarações das biblioteas em ordem alfabética.
-		 -->
+		<!-- Procure manter as declarações das biblioteas em ordem alfabética. -->
 		 
 		<!-- Bibliotecas da Touch -->
 		<dependency>

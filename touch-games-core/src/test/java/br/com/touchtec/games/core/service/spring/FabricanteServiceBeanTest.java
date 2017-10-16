@@ -15,8 +15,6 @@ package br.com.touchtec.games.core.service.spring;
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.Assert;
-
 import org.apache.commons.lang.ArrayUtils;
 import org.junit.After;
 import org.junit.Test;
@@ -30,11 +28,9 @@ import br.com.touchtec.games.core.service.FabricanteService;
 import br.com.touchtec.spring.SpringBeanUtil;
 import br.com.touchtec.spring.test.SpringTestUtil;
 import br.com.touchtec.spring.test.TouchSpringRunner;
+import junit.framework.Assert;
 
 
-/**
- * @author emesquita
- */
 @RunWith(TouchSpringRunner.class)
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class FabricanteServiceBeanTest {
@@ -42,7 +38,6 @@ public class FabricanteServiceBeanTest {
     @Autowired
     private FabricanteService service;
 
-    /***/
     @Test
     public void criarTest() {
         Fabricante fabricante = this.criarFabricante("Sony", "Vita", "PS3", "PSP", "PS4");
@@ -58,7 +53,6 @@ public class FabricanteServiceBeanTest {
         Assert.assertTrue(plataformas.contains(this.criarPlataforma("PS4")));
     }
 
-    /***/
     @Test
     public void editarTest() {
         Fabricante fabricante = this.criarFabricante("Ñ intendo", "DS", "3DS", "WII", "WIIU");
@@ -76,7 +70,6 @@ public class FabricanteServiceBeanTest {
         Assert.assertTrue(plataformas.contains(this.criarPlataforma("2DS (Bolachão)")));
     }
 
-    /***/
     @Test
     public void removerTest() {
         Fabricante fabricante = this.criarFabricante("Microsoft");
@@ -85,7 +78,6 @@ public class FabricanteServiceBeanTest {
         Assert.assertNull(fabricanteDB);
     }
 
-    /***/
     @Test
     public void listarTodosTest() {
         Fabricante ouya = this.criarFabricante("Ouya");
@@ -98,7 +90,6 @@ public class FabricanteServiceBeanTest {
         Assert.assertTrue(fabricantes.contains(sony));
     }
 
-    /***/
     @After
     public void after() {
         SpringTestUtil.restartContext(SpringBeanUtil.getContext());

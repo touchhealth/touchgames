@@ -17,35 +17,15 @@ import java.util.List;
 import br.com.touchtec.games.core.model.Plataforma;
 
 
-/**
- * @author emesquita
- */
 public interface PlataformaService {
 
-    /**
-     * @param plataforma
-     */
     void criar(Plataforma plataforma);
 
-    /**
-     * @param plataforma
-     */
     void remover(Plataforma plataforma);
 
-    /**
-     * @param plataforma
-     * @return O plataforma editado.
-     */
     Plataforma editar(Plataforma plataforma);
 
-    /**
-     * @param id
-     * @return O plataforma procurado.
-     */
     Plataforma recuperar(Long id);
 
-    /**
-     * @return lista todos
-     */
     List<Plataforma> listarTodos();
 }

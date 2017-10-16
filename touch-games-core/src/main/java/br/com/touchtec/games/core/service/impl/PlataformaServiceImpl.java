@@ -23,9 +23,6 @@ import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.PlataformaService;
 
 
-/**
- * @author emesquita
- */
 public class PlataformaServiceImpl implements PlataformaService {
 
     private static final EntityManagerFactory EM_FACTORY = Persistence.createEntityManagerFactory("touch-games");

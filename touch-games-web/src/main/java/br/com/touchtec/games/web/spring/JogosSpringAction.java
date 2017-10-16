@@ -27,9 +27,6 @@ import br.com.touchtec.games.core.service.JogoService;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
 
-/**
- * @author emesquita
- */
 @Component
 @Scope("request")
 public class JogosSpringAction extends TWFActionSupport {

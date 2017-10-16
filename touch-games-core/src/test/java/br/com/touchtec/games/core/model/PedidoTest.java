@@ -15,17 +15,13 @@ package br.com.touchtec.games.core.model;
 import java.util.Arrays;
 import java.util.Date;
 
-import junit.framework.Assert;
-
 import org.junit.Test;
 
+import junit.framework.Assert;
 
-/**
- * @author emesquita
- */
+
 public class PedidoTest {
 
-    /***/
     @Test
     public void valorTotalTest() {
         Pedido pedido = this.criarPedido(new Date());

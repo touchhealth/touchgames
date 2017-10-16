@@ -14,8 +14,6 @@ package br.com.touchtec.games.core.service.spring;
 
 import java.util.List;
 
-import junit.framework.Assert;
-
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,11 +27,9 @@ import br.com.touchtec.games.core.service.PlataformaService;
 import br.com.touchtec.spring.SpringBeanUtil;
 import br.com.touchtec.spring.test.SpringTestUtil;
 import br.com.touchtec.spring.test.TouchSpringRunner;
+import junit.framework.Assert;
 
 
-/**
- * @author emesquita
- */
 @RunWith(TouchSpringRunner.class)
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class PlataformaServiceBeanTest {
@@ -44,7 +40,6 @@ public class PlataformaServiceBeanTest {
     @Autowired
     private FabricanteService fabricanteService;
 
-    /***/
     @Test
     public void criarTest() {
         Plataforma plataforma = this.criarPlataforma("PS3", "Sony");
@@ -55,7 +50,6 @@ public class PlataformaServiceBeanTest {
         Assert.assertEquals(plataforma.getFabricante(), plataformaDB.getFabricante());
     }
 
-    /***/
     @Test
     public void editarTest() {
         Plataforma plataforma = this.criarPlataforma("WIIY", "Microsoft");
@@ -70,7 +64,6 @@ public class PlataformaServiceBeanTest {
         Assert.assertEquals(fabricante, plataformaDB.getFabricante());
     }
 
-    /***/
     @Test
     public void removerTest() {
         Plataforma plataforma = this.criarPlataforma("WII", "Nintendo");
@@ -79,7 +72,6 @@ public class PlataformaServiceBeanTest {
         Assert.assertNull(plataformaDB);
     }
 
-    /***/
     @Test
     public void listarTodosTest() {
         Plataforma ps2 = this.criarPlataforma("PS2", "Sony");
@@ -92,7 +84,6 @@ public class PlataformaServiceBeanTest {
         Assert.assertTrue(plataformas.contains(gameBoy));
     }
 
-    /***/
     @After
     public void after() {
         SpringTestUtil.restartContext(SpringBeanUtil.getContext());

@@ -26,9 +26,6 @@ import br.com.touchtec.games.core.model.Desenvolvedora;
 import br.com.touchtec.games.core.service.DesenvolvedoraService;
 
 
-/**
- * @author emesquita
- */
 @Component
 @Transactional
 public class DesenvolvedoraServiceBean implements DesenvolvedoraService {

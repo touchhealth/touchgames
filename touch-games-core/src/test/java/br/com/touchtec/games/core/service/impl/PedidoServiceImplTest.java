@@ -19,8 +19,6 @@ import java.util.List;
 
 import javax.persistence.Persistence;
 
-import junit.framework.Assert;
-
 import org.junit.After;
 import org.junit.Test;
 
@@ -31,11 +29,9 @@ import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.JogoService;
 import br.com.touchtec.games.core.service.PedidoService;
 import br.com.touchtec.games.core.service.PlataformaService;
+import junit.framework.Assert;
 
 
-/**
- * @author emesquita
- */
 public class PedidoServiceImplTest {
 
     private PedidoService service = new PedidoServiceImpl();
@@ -44,7 +40,6 @@ public class PedidoServiceImplTest {
 
     private PlataformaService plataformaService = new PlataformaServiceImpl();
 
-    /***/
     @Test
     public void criarTest() {
         Plataforma ps3 = this.criarPlataforma("PS3");
@@ -57,7 +52,6 @@ public class PedidoServiceImplTest {
         Assert.assertEquals(pedido, pedidoDB);
     }
 
-    /***/
     @Test
     public void editarTest() {
         Plataforma pc = this.criarPlataforma("PC");
@@ -75,7 +69,6 @@ public class PedidoServiceImplTest {
         Assert.assertEquals(pedido, pedidoDB);
     }
 
-    /***/
     @Test
     public void removerTest() {
         Plataforma pc = this.criarPlataforma("PC");
@@ -85,7 +78,6 @@ public class PedidoServiceImplTest {
         Assert.assertNull(pedidoDB);
     }
 
-    /***/
     @Test
     public void listarTodosTest() {
         Plataforma pc = this.criarPlataforma("PC");
@@ -99,7 +91,6 @@ public class PedidoServiceImplTest {
         Assert.assertTrue(pedidos.contains(amnesia));
     }
 
-    /***/
     @After
     public void after() {
         Persistence.createEntityManagerFactory("touch-games");

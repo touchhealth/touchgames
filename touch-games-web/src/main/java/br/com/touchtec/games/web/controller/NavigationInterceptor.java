@@ -26,9 +26,6 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
 
-/**
- * @author bbviana
- */
 public class NavigationInterceptor extends AbstractInterceptor {
 
     private static final long serialVersionUID = 1L;

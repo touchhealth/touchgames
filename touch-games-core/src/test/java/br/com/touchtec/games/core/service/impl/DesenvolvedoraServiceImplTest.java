@@ -16,8 +16,6 @@ import java.util.List;
 
 import javax.persistence.Persistence;
 
-import junit.framework.Assert;
-
 import org.junit.After;
 import org.junit.Test;
 
@@ -25,18 +23,15 @@ import br.com.touchtec.games.core.model.Desenvolvedora;
 import br.com.touchtec.games.core.model.Jogo;
 import br.com.touchtec.games.core.service.DesenvolvedoraService;
 import br.com.touchtec.games.core.service.JogoService;
+import junit.framework.Assert;
 
 
-/**
- * @author emesquita
- */
 public class DesenvolvedoraServiceImplTest {
 
     private DesenvolvedoraService service = new DesenvolvedoraServiceImpl();
 
     private JogoService jogoService = new JogoServiceImpl();
 
-    /***/
     @Test
     public void criarTest() {
         Desenvolvedora desenvolvedora = this.criarDesenvolvedora("Bethesda Game Studios");
@@ -52,7 +47,6 @@ public class DesenvolvedoraServiceImplTest {
         Assert.assertTrue(jogos.contains(skyrim));
     }
 
-    /***/
     @Test
     public void editarTest() {
         Desenvolvedora desenvolvedora = this.criarDesenvolvedora("Nipon Ichi");
@@ -76,7 +70,6 @@ public class DesenvolvedoraServiceImplTest {
         Assert.assertTrue(jogos.contains(zettaiHero));
     }
 
-    /***/
     @Test
     public void removerTest() {
         Desenvolvedora desenvolvedora = this.criarDesenvolvedora("Microsoft");
@@ -85,7 +78,6 @@ public class DesenvolvedoraServiceImplTest {
         Assert.assertNull(desenvolvedoraDB);
     }
 
-    /***/
     @Test
     public void listarTodosTest() {
         Desenvolvedora ouya = this.criarDesenvolvedora("Ouya");
@@ -98,7 +90,6 @@ public class DesenvolvedoraServiceImplTest {
         Assert.assertTrue(desenvolvedoras.contains(sony));
     }
 
-    /***/
     @After
     public void after() {
         Persistence.createEntityManagerFactory("touch-games");

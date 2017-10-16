@@ -25,9 +25,6 @@ import br.com.touchtec.games.core.service.impl.JogoServiceImpl;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
 
-/**
- * @author emesquita
- */
 public class JogosStrutsAction extends TWFActionSupport {
 
     private static final long serialVersionUID = 1L;

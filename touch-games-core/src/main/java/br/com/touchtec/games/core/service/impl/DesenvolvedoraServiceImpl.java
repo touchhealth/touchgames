@@ -25,9 +25,6 @@ import br.com.touchtec.games.core.model.Desenvolvedora;
 import br.com.touchtec.games.core.service.DesenvolvedoraService;
 
 
-/**
- * @author bbviana
- */
 public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
 
     private static final EntityManagerFactory EM_FACTORY = Persistence.createEntityManagerFactory("touch-games");

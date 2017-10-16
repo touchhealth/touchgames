@@ -28,9 +28,6 @@ import br.com.touchtec.games.core.model.Pedido;
 import br.com.touchtec.games.core.service.PedidoService;
 
 
-/**
- * @author emesquita
- */
 @Component
 @Transactional
 public class PedidoServiceBean implements PedidoService {

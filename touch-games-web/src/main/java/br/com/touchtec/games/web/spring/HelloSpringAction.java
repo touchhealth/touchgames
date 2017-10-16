@@ -18,9 +18,6 @@ import org.springframework.stereotype.Component;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
 
-/**
- * @author emesquita
- */
 @Component
 @Scope("request")
 public class HelloSpringAction extends TWFActionSupport {

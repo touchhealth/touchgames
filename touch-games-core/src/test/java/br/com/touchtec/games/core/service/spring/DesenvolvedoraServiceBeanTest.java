@@ -14,8 +14,6 @@ package br.com.touchtec.games.core.service.spring;
 
 import java.util.List;
 
-import junit.framework.Assert;
-
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,11 +27,9 @@ import br.com.touchtec.games.core.service.JogoService;
 import br.com.touchtec.spring.SpringBeanUtil;
 import br.com.touchtec.spring.test.SpringTestUtil;
 import br.com.touchtec.spring.test.TouchSpringRunner;
+import junit.framework.Assert;
 
 
-/**
- * @author emesquita
- */
 @RunWith(TouchSpringRunner.class)
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class DesenvolvedoraServiceBeanTest {
@@ -44,7 +40,6 @@ public class DesenvolvedoraServiceBeanTest {
     @Autowired
     private JogoService jogoService;
 
-    /***/
     @Test
     public void criarTest() {
         Desenvolvedora desenvolvedora = this.criarDesenvolvedora("Bethesda Game Studios");
@@ -60,7 +55,6 @@ public class DesenvolvedoraServiceBeanTest {
         Assert.assertTrue(jogos.contains(skyrim));
     }
 
-    /***/
     @Test
     public void editarTest() {
         Desenvolvedora desenvolvedora = this.criarDesenvolvedora("Nipon Ichi");
@@ -84,7 +78,6 @@ public class DesenvolvedoraServiceBeanTest {
         Assert.assertTrue(jogos.contains(zettaiHero));
     }
 
-    /***/
     @Test
     public void removerTest() {
         Desenvolvedora desenvolvedora = this.criarDesenvolvedora("Microsoft");
@@ -93,7 +86,6 @@ public class DesenvolvedoraServiceBeanTest {
         Assert.assertNull(desenvolvedoraDB);
     }
 
-    /***/
     @Test
     public void listarTodosTest() {
         Desenvolvedora ouya = this.criarDesenvolvedora("Ouya");
@@ -106,7 +98,6 @@ public class DesenvolvedoraServiceBeanTest {
         Assert.assertTrue(desenvolvedoras.contains(sony));
     }
 
-    /***/
     @After
     public void after() {
         SpringTestUtil.restartContext(SpringBeanUtil.getContext());

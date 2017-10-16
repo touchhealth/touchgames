@@ -34,9 +34,6 @@ import br.com.touchtec.games.core.service.PlataformaService;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
 
-/**
- * @author bbviana
- */
 @Component
 @Scope("request")
 public class JogosAction extends TWFActionSupport {

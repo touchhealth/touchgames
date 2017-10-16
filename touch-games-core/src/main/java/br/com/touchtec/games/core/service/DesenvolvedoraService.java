@@ -17,40 +17,17 @@ import java.util.List;
 import br.com.touchtec.games.core.model.Desenvolvedora;
 
 
-/**
- * @author bbviana
- */
 public interface DesenvolvedoraService {
 
-    /**
-     * @param desenvolvedora
-     */
     void criar(Desenvolvedora desenvolvedora);
 
-    /**
-     * @param desenvolvedora
-     */
     void remover(Desenvolvedora desenvolvedora);
 
-    /**
-     * @param desenvolvedora
-     */
     void editar(Desenvolvedora desenvolvedora);
 
-    /**
-     * @param id
-     * @return desenvolvedora
-     */
     Desenvolvedora recuperar(Long id);
 
-    /**
-     * @param id
-     * @return desenvolvedora
-     */
     Desenvolvedora recuperarComListas(Long id);
 
-    /**
-     * @return lista todos
-     */
     List<Desenvolvedora> listarTodos();
 }

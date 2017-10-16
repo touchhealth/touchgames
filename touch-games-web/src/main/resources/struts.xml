@@ -7,33 +7,33 @@
 	<include file="twf-default.xml"/>
 	
 	<constant name="struts.multipart.parser" value="br.com.touchtec.twf.core.MonitoredMultiPartRequest"/>
+
+ 	<package name="struts" extends="twf-default" namespace="/struts">
+ 		<action name="Hello" class="br.com.touchtec.games.web.struts.HelloStrutsAction">
+ 			<result name="success">/jsp/struts/Hello.jsp</result>
+ 		</action>
+		
+ 		<action name="Desenvolvedoras" class="br.com.touchtec.games.web.struts.DesenvolvedorasStrutsAction">
+ 			<result>/jsp/struts/Desenvolvedoras.jsp</result>
+ 		</action>
+		
+ 		<action name="Jogos" class="br.com.touchtec.games.web.struts.JogosStrutsAction">
+ 			<result>/jsp/struts/Jogos.jsp</result>
+ 		</action>
+ 	</package>
 	
+ 	<package name="spring" extends="twf-default" namespace="/spring">
+ 		<action name="*" class="br.com.touchtec.games.web.spring.{1}SpringAction"/>
+ 	</package>
+
 	<package name="default" extends="twf-default">
 		<interceptors>
 			<interceptor name="navigation" class="br.com.touchtec.games.web.controller.NavigationInterceptor" />
 		</interceptors>
-		
+
 		<action name="*" class="br.com.touchtec.games.web.controller.{1}Action">
 			<interceptor-ref name="navigation" />
 			<interceptor-ref name="twfDefaultStack" />
 		</action>
 	</package>
-	
-<!-- 	<package name="struts" extends="twf-default"> -->
-<!-- 		<action name="Hello" class="br.com.touchtec.games.web.struts.HelloStrutsAction"> -->
-<!-- 			<result name="success">/jsp/struts/Hello.jsp</result> -->
-<!-- 		</action> -->
-		
-<!-- 		<action name="Desenvolvedoras" class="br.com.touchtec.games.web.struts.DesenvolvedorasStrutsAction"> -->
-<!-- 			<result>/jsp/struts/Desenvolvedoras.jsp</result> -->
-<!-- 		</action> -->
-		
-<!-- 		<action name="Jogos" class="br.com.touchtec.games.web.struts.JogosStrutsAction"> -->
-<!-- 			<result>/jsp/struts/Jogos.jsp</result> -->
-<!-- 		</action> -->
-<!-- 	</package> -->
-	
-<!-- 	<package name="spring" extends="twf-default"> -->
-<!-- 		<action name="*" class="br.com.touchtec.games.web.spring.{1}SpringAction"/> -->
-<!-- 	</package> -->
 </struts>

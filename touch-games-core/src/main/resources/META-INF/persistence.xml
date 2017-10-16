@@ -6,7 +6,13 @@
 	
 	<persistence-unit name="touch-games">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		
+
+		<!--
+		Se não usássemos hibernate.archive.autodetection (ver abaixo), deveriamos listar aqui
+		as nossas entidades uma a uma.
+		-->
+		<!--<class>br.com.touchtec.games.core.model.Desenvolvedora</class>-->
+
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
 			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
@@ -14,9 +20,19 @@
 			<property name="hibernate.connection.password" value="touch" />
 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost/touch-games" />
 
+			<!--
+			Nao costumamos deixar 'update' nas nossas aplicações de verdade; deixamos 'none' ou 'validade'.
+			'update' cria as tabelas e colunas automaticamente a paritr das entidades.
+			Nas nossas aplicações reais usamos uma ferramenta chamda 'liquibase'.
+			-->
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.max_fetch_depth" value="3" />
+			<!--
+			Pede que o Hibernate esacaneie as entidades do nosso projeto automaticamente;
+			Nao usamos isto em aplicaçõe reais, pois temos entidades em vários modulos e não apenas
+			na apllicação final.
+			-->
 			<property name="hibernate.archive.autodetection" value="class" />
 		</properties>
 	</persistence-unit>

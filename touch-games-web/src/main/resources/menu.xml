@@ -10,6 +10,16 @@
 	
 	<mainMenu title="cadastroStruts">
 		<topItems>
+			<item title="jogos" url="struts/Jogos.action"/>
+			<item title="desenvolvedoras" url="struts/Desenvolvedoras.action"/>
+			<item title="plataformas" url="struts/Plataformas.action"/>
+			<item title="fabricantes" url="struts/Fabricantes.action"/>
+			<item title="pedidos" url="struts/Pedidos.action"/>
+		</topItems>
+	</mainMenu>
+
+	<mainMenu title="cadastroTWF">
+		<topItems>
 			<item title="jogos" url="Jogos.action"/>
 			<item title="desenvolvedoras" url="Desenvolvedoras.action"/>
 			<item title="plataformas" url="Plataformas.action"/>

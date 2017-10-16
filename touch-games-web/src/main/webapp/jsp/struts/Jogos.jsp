@@ -13,7 +13,7 @@
 </head>
 <body>
 
-	<a href="${app}/Jogos!create.action">Adicionar</a>
+	<a href="${app}/struts/Jogos!create.action">Adicionar</a>
 
 	<table>
 		<thead>
@@ -38,10 +38,10 @@
 				<td>${jogo.precoComDesconto}</td>
 				<td>${jogo.dataLancamento}</td>
 				<td>
-					<a href="${app}/Jogos!update.action?id=${jogo.id}">Editar</a>
+					<a href="${app}/struts/Jogos!update.action?id=${jogo.id}">Editar</a>
 				</td>
 				<td>
-					<a href="${app}/Jogos!remove.action?id=${jogo.id}">Remover</a>
+					<a href="${app}/struts/Jogos!remove.action?id=${jogo.id}">Remover</a>
 				</td>
 			</tr>
 		</c:forEach>
@@ -49,7 +49,7 @@
 	</table>
 	
 	<c:if test="${method=='update'}">
-		<form action="${app}/Jogos!save.action" method="post">
+		<form action="${app}/struts/Jogos!save.action" method="post">
 			<fieldset>
 				<legend>Editando ${jogo.nome}</legend>
 				
@@ -117,7 +117,7 @@
 	</c:if>
 	
 	<c:if test="${method=='create'}">
-		<form action="${app}/Jogos!save.action" method="post">
+		<form action="${app}/struts/Jogos!save.action" method="post">
 			<fieldset>
 				<legend>Novo Jogo</legend>
 				

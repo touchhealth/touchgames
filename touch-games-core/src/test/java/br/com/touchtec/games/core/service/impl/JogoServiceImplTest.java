@@ -18,8 +18,6 @@ import java.util.List;
 
 import javax.persistence.Persistence;
 
-import junit.framework.Assert;
-
 import org.junit.After;
 import org.junit.Test;
 
@@ -28,18 +26,15 @@ import br.com.touchtec.games.core.model.Jogo;
 import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.JogoService;
 import br.com.touchtec.games.core.service.PlataformaService;
+import junit.framework.Assert;
 
 
-/**
- * @author emesquita
- */
 public class JogoServiceImplTest {
 
     private JogoService service = new JogoServiceImpl();
 
     private PlataformaService plataformaService = new PlataformaServiceImpl();
 
-    /***/
     @Test
     public void criarTest() {
         Jogo jogo = this.criarJogo("Final Fantasy VIII");
@@ -47,7 +42,6 @@ public class JogoServiceImplTest {
         Assert.assertEquals(jogo, jogoDB);
     }
 
-    /***/
     @Test
     public void editarTest() {
         Jogo jogo = this.criarJogo("Final Fantasy X");
@@ -59,7 +53,6 @@ public class JogoServiceImplTest {
         Assert.assertEquals(66, jogoDB.getDesconto());
     }
 
-    /***/
     @Test
     public void removerTest() {
         Jogo jogo = this.criarJogo("Final Fantasy XII");
@@ -68,7 +61,6 @@ public class JogoServiceImplTest {
         Assert.assertNull(jogoDB);
     }
 
-    /***/
     @Test
     public void listarPorGeneroTest() {
         Jogo ct = this.criarJogo("Chrono Trigger", Genero.RPG);
@@ -88,7 +80,6 @@ public class JogoServiceImplTest {
         Assert.assertEquals(0, jogos.size());
     }
 
-    /***/
     @Test
     public void listarPorPlataformaTest() {
         Plataforma xbox360 = this.criarPlataforma("Xbox 360");
@@ -108,7 +99,6 @@ public class JogoServiceImplTest {
         Assert.assertTrue(jogos.contains(skyrin));
     }
 
-    /***/
     @Test
     public void listarTodosTest() {
         Jogo ct = this.criarJogo("Chrono Trigger");
@@ -121,7 +111,6 @@ public class JogoServiceImplTest {
         Assert.assertTrue(jogos.contains(cc));
     }
 
-    /***/
     @Test
     public void buscarTest() {
         Jogo ct = this.criarJogo("Chrono Trigger");
@@ -137,7 +126,6 @@ public class JogoServiceImplTest {
         Assert.assertEquals(0, jogos.size());
     }
 
-    /***/
     @After
     public void after() {
         Persistence.createEntityManagerFactory("touch-games");

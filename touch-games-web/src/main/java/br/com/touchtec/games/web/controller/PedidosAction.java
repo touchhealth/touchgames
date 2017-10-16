@@ -23,9 +23,6 @@ import br.com.touchtec.games.core.service.PedidoService;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
 
-/**
- * @author emesquita
- */
 @Component
 @Scope("request")
 public class PedidosAction extends TWFActionSupport {

@@ -27,9 +27,6 @@ import br.com.touchtec.games.core.model.Pedido;
 import br.com.touchtec.games.core.service.PedidoService;
 
 
-/**
- * @author emesquita
- */
 public class PedidoServiceImpl implements PedidoService {
 
     private static final Logger LOGGER = Logger.getLogger(PedidoServiceImpl.class);

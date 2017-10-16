@@ -24,9 +24,6 @@ import br.com.touchtec.games.web.CarrinhoDeCompras;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
 
-/**
- * @author filipe
- */
 @Controller
 @Scope("request")
 public class CarrinhoAction extends TWFActionSupport {

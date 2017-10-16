@@ -28,10 +28,6 @@ import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.JogoService;
 
 
-/**
- * @author bbviana
- * @author emesquita
- */
 @Component
 @Transactional
 public class JogoServiceBean implements JogoService {

@@ -35,9 +35,6 @@ import br.com.touchtec.json.JSONObject;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
 
-/**
- * @author filipe
- */
 @Controller
 @Scope("request")
 public class ComprasAction extends TWFActionSupport {

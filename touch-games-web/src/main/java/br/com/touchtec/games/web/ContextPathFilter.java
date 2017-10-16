@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
- * TODO DIA 2: Adicionar o contextPath à request sob a variável "app"
- * 
  * @author bbviana
  */
 public class ContextPathFilter implements Filter {

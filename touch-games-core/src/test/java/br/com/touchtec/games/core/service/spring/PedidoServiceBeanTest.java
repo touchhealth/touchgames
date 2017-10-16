@@ -17,8 +17,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import junit.framework.Assert;
-
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,11 +33,9 @@ import br.com.touchtec.games.core.service.PlataformaService;
 import br.com.touchtec.spring.SpringBeanUtil;
 import br.com.touchtec.spring.test.SpringTestUtil;
 import br.com.touchtec.spring.test.TouchSpringRunner;
+import junit.framework.Assert;
 
 
-/**
- * @author emesquita
- */
 @RunWith(TouchSpringRunner.class)
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class PedidoServiceBeanTest {
@@ -53,7 +49,6 @@ public class PedidoServiceBeanTest {
     @Autowired
     private PlataformaService plataformaService;
 
-    /***/
     @Test
     public void criarTest() {
         Plataforma ps3 = this.criarPlataforma("PS3");
@@ -66,7 +61,6 @@ public class PedidoServiceBeanTest {
         Assert.assertEquals(pedido, pedidoDB);
     }
 
-    /***/
     @Test
     public void editarTest() {
         Plataforma pc = this.criarPlataforma("PC");
@@ -84,7 +78,6 @@ public class PedidoServiceBeanTest {
         Assert.assertEquals(pedido, pedidoDB);
     }
 
-    /***/
     @Test
     public void removerTest() {
         Plataforma pc = this.criarPlataforma("PC");
@@ -94,7 +87,6 @@ public class PedidoServiceBeanTest {
         Assert.assertNull(pedidoDB);
     }
 
-    /***/
     @Test
     public void listarTodosTest() {
         Plataforma pc = this.criarPlataforma("PC");
@@ -108,7 +100,6 @@ public class PedidoServiceBeanTest {
         Assert.assertTrue(pedidos.contains(amnesia));
     }
 
-    /***/
     @After
     public void after() {
         SpringTestUtil.restartContext(SpringBeanUtil.getContext());

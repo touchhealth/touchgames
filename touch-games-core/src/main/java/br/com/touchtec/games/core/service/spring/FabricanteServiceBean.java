@@ -28,9 +28,6 @@ import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.FabricanteService;
 
 
-/**
- * @author emesquita
- */
 @Component
 @Transactional
 public class FabricanteServiceBean implements FabricanteService {

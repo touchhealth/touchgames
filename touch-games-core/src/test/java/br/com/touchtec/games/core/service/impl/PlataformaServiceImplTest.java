@@ -16,8 +16,6 @@ import java.util.List;
 
 import javax.persistence.Persistence;
 
-import junit.framework.Assert;
-
 import org.junit.After;
 import org.junit.Test;
 
@@ -25,18 +23,15 @@ import br.com.touchtec.games.core.model.Fabricante;
 import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.FabricanteService;
 import br.com.touchtec.games.core.service.PlataformaService;
+import junit.framework.Assert;
 
 
-/**
- * @author emesquita
- */
 public class PlataformaServiceImplTest {
 
     private PlataformaService service = new PlataformaServiceImpl();
 
     private FabricanteService fabricanteService = new FabricanteServiceImpl();
 
-    /***/
     @Test
     public void criarTest() {
         Plataforma plataforma = this.criarPlataforma("PS3", "Sony");
@@ -47,7 +42,6 @@ public class PlataformaServiceImplTest {
         Assert.assertEquals(plataforma.getFabricante(), plataformaDB.getFabricante());
     }
 
-    /***/
     @Test
     public void editarTest() {
         Plataforma plataforma = this.criarPlataforma("WIIY", "Microsoft");
@@ -62,7 +56,6 @@ public class PlataformaServiceImplTest {
         Assert.assertEquals(fabricante, plataformaDB.getFabricante());
     }
 
-    /***/
     @Test
     public void removerTest() {
         Plataforma plataforma = this.criarPlataforma("WII", "Nintendo");
@@ -71,7 +64,6 @@ public class PlataformaServiceImplTest {
         Assert.assertNull(plataformaDB);
     }
 
-    /***/
     @Test
     public void listarTodosTest() {
         Plataforma ps2 = this.criarPlataforma("PS2", "Sony");
@@ -83,7 +75,6 @@ public class PlataformaServiceImplTest {
         Assert.assertTrue(plataformas.contains(gameBoy));
     }
 
-    /***/
     @After
     public void after() {
         Persistence.createEntityManagerFactory("touch-games");

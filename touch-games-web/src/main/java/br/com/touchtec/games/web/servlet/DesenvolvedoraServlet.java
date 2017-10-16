@@ -27,9 +27,6 @@ import br.com.touchtec.games.core.service.DesenvolvedoraService;
 import br.com.touchtec.games.core.service.impl.DesenvolvedoraServiceImpl;
 
 
-/**
- * @author bbviana
- */
 public class DesenvolvedoraServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;

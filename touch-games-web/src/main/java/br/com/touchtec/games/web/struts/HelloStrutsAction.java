@@ -15,9 +15,6 @@ package br.com.touchtec.games.web.struts;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
 
-/**
- * @author emesquita
- */
 public class HelloStrutsAction extends TWFActionSupport {
 
     private static final long serialVersionUID = 1L;

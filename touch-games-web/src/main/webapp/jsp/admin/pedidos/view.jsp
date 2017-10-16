@@ -32,7 +32,9 @@
 		</t:field>
 		<t:field>
 			<t:label value="%{i18n.Pedido.valorTotal}"/>
-			<fmt:formatNumber type="currency" value="${pedido.valorTotal}" />
+			<span class="twfc-output">
+				<fmt:formatNumber type="currency" value="${pedido.valorTotal}" />
+			</span>
 		</t:field>
 		
 		<t:toolbar>

@@ -12,17 +12,13 @@
 package br.com.touchtec.games.core.model;
 
 
-import junit.framework.Assert;
-
 import org.junit.Test;
 
+import junit.framework.Assert;
 
-/**
- * @author emesquita
- */
+
 public class JogoTest {
 
-    /***/
     @Test
     public void precoComDescontoTest() {
         Jogo jogo = new Jogo();

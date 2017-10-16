@@ -17,8 +17,6 @@ import java.util.List;
 
 import javax.persistence.Persistence;
 
-import junit.framework.Assert;
-
 import org.apache.commons.lang.ArrayUtils;
 import org.junit.After;
 import org.junit.Test;
@@ -26,16 +24,13 @@ import org.junit.Test;
 import br.com.touchtec.games.core.model.Fabricante;
 import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.FabricanteService;
+import junit.framework.Assert;
 
 
-/**
- * @author emesquita
- */
 public class FabricanteServiceImplTest {
 
     private FabricanteService service = new FabricanteServiceImpl();
 
-    /***/
     @Test
     public void criarTest() {
         Fabricante fabricante = this.criarFabricante("Sony", "Vita", "PS3", "PSP", "PS4");
@@ -51,7 +46,6 @@ public class FabricanteServiceImplTest {
         Assert.assertTrue(plataformas.contains(this.criarPlataforma("PS4")));
     }
 
-    /***/
     @Test
     public void editarTest() {
         Fabricante fabricante = this.criarFabricante("Ñ intendo", "DS", "3DS", "WII", "WIIU");
@@ -69,7 +63,6 @@ public class FabricanteServiceImplTest {
         Assert.assertTrue(plataformas.contains(this.criarPlataforma("2DS (Bolachão)")));
     }
 
-    /***/
     @Test
     public void removerTest() {
         Fabricante fabricante = this.criarFabricante("Microsoft");
@@ -78,7 +71,6 @@ public class FabricanteServiceImplTest {
         Assert.assertNull(fabricanteDB);
     }
 
-    /***/
     @Test
     public void listarTodosTest() {
         Fabricante ouya = this.criarFabricante("Ouya");
@@ -91,7 +83,6 @@ public class FabricanteServiceImplTest {
         Assert.assertTrue(fabricantes.contains(sony));
     }
 
-    /***/
     @After
     public void after() {
         Persistence.createEntityManagerFactory("touch-games");

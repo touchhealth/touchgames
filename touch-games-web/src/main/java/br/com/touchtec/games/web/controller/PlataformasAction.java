@@ -27,9 +27,6 @@ import br.com.touchtec.games.core.service.PlataformaService;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
 
-/**
- * @author emesquita
- */
 @Component
 @Scope("request")
 public class PlataformasAction extends TWFActionSupport {
@@ -101,30 +98,18 @@ public class PlataformasAction extends TWFActionSupport {
         return this.execute();
     }
 
-    /**
-     * @return plataforma
-     */
     public Plataforma getPlataforma() {
         return this.plataforma;
     }
 
-    /**
-     * @param plataforma
-     */
     public void setPlataforma(Plataforma plataforma) {
         this.plataforma = plataforma;
     }
 
-    /**
-     * @return plataformas
-     */
     public List<Plataforma> getPlataformas() {
         return this.plataformas;
     }
 
-    /**
-     * @param plataformas
-     */
     public void setPlataformas(List<Plataforma> plataformas) {
         this.plataformas = plataformas;
     }

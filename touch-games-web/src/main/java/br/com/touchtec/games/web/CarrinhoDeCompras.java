@@ -25,9 +25,6 @@ import br.com.touchtec.games.core.model.Jogo;
 import br.com.touchtec.games.core.model.Plataforma;
 
 
-/**
- * @author bbviana
- */
 @Scope("session")
 @Component
 public class CarrinhoDeCompras implements Serializable {

@@ -1,3 +1,18 @@
+# Touch Games
+
+# Ambiente
+
+## POSTGRES
+
+```
+sudo apt-get install postgresql-9.1
+sudo su - postgres
+psql -d postgres -U postgres
+alter user postgres with password 'postgres';
+```
+
+# Cadastro
+```
 Fabricante
 Microsoft
 Nintendo
@@ -87,3 +102,4 @@ Mario Tennis Open -> Nintendo -> Esporte
 
 Gran Turismo 5 -> Sony -> Esporte
 PS3
+```

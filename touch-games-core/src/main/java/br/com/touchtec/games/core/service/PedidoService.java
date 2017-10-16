@@ -17,41 +17,17 @@ import java.util.List;
 import br.com.touchtec.games.core.model.Pedido;
 
 
-/**
- * @author emesquita
- */
 public interface PedidoService {
 
-    /**
-     * @param pedido
-     */
     void criar(Pedido pedido);
 
-    /**
-     * @param pedido
-     */
     void remover(Pedido pedido);
 
-    /**
-     * @param pedido
-     * @return O pedido editado.
-     */
     Pedido editar(Pedido pedido);
 
-    /**
-     * @param id
-     * @return O pedido procurado.
-     */
     Pedido recuperar(Long id);
 
-    /**
-     * @param id
-     * @return O pedido procurado.
-     */
     Pedido recuperarComListas(Long id);
 
-    /**
-     * @return lista todos
-     */
     List<Pedido> listarTodos();
 }

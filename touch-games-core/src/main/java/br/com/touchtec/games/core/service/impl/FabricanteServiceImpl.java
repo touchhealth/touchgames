@@ -27,9 +27,6 @@ import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.FabricanteService;
 
 
-/**
- * @author emesquita
- */
 public class FabricanteServiceImpl implements FabricanteService {
 
     private static final EntityManagerFactory EM_FACTORY = Persistence.createEntityManagerFactory("touch-games");

@@ -25,9 +25,6 @@ import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.PlataformaService;
 
 
-/**
- * @author emesquita
- */
 @Component
 @Transactional
 public class PlataformaServiceBeam implements PlataformaService {

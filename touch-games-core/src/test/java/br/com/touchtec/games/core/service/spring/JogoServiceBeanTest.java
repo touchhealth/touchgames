@@ -16,8 +16,6 @@ import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import junit.framework.Assert;
-
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,11 +30,9 @@ import br.com.touchtec.games.core.service.PlataformaService;
 import br.com.touchtec.spring.SpringBeanUtil;
 import br.com.touchtec.spring.test.SpringTestUtil;
 import br.com.touchtec.spring.test.TouchSpringRunner;
+import junit.framework.Assert;
 
 
-/**
- * @author emesquita
- */
 @RunWith(TouchSpringRunner.class)
 @ContextConfiguration(loader = br.com.touchtec.spring.test.SingletonContextLoader.class, locations = "classpath:/test-spring-config.xml")
 public class JogoServiceBeanTest {
@@ -47,7 +43,6 @@ public class JogoServiceBeanTest {
     @Autowired
     private PlataformaService plataformaService;
 
-    /***/
     @Test
     public void criarTest() {
         Jogo jogo = this.criarJogo("Final Fantasy VIII");
@@ -55,7 +50,6 @@ public class JogoServiceBeanTest {
         Assert.assertEquals(jogo, jogoDB);
     }
 
-    /***/
     @Test
     public void editarTest() {
         Jogo jogo = this.criarJogo("Final Fantasy X");
@@ -67,7 +61,6 @@ public class JogoServiceBeanTest {
         Assert.assertEquals(66, jogoDB.getDesconto());
     }
 
-    /***/
     @Test
     public void removerTest() {
         Jogo jogo = this.criarJogo("Final Fantasy XII");
@@ -76,7 +69,6 @@ public class JogoServiceBeanTest {
         Assert.assertNull(jogoDB);
     }
 
-    /***/
     @Test
     public void listarPorGeneroTest() {
         Jogo ct = this.criarJogo("Chrono Trigger", Genero.RPG);
@@ -96,7 +88,6 @@ public class JogoServiceBeanTest {
         Assert.assertEquals(0, jogos.size());
     }
 
-    /***/
     @Test
     public void listarPorPlataformaTest() {
         Plataforma xbox360 = this.criarPlataforma("Xbox 360");
@@ -116,7 +107,6 @@ public class JogoServiceBeanTest {
         Assert.assertTrue(jogos.contains(skyrin));
     }
 
-    /***/
     @Test
     public void listarTodosTest() {
         Jogo ct = this.criarJogo("Chrono Trigger");
@@ -129,7 +119,6 @@ public class JogoServiceBeanTest {
         Assert.assertTrue(jogos.contains(cc));
     }
 
-    /***/
     @Test
     public void buscarTest() {
         Jogo ct = this.criarJogo("Chrono Trigger");
@@ -145,7 +134,6 @@ public class JogoServiceBeanTest {
         Assert.assertEquals(0, jogos.size());
     }
 
-    /***/
     @After
     public void after() {
         SpringTestUtil.restartContext(SpringBeanUtil.getContext());
