@@ -60,7 +60,7 @@ public class ItemPedido extends EntidadeRaiz {
     }
 
     @Override
-    protected String print() {
+    public String toString() {
         return String.format("%d x %s de %s", this.quantidade, this.jogo, this.plataforma);
     }
 }

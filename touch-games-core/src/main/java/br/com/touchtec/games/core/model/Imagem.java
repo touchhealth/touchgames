@@ -45,7 +45,7 @@ public class Imagem extends EntidadeRaiz {
     }
 
     @Override
-    protected String print() {
+    public String toString() {
         return String.format("%s", this.getId());
     }
 

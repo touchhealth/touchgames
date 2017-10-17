@@ -12,8 +12,6 @@
 package br.com.touchtec.games.core.model;
 
 
-import static com.google.common.base.Strings.nullToEmpty;
-
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -50,8 +48,8 @@ public class Fabricante extends EntidadeRaiz {
     }
 
     @Override
-    protected String print() {
-        return nullToEmpty(this.nome);
+    public String toString() {
+        return this.nome;
     }
 
 }

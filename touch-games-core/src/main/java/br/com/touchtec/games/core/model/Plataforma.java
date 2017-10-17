@@ -26,11 +26,6 @@ public class Plataforma extends EntidadeRaiz {
 
     private Fabricante fabricante;
 
-    @Override
-    protected String print() {
-        return this.nome;
-    }
-
     @Column(unique = true)
     public String getNome() {
         return this.nome;
@@ -47,5 +42,10 @@ public class Plataforma extends EntidadeRaiz {
 
     public void setFabricante(Fabricante fabricante) {
         this.fabricante = fabricante;
+    }
+
+    @Override
+    public String toString() {
+        return this.nome;
     }
 }

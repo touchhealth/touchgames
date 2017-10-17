@@ -52,7 +52,7 @@ public class Desenvolvedora extends EntidadeRaiz {
     }
 
     @Override
-    protected String print() {
+    public String toString() {
         return this.nome;
     }
 

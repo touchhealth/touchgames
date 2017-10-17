@@ -25,15 +25,19 @@ import br.com.touchtec.games.core.model.Genero;
 import br.com.touchtec.games.core.model.Jogo;
 import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.JogoService;
-import br.com.touchtec.games.core.service.PlataformaService;
 import junit.framework.Assert;
-
 
 public class JogoServiceImplTest {
 
     private JogoService service = new JogoServiceImpl();
 
-    private PlataformaService plataformaService = new PlataformaServiceImpl();
+    @After
+    public void limpaBanco() {
+        /**
+         * Funciona porque no persistence.xml setamos "hibernate.hbm2ddl.auto=create-drop"
+         */
+        Persistence.createEntityManagerFactory("touch-games");
+    }
 
     @Test
     public void criarTest() {
@@ -81,25 +85,6 @@ public class JogoServiceImplTest {
     }
 
     @Test
-    public void listarPorPlataformaTest() {
-        Plataforma xbox360 = this.criarPlataforma("Xbox 360");
-        Plataforma pc = this.criarPlataforma("PC");
-        Plataforma ps3 = this.criarPlataforma("PS3");
-        Plataforma ps2 = this.criarPlataforma("PS2");
-        Jogo skyrin = this.criarJogo("The Elder Scrolls V: Skyrim", xbox360, pc, ps3);
-        Jogo stc = this.criarJogo("Shadow of the Colossus", ps3, ps2);
-
-        List<Jogo> jogos = this.service.listar(ps3);
-        Assert.assertEquals(2, jogos.size());
-        Assert.assertTrue(jogos.contains(skyrin));
-        Assert.assertTrue(jogos.contains(stc));
-
-        jogos = this.service.listar(pc);
-        Assert.assertEquals(1, jogos.size());
-        Assert.assertTrue(jogos.contains(skyrin));
-    }
-
-    @Test
     public void listarTodosTest() {
         Jogo ct = this.criarJogo("Chrono Trigger");
         Jogo cc = this.criarJogo("Chrono Cross");
@@ -126,17 +111,9 @@ public class JogoServiceImplTest {
         Assert.assertEquals(0, jogos.size());
     }
 
-    @After
-    public void after() {
-        Persistence.createEntityManagerFactory("touch-games");
-    }
 
     private Jogo criarJogo(String nome) {
         return this.criarJogo(nome, Genero.RPG);
-    }
-
-    private Jogo criarJogo(String nome, Plataforma... plataformas) {
-        return this.criarJogo(nome, Genero.RPG, plataformas);
     }
 
     private Jogo criarJogo(String nome, Genero genero, Plataforma... plataformas) {
@@ -151,12 +128,5 @@ public class JogoServiceImplTest {
 
         this.service.criar(jogo);
         return jogo;
-    }
-
-    private Plataforma criarPlataforma(String nome) {
-        Plataforma plataforma = new Plataforma();
-        plataforma.setNome(nome);
-        this.plataformaService.criar(plataforma);
-        return plataforma;
     }
 }
