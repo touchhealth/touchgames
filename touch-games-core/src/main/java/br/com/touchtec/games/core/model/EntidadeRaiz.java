@@ -37,6 +37,11 @@ public abstract class EntidadeRaiz implements Serializable {
         this.id = id;
     }
 
+    /*
+     * Regra: sempre sobrescreva o hashCode() quando sobrescrever o equals().
+     * Lembrem das aulas sobre Tabela de Hash; elas eram úteis.
+     */
+
     @Override
     public int hashCode() {
         final int prime = 31;
