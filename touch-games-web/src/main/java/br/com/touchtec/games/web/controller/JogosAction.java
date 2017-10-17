@@ -69,13 +69,13 @@ public class JogosAction extends TWFActionSupport {
 
     @PostConstruct
     public void prepare() {
-        this.desenvolvedoras = this.desenvolvedoraService.listarTodos();
-        this.plataformas = this.plataformaService.listarTodos();
+        this.desenvolvedoras = this.desenvolvedoraService.buscarTodos();
+        this.plataformas = this.plataformaService.buscarTodos();
     }
 
     @Override
     public String execute() throws Exception {
-        this.jogos = this.jogoService.listarTodos();
+        this.jogos = this.jogoService.buscarTodos();
         return "jsp/admin/jogos/list";
     }
 

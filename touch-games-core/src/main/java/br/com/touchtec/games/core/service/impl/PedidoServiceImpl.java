@@ -19,27 +19,24 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.touchtec.games.core.model.Pedido;
 import br.com.touchtec.games.core.service.PedidoService;
+import br.com.touchtec.persistence.QueryTyper;
 
 
 @Component
 @Transactional
 public class PedidoServiceImpl implements PedidoService {
 
-    private static final Logger LOGGER = Logger.getLogger(PedidoServiceImpl.class);
-
     @PersistenceContext
     private EntityManager em;
 
     @Override
     public void criar(Pedido pedido) {
-        LOGGER.info("Pedido criado");
         this.em.persist(pedido);
     }
 
@@ -59,31 +56,26 @@ public class PedidoServiceImpl implements PedidoService {
 
     @Override
     public Pedido recuperar(Long id) {
-        return this.em.find(Pedido.class, id);
-    }
-
-    @Override
-    public Pedido recuperarComListas(Long id) {
-        Pedido pedido = this.recuperar(id);
+        Pedido pedido = this.em.find(Pedido.class, id);
         Hibernate.initialize(pedido.getItens());
         return pedido;
     }
 
-    @SuppressWarnings("unchecked")
-    public List<Pedido> listarTodos() {
+    @Override
+    public List<Pedido> buscarTodos() {
         String queryString = "SELECT p FROM Pedido p ORDER BY p.data";
         Query query = this.em.createQuery(queryString);
-        List<Pedido> list = query.getResultList();
+        List<Pedido> pedidos = QueryTyper.getResultList(query);
 
-        // Adicionado para poder usar o valor total. Bom exercicio
-        if (CollectionUtils.isEmpty(list)) {
-            return list;
+        // Adicionado para poder usar o valor total
+        if (CollectionUtils.isEmpty(pedidos)) {
+            return pedidos;
         }
-        for (Pedido pedido : list) {
+        for (Pedido pedido : pedidos) {
             Hibernate.initialize(pedido.getItens());
         }
-        // Adicionado para poder usar o valor total. Bom exercicio
+        // Adicionado para poder usar o valor total
 
-        return list;
+        return pedidos;
     }
 }

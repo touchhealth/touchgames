@@ -53,12 +53,12 @@ public class PlataformasAction extends TWFActionSupport {
 
     @PostConstruct
     public void prepare() {
-        this.fabricantes = this.fabricanteService.listarTodos();
+        this.fabricantes = this.fabricanteService.buscarTodos();
     }
 
     @Override
     public String execute() throws Exception {
-        this.plataformas = this.plataformaService.listarTodos();
+        this.plataformas = this.plataformaService.buscarTodos();
         return "jsp/admin/plataformas/list";
     }
 

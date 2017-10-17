@@ -42,7 +42,7 @@ public class PedidosAction extends TWFActionSupport {
 
     @Override
     public String execute() throws Exception {
-        this.pedidos = this.pedidoService.listarTodos();
+        this.pedidos = this.pedidoService.buscarTodos();
         return "jsp/admin/pedidos/list";
     }
 

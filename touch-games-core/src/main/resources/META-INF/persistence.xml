@@ -8,7 +8,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
 		<!--
-		Se não usássemos hibernate.archive.autodetection (ver abaixo), deveriamos listar aqui
+		Se não usássemos hibernate.archive.autodetection (ver abaixo), deveriamos buscar aqui
 		as nossas entidades uma a uma.
 		-->
 		<!--<class>br.com.touchtec.games.core.model.Desenvolvedora</class>-->

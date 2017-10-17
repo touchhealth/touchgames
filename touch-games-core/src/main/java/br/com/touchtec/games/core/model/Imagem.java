@@ -27,7 +27,7 @@ public class Imagem extends EntidadeRaiz {
      * Este construtor é necessário para o Hibernate e pode ser private (Como o Hibernate acessa?)
      */
     @SuppressWarnings("unused")
-    private Imagem() {
+    protected Imagem() {
         super();
     }
 
@@ -46,7 +46,7 @@ public class Imagem extends EntidadeRaiz {
 
     @Override
     public String toString() {
-        return String.format("%s", this.getId());
+        return this.getId() + "";
     }
 
 }

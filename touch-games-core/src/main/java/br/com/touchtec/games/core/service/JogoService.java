@@ -29,13 +29,12 @@ public interface JogoService {
 
     Jogo recuperar(Long id);
 
-    Jogo recuperarComListas(Long id);
+    List<Jogo> buscarTodos();
 
-    List<Jogo> listar(Genero genero);
+    List<Jogo> buscar(Genero genero);
 
-    List<Jogo> listar(Plataforma plataforma);
-
-    List<Jogo> listarTodos();
+    List<Jogo> buscar(Plataforma plataforma);
 
     List<Jogo> buscar(String nome);
+
 }

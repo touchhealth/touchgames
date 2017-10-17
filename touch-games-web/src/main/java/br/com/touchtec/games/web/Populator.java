@@ -33,7 +33,7 @@ public class Populator {
 
     @PostConstruct
     public void populateOnStartup() {
-        List<Desenvolvedora> desenvolvedoras = desenvolvedoraService.listarTodos();
+        List<Desenvolvedora> desenvolvedoras = desenvolvedoraService.buscarTodos();
         if (!desenvolvedoras.isEmpty()) {
             return;
         }

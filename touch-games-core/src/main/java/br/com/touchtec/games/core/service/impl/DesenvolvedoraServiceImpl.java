@@ -23,6 +23,7 @@ import org.hibernate.Hibernate;
 
 import br.com.touchtec.games.core.model.Desenvolvedora;
 import br.com.touchtec.games.core.service.DesenvolvedoraService;
+import br.com.touchtec.persistence.QueryTyper;
 
 
 public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
@@ -64,30 +65,26 @@ public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
     @Override
     public Desenvolvedora recuperar(Long id) {
         EntityManager em = EMF.createEntityManager();
-        return em.find(Desenvolvedora.class, id);
-    }
-
-    @Override
-    public Desenvolvedora recuperarComListas(Long id) {
-        EntityManager em = EMF.createEntityManager();
 
         Desenvolvedora desenvolvedora = em.find(Desenvolvedora.class, id);
 
         em.getTransaction().begin();
+
         // Necessita da transação aberta
         Hibernate.initialize(desenvolvedora.getJogos());
+
         em.getTransaction().commit();
 
         return desenvolvedora;
     }
 
-    @SuppressWarnings("unchecked")
-    public List<Desenvolvedora> listarTodos() {
+    @Override
+    public List<Desenvolvedora> buscarTodos() {
         EntityManager em = EMF.createEntityManager();
 
         String queryString = "SELECT d FROM Desenvolvedora d ORDER BY d.nome";
         Query query = em.createQuery(queryString);
-        List<Desenvolvedora> list = query.getResultList();
-        return list;
+        List<Desenvolvedora> desenvolvedoras = QueryTyper.getResultList(query);
+        return desenvolvedoras;
     }
 }

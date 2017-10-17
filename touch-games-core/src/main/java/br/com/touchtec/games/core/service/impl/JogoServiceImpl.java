@@ -16,7 +16,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -71,38 +70,50 @@ public class JogoServiceImpl implements JogoService {
     public Jogo recuperar(Long id) {
         EntityManager em = EMF.createEntityManager();
 
-        // Precisa da transação por conta de Jogo -> Imagem -> byte[]
         em.getTransaction().begin();
+
+        // Necessita da transação aberta por conta de Jogo -> Imagem -> byte[]
         Jogo jogo = em.find(Jogo.class, id);
+
+        // Necessita da transaçao aberta
+        Hibernate.initialize(jogo.getPlataformas());
+
         em.getTransaction().commit();
 
         return jogo;
     }
 
-    public Jogo recuperarComListas(Long id) {
+    @Override
+    public List<Jogo> buscarTodos() {
         EntityManager em = EMF.createEntityManager();
 
+        String queryString = "SELECT j FROM Jogo j ORDER BY j.nome";
+        Query query = em.createQuery(queryString);
+
         em.getTransaction().begin();
-        Jogo jogo =  em.find(Jogo.class, id);
-        Hibernate.initialize(jogo.getPlataformas());
+        List<Jogo> jogos = QueryTyper.getResultList(query);
         em.getTransaction().commit();
 
-        return jogo;
+        return jogos;
     }
 
-    @SuppressWarnings("unchecked")
-    public List<Jogo> listar(Genero genero) {
+    @Override
+    public List<Jogo> buscar(Genero genero) {
         EntityManager em = EMF.createEntityManager();
 
         String queryString = "SELECT j FROM Jogo j WHERE j.genero = :genero  ORDER BY j.nome";
         Query query = em.createQuery(queryString);
         query.setParameter("genero", genero);
 
-        return executarTransacionalmente(query, em.getTransaction());
+        em.getTransaction().begin();
+        List<Jogo> jogos = QueryTyper.getResultList(query);
+        em.getTransaction().commit();
+
+        return jogos;
     }
 
-    @SuppressWarnings("unchecked")
-    public List<Jogo> listar(Plataforma plataforma) {
+    @Override
+    public List<Jogo> buscar(Plataforma plataforma) {
         EntityManager em = EMF.createEntityManager();
 
         String queryString = "SELECT j FROM Jogo j WHERE :plataforma MEMBER OF j.plataformas ORDER BY j.nome";
@@ -111,40 +122,27 @@ public class JogoServiceImpl implements JogoService {
         Plataforma plataformaConectada = em.find(Plataforma.class, plataforma.getId());
         query.setParameter("plataforma", plataformaConectada);
 
-        return executarTransacionalmente(query, em.getTransaction());
+        em.getTransaction().begin();
+        List<Jogo> jogos = QueryTyper.getResultList(query);
+        em.getTransaction().commit();
+
+        return jogos;
     }
 
-    @SuppressWarnings("unchecked")
-    public List<Jogo> listarTodos() {
-        EntityManager em = EMF.createEntityManager();
-
-        String queryString = "SELECT j FROM Jogo j ORDER BY j.nome";
-        Query query = em.createQuery(queryString);
-
-        return executarTransacionalmente(query, em.getTransaction());
-    }
-
-    @SuppressWarnings("unchecked")
+    @Override
     public List<Jogo> buscar(String nome) {
         EntityManager em = EMF.createEntityManager();
 
         String queryString = "SELECT j FROM Jogo j WHERE UPPER( j.nome) LIKE UPPER(:nome) ORDER BY j.nome";
         Query query = em.createQuery(queryString);
         String nomebusca = nome == null ? "" : nome;
-        query.setParameter("nome", String.format("%%%s%%", nomebusca));
+        query.setParameter("nome", "%" + nomebusca + "%");
 
-        return executarTransacionalmente(query, em.getTransaction());
-    }
-
-
-    /**
-     * Relacionamentos eager precisam de transação para serem carregados
-     */
-    private List<Jogo> executarTransacionalmente(Query query, EntityTransaction transaction) {
-        transaction.begin();
+        em.getTransaction().begin();
         List<Jogo> jogos = QueryTyper.getResultList(query);
-        transaction.commit();
+        em.getTransaction().commit();
 
         return jogos;
     }
+
 }

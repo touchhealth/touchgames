@@ -27,7 +27,5 @@ public interface DesenvolvedoraService {
 
     Desenvolvedora recuperar(Long id);
 
-    Desenvolvedora recuperarComListas(Long id);
-
-    List<Desenvolvedora> listarTodos();
+    List<Desenvolvedora> buscarTodos();
 }

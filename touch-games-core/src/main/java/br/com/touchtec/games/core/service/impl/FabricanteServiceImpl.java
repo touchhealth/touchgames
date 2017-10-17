@@ -18,13 +18,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.touchtec.games.core.model.Fabricante;
-import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.games.core.service.FabricanteService;
 
 
@@ -37,7 +34,6 @@ public class FabricanteServiceImpl implements FabricanteService {
 
     @Override
     public void criar(Fabricante fabricante) {
-        this.outroLadoPlataforma(fabricante);
         this.em.persist(fabricante);
     }
 
@@ -52,7 +48,6 @@ public class FabricanteServiceImpl implements FabricanteService {
 
     @Override
     public Fabricante editar(Fabricante fabricante) {
-        this.outroLadoPlataforma(fabricante);
         return this.em.merge(fabricante);
     }
 
@@ -61,27 +56,11 @@ public class FabricanteServiceImpl implements FabricanteService {
         return this.em.find(Fabricante.class, id);
     }
 
-    public Fabricante recuperarComListas(Long id) {
-        Fabricante fabricante = this.recuperar(id);
-        Hibernate.initialize(fabricante.getPlataformas());
-        return fabricante;
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Fabricante> listarTodos() {
+    public List<Fabricante> buscarTodos() {
         String queryString = "SELECT f FROM Fabricante f ORDER BY f.nome";
         Query query = this.em.createQuery(queryString);
         List<Fabricante> list = query.getResultList();
         return list;
-    }
-
-    private void outroLadoPlataforma(Fabricante fabricante) {
-        if (CollectionUtils.isEmpty(fabricante.getPlataformas())) {
-            return;
-        }
-        for (Plataforma plataforma : fabricante.getPlataformas()) {
-            plataforma.setFabricante(fabricante);
-        }
     }
 
 }

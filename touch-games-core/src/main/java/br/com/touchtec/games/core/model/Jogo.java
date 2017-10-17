@@ -64,7 +64,7 @@ public class Jogo extends EntidadeRaiz {
             return 0f;
         }
 
-        Float precoComDesconto = this.preco - ((((float) this.desconto) / 100) * this.preco);
+        Float precoComDesconto = this.preco - (((float) this.desconto) / 100) * this.preco;
         if (precoComDesconto < 0) {
             return 0f;
         }
@@ -73,7 +73,7 @@ public class Jogo extends EntidadeRaiz {
         return precoComDesconto;
     }
 
-    @Column(unique = true)
+    @Column(name = "nome_do_jogo", unique = true)
     public String getNome() {
         return this.nome;
     }
@@ -142,10 +142,10 @@ public class Jogo extends EntidadeRaiz {
     }
 
     /**
-     * Vamos usar EAGER mesmo, pois vamos listar as imagens sempre e isso vai facilitar nossa vida. Mas cuidado com essa
-     * estratégia.
+     * [COMPOSIÇAO]
      *
-     * @return imagens
+     * Vamos usar EAGER mesmo, pois vamos buscar as imagens sempre e isso vai facilitar nossa vida. Mas cuidado com essa
+     * estratégia.
      */
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     public List<Imagem> getImagens() {

@@ -48,7 +48,7 @@ public class JogosServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JogoService service = new JogoServiceImpl();
 
-        List<Jogo> jogos = service.listarTodos();
+        List<Jogo> jogos = service.buscarTodos();
         req.setAttribute("jogos", jogos);
 
         String uri = req.getRequestURI();
@@ -58,7 +58,7 @@ public class JogosServlet extends HttpServlet {
 
         if ("create".equals(method) || "update".equals(method)) {
             DesenvolvedoraService desenvolvedoraService = new DesenvolvedoraServiceImpl();
-            List<Desenvolvedora> desenvolvedoras = desenvolvedoraService.listarTodos();
+            List<Desenvolvedora> desenvolvedoras = desenvolvedoraService.buscarTodos();
             req.setAttribute("desenvolvedoras", desenvolvedoras);
 
             req.setAttribute("generos", Genero.values());
@@ -100,7 +100,7 @@ public class JogosServlet extends HttpServlet {
             service.criar(jogo);
         }
 
-        List<Jogo> jogos = service.listarTodos();
+        List<Jogo> jogos = service.buscarTodos();
         req.setAttribute("jogos", jogos);
 
         req.getRequestDispatcher("/jsp/servlet/jogos.jsp").forward(req, resp);

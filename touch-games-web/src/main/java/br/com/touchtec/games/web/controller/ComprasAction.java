@@ -69,7 +69,7 @@ public class ComprasAction extends TWFActionSupport {
 
     @Override
     public String execute() throws Exception {
-        this.jogos = this.jogoService.listarTodos();
+        this.jogos = this.jogoService.buscarTodos();
         return "jsp/jogos_lista";
     }
 
@@ -96,7 +96,7 @@ public class ComprasAction extends TWFActionSupport {
     }
 
     public String jogosPorPlataforma() {
-        this.jogos = this.jogoService.listar(this.plataformaSelecionada);
+        this.jogos = this.jogoService.buscar(this.plataformaSelecionada);
         return "jsp/jogos_lista";
     }
 
@@ -107,7 +107,7 @@ public class ComprasAction extends TWFActionSupport {
             // Não vamos fazer nada
         }
 
-        this.jogos = this.jogoService.listar(this.generoSelecionado);
+        this.jogos = this.jogoService.buscar(this.generoSelecionado);
 
         Collections.shuffle(this.jogos);
 

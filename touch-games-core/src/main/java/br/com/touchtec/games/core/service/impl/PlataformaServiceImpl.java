@@ -57,7 +57,7 @@ public class PlataformaServiceImpl implements PlataformaService {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Plataforma> listarTodos() {
+    public List<Plataforma> buscarTodos() {
         String queryString = "SELECT p FROM Plataforma p ORDER BY p.nome";
         Query query = this.em.createQuery(queryString);
         List<Plataforma> list = query.getResultList();

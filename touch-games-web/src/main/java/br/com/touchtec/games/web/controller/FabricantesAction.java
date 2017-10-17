@@ -44,7 +44,7 @@ public class FabricantesAction extends TWFActionSupport {
 
     @Override
     public String execute() throws Exception {
-        this.fabricantes = this.fabricantesService.listarTodos();
+        this.fabricantes = this.fabricantesService.buscarTodos();
         return "jsp/admin/fabricantes/list";
     }
 

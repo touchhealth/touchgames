@@ -27,7 +27,5 @@ public interface FabricanteService {
 
     Fabricante recuperar(Long id);
 
-    Fabricante recuperarComListas(Long id);
-
-    List<Fabricante> listarTodos();
+    List<Fabricante> buscarTodos();
 }

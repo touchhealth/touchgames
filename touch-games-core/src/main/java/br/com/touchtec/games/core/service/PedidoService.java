@@ -27,7 +27,5 @@ public interface PedidoService {
 
     Pedido recuperar(Long id);
 
-    Pedido recuperarComListas(Long id);
-
-    List<Pedido> listarTodos();
+    List<Pedido> buscarTodos();
 }

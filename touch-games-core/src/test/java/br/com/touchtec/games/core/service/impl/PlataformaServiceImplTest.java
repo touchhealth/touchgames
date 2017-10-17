@@ -87,7 +87,7 @@ public class PlataformaServiceImplTest {
         Plataforma ps2 = this.criarPlataforma("PS2", "Sony");
         Plataforma gameBoy = this.criarPlataforma("GameBoy", "Nintendo");
 
-        List<Plataforma> plataformas = this.plataformaService.listarTodos();
+        List<Plataforma> plataformas = this.plataformaService.buscarTodos();
 
         Assert.assertEquals(2, plataformas.size());
         Assert.assertTrue(plataformas.contains(ps2));
@@ -103,12 +103,12 @@ public class PlataformaServiceImplTest {
         Jogo skyrin = this.criarJogo("The Elder Scrolls V: Skyrim", Genero.RPG, xbox360, ps3);
         Jogo fifa = this.criarJogo("Fifa", Genero.ESPORTE, xbox360, ps3, wii);
 
-        List<Jogo> jogos = this.jogoService.listar(ps3);
+        List<Jogo> jogos = this.jogoService.buscar(ps3);
         Assert.assertEquals(2, jogos.size());
         Assert.assertTrue(jogos.contains(skyrin));
         Assert.assertTrue(jogos.contains(fifa));
 
-        jogos = this.jogoService.listar(wii);
+        jogos = this.jogoService.buscar(wii);
         Assert.assertEquals(1, jogos.size());
         Assert.assertTrue(jogos.contains(fifa));
     }

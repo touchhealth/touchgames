@@ -71,16 +71,16 @@ public class JogoServiceImplTest {
         Jogo cc = this.criarJogo("Chrono Cross", Genero.RPG);
         Jogo fifa = this.criarJogo("Fifa 14", Genero.ESPORTE);
 
-        List<Jogo> jogos = this.service.listar(Genero.RPG);
+        List<Jogo> jogos = this.service.buscar(Genero.RPG);
         Assert.assertEquals(2, jogos.size());
         Assert.assertTrue(jogos.contains(ct));
         Assert.assertTrue(jogos.contains(cc));
 
-        jogos = this.service.listar(Genero.ESPORTE);
+        jogos = this.service.buscar(Genero.ESPORTE);
         Assert.assertEquals(1, jogos.size());
         Assert.assertTrue(jogos.contains(fifa));
 
-        jogos = this.service.listar(Genero.ACAO);
+        jogos = this.service.buscar(Genero.ACAO);
         Assert.assertEquals(0, jogos.size());
     }
 
@@ -89,7 +89,7 @@ public class JogoServiceImplTest {
         Jogo ct = this.criarJogo("Chrono Trigger");
         Jogo cc = this.criarJogo("Chrono Cross");
 
-        List<Jogo> jogos = this.service.listarTodos();
+        List<Jogo> jogos = this.service.buscarTodos();
 
         Assert.assertEquals(2, jogos.size());
         Assert.assertTrue(jogos.contains(ct));

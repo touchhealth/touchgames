@@ -27,5 +27,5 @@ public interface PlataformaService {
 
     Plataforma recuperar(Long id);
 
-    List<Plataforma> listarTodos();
+    List<Plataforma> buscarTodos();
 }

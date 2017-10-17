@@ -38,7 +38,7 @@ public class DesenvolvedorasAction extends TWFActionSupport {
 
     @Override
     public String execute() throws Exception {
-        this.desenvolvedoras = this.desenvolvedoraService.listarTodos();
+        this.desenvolvedoras = this.desenvolvedoraService.buscarTodos();
         return "jsp/admin/desenvolvedoras/list";
     }
 
