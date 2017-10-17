@@ -21,30 +21,15 @@ public class JogoTest {
 
     @Test
     public void precoComDescontoTest() {
+        // CENARIO
         Jogo jogo = new Jogo();
-        Assert.assertEquals(0f, jogo.getPrecoComDesconto());
-
         jogo.setPreco(100f);
-        Assert.assertEquals(100f, jogo.getPrecoComDesconto());
-
         jogo.setDesconto(10);
-        Assert.assertEquals(90f, jogo.getPrecoComDesconto());
 
-        jogo.setDesconto(200);
-        Assert.assertEquals(0f, jogo.getPrecoComDesconto());
+        // TESTE
+        Float precoComDesconto = jogo.getPrecoComDesconto();
 
-        jogo.setDesconto(-10);
-        Assert.assertEquals(110f, jogo.getPrecoComDesconto());
-
-        jogo.setPreco(0f);
-        Assert.assertEquals(0f, jogo.getPrecoComDesconto());
-
-        jogo.setDesconto(50);
-        Assert.assertEquals(0f, jogo.getPrecoComDesconto());
-
-        jogo.setPreco(100.1f);
-        jogo.setDesconto(99);
-        // se nao descartasse depois do segundo decimal seria 1.001
-        Assert.assertEquals(1f, jogo.getPrecoComDesconto());
+        // ASSERTS
+        Assert.assertEquals(90f, precoComDesconto);
     }
 }

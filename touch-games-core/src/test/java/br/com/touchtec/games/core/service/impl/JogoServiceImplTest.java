@@ -2,7 +2,7 @@
  * Copyright (c) 1999-2009 Touch Tecnologia e Informatica Ltda.
  * Gomes de Carvalho, 1666, 3o. Andar, Vila Olimpia, Sao Paulo, SP, Brasil.
  * Todos os direitos reservados.
- * 
+ *
  * Este software e confidencial e de propriedade da Touch Tecnologia e
  * Informatica Ltda. (Informacao Confidencial). As informacoes contidas neste
  * arquivo nao podem ser publicadas, e seu uso esta limitado de acordo com os
@@ -33,87 +33,91 @@ public class JogoServiceImplTest {
 
     @After
     public void limpaBanco() {
-        /**
-         * Funciona porque no persistence.xml setamos "hibernate.hbm2ddl.auto=create-drop"
-         */
+        // Funciona porque no persistence.xml setamos "hibernate.hbm2ddl.auto=create-drop"
         Persistence.createEntityManagerFactory("touch-games");
     }
 
     @Test
     public void criarTest() {
+        // CENARIO
         Jogo jogo = this.criarJogo("Final Fantasy VIII");
+
+        // TESTE
         Jogo jogoDB = this.service.recuperar(jogo.getId());
+
+        // ASSERTS
+        // equals/hashcode É importante aqui
         Assert.assertEquals(jogo, jogoDB);
     }
 
     @Test
     public void editarTest() {
+        // CENARIO
         Jogo jogo = this.criarJogo("Final Fantasy X");
+
+        // TESTE
         jogo.setDesconto(66);
         this.service.editar(jogo);
 
+        // ASSERT
         Jogo jogoDB = this.service.recuperar(jogo.getId());
-
         Assert.assertEquals(66, jogoDB.getDesconto());
     }
 
     @Test
     public void removerTest() {
+        // CENARIO
         Jogo jogo = this.criarJogo("Final Fantasy XII");
+
+        // TESTE
         this.service.remover(jogo);
+
+        // ASSERTS
         Jogo jogoDB = this.service.recuperar(jogo.getId());
         Assert.assertNull(jogoDB);
     }
 
-    @Test
-    public void listarPorGeneroTest() {
-        Jogo ct = this.criarJogo("Chrono Trigger", Genero.RPG);
-        Jogo cc = this.criarJogo("Chrono Cross", Genero.RPG);
-        Jogo fifa = this.criarJogo("Fifa 14", Genero.ESPORTE);
-
-        List<Jogo> jogos = this.service.buscar(Genero.RPG);
-        Assert.assertEquals(2, jogos.size());
-        Assert.assertTrue(jogos.contains(ct));
-        Assert.assertTrue(jogos.contains(cc));
-
-        jogos = this.service.buscar(Genero.ESPORTE);
-        Assert.assertEquals(1, jogos.size());
-        Assert.assertTrue(jogos.contains(fifa));
-
-        jogos = this.service.buscar(Genero.ACAO);
-        Assert.assertEquals(0, jogos.size());
-    }
 
     @Test
-    public void listarTodosTest() {
+    public void buscarTodosTest() {
+        // CENARIO
         Jogo ct = this.criarJogo("Chrono Trigger");
         Jogo cc = this.criarJogo("Chrono Cross");
 
+        // TESTE
         List<Jogo> jogos = this.service.buscarTodos();
 
+        // ASSERTS
         Assert.assertEquals(2, jogos.size());
         Assert.assertTrue(jogos.contains(ct));
         Assert.assertTrue(jogos.contains(cc));
     }
 
+
     @Test
-    public void buscarTest() {
+    public void buscarPorNomeTest() {
+        // CENARIO
         Jogo ct = this.criarJogo("Chrono Trigger");
         Jogo cc = this.criarJogo("Chrono Cross");
         this.criarJogo("Final Fantasy VII");
 
+        // TESTE 1
         List<Jogo> jogos = this.service.buscar("HrOnO");
+
+        // ASSERTS 1
         Assert.assertEquals(2, jogos.size());
         Assert.assertTrue(jogos.contains(ct));
         Assert.assertTrue(jogos.contains(cc));
 
+        // TESTE 2
         jogos = this.service.buscar("Bazinga");
+
+        // ASSERTS 2
         Assert.assertEquals(0, jogos.size());
     }
 
-
     private Jogo criarJogo(String nome) {
-        return this.criarJogo(nome, Genero.RPG);
+        return this.criarJogo(nome, null);
     }
 
     private Jogo criarJogo(String nome, Genero genero, Plataforma... plataformas) {
