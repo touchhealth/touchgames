@@ -47,7 +47,7 @@ public class PedidosAction extends TWFActionSupport {
     }
 
     public String view() throws Exception {
-        this.pedido = this.pedidoService.recuperarComListas(this.selectedId);
+        this.pedido = this.pedidoService.recuperar(this.selectedId);
         return "jsp/admin/pedidos/view";
     }
 

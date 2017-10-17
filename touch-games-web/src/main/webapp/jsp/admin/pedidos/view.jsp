@@ -12,14 +12,19 @@
 		
 		<t:field>
 			<t:label value="%{i18n.Pedido.id}"/>
-			<t:textoutput value="%{pedido.id}"/>
+
+				<t:textoutput value="%{pedido.id}"/>
 		</t:field>
+
 		<t:field>
 			<t:label value="%{i18n.Pedido.data}"/>
+
 			<t:dateoutput format="dd/MM/yyyy HH:mm:ss" value="%{pedido.data}"/>
 		</t:field>
+
 		<t:field>
 			<t:label value="%{i18n.Pedido.itens}"/>
+
 			<t:table list="%{pedido.itens}" var="item">
 				<t:tablecolumn  property="quantidade" title="%{i18n.ItemPedido.quantidade}"/>
 				<t:tablecolumn  property="jogo.nome" title="%{i18n.Jogo}"/>
@@ -29,8 +34,10 @@
 				</t:tablecolumn>
 			</t:table>
 		</t:field>
+
 		<t:field>
 			<t:label value="%{i18n.Pedido.valorTotal}"/>
+
 			<span class="twfc-output">
 				<fmt:formatNumber type="currency" value="${pedido.valorTotal}" />
 			</span>

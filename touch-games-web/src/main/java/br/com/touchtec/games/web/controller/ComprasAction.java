@@ -74,7 +74,7 @@ public class ComprasAction extends TWFActionSupport {
     }
 
     public String jogoDetalhes() throws Exception {
-        this.jogoSelecionado = this.jogoService.recuperarComListas(this.jogoSelecionado.getId());
+        this.jogoSelecionado = this.jogoService.recuperar(this.jogoSelecionado.getId());
         return "jsp/jogo_detalhes";
     }
 

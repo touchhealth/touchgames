@@ -19,8 +19,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import org.hibernate.Hibernate;
-
 import br.com.touchtec.games.core.model.Desenvolvedora;
 import br.com.touchtec.games.core.service.DesenvolvedoraService;
 import br.com.touchtec.persistence.QueryTyper;
@@ -64,17 +62,11 @@ public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
 
     @Override
     public Desenvolvedora recuperar(Long id) {
+        // Não é necessário transação. Nunca?
+
         EntityManager em = EMF.createEntityManager();
 
         Desenvolvedora desenvolvedora = em.find(Desenvolvedora.class, id);
-
-        em.getTransaction().begin();
-
-        // Necessita da transação aberta
-        Hibernate.initialize(desenvolvedora.getJogos());
-
-        em.getTransaction().commit();
-
         return desenvolvedora;
     }
 

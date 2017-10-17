@@ -85,13 +85,13 @@ public class JogosAction extends TWFActionSupport {
     }
 
     public String update() throws Exception {
-        this.jogo = this.jogoService.recuperarComListas(this.selectedId);
+        this.jogo = this.jogoService.recuperar(this.selectedId);
         this.formTitle = "Edição";
         return "jsp/admin/jogos/form";
     }
 
     public String view() throws Exception {
-        this.jogo = this.jogoService.recuperarComListas(this.selectedId);
+        this.jogo = this.jogoService.recuperar(this.selectedId);
         return "jsp/admin/jogos/view";
     }
 

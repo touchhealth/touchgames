@@ -12,10 +12,13 @@
 		
 		<t:field>
 			<t:label value="%{i18n.Desenvolvedora.nome}"/>
+
 			<t:textoutput value="%{desenvolvedora.nome}"/>
 		</t:field>
+
 		<t:field>
 			<t:label value="%{i18n.Desenvolvedora.jogos}"/>
+
 			<t:table list="%{desenvolvedora.jogos}">
 				<t:tablecolumn  property="nome" title="%{i18n.Jogo.nome}"/>
 			</t:table>

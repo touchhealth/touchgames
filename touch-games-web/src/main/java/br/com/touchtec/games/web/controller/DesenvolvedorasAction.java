@@ -54,7 +54,7 @@ public class DesenvolvedorasAction extends TWFActionSupport {
     }
 
     public String view() throws Exception {
-        this.desenvolvedora = this.desenvolvedoraService.recuperarComListas(this.selectedId);
+        this.desenvolvedora = this.desenvolvedoraService.recuperar(this.selectedId);
         return "jsp/admin/desenvolvedoras/view";
     }
 

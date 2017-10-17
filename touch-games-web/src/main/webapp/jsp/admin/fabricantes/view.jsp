@@ -14,6 +14,7 @@
 			<t:label value="%{i18n.Fabricante.nome}"/>
 			<t:textoutput value="%{fabricante.nome}"/>
 		</t:field>
+
 		<t:field>
 			<t:label value="%{i18n.Fabricante.plataformas}"/>
 			<t:table list="%{fabricante.plataformas}">

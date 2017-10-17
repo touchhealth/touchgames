@@ -12,10 +12,13 @@
 		
 		<t:field>
 			<t:label value="%{i18n.Plataforma.nome}"/>
+
 			<t:textoutput value="%{plataforma.nome}"/>
 		</t:field>
+
 		<t:field>
 			<t:label value="%{i18n.Plataforma.fabricante}"/>
+
 			<t:textoutput value="%{plataforma.fabricante.nome}"/>
 		</t:field>
 		

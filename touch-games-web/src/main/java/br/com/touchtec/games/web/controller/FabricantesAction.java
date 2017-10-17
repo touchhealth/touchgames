@@ -60,7 +60,7 @@ public class FabricantesAction extends TWFActionSupport {
     }
 
     public String view() throws Exception {
-        this.fabricante = this.fabricantesService.recuperarComListas(this.selectedId);
+        this.fabricante = this.fabricantesService.recuperar(this.selectedId);
         return "jsp/admin/fabricantes/view";
     }
 
