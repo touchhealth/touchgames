@@ -12,8 +12,14 @@
 package br.com.touchtec.games.core.crud;
 
 
+import static br.com.touchtec.dali.crud.operation.OperationProcessor.DefaultOperations.SAVE_NEW_OPERATION;
+import static br.com.touchtec.dali.crud.operation.Position.AFTER;
+
 import br.com.touchtec.dali.crud.api.CrudDTO;
 import br.com.touchtec.dali.crud.config.CrudMapping;
+import br.com.touchtec.dali.crud.operation.Handler;
+import br.com.touchtec.dali.crud.operation.Operation;
+import br.com.touchtec.dali.crud.operation.PersistEntityHandler;
 import br.com.touchtec.dali.view.View;
 import br.com.touchtec.games.core.model.Desenvolvedora;
 import br.com.touchtec.message.Named;
@@ -21,6 +27,14 @@ import br.com.touchtec.message.Named;
 
 @View(config = "nome")
 @CrudMapping(entity = Desenvolvedora.class)
+// Consulte DefaultOperations#mapOperations()
+@Operation(
+        id = SAVE_NEW_OPERATION,
+        handlers = @Handler(
+                type = LogCriacaoRegistrosHandler.class,
+                position = AFTER,
+                targetHandler = PersistEntityHandler.class
+        ))
 @Named(key = "Desenvolvedora")
 public class DesenvolvedoraDTO implements CrudDTO<Long> {
 

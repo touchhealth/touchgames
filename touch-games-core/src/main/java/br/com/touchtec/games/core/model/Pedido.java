@@ -12,7 +12,6 @@
 package br.com.touchtec.games.core.model;
 
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,9 +21,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.hibernate.annotations.Cascade;
 
 
 @Entity
@@ -63,8 +59,7 @@ public class Pedido extends EntidadeRaiz {
         this.data = data;
     }
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     public List<ItemPedido> getItens() {
         return this.itens;
     }

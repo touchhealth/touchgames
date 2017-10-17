@@ -21,7 +21,7 @@ import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.message.Named;
 
 
-@View(config = "nome")
+@View(config = "nome; fabricante")
 @CrudMapping(entity = Plataforma.class)
 @OrderBy("nome")
 @Named(key = "Plataforma")

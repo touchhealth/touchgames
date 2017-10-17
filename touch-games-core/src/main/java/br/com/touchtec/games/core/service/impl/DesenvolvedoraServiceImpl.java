@@ -27,11 +27,11 @@ import br.com.touchtec.games.core.service.DesenvolvedoraService;
 
 public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
 
-    private static final EntityManagerFactory EM_FACTORY = Persistence.createEntityManagerFactory("touch-games");
+    private static final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("touch-games");
 
     @Override
     public void criar(Desenvolvedora desenvolvedora) {
-        EntityManager em = EM_FACTORY.createEntityManager();
+        EntityManager em = EMF.createEntityManager();
 
         em.getTransaction().begin();
         em.persist(desenvolvedora);
@@ -40,7 +40,7 @@ public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
 
     @Override
     public void remover(Desenvolvedora desenvolvedora) {
-        EntityManager em = EM_FACTORY.createEntityManager();
+        EntityManager em = EMF.createEntityManager();
 
         Desenvolvedora connectedEntity = em.find(Desenvolvedora.class, desenvolvedora.getId());
         if (connectedEntity == null) {
@@ -54,7 +54,7 @@ public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
 
     @Override
     public void editar(Desenvolvedora desenvolvedora) {
-        EntityManager em = EM_FACTORY.createEntityManager();
+        EntityManager em = EMF.createEntityManager();
 
         em.getTransaction().begin();
         em.merge(desenvolvedora);
@@ -63,13 +63,13 @@ public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
 
     @Override
     public Desenvolvedora recuperar(Long id) {
-        EntityManager em = EM_FACTORY.createEntityManager();
+        EntityManager em = EMF.createEntityManager();
         return em.find(Desenvolvedora.class, id);
     }
 
     @Override
     public Desenvolvedora recuperarComListas(Long id) {
-        EntityManager em = EM_FACTORY.createEntityManager();
+        EntityManager em = EMF.createEntityManager();
 
         Desenvolvedora desenvolvedora = em.find(Desenvolvedora.class, id);
 
@@ -83,7 +83,7 @@ public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
 
     @SuppressWarnings("unchecked")
     public List<Desenvolvedora> listarTodos() {
-        EntityManager em = EM_FACTORY.createEntityManager();
+        EntityManager em = EMF.createEntityManager();
 
         String queryString = "SELECT d FROM Desenvolvedora d ORDER BY d.nome";
         Query query = em.createQuery(queryString);

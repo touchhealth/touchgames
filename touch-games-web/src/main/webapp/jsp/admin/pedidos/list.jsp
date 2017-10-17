@@ -24,7 +24,7 @@
 		</t:table>
 	
 		<t:toolbar>
-			<t:ajaxbutton action="Pedidos!view.action" responseTarget="response" postAction="$t('list').close()" template="view"/>
+			<t:ajaxbutton action="Pedidos!view.action" responseTarget="response" successAction="$t('list').close()" template="view"/>
 			<t:submitbutton action="Pedidos!remove.action" template="remove" confirmMsg="%{i18n.msg.remover}"/>
 		</t:toolbar>
 	</t:panel>

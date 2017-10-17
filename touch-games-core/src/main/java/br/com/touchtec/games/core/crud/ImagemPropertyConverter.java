@@ -18,13 +18,16 @@ import java.io.IOException;
 
 import org.apache.commons.io.IOUtils;
 
+import br.com.touchtec.dali.crud.converter.ConversionException;
 import br.com.touchtec.dali.crud.converter.PropertyConverter;
 import br.com.touchtec.dali.crud.manager.CrudManager;
 import br.com.touchtec.dali.target.Target;
 import br.com.touchtec.games.core.model.Imagem;
 import br.com.touchtec.games.core.model.Jogo;
 
-
+/**
+ * Converte File em Imagem e vice-versa.
+ */
 public class ImagemPropertyConverter implements PropertyConverter<JogoDTO, Jogo> {
 
     @Override
@@ -40,7 +43,7 @@ public class ImagemPropertyConverter implements PropertyConverter<JogoDTO, Jogo>
                 entity.getImagens().add(new Imagem(IOUtils.toByteArray(in)));
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new ConversionException(e);
         }
 
     }

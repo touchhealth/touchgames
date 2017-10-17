@@ -17,9 +17,9 @@
 		</t:table>
 	
 		<t:toolbar>
-			<t:ajaxbutton action="Desenvolvedoras!create.action" responseTarget="response" postAction="$t('list').close()" template="create"/>
-			<t:ajaxbutton action="Desenvolvedoras!update.action" responseTarget="response" postAction="$t('list').close()" template="update"/>
-			<t:ajaxbutton action="Desenvolvedoras!view.action" responseTarget="response" postAction="$t('list').close()" template="view"/>
+			<t:ajaxbutton action="Desenvolvedoras!create.action" responseTarget="response" successAction="$t('list').close()" template="create"/>
+			<t:ajaxbutton action="Desenvolvedoras!update.action" responseTarget="response" successAction="$t('list').close()" template="update"/>
+			<t:ajaxbutton action="Desenvolvedoras!view.action" responseTarget="response" successAction="$t('list').close()" template="view"/>
 			<t:submitbutton action="Desenvolvedoras!remove.action" template="remove" confirmMsg="%{i18n.msg.remover}"/>
 		</t:toolbar>
 	</t:panel>

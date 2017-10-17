@@ -26,6 +26,7 @@ import br.com.touchtec.dali.crud.command.CreateCommand;
 import br.com.touchtec.dali.crud.command.ExcludeCommands;
 import br.com.touchtec.dali.crud.command.UpdateCommand;
 import br.com.touchtec.dali.crud.config.CrudMapping;
+import br.com.touchtec.dali.crud.search.CustomClauseBuilder;
 import br.com.touchtec.dali.template.Template;
 import br.com.touchtec.dali.view.View;
 import br.com.touchtec.dali.view.Views;
@@ -34,9 +35,10 @@ import br.com.touchtec.message.Named;
 
 
 @Views({
-        @View(ids = SEARCH, config = "data"),
+        @View(ids = SEARCH, config = "id; data"),
         @View(ids = LIST, config = "id; data; valorTotal"),
-        @View(ids = VIEW, config = "id; data; itens; valorTotal")})
+        @View(ids = VIEW, config = "id; data; itens; valorTotal")
+})
 @CrudMapping(entity = Pedido.class)
 @ExcludeCommands({CreateCommand.class, UpdateCommand.class})
 @Named(key = "Pedido")
@@ -71,6 +73,7 @@ public class PedidoDTO implements CrudDTO<Long> {
         this.id = id;
     }
 
+    @CustomClauseBuilder(DataPedidoClauseBuilder.class)
     public Date getData() {
         return this.data;
     }

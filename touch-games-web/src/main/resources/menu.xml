@@ -2,11 +2,11 @@
 <menu>
     <mainMenu title="exercicios">
         <topItems>
-            <item title="helloStruts" url="struts/Hello.action"/>
-            <item title="helloGoodbyeStruts" url="struts/Hello!goodbye.action"/>
             <item title="helloServlet" url="hello"/>
             <item title="helloJSPServlet" url="hellojsp"/>
             <item title="jogosServlet" url="jogos"/>
+            <item title="helloStruts" url="struts/Hello.action"/>
+            <item title="helloGoodbyeStruts" url="struts/Hello!goodbye.action"/>
         </topItems>
     </mainMenu>
 
