@@ -19,6 +19,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,9 +29,7 @@ import com.google.common.base.Strings;
 import br.com.touchtec.games.core.model.Imagem;
 
 
-/**
- * @see "Mapeamnto no web.xml"
- */
+@WebServlet(urlPatterns = "/imagens")
 public class ImagensServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -50,6 +49,7 @@ public class ImagensServlet extends HttpServlet {
         Long idAsLong = Long.parseLong(imagemId);
 
         EntityManager em = EMF.createEntityManager();
+        // Objetos Lobs (Large Objects) precisam de transação para serem carregados
         em.getTransaction().begin();
         Imagem imagem = em.find(Imagem.class, idAsLong);
         em.getTransaction().commit();

@@ -15,17 +15,15 @@ package br.com.touchtec.games.web.servlet;
 import static com.google.common.base.Strings.isNullOrEmpty;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang.StringUtils;
 
 import br.com.touchtec.games.core.model.Desenvolvedora;
 import br.com.touchtec.games.core.model.Genero;
@@ -35,120 +33,151 @@ import br.com.touchtec.games.core.service.JogoService;
 import br.com.touchtec.games.core.service.impl.DesenvolvedoraServiceImpl;
 import br.com.touchtec.games.core.service.impl.JogoServiceImpl;
 
-/**
- * @see "web.xml"
- */
+@WebServlet(urlPatterns = "/jogos/*")
 public class JogosServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    private JogoService jogoService = new JogoServiceImpl();
 
+    private DesenvolvedoraService desenvolvedoraService = new DesenvolvedoraServiceImpl();
+
+    /**
+     * [GET]
+     * De uma maneira simplificada, é usado para operações que NAO modificam o estado da aplicação.
+     * Que sao idempotentes. Você pode chamar várias vezes e a resposta será a mesma.
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        JogoService service = new JogoServiceImpl();
-
-        List<Jogo> jogos = service.buscarTodos();
-        req.setAttribute("jogos", jogos);
-
-        String uri = req.getRequestURI();
-        String[] parts = uri.split("/");
-        String method = parts[parts.length - 1];
+        String method = getMethod(req);
         req.setAttribute("method", method);
 
-        if ("create".equals(method) || "update".equals(method)) {
-            DesenvolvedoraService desenvolvedoraService = new DesenvolvedoraServiceImpl();
-            List<Desenvolvedora> desenvolvedoras = desenvolvedoraService.buscarTodos();
-            req.setAttribute("desenvolvedoras", desenvolvedoras);
+        // Para os selects
+        List<Desenvolvedora> desenvolvedoras = desenvolvedoraService.buscarTodos();
+        req.setAttribute("desenvolvedoras", desenvolvedoras);
+        req.setAttribute("generos", Genero.values());
 
-            req.setAttribute("generos", Genero.values());
-        }
-
-        String selectedId = req.getParameter("id");
-        if (selectedId != null) {
-            Long selectedIdAsLong = Long.parseLong(selectedId);
-            Jogo jogo = service.recuperar(selectedIdAsLong);
+        if ("update".equals(method)) {
+            Long selectedId = Long.parseLong(req.getParameter("id"));
+            Jogo jogo = jogoService.recuperar(selectedId);
             req.setAttribute("jogo", jogo);
         }
 
-        req.getRequestDispatcher("/jsp/servlet/jogos.jsp").forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        JogoService service = new JogoServiceImpl();
-
-        String id = req.getParameter("id");
-
-        Jogo jogo;
-        if (isNullOrEmpty(id)) {
-            jogo = new Jogo();
-        } else {
-            Long idAsLong = Long.parseLong(id);
-            jogo = service.recuperar(idAsLong);
-        }
-
-        String method = req.getParameter("method");
-
-        if ("remove".equals(method)) {
-            service.remover(jogo);
-        } else if ("save".equals(method)) {
-            this.toEntity(req, jogo);
-            service.editar(jogo);
-        } else if ("savenew".equals(method)) {
-            this.toEntity(req, jogo);
-            service.criar(jogo);
-        }
-
-        List<Jogo> jogos = service.buscarTodos();
+        // Lista de jogos para a tabela
+        List<Jogo> jogos = jogoService.buscarTodos();
         req.setAttribute("jogos", jogos);
 
         req.getRequestDispatcher("/jsp/servlet/jogos.jsp").forward(req, resp);
     }
 
-    private void toEntity(HttpServletRequest req, Jogo jogo) {
-        jogo.setNome(req.getParameter("nome"));
-        jogo.setDescricao(req.getParameter("descricao"));
+    // /jogos/create => "create", pega o último texto depois da "/"
+    private static String getMethod(HttpServletRequest req) {
+        String[] parts = req.getRequestURI().split("/");
+        return parts[parts.length - 1];
+    }
 
-        String desenvolvedoraId = req.getParameter("desenvolvedora");
-        if (StringUtils.isNotEmpty(desenvolvedoraId)) {
-            DesenvolvedoraService desenvolvedoraService = new DesenvolvedoraServiceImpl();
-            Long id = Long.parseLong(desenvolvedoraId);
-            jogo.setDesenvolvedora(desenvolvedoraService.recuperar(id));
-        } else {
-            jogo.setDesenvolvedora(null);
+
+    /**
+     * [POST]
+     * É usado para operações que modificam o estado da aplicação.
+     * Que NAO sao idempotentes. Cada vez que vc chama, a resposta pode variar.
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Enviado pelos botoes de submit
+        String method = request.getParameter("method");
+
+        if ("remove".equals(method)) {
+            Jogo jogo = recuperarJogo(request);
+            jogoService.remover(jogo);
+        } else if ("save".equals(method)) {
+            Jogo jogo = recuperarJogo(request);
+            preencheJogo(request, jogo);
+            jogoService.editar(jogo);
+        } else if ("savenew".equals(method)) {
+            Jogo jogo = new Jogo();
+            preencheJogo(request, jogo);
+            jogoService.criar(jogo);
         }
 
-        String genero = req.getParameter("genero");
-        if (StringUtils.isNotEmpty(genero)) {
-            jogo.setGenero(Genero.valueOf(genero));
-        } else {
+        // Lista de jogos para a tabela
+        List<Jogo> jogos = jogoService.buscarTodos();
+        request.setAttribute("jogos", jogos);
+
+        request.getRequestDispatcher("/jsp/servlet/jogos.jsp").forward(request, response);
+    }
+
+
+    private Jogo recuperarJogo(HttpServletRequest request) {
+        String id = request.getParameter("id");
+        if (isNullOrEmpty(id)) {
+            throw new IllegalArgumentException("Id nulo");
+        }
+        Jogo jogo = jogoService.recuperar(Long.parseLong(id));
+        return jogo;
+    }
+
+    /**
+     * Preenche um Jogo com dados da request.
+     * HTTP é um protocolo de texto: HyperText Transfer Protocol.
+     * Por isso, precisamos converter os textos para os tipos que desejamos.
+     */
+    private void preencheJogo(HttpServletRequest request, Jogo jogo) {
+        // STRING, não precisa de conversão
+
+        jogo.setNome(request.getParameter("nome"));
+
+        jogo.setDescricao(request.getParameter("descricao"));
+
+        // ENUM
+
+        String genero = request.getParameter("genero");
+        if (isNullOrEmpty(genero)) {
             jogo.setGenero(null);
+        } else {
+            jogo.setGenero(Genero.valueOf(genero));
         }
 
-        String dataLancamento = req.getParameter("dataLancamento");
-        if (StringUtils.isNotEmpty(dataLancamento)) {
+        // DATA
+
+        String dataLancamento = request.getParameter("dataLancamento");
+        if (isNullOrEmpty(dataLancamento)) {
+            jogo.setDataLancamento(null);
+        } else {
             try {
-                jogo.setDataLancamento(DATE_FORMAT.parse(dataLancamento));
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                jogo.setDataLancamento(dateFormat.parse(dataLancamento));
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
-        } else {
-            jogo.setDataLancamento(null);
         }
 
-        String preco = req.getParameter("preco");
-        if (StringUtils.isNotEmpty(preco)) {
-            jogo.setPreco(Float.parseFloat(preco));
-        } else {
+        // FLOAT
+
+        String preco = request.getParameter("preco");
+        if (isNullOrEmpty(preco)) {
             jogo.setPreco(null);
+        } else {
+            jogo.setPreco(Float.parseFloat(preco));
         }
 
-        String desconto = req.getParameter("desconto");
-        if (StringUtils.isNotEmpty(desconto)) {
-            jogo.setDesconto(Integer.parseInt(desconto));
-        } else {
+        // INTEGER
+
+        String desconto = request.getParameter("desconto");
+        if (isNullOrEmpty(desconto)) {
             jogo.setDesconto(0);
+        } else {
+            jogo.setDesconto(Integer.parseInt(desconto));
+        }
+
+        // ASSOCIACAO
+
+        String desenvolvedoraId = request.getParameter("desenvolvedora");
+        if (isNullOrEmpty(desenvolvedoraId)) {
+            jogo.setDesenvolvedora(null);
+        } else {
+            Long id = Long.parseLong(desenvolvedoraId);
+            jogo.setDesenvolvedora(desenvolvedoraService.recuperar(id));
         }
     }
 }

@@ -21,17 +21,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+// A partir da servlet 3.0 é possível usar anotações em vez de mapear no web.xml
 @WebServlet(urlPatterns = "/hellojsp")
 public class HelloJSPServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("serverTime", new Date());
-        req.getRequestDispatcher("/jsp/servlet/result.jsp").forward(req, resp);
-    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Variáveis adicionadas à request podem ser recuperadas pelo JSP atravpes do operador ${}
+        request.setAttribute("serverTime", new Date());
 
+        // Em vez de escrever o código HTML diretamente na response, delegamos a tarefa a um JSP
+        request.getRequestDispatcher("/jsp/servlet/result.jsp").forward(request, response);
+    }
 
 }

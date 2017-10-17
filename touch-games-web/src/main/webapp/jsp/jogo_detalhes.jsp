@@ -65,7 +65,7 @@
 				
 		</div>
 		
-		<script src="${app}/js/prototype.js" type="text/javascript" />
-		<script src="${app}/js/jogos_recomendados.js" type="text/javascript" />
+		<script src="${app}/js/prototype.js" type="text/javascript" ></script>
+		<script src="${app}/js/jogos_recomendados.js" type="text/javascript" ></script>
 	</g:screen>
 </jsp:root>

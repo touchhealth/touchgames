@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /**
+ * Atende requisições "/hello"
+ *
  * @see "web.xml"
  */
 public class HelloServlet extends HttpServlet {
@@ -28,15 +30,26 @@ public class HelloServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String page = "" +
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Parâmetros são passados pela url após o sinal de "?"
+        // Múltiplos parâmetros são separados por "&"
+
+        // hello?nome=Touch&sobrenome=Tecnologia
+
+        String nome = request.getParameter("nome");
+        String sobrenome = request.getParameter("sobrenome");
+
+        String pagina = "" +
                 "<html>" +
                 "<head>" +
                 "<title>Servlets</title>" +
                 "</head>" +
-                "<body> Um dia eu serei uma pagina util... </body>" +
+                "<body>" +
+                "<div>Olá, " + nome + sobrenome + "</div>" +
+                "</body>" +
                 "</html>";
-        resp.getWriter().write(page);
+
+        response.getWriter().write(pagina);
     }
 
 

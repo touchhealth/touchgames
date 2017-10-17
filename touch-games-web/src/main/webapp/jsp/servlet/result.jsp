@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Servlets</title>
+	<title>Servlets e JSPs</title>
 </head>
 <body>
 
@@ -15,7 +15,14 @@
 	<p>
 		Por ex, sou capaz de imprimir a hora atual do servidor: ${serverTime} <a href="">Atualizar</a>
 	</p>
+	<p>
+		E este aqui é o seu context path (o caminho da sua aplicação): ${app}
+	</p>
 
+	<!--
+	[É bom saber:]
+	JSPs são compilados pelo servidor (Tomcat) e se transformam em uma Servlet.
+	-->
 </body>
 </html>
 </jsp:root>

@@ -2,7 +2,7 @@
 <menu>
     <mainMenu title="exercicios">
         <topItems>
-            <item title="helloServlet" url="hello"/>
+            <item title="helloServlet" url="hello?nome=Touch&amp;sobrenome=Tecnologia"/>
             <item title="helloJSPServlet" url="hellojsp"/>
             <item title="jogosServlet" url="jogos"/>
             <item title="helloStruts" url="struts/Hello.action"/>

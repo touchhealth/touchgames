@@ -34,7 +34,10 @@
 				<td>${jogo.desenvolvedora}</td>
 				<td>${jogo.preco}</td>
 				<td>${jogo.precoComDesconto}</td>
-				<td>${jogo.dataLancamento}</td>
+				<td>
+					<fmt:formatDate value="${jogo.dataLancamento}" var="dataLancamento" dateStyle="SHORT" />
+					${dataLancamento}
+				</td>
 				<td>
 					<a href="${app}/jogos/update?id=${jogo.id}">Editar</a>
 				</td>
@@ -42,6 +45,55 @@
 		</c:forEach>
 		</tbody>
 	</table>
+
+	<c:if test="${method=='create'}">
+		<form action="${app}/jogos" method="post">
+			<fieldset>
+				<legend>Novo Jogo</legend>
+
+				<div>
+					<div>Nome:</div>
+					<input type="text" name="nome"/>
+				</div>
+				<div>
+					<div>Descrição:</div>
+					<textarea name="descricao" rows="5" cols="30"><!-- vazio --></textarea>
+				</div>
+				<div>
+					<div>Desenvolvedora:</div>
+					<select name="desenvolvedora">
+						<option></option>
+						<c:forEach items="${desenvolvedoras}" var="desenvolvedora">
+							<option value="${desenvolvedora.id}">${desenvolvedora.nome}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div>
+					<div>Gênero:</div>
+					<c:forEach items="${generos}" var="genero">
+						<input type="radio" name="genero" value="${genero}" >${genero}</input>
+					</c:forEach>
+				</div>
+				<div>
+					<div>Data de Lançamento:</div>
+					<input  type="date" name="dataLancamento"/>
+				</div>
+				<div>
+					<div>Preço:</div>
+					<input  type="number" name="preco" step="0.01"/>
+				</div>
+				<div>
+					<div>Desconto:</div>
+					<input  type="number" name="desconto"/>%
+				</div>
+
+				<div>
+					<button type="submit" name="method" value="savenew">Criar</button>
+					<a href="${app}/jogos">Cancelar</a>
+				</div>
+			</fieldset>
+		</form>
+	</c:if>
 	
 	<c:if test="${method=='update'}">
 		<form action="${app}/jogos" method="post">
@@ -51,15 +103,15 @@
 				<input type="hidden" name="id" value="${jogo.id}" />
 				
 				<div>
-					Nome: 
+					<div>Nome:</div>
 					<input type="text" name="nome" value="${jogo.nome}"/>
 				</div>		
 				<div>
-					Descrição: 
+					<div>Descrição:</div>
 					<textarea type="text" name="descricao" rows="5" cols="30">${jogo.descricao}</textarea>
 				</div>
 				<div>
-					Desenvolvedora:
+					<div>Desenvolvedora:</div>
 					<select name="desenvolvedora">
 						<c:if test="${not empty jogo.desenvolvedora}">
 							<option value=""></option>
@@ -79,7 +131,7 @@
 					</select>
 				</div>
 				<div>
-					Gênero: 
+					<div>Gênero:</div>
 					<c:forEach items="${generos}" var="genero">
 						<c:if test="${jogo.genero!=genero}">
 							<input type="radio" name="genero" value="${genero}" >${genero}</input>
@@ -90,70 +142,23 @@
 					</c:forEach>
 				</div>
 				<div>
-					Data de Lançamento:
-					<fmt:formatDate value="${jogo.dataLancamento}" var="dataLancamento" pattern="yyyy-MM-dd" />
+					<div>Data de Lançamento:</div>
+					<fmt:formatDate value="${jogo.dataLancamento}" var="dataLancamento" dateStyle="SHORT" />
 					<input  type="date" name="dataLancamento" value="${dataLancamento}"/>
 				</div>
 				<div>
-					Preço:
+					<div>Preço:</div>
 					<input  type="number" name="preco" value="${jogo.preco}" step="0.01"/>
 				</div>
 				<div>
-					Desconto:
+					<div>Desconto:</div>
 					<input  type="number" name="desconto" value="${jogo.desconto}"/>%
 				</div>
 						
 				<div>
 					<button type="submit" name="method" value="save">Salvar</button>
 					<button type="submit" name="method" value="remove">Remover</button>
-				</div>
-			</fieldset>
-		</form>
-	</c:if>
-	
-	<c:if test="${method=='create'}">
-		<form action="${app}/jogos" method="post">
-			<fieldset>
-				<legend>Novo Jogo</legend>
-				
-				<div>
-					Nome: 
-					<input type="text" name="nome"/>
-				</div>		
-				<div>
-					Descrição: 
-					<textarea name="descricao" rows="5" cols="30"><!-- vazio --></textarea>
-				</div>
-				<div>
-					Desenvolvedora:
-					<select name="desenvolvedora">
-						<option></option>
-						<c:forEach items="${desenvolvedoras}" var="desenvolvedora">
-							<option value="${desenvolvedora.id}">${desenvolvedora.nome}</option>
-						</c:forEach>
-					</select>
-				</div>
-				<div>
-					Gênero: 
-					<c:forEach items="${generos}" var="genero">
-						<input type="radio" name="genero" value="${genero}" >${genero}</input>
-					</c:forEach>
-				</div>
-				<div>
-					Data de Lançamento:
-					<input  type="date" name="dataLancamento"/>
-				</div>
-				<div>
-					Preço:
-					<input  type="number" name="preco" step="0.01"/>
-				</div>
-				<div>
-					Desconto:
-					<input  type="number" name="desconto"/>%
-				</div>	
-				
-				<div>
-					<button type="submit" name="method" value="savenew">Criar</button>
+					<a href="${app}/jogos">Cancelar</a>
 				</div>
 			</fieldset>
 		</form>
