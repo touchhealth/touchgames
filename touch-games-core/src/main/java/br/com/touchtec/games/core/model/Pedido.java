@@ -77,31 +77,4 @@ public class Pedido extends EntidadeRaiz {
     protected String print() {
         return String.format("Pedido #%s", this.getId());
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (this == obj) {
-            return true;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        Pedido other = (Pedido) obj;
-        return new EqualsBuilder() //
-                .append(this.data, other.data) //
-                .append(this.itens == null ? null : new ArrayList<ItemPedido>(this.itens), //
-                        other.itens == null ? null : new ArrayList<ItemPedido>(this.itens)) //
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder() //
-                .append(this.data) //
-                .append(this.itens) //
-                .toHashCode();
-    }
 }

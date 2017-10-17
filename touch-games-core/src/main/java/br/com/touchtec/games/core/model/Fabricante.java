@@ -21,9 +21,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 
 @Entity
 public class Fabricante extends EntidadeRaiz {
@@ -55,30 +52,6 @@ public class Fabricante extends EntidadeRaiz {
     @Override
     protected String print() {
         return nullToEmpty(this.nome);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (this == obj) {
-            return true;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        Fabricante other = (Fabricante) obj;
-        return new EqualsBuilder() //
-                .append(this.nome, other.nome) //
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder() //
-                .append(this.nome) //
-                .toHashCode();
     }
 
 }

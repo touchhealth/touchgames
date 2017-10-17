@@ -27,9 +27,6 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 import br.com.touchtec.message.Named;
 
 
@@ -162,30 +159,6 @@ public class Jogo extends EntidadeRaiz {
     @Override
     protected String print() {
         return this.nome;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (this == obj) {
-            return true;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        Jogo other = (Jogo) obj;
-        return new EqualsBuilder() //
-                .append(this.nome, other.nome) //
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder() //
-                .append(this.nome) //
-                .toHashCode();
     }
 
 }

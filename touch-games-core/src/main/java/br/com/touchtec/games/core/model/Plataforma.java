@@ -16,9 +16,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 
 @Entity
 public class Plataforma extends EntidadeRaiz {
@@ -50,29 +47,5 @@ public class Plataforma extends EntidadeRaiz {
 
     public void setFabricante(Fabricante fabricante) {
         this.fabricante = fabricante;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (this == obj) {
-            return true;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        Plataforma other = (Plataforma) obj;
-        return new EqualsBuilder() //
-                .append(this.nome, other.nome) //
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder() //
-                .append(this.nome) //
-                .toHashCode();
     }
 }

@@ -26,7 +26,6 @@ import br.com.touchtec.dali.crud.command.CreateCommand;
 import br.com.touchtec.dali.crud.command.ExcludeCommands;
 import br.com.touchtec.dali.crud.command.UpdateCommand;
 import br.com.touchtec.dali.crud.config.CrudMapping;
-import br.com.touchtec.dali.crud.converter.CustomPropertyConverter;
 import br.com.touchtec.dali.template.Template;
 import br.com.touchtec.dali.view.View;
 import br.com.touchtec.dali.view.Views;
@@ -36,8 +35,8 @@ import br.com.touchtec.message.Named;
 
 @Views({
         @View(ids = SEARCH, config = "data"),
-        @View(ids = LIST, config = "id;data;valorTotal"),
-        @View(ids = VIEW, config = "id;data;itens;valorTotal")})
+        @View(ids = LIST, config = "id; data; valorTotal"),
+        @View(ids = VIEW, config = "id; data; itens; valorTotal")})
 @CrudMapping(entity = Pedido.class)
 @ExcludeCommands({CreateCommand.class, UpdateCommand.class})
 @Named(key = "Pedido")
@@ -54,7 +53,6 @@ public class PedidoDTO implements CrudDTO<Long> {
     private Float valorTotal;
 
     @Template(value = NUMBER_OUTPUT, params = "format = \u00A4 #.00")
-    @CustomPropertyConverter(PedidoPropertyConverter.class)
     public Float getValorTotal() {
         return this.valorTotal;
     }

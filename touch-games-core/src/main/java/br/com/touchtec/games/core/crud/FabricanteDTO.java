@@ -13,12 +13,19 @@ package br.com.touchtec.games.core.crud;
 
 
 import static br.com.touchtec.dali.crud.api.CrudViews.SEARCH;
+import static br.com.touchtec.dali.crud.operation.OperationProcessor.DefaultOperations.SAVE_NEW_OPERATION;
+import static br.com.touchtec.dali.crud.operation.OperationProcessor.DefaultOperations.SAVE_OPERATION;
+import static br.com.touchtec.dali.crud.operation.Position.AFTER;
 
 import java.util.List;
 
 import br.com.touchtec.dali.crud.api.AssociationDTO;
 import br.com.touchtec.dali.crud.api.CrudDTO;
 import br.com.touchtec.dali.crud.config.CrudMapping;
+import br.com.touchtec.dali.crud.operation.DTOToEntityHandler;
+import br.com.touchtec.dali.crud.operation.Handler;
+import br.com.touchtec.dali.crud.operation.Operation;
+import br.com.touchtec.dali.crud.operation.Operations;
 import br.com.touchtec.dali.view.View;
 import br.com.touchtec.dali.view.Views;
 import br.com.touchtec.games.core.model.Fabricante;
@@ -30,6 +37,11 @@ import br.com.touchtec.message.Named;
         @View(config = "nome; plataformas")
 })
 @CrudMapping(entity = Fabricante.class)
+// Ver br.com.touchtec.dali.crud.config.DefaultCrudMapper#mapOperations
+@Operations({
+        @Operation(id = SAVE_NEW_OPERATION, handlers = @Handler(type = AssociaFabricanteAPlataformaHandler.class, position = AFTER, targetHandler = DTOToEntityHandler.class)),
+        @Operation(id = SAVE_OPERATION, handlers = @Handler(type = AssociaFabricanteAPlataformaHandler.class, position = AFTER, targetHandler = DTOToEntityHandler.class))
+})
 @Named(key = "Fabricante")
 public class FabricanteDTO implements CrudDTO<Long> {
 

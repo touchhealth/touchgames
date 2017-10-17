@@ -16,9 +16,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 
 @Entity
 public class ItemPedido extends EntidadeRaiz {
@@ -26,7 +23,9 @@ public class ItemPedido extends EntidadeRaiz {
     private static final long serialVersionUID = 1L;
 
     private Jogo jogo;
+
     private int quantidade;
+
     private Plataforma plataforma;
 
     @Transient
@@ -63,31 +62,5 @@ public class ItemPedido extends EntidadeRaiz {
     @Override
     protected String print() {
         return String.format("%d x %s de %s", this.quantidade, this.jogo, this.plataforma);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (this == obj) {
-            return true;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        ItemPedido other = (ItemPedido) obj;
-        return new EqualsBuilder() //
-                .append(this.jogo, other.jogo) //
-                .append(this.plataforma, other.plataforma) //
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder() //
-                .append(this.jogo) //
-                .append(this.plataforma) //
-                .toHashCode();
     }
 }
