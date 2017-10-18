@@ -24,17 +24,17 @@ import br.com.touchtec.twf.core.TWFActionSupport;
  */
 public class DesenvolvedorasAction extends TWFActionSupport {
 
+    // TWFActionSupport é uma classe do TWF, que vcs aprenderao mais adiante
+
     private static final long serialVersionUID = 1L;
+
+    // ########################################################################################
+    // TABELA
+    // ########################################################################################
 
     private DesenvolvedoraService desenvolvedoraService = new DesenvolvedoraServiceImpl();
 
-    private String formTitle;
-
-    private Desenvolvedora desenvolvedora;
-
     private List<Desenvolvedora> desenvolvedoras;
-
-    private Long selectedId;
 
     @Override
     public String execute() throws Exception {
@@ -42,10 +42,35 @@ public class DesenvolvedorasAction extends TWFActionSupport {
         return "jsp/admin/desenvolvedoras/list";
     }
 
+    public List<Desenvolvedora> getDesenvolvedoras() {
+        return this.desenvolvedoras;
+    }
+
+
+    // ########################################################################################
+    // CRIACAO
+    // ########################################################################################
+
+    private String formTitle;
+
     public String create() throws Exception {
         this.formTitle = "Criação";
         return "jsp/admin/desenvolvedoras/form";
     }
+
+    public String getFormTitle() {
+        return this.formTitle;
+    }
+
+    // ########################################################################################
+    // EDICAO
+    // ########################################################################################
+
+    // Valor do <t:tablerowselector name="selectedId"> da lista
+    private Long selectedId;
+
+    // Para que form.jsp preencha a tela
+    private Desenvolvedora desenvolvedora;
 
     public String update() throws Exception {
         this.desenvolvedora = this.desenvolvedoraService.recuperar(this.selectedId);
@@ -53,10 +78,26 @@ public class DesenvolvedorasAction extends TWFActionSupport {
         return "jsp/admin/desenvolvedoras/form";
     }
 
-    public String view() throws Exception {
-        this.desenvolvedora = this.desenvolvedoraService.recuperar(this.selectedId);
-        return "jsp/admin/desenvolvedoras/view";
+    public Desenvolvedora getDesenvolvedora() {
+        return this.desenvolvedora;
     }
+
+    public void setDesenvolvedora(Desenvolvedora desenvolvedora) {
+        this.desenvolvedora = desenvolvedora;
+    }
+
+    public Long getSelectedId() {
+        return this.selectedId;
+    }
+
+    public void setSelectedId(Long selectedId) {
+        this.selectedId = selectedId;
+    }
+
+
+    // ########################################################################################
+    // SAVE, REMOVE
+    // ########################################################################################
 
     public String save() throws Exception {
         if (this.desenvolvedora.getId() != null) {
@@ -74,34 +115,6 @@ public class DesenvolvedorasAction extends TWFActionSupport {
         this.desenvolvedoraService.remover(this.desenvolvedora);
         this.addSuccessMessage(this.desenvolvedora + " removida com sucesso");
         return this.execute();
-    }
-
-    public Desenvolvedora getDesenvolvedora() {
-        return this.desenvolvedora;
-    }
-
-    public void setDesenvolvedora(Desenvolvedora desenvolvedora) {
-        this.desenvolvedora = desenvolvedora;
-    }
-
-    public void setDesenvolvedoras(List<Desenvolvedora> desenvolvedoras) {
-        this.desenvolvedoras = desenvolvedoras;
-    }
-
-    public Long getSelectedId() {
-        return this.selectedId;
-    }
-
-    public void setSelectedId(Long selectedId) {
-        this.selectedId = selectedId;
-    }
-
-    public String getFormTitle() {
-        return this.formTitle;
-    }
-
-    public List<Desenvolvedora> getDesenvolvedoras() {
-        return this.desenvolvedoras;
     }
 
 }

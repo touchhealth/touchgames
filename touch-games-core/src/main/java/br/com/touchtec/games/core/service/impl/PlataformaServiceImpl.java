@@ -18,6 +18,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +27,7 @@ import br.com.touchtec.games.core.service.PlataformaService;
 
 
 @Component
+@Scope("singleton")
 @Transactional
 public class PlataformaServiceImpl implements PlataformaService {
 
@@ -51,11 +53,13 @@ public class PlataformaServiceImpl implements PlataformaService {
         return this.em.merge(plataforma);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Plataforma recuperar(Long id) {
         return this.em.find(Plataforma.class, id);
     }
 
+    @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
     public List<Plataforma> buscarTodos() {
         String queryString = "SELECT p FROM Plataforma p ORDER BY p.nome";

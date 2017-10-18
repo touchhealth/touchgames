@@ -2,25 +2,29 @@
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
 		  xmlns:t="http://www.touchtec.com.br/twfc-tags">
 	
-	<t:loadbundle var="i18n" basename="Names" />
-	
 	<t:panel id="plataformaForm" cssClass="form">
 		<t:title value="%{formTitle}"/>
 		
 		<input type="hidden" name="plataforma.id" value="${plataforma.id}"/>
-		
+
 		<t:set component="label" value="width:150px" property="style" />
 		
 		<t:field>
-			<t:label value="%{i18n.Plataforma.nome}"/>
+			<t:label value="Nome"/>
 			<t:textinput name="plataforma.nome" value="%{plataforma.nome}">
 				<t:validate criteria="required" />
 			</t:textinput>
 		</t:field>
+
 		<t:field>
-			<t:label value="%{i18n.Plataforma.fabricante}"/>
-			<t:singleselect name="plataforma.fabricante.id" value="%{plataforma.fabricante}" 
-				list="%{fabricantes}" optionLabel="nome"  optionValue="id">
+			<t:label value="Fabricante"/>
+
+			<t:singleselect
+					name="plataforma.fabricante.id"
+					value="%{plataforma.fabricante}"
+					list="%{fabricantes}"
+					optionLabel="nome"
+					optionValue="id">
 				<t:validate criteria="required" />
 			</t:singleselect>
 		</t:field>

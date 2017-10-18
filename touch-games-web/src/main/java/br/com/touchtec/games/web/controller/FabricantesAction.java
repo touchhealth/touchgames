@@ -29,10 +29,8 @@ import br.com.touchtec.twf.core.TWFActionSupport;
 @Scope("request")
 public class FabricantesAction extends TWFActionSupport {
 
-    private static final long serialVersionUID = 1L;
-
     @Autowired
-    private FabricanteService fabricantesService;
+    private FabricanteService fabricanteService;
 
     private String formTitle;
 
@@ -44,7 +42,7 @@ public class FabricantesAction extends TWFActionSupport {
 
     @Override
     public String execute() throws Exception {
-        this.fabricantes = this.fabricantesService.buscarTodos();
+        this.fabricantes = this.fabricanteService.buscarTodos();
         return "jsp/admin/fabricantes/list";
     }
 
@@ -54,30 +52,25 @@ public class FabricantesAction extends TWFActionSupport {
     }
 
     public String update() throws Exception {
-        this.fabricante = this.fabricantesService.recuperar(this.selectedId);
+        this.fabricante = this.fabricanteService.recuperar(this.selectedId);
         this.formTitle = "Edição";
         return "jsp/admin/fabricantes/form";
     }
 
-    public String view() throws Exception {
-        this.fabricante = this.fabricantesService.recuperar(this.selectedId);
-        return "jsp/admin/fabricantes/view";
-    }
-
     public String save() throws Exception {
         if (this.fabricante.getId() != null) {
-            this.fabricantesService.editar(this.fabricante);
+            this.fabricanteService.editar(this.fabricante);
             this.addSuccessMessage(this.fabricante + " atualizado com sucesso");
         } else {
-            this.fabricantesService.criar(this.fabricante);
+            this.fabricanteService.criar(this.fabricante);
             this.addSuccessMessage(this.fabricante + " criado com sucesso");
         }
         return this.execute();
     }
 
     public String remove() throws Exception {
-        this.fabricante = this.fabricantesService.recuperar(this.selectedId);
-        this.fabricantesService.remover(this.fabricante);
+        this.fabricante = this.fabricanteService.recuperar(this.selectedId);
+        this.fabricanteService.remover(this.fabricante);
         this.addSuccessMessage(this.fabricante + " removido com sucesso");
         return this.execute();
     }
@@ -94,10 +87,6 @@ public class FabricantesAction extends TWFActionSupport {
         return this.fabricantes;
     }
 
-    public void setFabricantes(List<Fabricante> fabricantes) {
-        this.fabricantes = fabricantes;
-    }
-
     public Long getSelectedId() {
         return this.selectedId;
     }
@@ -109,4 +98,6 @@ public class FabricantesAction extends TWFActionSupport {
     public String getFormTitle() {
         return this.formTitle;
     }
+
+    private static final long serialVersionUID = 1L;
 }

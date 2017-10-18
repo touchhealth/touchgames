@@ -20,6 +20,7 @@ import javax.persistence.Query;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.hibernate.Hibernate;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +30,7 @@ import br.com.touchtec.persistence.QueryTyper;
 
 
 @Component
+@Scope("singleton")
 @Transactional
 public class PedidoServiceImpl implements PedidoService {
 
@@ -54,6 +56,7 @@ public class PedidoServiceImpl implements PedidoService {
         return this.em.merge(pedido);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Pedido recuperar(Long id) {
         Pedido pedido = this.em.find(Pedido.class, id);
@@ -61,6 +64,7 @@ public class PedidoServiceImpl implements PedidoService {
         return pedido;
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Pedido> buscarTodos() {
         String queryString = "SELECT p FROM Pedido p ORDER BY p.data";

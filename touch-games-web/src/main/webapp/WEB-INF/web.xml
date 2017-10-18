@@ -67,7 +67,7 @@
     SPRING
     ###############################################################################################
     -->
-    <!-- Configurações para o Spring -->
+
     <context-param>
         <param-name>parentContextKey</param-name>
         <param-value>appContext</param-value>

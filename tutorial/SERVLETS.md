@@ -4,7 +4,8 @@ Servlets são classes que respondem a uma chamada HTTP. Elas recebem uma request
 
 > #### Adicione o código abaixo à classe HelloServlet
 
-``` java
+
+~~~ java
 @Override
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     // Parâmetros são passados pela url após o sinal de "?"
@@ -27,7 +28,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 
     response.getWriter().write(pagina);
 }
-```
+~~~
 
 > #### Abra o arquivo web.xml e adicione o mapeameno abaixo
 
@@ -126,6 +127,19 @@ chain.doFilter(request, response);
 
 Finalmente vamos fazer nossa primeira tela do nosso e-commerce.
 
+```
+[GET]
+TELA INICIAL: jogos/
+TELA CRIAÇÃO: jogos/create
+TELA EDIÇÃO: jogos/update?id=42
+
+[POST]
+CRIAR: jogos?method=savenew
+ATUALIZAR: jogos?method=save
+REMOVER: jogos?method=remove
+
+```
+
 > #### Mapeie a servlet
 
 ```java
@@ -181,7 +195,7 @@ private DesenvolvedoraService desenvolvedoraService = new DesenvolvedoraServiceI
     }
 ```
 
-> ####  Abra jsp/servlet/jogos.jsp e adicone o código abaixo dentro da tag <body>
+> ####  Abra jsp/servlet/jogos.jsp e adicone o código abaixo dentro da tag `body`
 
 - forEach
 - fmt
@@ -279,45 +293,45 @@ private DesenvolvedoraService desenvolvedoraService = new DesenvolvedoraServiceI
 - operação de CRIAR
 
 ```java
-    /**
-     * [POST]
-     * É usado para operações que modificam o estado da aplicação.
-     * Que NAO sao idempotentes. Cada vez que vc chama, a resposta pode variar.
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Enviado pelos botoes de submit
-        String method = request.getParameter("method");
+/**
+ * [POST]
+ * É usado para operações que modificam o estado da aplicação.
+ * Que NAO sao idempotentes. Cada vez que vc chama, a resposta pode variar.
+ */
+@Override
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    // Enviado pelos botoes de submit
+    String method = request.getParameter("method");
 
-        if ("remove".equals(method)) {
-            Jogo jogo = recuperarJogo(request);
-            jogoService.remover(jogo);
-        } else if ("save".equals(method)) {
-            Jogo jogo = recuperarJogo(request);
-            preencheJogo(request, jogo);
-            jogoService.editar(jogo);
-        } else if ("savenew".equals(method)) {
-            Jogo jogo = new Jogo();
-            preencheJogo(request, jogo);
-            jogoService.criar(jogo);
-        }
-
-        // Lista de jogos para a tabela
-        List<Jogo> jogos = jogoService.buscarTodos();
-        request.setAttribute("jogos", jogos);
-
-        request.getRequestDispatcher("/jsp/servlet/jogos.jsp").forward(request, response);
+    if ("remove".equals(method)) {
+        Jogo jogo = recuperarJogo(request);
+        jogoService.remover(jogo);
+    } else if ("save".equals(method)) {
+        Jogo jogo = recuperarJogo(request);
+        preencheJogo(request, jogo);
+        jogoService.editar(jogo);
+    } else if ("savenew".equals(method)) {
+        Jogo jogo = new Jogo();
+        preencheJogo(request, jogo);
+        jogoService.criar(jogo);
     }
 
+    // Lista de jogos para a tabela
+    List<Jogo> jogos = jogoService.buscarTodos();
+    request.setAttribute("jogos", jogos);
 
-    private Jogo recuperarJogo(HttpServletRequest request) {
-        String id = request.getParameter("id");
-        if (isNullOrEmpty(id)) {
-            throw new IllegalArgumentException("Id nulo");
-        }
-        Jogo jogo = jogoService.recuperar(Long.parseLong(id));
-        return jogo;
+    request.getRequestDispatcher("/jsp/servlet/jogos.jsp").forward(request, response);
+}
+
+
+private Jogo recuperarJogo(HttpServletRequest request) {
+    String id = request.getParameter("id");
+    if (isNullOrEmpty(id)) {
+        throw new IllegalArgumentException("Id nulo");
     }
+    Jogo jogo = jogoService.recuperar(Long.parseLong(id));
+    return jogo;
+}
 ```
 
 > #### Adicione o método de conversão Request → Jogo

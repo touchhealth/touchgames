@@ -10,8 +10,19 @@
 </head>
 <body>
 
-	${message}
-	
+	<p>
+		Eu sou retornado pela HelloStrutsAction.
+	</p>
+
+	<p>
+		Eu consigo acessar variáveis diretamente da Action;
+		Basta elas terem um getter.
+	</p>
+
+	<p>
+		Por ex, consigo acessar o conteúdo de message: ${message}
+	</p>
+
 </body>
 </html>
 </jsp:root>

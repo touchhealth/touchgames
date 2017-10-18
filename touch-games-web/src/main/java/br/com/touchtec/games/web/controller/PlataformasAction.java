@@ -73,11 +73,6 @@ public class PlataformasAction extends TWFActionSupport {
         return "jsp/admin/plataformas/form";
     }
 
-    public String view() throws Exception {
-        this.plataforma = this.plataformaService.recuperar(this.selectedId);
-        return "jsp/admin/plataformas/view";
-    }
-
     public String save() throws Exception {
         try {
             if (this.plataforma.getId() != null) {
@@ -110,10 +105,6 @@ public class PlataformasAction extends TWFActionSupport {
 
     public List<Plataforma> getPlataformas() {
         return this.plataformas;
-    }
-
-    public void setPlataformas(List<Plataforma> plataformas) {
-        this.plataformas = plataformas;
     }
 
     public Long getSelectedId() {

@@ -22,6 +22,14 @@
 		<action name="*" class="br.com.touchtec.games.web.controller.{1}Action">
 			<interceptor-ref name="navigation" />
 			<interceptor-ref name="twfDefaultStack" />
+
+			<!-- Os results são retornados diretamente pelas Actions -->
 		</action>
 	</package>
+
+	<!--<package name="default" extends="twf-default">-->
+		<!--<action name="*" class="br.com.touchtec.games.web.controller.{1}Action">-->
+			<!--&lt;!&ndash; Os results são retornados diretamente pelas Actions &ndash;&gt;-->
+		<!--</action>-->
+	<!--</package>-->
 </struts>

@@ -18,6 +18,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,9 +27,11 @@ import br.com.touchtec.games.core.service.FabricanteService;
 
 
 @Component
+@Scope("singleton")
 @Transactional
 public class FabricanteServiceImpl implements FabricanteService {
 
+    // equivalente ao @Autowired
     @PersistenceContext
     private EntityManager em;
 
@@ -51,11 +54,14 @@ public class FabricanteServiceImpl implements FabricanteService {
         return this.em.merge(fabricante);
     }
 
+    // Quando não houver modificações de dados, use readOnly = true: melhor desempenho.
+    @Transactional(readOnly = true)
     @Override
     public Fabricante recuperar(Long id) {
         return this.em.find(Fabricante.class, id);
     }
 
+    @Transactional(readOnly = true)
     public List<Fabricante> buscarTodos() {
         String queryString = "SELECT f FROM Fabricante f ORDER BY f.nome";
         Query query = this.em.createQuery(queryString);

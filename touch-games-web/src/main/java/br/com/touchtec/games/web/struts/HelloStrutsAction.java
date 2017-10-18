@@ -33,10 +33,12 @@ public class HelloStrutsAction extends TWFActionSupport {
         return SUCCESS;
     }
 
+    // getter é necessário para que o JSP consiga acessar: ${message}
     public String getMessage() {
         return this.message;
     }
 
+    // setter é necessário para recuperar parâmetros da request
     public void setMessage(String message) {
         this.message = message;
     }
