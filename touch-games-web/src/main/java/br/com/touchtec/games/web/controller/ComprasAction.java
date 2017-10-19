@@ -102,9 +102,10 @@ public class ComprasAction extends TWFActionSupport {
 
     public JSONArray jogosRecomendados() {
         try {
+            // Apenas para conseguirmos enxergar o "loading"
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            // Não vamos fazer nada
+            // ignorar
         }
 
         this.jogos = this.jogoService.buscar(this.generoSelecionado);

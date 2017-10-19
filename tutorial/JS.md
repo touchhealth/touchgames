@@ -1,7 +1,5 @@
 # Javascript
 
-:books:
-
 ```js
 
 // VAR
@@ -170,9 +168,12 @@ Nem todos os eventos borbulham: [onFocus](https://www.w3schools.com/jsref/event_
 
 ## AJAX
 
-O nome técnico é **requisições XHR**: _XMLHttpRequest_.
-Foi criado pela Microsoft
+O nome técnico é **requisições XHR**: _XMLHttpRequest_.   
+Foi criado pela Microsoft para transportar XML como resposta da request.   
+Evoluiu e hoje pode ser usado com outros tipos: XML, JSON, Texto ou mesmo HTML.
 
+
+### Do lado do cliente
 
 ```js
 new Ajax.Request('Compras!jogosRecomendados.action?genero=42',    {
@@ -185,3 +186,127 @@ new Ajax.Request('Compras!jogosRecomendados.action?genero=42',    {
       ...
 });
 ```
+
+### Do lado da action
+
+```java
+import br.com.touchtec.json.JSONArray;
+import br.com.touchtec.json.JSONObject;
+
+// array de objetos
+public JSONArray jogosRecomendados() {…}
+
+// um objeto
+public JSONObject jogo() {
+    JSONObject json = new JSONObject();
+    json.put("id", jogo.getId());
+    json.put("nome", jogo.getNome());
+    return json;
+}
+
+```
+
+# Tarefa: mostrar jogos recomendados
+
+> #### Abra `jogos_detalhes.jsp` e adicione no fim da página
+
+```
+    <script src="${app}/js/prototype.js" type="text/javascript" ></script>
+    <script src="${app}/js/jogos_recomendados.js" type="text/javascript" ></script>
+</g:screen>
+```
+
+> #### Abra `jogos_recomendados.js` e adicione
+
+Vamos escrever nosso código dentro da função abaixo para que ela só seja executada quando a página estiver sido carregada.
+Adicione dentro desta função todos os trechos a seguir um abaixo do outro.
+```js
+$(document).observe("dom:loaded", function(){
+
+     // nosso código vem aqui
+
+}
+```
+
+> #### Primeiro, selecionamos o alvo
+
+```js
+var contentNode = $('jogos-relacionados').down('.content');
+var genero = $('jogos-relacionados').dataset.genero;
+```
+
+> #### Em seguida, adicione a função que fará a request
+
+```js
+var atualizaJogosRecomendados = function () {
+    contentNode.addClassName("loading");
+    contentNode.update("");
+
+    new Ajax.Request("Compras!jogosRecomendados.action?generoSelecionado=" + genero, {
+        onSuccess: function (transport) {
+            var jogos = transport.responseJSON.twfOriginalJSON;
+            renderizaResposta(jogos);
+            contentNode.removeClassName("loading");
+        }
+    });
+};
+```
+
+> #### Adicione a funçao que renderiza a resposta
+
+```js
+/*
+ Vamos criar programaticamente códgio HTML.
+ Não é comum fazermos assim na prática. Dá muito trabalho. Mas vale saber como faz.
+ */
+var renderizaResposta = function (jogos) {
+    $(jogos).each(function (jogo) {
+        var id = jogo.id;
+        var nome = jogo.nome;
+        var imagemId = jogo.imagemId || '';
+
+        var anchorNode = new Element('a', {href: 'Compras!jogoDetalhes.action?jogoSelecionado.id=' + id});
+
+        var boxNode = new Element('div', {class: 'jogo'});
+        anchorNode.appendChild(boxNode);
+
+        var imgNode = new Element('img', {
+            src: "imagens?id=" + imagemId,
+            onerror: "this.src='img/jogo_padrao.png'"
+        });
+        boxNode.appendChild(imgNode);
+
+        var nomeNode = new Element('div', {class: 'nome'});
+        nomeNode.update(nome);
+        boxNode.appendChild(nomeNode);
+
+        contentNode.appendChild(anchorNode);
+    });
+};
+```
+
+O código acima vai criar uma lista de HTMLs com esta estrtura:
+
+```html
+<a href="Compras!jogoDetalhes.action?jogoSelecionado.id=351">
+    <div class="jogo">
+        <img src="img/jogo_padrao.png" onerror="this.src='img/jogo_padrao.png'">
+        <div class="nome">
+           Mario 2
+        </div>
+    </div>
+</a>
+```
+
+> #### Por fim, invoque a função de atualização
+
+```js
+// chamada inicial, ao entrar na tela
+atualizaJogosRecomendados();
+
+// atualiza a cada 5s
+setInterval(atualizaJogosRecomendados, 5000);
+```
+> #### Reinicie a aplicaçao
+> Acesse a tela [/Compras.action]() e selecione um Jogo para ver a tela de **Detalhes**.
+> Repare na área abaixo do texto **Você também pode gostar:**
