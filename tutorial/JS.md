@@ -107,5 +107,45 @@ calcula(99, somaUm);
 - $('header') → document.getElementById('header')
 - $$('seletor_css') → $$('#header .game')
 
+[Documentaçao oficial](http://api.prototypejs.org/)
+
+## Navegar pela DOM
+
+```js
+var divs = $('header').select('div'); // array
+var jogo = $('jogos-lista').down('.jogo');
+var div = $('jogos-lista').up('div');
+```
+
+## Iterando
+
+```js
+
+// Chamamos isso programação funcional
+
+$$('.jogo').each(function(jogo){
+    console.log(jogo)
+});
+
+var numeros = [2, 3, 4];
+numeros.each(function(n){
+    console.log(n)
+});
+```
+
+## Eventos
 
 
+```js
+onclick, onfocus, onmouseover
+
+
+element.observe('click', callback);
+
+$('header').observe('click', function(e){
+   console.log(e);
+});
+
+```
+
+[Lista de eventos](https://www.w3schools.com/jsref/dom_obj_event.asp)
