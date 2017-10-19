@@ -16,6 +16,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
+import com.google.common.base.Objects;
+
 
 @Entity
 public class ItemPedido extends EntidadeRaiz {
@@ -62,5 +64,23 @@ public class ItemPedido extends EntidadeRaiz {
     @Override
     public String toString() {
         return String.format("%d x %s de %s", this.quantidade, this.jogo, this.plataforma);
+    }
+
+
+    // equals/hashcode importante para o carrinho de compras
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        ItemPedido that = (ItemPedido) o;
+        return Objects.equal(jogo, that.jogo) &&
+                Objects.equal(plataforma, that.plataforma);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(super.hashCode(), jogo, plataforma);
     }
 }

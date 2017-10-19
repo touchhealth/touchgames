@@ -53,7 +53,7 @@ public class Jogo extends EntidadeRaiz {
 
     private Date dataLancamento;
 
-    private List<Imagem> imagens = new ArrayList<Imagem>();
+    private List<Imagem> imagens = new ArrayList<>();
 
     /**
      * @return O preco com desconto.

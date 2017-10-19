@@ -13,7 +13,6 @@ package br.com.touchtec.games.core.crud;
 
 
 import static br.com.touchtec.dali.crud.api.CrudViews.LIST;
-import static br.com.touchtec.dali.crud.api.CrudViews.SEARCH;
 import static br.com.touchtec.dali.crud.api.CrudViews.VIEW;
 import static br.com.touchtec.dali.template.DaliTemplates.NUMBER_OUTPUT;
 
@@ -35,7 +34,7 @@ import br.com.touchtec.message.Named;
 
 
 @Views({
-        @View(ids = SEARCH, config = "id; data"),
+        @View(config = "id; data"),
         @View(ids = LIST, config = "id; data; valorTotal"),
         @View(ids = VIEW, config = "id; data; itens; valorTotal")
 })
@@ -54,7 +53,7 @@ public class PedidoDTO implements CrudDTO<Long> {
 
     private Float valorTotal;
 
-    @Template(value = NUMBER_OUTPUT, params = "format = \u00A4 #.00")
+    @Template(value = NUMBER_OUTPUT, params = "format = #0.00")
     public Float getValorTotal() {
         return this.valorTotal;
     }

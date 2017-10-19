@@ -22,6 +22,7 @@ public class DataPedidoClauseBuilder implements ClauseBuilder {
 
         builder.appendWhere("data >= :dataInicio AND data < :dataFim");
 
+        // Use o import org.apache.commons.lang3.time.DateUtils
         builder.createParameter("dataInicio", DateUtils.truncate(dataAlvo, Calendar.DATE));
         builder.createParameter("dataFim", DateUtils.ceiling(dataAlvo, Calendar.DATE));
     }

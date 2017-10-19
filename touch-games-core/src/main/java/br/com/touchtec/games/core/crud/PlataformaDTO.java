@@ -35,6 +35,14 @@ public class PlataformaDTO implements CrudDTO<Long> {
 
     private AssociationDTO<Long> fabricante;
 
+    public AssociationDTO<Long> getFabricante() {
+        return this.fabricante;
+    }
+
+    public void setFabricante(AssociationDTO<Long> fabricante) {
+        this.fabricante = fabricante;
+    }
+
     @Override
     public Long getId() {
         return this.id;
@@ -51,14 +59,6 @@ public class PlataformaDTO implements CrudDTO<Long> {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public AssociationDTO<Long> getFabricante() {
-        return this.fabricante;
-    }
-
-    public void setFabricante(AssociationDTO<Long> fabricante) {
-        this.fabricante = fabricante;
     }
 
 }

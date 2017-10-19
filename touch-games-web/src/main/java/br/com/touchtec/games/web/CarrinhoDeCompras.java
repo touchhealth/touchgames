@@ -32,7 +32,7 @@ public class CarrinhoDeCompras implements Serializable {
     private static final long serialVersionUID = 1L;
 
     // Não queremos repetições e queremos manter a ordem
-    private Set<ItemPedido> items = new LinkedHashSet<ItemPedido>();
+    private Set<ItemPedido> items = new LinkedHashSet<>();
 
     public void addItem(Jogo jogo, Integer quantidade, Plataforma plataforma) {
         ItemPedido itemPedido = new ItemPedido();

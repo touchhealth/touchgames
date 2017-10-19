@@ -32,7 +32,11 @@ public class ImagemPropertyConverter implements PropertyConverter<JogoDTO, Jogo>
 
     @Override
     public void setToDTO(Target target, Jogo entity, JogoDTO dto, CrudManager manager) {
-        // vazio
+        for (Imagem imagem : entity.getImagens()) {
+            // Vamos usar o id da imagem como nome do arquivo
+            File file = new File(imagem.getId().toString());
+            dto.getImagens().add(file);
+        }
     }
 
     @Override
@@ -40,11 +44,11 @@ public class ImagemPropertyConverter implements PropertyConverter<JogoDTO, Jogo>
         try {
             for (File file : dto.getImagens()) {
                 FileInputStream in = new FileInputStream(file);
-                entity.getImagens().add(new Imagem(IOUtils.toByteArray(in)));
+                Imagem imagem = new Imagem(IOUtils.toByteArray(in));
+                entity.getImagens().add(imagem);
             }
         } catch (IOException e) {
             throw new ConversionException(e);
         }
-
     }
 }

@@ -13,6 +13,7 @@ package br.com.touchtec.games.core.crud;
 
 
 import static br.com.touchtec.dali.crud.api.CrudViews.CREATE;
+import static br.com.touchtec.dali.crud.api.CrudViews.INPUT;
 import static br.com.touchtec.dali.crud.api.CrudViews.LIST;
 import static br.com.touchtec.dali.crud.api.CrudViews.SEARCH;
 import static br.com.touchtec.dali.crud.api.CrudViews.UPDATE;
@@ -31,6 +32,7 @@ import br.com.touchtec.dali.crud.api.CrudDTO;
 import br.com.touchtec.dali.crud.config.CrudMapping;
 import br.com.touchtec.dali.crud.converter.CustomPropertyConverter;
 import br.com.touchtec.dali.crud.search.SearchClause;
+import br.com.touchtec.dali.template.DaliTemplates;
 import br.com.touchtec.dali.template.Template;
 import br.com.touchtec.dali.template.Templates;
 import br.com.touchtec.dali.view.View;
@@ -42,8 +44,12 @@ import br.com.touchtec.message.Named;
 
 @Views({
         @View(ids = SEARCH, config = "nome; descricao; genero; dataLancamento"),
-        @View(ids = {CREATE, UPDATE}, config = "{geral[nome; descricao; genero;desenvolvedora;plataformas;dataLancamento],preco[preco; desconto],imagens[imagens]}"),
-        @View(config = "nome; descricao; genero;dataLancamento; plataformas; desenvolvedora;preco; desconto")
+        @View(config = "nome; descricao; genero; dataLancamento; plataformas; desenvolvedora; preco; desconto"),
+        @View(ids = {CREATE, UPDATE}, config = "{ " +
+                "geral [nome; descricao; genero; desenvolvedora; plataformas; dataLancamento]," +
+                "preco [preco; desconto], " +
+                "imagens [imagens] " +
+                "}")
 })
 @CrudMapping(entity = Jogo.class)
 @Named(key = "Jogo")
@@ -69,7 +75,7 @@ public class JogoDTO implements CrudDTO<Long> {
 
     private Date dataLancamento;
 
-    private List<File> imagens = new ArrayList<File>();
+    private List<File> imagens = new ArrayList<>();
 
     @Override
     public Long getId() {
@@ -97,7 +103,7 @@ public class JogoDTO implements CrudDTO<Long> {
         this.descricao = descricao;
     }
 
-    @Template(views = {SEARCH, CREATE}, value = RADIO_SELECT)
+    @Template(views = INPUT, value = DaliTemplates.RADIO_SELECT)
     public Genero getGenero() {
         return this.genero;
     }
@@ -106,10 +112,7 @@ public class JogoDTO implements CrudDTO<Long> {
         this.genero = genero;
     }
 
-    @Templates({
-            @Template(views = {CREATE, UPDATE}, value = NUMBER_INPUT, params = "format = #.00"),
-            @Template(views = {VIEW, LIST}, value = NUMBER_OUTPUT, params = "format = \u00A4 #.00"),
-    })
+    @Template(params = "format = #0.00")
     public Float getPreco() {
         return this.preco;
     }
@@ -126,7 +129,7 @@ public class JogoDTO implements CrudDTO<Long> {
         this.desconto = desconto;
     }
 
-    @SearchClause("dataLancamento >= :dataLancamento")
+    //    @SearchClause("dataLancamento >= :dataLancamento")
     public Date getDataLancamento() {
         return this.dataLancamento;
     }
