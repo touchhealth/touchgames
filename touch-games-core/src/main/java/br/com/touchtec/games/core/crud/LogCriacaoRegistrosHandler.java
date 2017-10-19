@@ -21,6 +21,8 @@ public class LogCriacaoRegistrosHandler implements OperationHandler {
         // Sem esta chamada, os próximos handlers não são executados
         // Às vezes queremos abortar a chain mesmo; neste caso, não chamaríamos doChain()
         chain.doChain();
+
+        // Códigos que são chamados após o doChain são executados na 'volta' da chain
     }
 
 }

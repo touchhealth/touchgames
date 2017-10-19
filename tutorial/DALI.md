@@ -341,5 +341,75 @@ Não renderiza exclusivamente HTML. Pode renderizar qualquer coisa. Até Java.
 
 ```
 
-## @SearchClause
+> #### Reinicie e acesse
+> [/crud/Jogo.action]()  
 
+## @SearchClause
+Search Clauses são uma forma mais simples (mas menos flexível) de modificar a busca do CRUD.  
+
+> #### Ainda no cadastro de Jogos, faça uma busca especificando uma **Data de Lançamento**
+> Repare que sempre volta uma lista vazia.   
+> O motivo é exatamente o mesmo relatado na tela de pedidos (acima).  
+> Mas aqui vamos usar uma solução mais simples: queremos todos os jogos cuja **Data de Lançamento** seja posterior à especificada
+
+---
+
+> #### Anote a propriedade dataLancamento com uma Search Clause
+> Isso fará o CRUD adicionar ao SQL gerado uma cláusula do tipo `WHERE dataLancamento >= $1` em vez de `WHERE dataLancamento = $1`.
+
+```java
+    @SearchClause("dataLancamento >= :dataLancamento")
+    public Date getDataLancamento() {
+        return this.dataLancamento;
+    }
+```
+
+> #### Reinicie e faça uma busca preenchendo uma **Data de lançamento**
+> [/crud/Jogo.action]()  
+
+## @Operation
+
+E se quiséssemos interceptar as operações que o CRUD faz? Por ex, se quisermos executar algum código nosso no momento em que um registro for criado?  
+O CRUD permite que interceptemos suas **operações** (Criar, Editar, Remover, Buscar) através de **handlers**.  
+Handlers funcionam como **Servlet Filters**, implementando o padrão  [Chain of Responsibility](http://blog.caelum.com.br/compondo-seu-comportamento-heranca-chain-of-responsibility-e-interceptors/).  
+
+Consulte o [Showcase](http://showcase.touchtec.com.br/dali-showcase/operation.action) para mais detalhes.  
+
+No cadastro de Jogos, vamos interceptar a operação de **criação** e mostrar um **log** no console.
+
+
+> #### Abra a classe `LogCriacaoRegistrosHandler` e complete com o código abaixo
+
+```java
+    @Override
+    public void handle(OperationChain chain) {
+        Object entity = chain.getEntity();
+
+        LOG.info(ANSIColor.color(FOREGROUND_MAGENTA, "Registro criado: " + entity));
+
+        // Sem esta chamada, os próximos handlers não são executados
+        // Às vezes queremos abortar a chain mesmo; neste caso, não chamaríamos doChain()
+        chain.doChain();
+        
+        // Códigos que são chamados após o doChain são executados na 'volta' da chain
+    }
+```
+
+> #### Anote `JogoDTO`
+
+```java
+@Operation(
+        id = SAVE_NEW_OPERATION,
+        handlers = @Handler(
+                type = LogCriacaoRegistrosHandler.class,
+                position = AFTER,
+                targetHandler = PersistEntityHandler.class
+        ))
+public class JogoDTO implements CrudDTO<Long> {}
+```
+
+> #### Reinicie e acesse
+> [/crud/Jogo.action]()  
+> Crie algum Jogo e observe o log no **console** do Tomcat
+
+Dica: uma forma fácil de consultar os **handlers** e **operações** do CRUD é abrir a classe `DefaultCrudMapper` e consultar o método `mapOperations()`.

@@ -14,13 +14,10 @@ package br.com.touchtec.games.core.crud;
 
 import static br.com.touchtec.dali.crud.api.CrudViews.CREATE;
 import static br.com.touchtec.dali.crud.api.CrudViews.INPUT;
-import static br.com.touchtec.dali.crud.api.CrudViews.LIST;
 import static br.com.touchtec.dali.crud.api.CrudViews.SEARCH;
 import static br.com.touchtec.dali.crud.api.CrudViews.UPDATE;
-import static br.com.touchtec.dali.crud.api.CrudViews.VIEW;
-import static br.com.touchtec.dali.template.DaliTemplates.NUMBER_INPUT;
-import static br.com.touchtec.dali.template.DaliTemplates.NUMBER_OUTPUT;
-import static br.com.touchtec.dali.template.DaliTemplates.RADIO_SELECT;
+import static br.com.touchtec.dali.crud.operation.OperationProcessor.DefaultOperations.SAVE_NEW_OPERATION;
+import static br.com.touchtec.dali.crud.operation.Position.AFTER;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -31,10 +28,12 @@ import br.com.touchtec.dali.crud.api.AssociationDTO;
 import br.com.touchtec.dali.crud.api.CrudDTO;
 import br.com.touchtec.dali.crud.config.CrudMapping;
 import br.com.touchtec.dali.crud.converter.CustomPropertyConverter;
+import br.com.touchtec.dali.crud.operation.Handler;
+import br.com.touchtec.dali.crud.operation.Operation;
+import br.com.touchtec.dali.crud.operation.PersistEntityHandler;
 import br.com.touchtec.dali.crud.search.SearchClause;
 import br.com.touchtec.dali.template.DaliTemplates;
 import br.com.touchtec.dali.template.Template;
-import br.com.touchtec.dali.template.Templates;
 import br.com.touchtec.dali.view.View;
 import br.com.touchtec.dali.view.Views;
 import br.com.touchtec.games.core.model.Genero;
@@ -51,6 +50,14 @@ import br.com.touchtec.message.Named;
                 "imagens [imagens] " +
                 "}")
 })
+// Consulte DefaultOperations#mapOperations()
+@Operation(
+        id = SAVE_NEW_OPERATION,
+        handlers = @Handler(
+                type = LogCriacaoRegistrosHandler.class,
+                position = AFTER,
+                targetHandler = PersistEntityHandler.class
+        ))
 @CrudMapping(entity = Jogo.class)
 @Named(key = "Jogo")
 public class JogoDTO implements CrudDTO<Long> {
@@ -71,7 +78,7 @@ public class JogoDTO implements CrudDTO<Long> {
 
     private Float preco;
 
-    private Integer desconto;
+    private int desconto;
 
     private Date dataLancamento;
 
@@ -121,15 +128,15 @@ public class JogoDTO implements CrudDTO<Long> {
         this.preco = preco;
     }
 
-    public Integer getDesconto() {
+    public int getDesconto() {
         return this.desconto;
     }
 
-    public void setDesconto(Integer desconto) {
+    public void setDesconto(int desconto) {
         this.desconto = desconto;
     }
 
-    //    @SearchClause("dataLancamento >= :dataLancamento")
+    @SearchClause("dataLancamento >= :dataLancamento")
     public Date getDataLancamento() {
         return this.dataLancamento;
     }
