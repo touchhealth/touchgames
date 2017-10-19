@@ -407,7 +407,7 @@ Observe como é feita a conversão de cada tipo
 > #### Abra jsp/servlet/jogos.jsp e adicone o código da edição/remoção
 
 ```html
-    <c:if test="${method=='update'}">
+<c:if test="${method=='update'}">
   <form action="${app}/jogos" method="post">
    <fieldset>
     <legend>Editando ${jogo.nome}</legend>
@@ -474,5 +474,5 @@ Observe como é feita a conversão de cada tipo
     </div>
    </fieldset>
   </form>
- </c:if>
+</c:if>
 ```
