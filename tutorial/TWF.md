@@ -77,3 +77,21 @@ E depois isto:
     - jsbutton
 
 # Ajax
+
+O TWFC fornece algumas facilidades para executar requests **AJAX**
+
+![](img/twf2.png)
+
+
+```html
+<t:ajaxbutton action="Desenvolvedoras!create.action" responseTarget="response" />
+
+<div id="response"><!-- Atualizado por AJAX --></div>
+```
+
+> #### Suba a aplicação e acesse
+> [/Desenvolvedoras.action]()  
+> Abra o **Chrome Dev Tools** (F12)  
+> Aba Network  
+> Aperte o botão Criar  
+> Clique na request e veja o **preview**: veja que apenas o trecho do formulário (e não a página inteira) é retornado.

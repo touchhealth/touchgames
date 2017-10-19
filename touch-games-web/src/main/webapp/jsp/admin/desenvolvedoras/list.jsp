@@ -21,7 +21,7 @@
 		</t:toolbar>
 	</t:panel>
 	
-	<div id="response"><!--  --></div>
+	<div id="response"><!-- Atualizado por AJAX --></div>
 </t:userinterface>
 
 </jsp:root>
