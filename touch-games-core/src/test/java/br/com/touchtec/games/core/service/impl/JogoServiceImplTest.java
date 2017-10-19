@@ -43,11 +43,12 @@ public class JogoServiceImplTest {
         Jogo jogo = this.criarJogo("Final Fantasy VIII");
 
         // TESTE
-        Jogo jogoDB = this.service.recuperar(jogo.getId());
+        Jogo jogoCriado = this.service.recuperar(jogo.getId());
 
         // ASSERTS
+        jogoCriado = this.service.recuperar(jogoCriado.getId());
         // equals/hashcode É importante aqui
-        Assert.assertEquals(jogo, jogoDB);
+        Assert.assertEquals(jogo, jogoCriado);
     }
 
     @Test
@@ -60,8 +61,8 @@ public class JogoServiceImplTest {
         this.service.editar(jogo);
 
         // ASSERT
-        Jogo jogoDB = this.service.recuperar(jogo.getId());
-        Assert.assertEquals(66, jogoDB.getDesconto());
+        Jogo jogoEditado = this.service.recuperar(jogo.getId());
+        Assert.assertEquals(66, jogoEditado.getDesconto());
     }
 
     @Test
@@ -73,32 +74,32 @@ public class JogoServiceImplTest {
         this.service.remover(jogo);
 
         // ASSERTS
-        Jogo jogoDB = this.service.recuperar(jogo.getId());
-        Assert.assertNull(jogoDB);
+        Jogo jogoRemovido = this.service.recuperar(jogo.getId());
+        Assert.assertNull(jogoRemovido);
     }
 
 
     @Test
     public void buscarTodosTest() {
         // CENARIO
-        Jogo ct = this.criarJogo("Chrono Trigger");
-        Jogo cc = this.criarJogo("Chrono Cross");
+        Jogo chronoTrigger = this.criarJogo("Chrono Trigger");
+        Jogo chronoCross = this.criarJogo("Chrono Cross");
 
         // TESTE
         List<Jogo> jogos = this.service.buscarTodos();
 
         // ASSERTS
         Assert.assertEquals(2, jogos.size());
-        Assert.assertTrue(jogos.contains(ct));
-        Assert.assertTrue(jogos.contains(cc));
+        Assert.assertTrue(jogos.contains(chronoTrigger));
+        Assert.assertTrue(jogos.contains(chronoCross));
     }
 
 
     @Test
     public void buscarPorNomeTest() {
         // CENARIO
-        Jogo ct = this.criarJogo("Chrono Trigger");
-        Jogo cc = this.criarJogo("Chrono Cross");
+        Jogo chronoTrigger = this.criarJogo("Chrono Trigger");
+        Jogo chronoCross = this.criarJogo("Chrono Cross");
         this.criarJogo("Final Fantasy VII");
 
         // TESTE 1
@@ -106,8 +107,8 @@ public class JogoServiceImplTest {
 
         // ASSERTS 1
         Assert.assertEquals(2, jogos.size());
-        Assert.assertTrue(jogos.contains(ct));
-        Assert.assertTrue(jogos.contains(cc));
+        Assert.assertTrue(jogos.contains(chronoTrigger));
+        Assert.assertTrue(jogos.contains(chronoCross));
 
         // TESTE 2
         jogos = this.service.buscar("Bazinga");
@@ -115,6 +116,12 @@ public class JogoServiceImplTest {
         // ASSERTS 2
         Assert.assertEquals(0, jogos.size());
     }
+
+
+    /**********************************************************************************************************************/
+    // METODOS AUXILIARES
+
+    /**********************************************************************************************************************/
 
     private Jogo criarJogo(String nome) {
         return this.criarJogo(nome, null);

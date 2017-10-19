@@ -75,6 +75,11 @@ public class JogoServiceImpl implements JogoService {
         // Necessita da transação aberta por conta de Jogo -> Imagem -> byte[]
         Jogo jogo = em.find(Jogo.class, id);
 
+        if (jogo == null) {
+            em.getTransaction().commit();
+            return null;
+        }
+
         // Necessita da transaçao aberta
         Hibernate.initialize(jogo.getPlataformas());
 

@@ -205,7 +205,7 @@ Queremos que o rodapé fica preso no pé da página
 
 Faltou uma coisa:
 
-> #### Encontre a regra `#screen {}` e descomente **position**]
+> #### Encontre a regra `#screen {}` e descomente **position**
 > Recarregue a tela
 > Dê um scroll na tela. Agora sim.
 

@@ -188,7 +188,7 @@ public List<Desenvolvedora> buscarTodos() {
 ```
 
 
-> #### Implementar os metodos de busca no impl/JogoServiceImpl
+> #### Implementar os metodos de busca no `JogoServiceImpl`
 
 ```java
 @Override
