@@ -151,3 +151,37 @@ $('header').observe('click', function(e){
 ```
 
 [Lista de eventos](https://www.w3schools.com/jsref/dom_obj_event.asp)
+
+## O Efeito Bubble
+
+```html
+<div id='header'>
+    <input  id='nome' name='jogo.nome'/>
+</div>
+
+$('nome').observe('click', function(){ … })
+
+$('header').observe('click', function(){ … })
+
+```
+
+Nem todos os eventos borbulham: [onFocus](https://www.w3schools.com/jsref/event_onfocus.asp) (ver Technical Details)
+
+
+## AJAX
+
+O nome técnico é **requisições XHR**: _XMLHttpRequest_.
+Foi criado pela Microsoft
+
+
+```js
+new Ajax.Request('Compras!jogosRecomendados.action?genero=42',    {
+      onSuccess : function(transport) {
+        // twfOriginalJSON e uma peculiaridade do TWF
+        var jogos = transport.responseJSON.twfOriginalJSON;
+
+      },
+      onFailure: function(transport){ … }
+      ...
+});
+```
