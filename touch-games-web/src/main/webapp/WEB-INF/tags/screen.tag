@@ -1,6 +1,6 @@
 <html lang="en">
 	<head>
-		<title>Touch Games - Um toque de diversão</title>
+		<title>Touch Games - Um toque de diversao</title>
 
 		<link href="${app}/css/games.css" rel="stylesheet"/>
 	</head>

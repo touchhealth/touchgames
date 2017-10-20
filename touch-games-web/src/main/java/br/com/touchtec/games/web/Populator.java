@@ -87,6 +87,7 @@ public class Populator {
     private static Jogo newJogo(String nome) {
         Jogo jogo = new Jogo();
         jogo.setNome(nome);
+        jogo.setPreco(140F);
         return jogo;
     }
 
