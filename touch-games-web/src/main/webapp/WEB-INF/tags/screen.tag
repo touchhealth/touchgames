@@ -1,30 +1,13 @@
 <html lang="en">
-	<head>
-		<title>Touch Games - Um toque de diversao</title>
+    <head>
+        <title>Touch Games - Um toque de diversao</title>
 
-		<link href="${app}/css/games.css" rel="stylesheet"/>
-	</head>
+        <!-- EXERCICIO: CSS-->
+    </head>
 
-	<body>
-		<div id="screen">
-			<div id="header">
-				<jsp:include page="/WEB-INF/tags/header.jsp"/>
-			</div>
+    <body>
 
-			<div id="top-navigation">
-				<jsp:include page="/WEB-INF/tags/menu_plataformas.jsp"/>
-			</div>
+		<!-- EXERCICIO -->
 
-			<%--
-			COTEUDO PASSADO NO CORPO DA TAG
-			--%>
-			<div id="center">
-				<jsp:doBody/>
-			</div>
-
-			<div id="footer">
-				<jsp:include page="/WEB-INF/tags/footer.jsp"/>
-			</div>
-		</div>
-	</body>
+    </body>
 </html>

@@ -11,6 +11,6 @@
 
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
 
-	<context:component-scan base-package="br.com.touchtec.games.web" name-generator="br.com.touchtec.spring.FullQualifiedNameGenerator" />
+	<!-- EXERCICIO component-scan -->
 
 </beans>

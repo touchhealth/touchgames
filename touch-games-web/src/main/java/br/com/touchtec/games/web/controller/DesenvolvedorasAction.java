@@ -12,11 +12,6 @@
 package br.com.touchtec.games.web.controller;
 
 
-import java.util.List;
-
-import br.com.touchtec.games.core.model.Desenvolvedora;
-import br.com.touchtec.games.core.service.DesenvolvedoraService;
-import br.com.touchtec.games.core.service.impl.DesenvolvedoraServiceImpl;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
 /**
@@ -32,89 +27,24 @@ public class DesenvolvedorasAction extends TWFActionSupport {
     // TABELA
     // ########################################################################################
 
-    private DesenvolvedoraService desenvolvedoraService = new DesenvolvedoraServiceImpl();
-
-    private List<Desenvolvedora> desenvolvedoras;
-
-    @Override
-    public String execute() throws Exception {
-        this.desenvolvedoras = this.desenvolvedoraService.buscarTodos();
-        return "jsp/admin/desenvolvedoras/list";
-    }
-
-    public List<Desenvolvedora> getDesenvolvedoras() {
-        return this.desenvolvedoras;
-    }
-
+    // EXERCICIO 1
 
     // ########################################################################################
     // CRIACAO
     // ########################################################################################
 
-    private String formTitle;
-
-    public String create() throws Exception {
-        this.formTitle = "Criação";
-        return "jsp/admin/desenvolvedoras/form";
-    }
-
-    public String getFormTitle() {
-        return this.formTitle;
-    }
+    // EXERCICIO 2
 
     // ########################################################################################
     // EDICAO
     // ########################################################################################
 
-    // Valor do <t:tablerowselector name="selectedId"> da lista
-    private Long selectedId;
-
-    // Para que form.jsp preencha a tela
-    private Desenvolvedora desenvolvedora;
-
-    public String update() throws Exception {
-        this.desenvolvedora = this.desenvolvedoraService.recuperar(this.selectedId);
-        this.formTitle = "Edição";
-        return "jsp/admin/desenvolvedoras/form";
-    }
-
-    public Desenvolvedora getDesenvolvedora() {
-        return this.desenvolvedora;
-    }
-
-    public void setDesenvolvedora(Desenvolvedora desenvolvedora) {
-        this.desenvolvedora = desenvolvedora;
-    }
-
-    public Long getSelectedId() {
-        return this.selectedId;
-    }
-
-    public void setSelectedId(Long selectedId) {
-        this.selectedId = selectedId;
-    }
-
+    // EXERCICIO 3
 
     // ########################################################################################
     // SAVE, REMOVE
     // ########################################################################################
 
-    public String save() throws Exception {
-        if (this.desenvolvedora.getId() != null) {
-            this.desenvolvedoraService.editar(this.desenvolvedora);
-            this.addSuccessMessage(this.desenvolvedora + " atualizada com sucesso");
-        } else {
-            this.desenvolvedoraService.criar(this.desenvolvedora);
-            this.addSuccessMessage(this.desenvolvedora + " criada com sucesso");
-        }
-        return this.execute();
-    }
-
-    public String remove() throws Exception {
-        this.desenvolvedora = this.desenvolvedoraService.recuperar(this.selectedId);
-        this.desenvolvedoraService.remover(this.desenvolvedora);
-        this.addSuccessMessage(this.desenvolvedora + " removida com sucesso");
-        return this.execute();
-    }
+    // EXERCICIO 4
 
 }

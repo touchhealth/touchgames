@@ -13,7 +13,6 @@ package br.com.touchtec.games.core.model;
 
 
 import javax.persistence.Entity;
-import javax.persistence.Lob;
 
 
 @Entity
@@ -24,7 +23,7 @@ public class Imagem extends EntidadeRaiz {
     private byte[] bytes;
 
     /**
-     * Este construtor é necessário para o Hibernate e pode ser private (Como o Hibernate acessa?)
+     * Este construtor é necessário para o Hibernate e pode ser protected (Como o Hibernate acessa?)
      */
     @SuppressWarnings("unused")
     protected Imagem() {
@@ -35,7 +34,7 @@ public class Imagem extends EntidadeRaiz {
         this.bytes = bytes;
     }
 
-    @Lob
+    // EXERCICIO
     public byte[] getBytes() {
         return this.bytes;
     }

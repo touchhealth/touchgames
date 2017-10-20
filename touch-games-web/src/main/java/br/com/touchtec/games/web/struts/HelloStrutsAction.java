@@ -19,28 +19,6 @@ import br.com.touchtec.twf.core.TWFActionSupport;
  */
 public class HelloStrutsAction extends TWFActionSupport {
 
-    private static final long serialVersionUID = 1L;
-
-    private String message = "Hello!";
-
-    @Override
-    public String execute() throws Exception {
-        return SUCCESS;
-    }
-
-    public String goodbye() throws Exception {
-        this.message = "Goodbye";
-        return SUCCESS;
-    }
-
-    // getter é necessário para que o JSP consiga acessar: ${message}
-    public String getMessage() {
-        return this.message;
-    }
-
-    // setter é necessário para recuperar parâmetros da request
-    public void setMessage(String message) {
-        this.message = message;
-    }
+    // EXERCICIO
 
 }

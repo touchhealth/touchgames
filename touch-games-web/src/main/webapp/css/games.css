@@ -8,25 +8,35 @@ html, body {
     height: 100%;
 }
 
+/*EXERCICIO*/
+/*
 .left {
     float: left;
 }
+*/
 
+/*EXERCICIO*/
+/*
 .right {
     float: right;
 }
+*/
 
 .inline > * {
     display: inline-block;
     vertical-align: top;
 }
 
-/* <div style='clear:both'></div> */
+
+/* Isso cria um <div style='clear:both'></div> */
+/*EXERCICIO*/
+/*
 .clearfix:after {
     clear: both;
     content: "";
     display: block;
 }
+*/
 
 .text-right {
     text-align: right;
@@ -54,15 +64,22 @@ button {
 
 #screen {
     padding-bottom: 100px;
-    position: relative;
     min-height: 100%;
+
+    /*EXERCICIO*/
+    /*
+    position: relative;
+    */
 }
 
+/*EXERCICIO*/
+/*
 #header {
     background: #005680 url('../img/bg-header.jpg') no-repeat center;
     height: 90px;
     padding: 0 20px;
 }
+*/
 
 #header .left {
     margin-top: 15px;
@@ -82,6 +99,8 @@ button {
     padding: 20px;
 }
 
+/*EXERCICIO*/
+/*
 #footer {
     background: #005680;
     font-size: 12px;
@@ -93,9 +112,12 @@ button {
     position: absolute;
     bottom: 0;
 }
+*/
 
 /* MENU: PLATAFORMAS */
 
+/*EXERCICIO*/
+/*
 #menu-plataformas {
     background: linear-gradient(to bottom, #FFF, #F2F2F2);
     border: 1px solid #D4D4D4;
@@ -104,6 +126,7 @@ button {
     margin: 0;
     padding: 0;
 }
+*/
 
 #menu-plataformas li {
     margin: 10px 20px;

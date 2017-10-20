@@ -14,69 +14,38 @@ package br.com.touchtec.games.core.service.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
-
 import br.com.touchtec.games.core.model.Desenvolvedora;
 import br.com.touchtec.games.core.service.DesenvolvedoraService;
-import br.com.touchtec.persistence.QueryTyper;
 
 
 public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
 
-    private static final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("touch-games");
+    // EXERCICIO
 
     @Override
     public void criar(Desenvolvedora desenvolvedora) {
-        EntityManager em = EMF.createEntityManager();
-
-        em.getTransaction().begin();
-        em.persist(desenvolvedora);
-        em.getTransaction().commit();
+        // EXERCICIO
     }
 
     @Override
     public void remover(Desenvolvedora desenvolvedora) {
-        EntityManager em = EMF.createEntityManager();
-
-        Desenvolvedora connectedEntity = em.find(Desenvolvedora.class, desenvolvedora.getId());
-        if (connectedEntity == null) {
-            return;
-        }
-
-        em.getTransaction().begin();
-        em.remove(connectedEntity);
-        em.getTransaction().commit();
+        // EXERCICIO
     }
 
     @Override
     public void editar(Desenvolvedora desenvolvedora) {
-        EntityManager em = EMF.createEntityManager();
-
-        em.getTransaction().begin();
-        em.merge(desenvolvedora);
-        em.getTransaction().commit();
+        // EXERCICIO
     }
 
     @Override
     public Desenvolvedora recuperar(Long id) {
-        // Não é necessário transação. Nunca?
-
-        EntityManager em = EMF.createEntityManager();
-
-        Desenvolvedora desenvolvedora = em.find(Desenvolvedora.class, id);
-        return desenvolvedora;
+        // EXERCICIO
+        return null;
     }
 
     @Override
     public List<Desenvolvedora> buscarTodos() {
-        EntityManager em = EMF.createEntityManager();
-
-        String queryString = "SELECT d FROM Desenvolvedora d ORDER BY d.nome";
-        Query query = em.createQuery(queryString);
-        List<Desenvolvedora> desenvolvedoras = QueryTyper.getResultList(query);
-        return desenvolvedoras;
+        // EXERCICIO
+        return null;
     }
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
 <jsp:directive.page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" />
 
 <html>
@@ -10,18 +9,7 @@
 </head>
 <body>
 
-	<p>
-		Eu sou retornado pela HelloStrutsAction.
-	</p>
-
-	<p>
-		Eu consigo acessar variáveis diretamente da Action;
-		Basta elas terem um getter.
-	</p>
-
-	<p>
-		Por ex, consigo acessar o conteúdo de message: ${message}
-	</p>
+	<!-- EXERCICIO -->
 
 </body>
 </html>

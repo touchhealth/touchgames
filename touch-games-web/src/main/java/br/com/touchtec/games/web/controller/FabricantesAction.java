@@ -14,10 +14,6 @@ package br.com.touchtec.games.web.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import br.com.touchtec.games.core.model.Fabricante;
 import br.com.touchtec.games.core.service.FabricanteService;
 import br.com.touchtec.twf.core.TWFActionSupport;
@@ -25,11 +21,10 @@ import br.com.touchtec.twf.core.TWFActionSupport;
 /**
  * @see "struts.xml"
  */
-@Component
-@Scope("request")
+// EXERCICIO
 public class FabricantesAction extends TWFActionSupport {
 
-    @Autowired
+    // EXERCICIO
     private FabricanteService fabricanteService;
 
     private String formTitle;

@@ -8,12 +8,10 @@
 	
 	<constant name="struts.multipart.parser" value="br.com.touchtec.twf.core.MonitoredMultiPartRequest"/>
 
- 	<package name="struts" extends="twf-default" namespace="/struts">
- 		<action name="Hello" class="br.com.touchtec.games.web.struts.HelloStrutsAction">
- 			<result name="success">/jsp/struts/result.jsp</result>
- 		</action>
- 	</package>
-	
+ 	<!-- EXERCICIO: mapeie HelloStrutsAction -->
+
+	<!-- EXERCICIO: mapeamento generico -->
+
 	<package name="default" extends="twf-default">
 		<interceptors>
 			<interceptor name="navigation" class="br.com.touchtec.games.web.controller.NavigationInterceptor" />
@@ -26,10 +24,4 @@
 			<!-- Os results são retornados diretamente pelas Actions -->
 		</action>
 	</package>
-
-	<!--<package name="default" extends="twf-default">-->
-		<!--<action name="*" class="br.com.touchtec.games.web.controller.{1}Action">-->
-			<!--&lt;!&ndash; Os results são retornados diretamente pelas Actions &ndash;&gt;-->
-		<!--</action>-->
-	<!--</package>-->
 </struts>

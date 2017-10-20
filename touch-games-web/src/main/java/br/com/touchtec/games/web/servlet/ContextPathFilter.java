@@ -10,7 +10,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
 
 
 public class ContextPathFilter implements Filter {
@@ -19,10 +18,7 @@ public class ContextPathFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
             ServletException {
 
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
-        httpRequest.setAttribute("app", httpRequest.getContextPath());
-
-        chain.doFilter(request, response);
+        // EXERCICIO
     }
 
     @Override

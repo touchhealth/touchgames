@@ -16,7 +16,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
 import br.com.touchtec.message.Named;
@@ -41,7 +40,7 @@ public class Desenvolvedora extends EntidadeRaiz {
         this.nome = nome;
     }
 
-    @OneToMany(mappedBy = "desenvolvedora")
+    // EXERCICIO
     @OrderBy("nome")
     public List<Jogo> getJogos() {
         return this.jogos;
@@ -51,9 +50,7 @@ public class Desenvolvedora extends EntidadeRaiz {
         this.jogos = jogos;
     }
 
-    @Override
-    public String toString() {
-        return this.nome;
-    }
+
+    // EXERCICIO: IMPLEMENTE o toString()
 
 }

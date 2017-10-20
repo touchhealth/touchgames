@@ -119,35 +119,14 @@ public class JogoServiceImpl implements JogoService {
 
     @Override
     public List<Jogo> buscar(Plataforma plataforma) {
-        EntityManager em = EMF.createEntityManager();
-
-        String queryString = "SELECT j FROM Jogo j WHERE :plataforma MEMBER OF j.plataformas ORDER BY j.nome";
-        Query query = em.createQuery(queryString);
-
-        Plataforma plataformaConectada = em.find(Plataforma.class, plataforma.getId());
-        query.setParameter("plataforma", plataformaConectada);
-
-        em.getTransaction().begin();
-        List<Jogo> jogos = QueryTyper.getResultList(query);
-        em.getTransaction().commit();
-
-        return jogos;
+        // EXERCICIO
+        return null;
     }
 
     @Override
     public List<Jogo> buscar(String nome) {
-        EntityManager em = EMF.createEntityManager();
-
-        String queryString = "SELECT j FROM Jogo j WHERE UPPER( j.nome) LIKE UPPER(:nome) ORDER BY j.nome";
-        Query query = em.createQuery(queryString);
-        String nomebusca = nome == null ? "" : nome;
-        query.setParameter("nome", "%" + nomebusca + "%");
-
-        em.getTransaction().begin();
-        List<Jogo> jogos = QueryTyper.getResultList(query);
-        em.getTransaction().commit();
-
-        return jogos;
+        // EXERCICIO
+        return null;
     }
 
 }

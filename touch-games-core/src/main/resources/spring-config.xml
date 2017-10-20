@@ -9,13 +9,9 @@
 	
 	<import resource="classpath*:META-INF/spring-beans.xml"/>
 	
-	<context:component-scan base-package="br.com.touchtec.games.core" name-generator="br.com.touchtec.spring.FullQualifiedNameGenerator" />
-	
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean"/>
-	
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />	
-	
+	<!-- EXERCICIO: component-scan -->
+
+	<!-- EXERCICIO: entity manager -->
+
+	<!-- EXERCICIO: transação -->
 </beans>

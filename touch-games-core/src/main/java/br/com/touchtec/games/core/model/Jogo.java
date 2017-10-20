@@ -16,22 +16,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
 import br.com.touchtec.message.Named;
 
-
-@Entity
-@Table(name = "jogos")
+// EXERCICIO
 @Named(key = "Jogo")
 public class Jogo extends EntidadeRaiz {
 
@@ -55,10 +42,7 @@ public class Jogo extends EntidadeRaiz {
 
     private List<Imagem> imagens = new ArrayList<>();
 
-    /**
-     * @return O preco com desconto.
-     */
-    @Transient
+    // EXERCICIO
     public Float getPrecoComDesconto() {
         if (this.preco == null) {
             return 0f;
@@ -73,7 +57,7 @@ public class Jogo extends EntidadeRaiz {
         return precoComDesconto;
     }
 
-    @Column(name = "nome_do_jogo", unique = true)
+    // EXERCICIO
     public String getNome() {
         return this.nome;
     }
@@ -90,8 +74,7 @@ public class Jogo extends EntidadeRaiz {
         this.descricao = descricao;
     }
 
-    @ManyToMany
-    @OrderBy("nome")
+    // EXERCICIO
     public List<Plataforma> getPlataformas() {
         return this.plataformas;
     }
@@ -108,7 +91,7 @@ public class Jogo extends EntidadeRaiz {
         this.genero = genero;
     }
 
-    @ManyToOne
+    // EXERCICIO
     public Desenvolvedora getDesenvolvedora() {
         return this.desenvolvedora;
     }
@@ -147,7 +130,7 @@ public class Jogo extends EntidadeRaiz {
      * Vamos usar EAGER mesmo, pois vamos buscar as imagens sempre e isso vai facilitar nossa vida. Mas cuidado com essa
      * estratégia.
      */
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    // EXERCICIO
     public List<Imagem> getImagens() {
         return this.imagens;
     }
