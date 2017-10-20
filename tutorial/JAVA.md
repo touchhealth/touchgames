@@ -42,10 +42,12 @@ public boolean equals(Object obj) {
 
 ## Serializable
 
-Com um objeto serializável, é possivel guardar o seu estado e recuperar de um byte stream. Com isso, por exemplo, podemos salvar um objeto num arquivo e recuperá-lo com o mesmo estado que foi serializado.
+Com um objeto seriável, é possivel guardar o seu estado e recuperar de um byte stream.  
+Com isso, por exemplo, podemos salvar um objeto num arquivo e recuperá-lo com o mesmo estado que foi serializado.
 
 ```java
 public class EntidadeRaiz implements Serializable {
+    private static final long serialVersionUID = 1L;
 ```
 
 ## Intefaces e classes abstratas
@@ -76,7 +78,9 @@ public enum Genero {
 
 ## toString()
 
-O toString() vem do Object. Ele é usado para representarmos o objeto literalmente. A implementação default simplesmente concatena o nome da classe seguido do hashcode dela em hexadecimal (ex: Object@af21bc). A menos que voce seja um ciborgue, para um humano é dificil a interpretação disso. O que fazemos geralmente é sobrescrever esse metodo e implementar de algum modo que fique facil a identificação do objeto.
+O toString() vem do Object.  
+Ele é usado para representarmos o objeto literalmente.  
+A implementação default simplesmente concatena o nome da classe seguido do hashcode dela em hexadecimal (ex: Object@af21bc). A menos que voce seja um ciborgue, para um humano é dificil a interpretação disso. O que fazemos geralmente é sobrescrever esse metodo e implementar de algum modo que fique facil a identificação do objeto.
 
 ```java
 @Override

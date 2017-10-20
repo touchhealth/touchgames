@@ -19,7 +19,7 @@ mkdir ~/workspace
 cd ~/workspace
 ```
 
-Clona o projeto do gerrit ( :bangbang: Trocar $USER pelo seu usuario do gerrit (LDAP) :bangbang: )
+Clone o projeto do gerrit ( :bangbang: Trocar $USER pelo seu usuario do gerrit (LDAP) :bangbang: )
 
 ```
 git clone ssh://$USER@git.touchtec.com.br:29418/touch-games

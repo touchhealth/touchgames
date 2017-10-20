@@ -104,20 +104,27 @@ Filtros servem para compartilhar recursos com as servlets.
 
 ![](img/filters1.gif)
 
-> #### Abra a classe ContextPathFilter e adicione a anotação
-
-```java
-@WebFilter(urlPatterns = "/*")
-public class ContextPathFilter implements Filter {
-```
-
-> #### Complete o método doFilter
+> #### Abra a classe `ContextPathFilter` e implemente o método doFilter
 
 ```java
 HttpServletRequest httpRequest = (HttpServletRequest) request;
 httpRequest.setAttribute("app", httpRequest.getContextPath());
 
 chain.doFilter(request, response);
+```
+
+> #### Abra `web.xml` e mapeie o filtro antes dos demais
+> A ordem dos filtros importa. Nosso filtro precisa ser o primeiro.
+
+```xml
+<filter>
+    <filter-name>ctxPath</filter-name>
+    <filter-class>br.com.touchtec.games.web.servlet.ContextPathFilter</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>ctxPath</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
 ```
 
 > #### Acesse novamente /hellojsp e observe o valor do context path

@@ -12,22 +12,22 @@ public abstract class EntidadeRaiz implements Serializable {
 > #### Anote o getId com @Id e @GeneratedValue
 
 ```java
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    public Long getId() {
-        return this.id;
-    }
+@Id
+@GeneratedValue(strategy = GenerationType.SEQUENCE)
+public Long getId() {
+    return this.id;
+}
 ```
 
 
 > #### Anote a classe Jogo com @Entity , @Table(name="jogos") e @Named, conforme abaixo:
 
 ```java
-   	@Entity
-	@Table(name = "jogos")
-	@Named(key = "Jogo")
-	public class Jogo extends EntidadeRaiz {
-	...
+@Entity
+@Table(name = "jogos")
+@Named(key = "Jogo")
+public class Jogo extends EntidadeRaiz {
+...
 ```
 
 > #### Coloque as anotações de relacionamento na entidade Jogo
