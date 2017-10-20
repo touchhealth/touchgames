@@ -2,32 +2,36 @@
 
 O Spring é um framework que nos ajuda a nao ter que lidar com algumas tarefas chatas e repetitivas:
 
-- Instanciação de dependências
+#### Injeção de dependências
 
 ```java
 private DesenvolvedoraService desenvolvedoraService = new DesenvolvedoraServiceImpl();
 ```
 
-- Criação do Entity Manager
+#### Criação do Entity Manager
 
 ```java
 private static final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("touch-games");
 EntityManager em = EMF.createEntityManager();
 ```
 
-- Controle de transação
+#### Controle de transação
 
 ```java
 
 em.getTransaction().begin();
+
 em.persist(desenvolvedora);
+
 em.getTransaction().commit();
 ```
 
-- Gerenciamento de Escopos: às vezes queremos uma única instância para toda a aplicação
-
+#### Gerenciamento de Escopos
+Às vezes queremos uma única instância para toda a aplicação
 
 ## Qual o problema do `new`?
+
+Mesmo usando interfaces, ainda dependemos da implementação.
 
 ![](img/spring1.png)
 
@@ -101,14 +105,14 @@ Escopos WEB:
 
 
 > #### Diga ao Spring onde estão os beans core da aplicação
-> Adicione o mapeamento abaixo ao arquivo `spring-config.xml`
-
+> Adicione o mapeamento abaixo ao arquivo `spring-config.xml`  
+> O fato de termos dois arquivos para configurar beans Spring é uma herança histórica.  
+> Não seria necessário fazer desta forma, mas fazer assim facilitou a migração do **EJB** para **Spring**.
+  
 ```xml
 <context:component-scan base-package="br.com.touchtec.games.web" name-generator="br.com.touchtec.spring.FullQualifiedNameGenerator" />
 ```
 
-O fato de termos dois arquivos para configurar beans Spring é uma herança histórica.
-Não seria necessário fazer desta forma, mas fazer assim facilitou a migração do **EJB** para **Spring**.
 
 > #### Ainda no `spring-config.xml`
 > Configure a factory do Entity Manager
@@ -159,7 +163,8 @@ public List<Fabricante> buscarTodos() {}
 ```
 
 > #### Transforme `FabricanteAction` em um bean Spring
-> Repare que o escopo é **request**
+> Precisamos fazer isso para que possamos **injetar** FabricanteService  
+> Repare que o escopo é **request**. Por quê?
 
 ```java
 @Component
@@ -167,7 +172,7 @@ public List<Fabricante> buscarTodos() {}
 public class FabricantesAction extends TWFActionSupport { }
 ```
 
-> #### Injete `FabricanteService` à Action
+> #### Injete `FabricanteService`
 
 ```java
 @Autowired
@@ -175,4 +180,5 @@ private FabricanteService fabricantesService;
 ```
 
 > #### Reinicie a aplicação e acesse
-> [/Fabricante.action]()
+> [/Fabricante.action]()  
+> OS JSPs são semelhantes aos de **Desenvolvedora** e já foram implementados.

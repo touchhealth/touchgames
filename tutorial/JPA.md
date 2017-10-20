@@ -1,6 +1,34 @@
 # JPA
 
-> #### Anote a EntidadeRais com @MappedSupeclass
+JPA é uma _especificação_ que nos permite trabalhar com objetos para acessar **Banco de Dados**.  
+Com ela, praticamente não precisamos executar código **SQL**.  
+A _implementação_ mais popular é o **Hibernate**.
+
+# O Modelo UML do nosso e commerce
+
+![](img/jpa1.jpg)
+
+
+## @Entity
+
+Define uma Entidade. Entidades equivalem às Tabelas de um banco.
+
+> #### Abra a classe `Jogo` e adicione
+> `@Table` é opcional. Sem ela, o **Hibernate** usa o nome da entidade para criar a tabela.
+
+```java
+@Entity
+@Table(name = "jogos")
+public class Jogo extends EntidadeRaiz {
+...
+```
+
+## @MappedSuperclass
+
+Usada em classes que serão estendidas por entidades.  
+Não será criada uma tabela para elas.
+
+> #### Anote `EntidadeRaiz` com `@MappedSupeclass`
 
 ```java
 @MappedSuperclass
@@ -8,8 +36,13 @@ public abstract class EntidadeRaiz implements Serializable {
 ...
 ```
 
+## @Id
+Especifica a chave primária (PK) da Entidade.  
+Todas as nossas entidades estendem `EntidadeRaiz`. A PK está definida nela.
 
-> #### Anote o getId com @Id e @GeneratedValue
+> #### Abra `EntidadeRaiz` e anote a propriedade id
+> Tanto faz anotar o getter ou o setter 
+> Usamos também `@GeneratedValue` para que o o seja gerado automaticamente pelo **Hibernate**.
 
 ```java
 @Id
@@ -19,18 +52,11 @@ public Long getId() {
 }
 ```
 
+## @Column
+Usamos para mudar o nome padrão da coluna da tabela.  
+Usamos também para especificar **constraints**.
 
-> #### Anote a classe Jogo com @Entity , @Table(name="jogos") e @Named, conforme abaixo:
-
-```java
-@Entity
-@Table(name = "jogos")
-@Named(key = "Jogo")
-public class Jogo extends EntidadeRaiz {
-...
-```
-
-> #### Coloque as anotações de relacionamento na entidade Jogo
+> #### Abra a classe `Jogo` e anote a propriedade `nome`
 
 ```java
 @Column(name = "nome_do_jogo", unique = true)
@@ -38,30 +64,11 @@ public String getNome() {
 ...
 ```
 
-```java
-@ManyToMany
-public List<Plataforma> getPlataformas() {
-...
-```
+## @Transient
+Usamos para marcar uma propriedade como **não persistente**, que não é salva no banco.  
+Comum para valores calculados.
 
-```java
-@ManyToOne
-public Desenvolvedora getDesenvolvedora() {
-...
-```
-
-```java
-@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-public List<Imagem> getImagens() {
-...
-```
-
-```java
-@OrderBy("nome")
-@ManyToMany
-public List<Plataforma> getPlataformas() {
-...
-```
+> #### Na classe `Jogo`, marque a propriedade `precoComDesconto` com `@Transient`
 
 ```java
 @Transient
@@ -69,43 +76,128 @@ public Float getPrecoComDesconto() {
 ...
 ```
 
+## @Lob
+
+Lobs são _Large Objects_, um tipo especial de dado.  
+Arquivos binários são mapeados como Lob.
+
+> #### Abra a classe `Imagem` e anote a propriedade `bytes`
+
 ```java
 @Lob
 public byte[] getBytes() {
 ...
 ```
 
-> #### Coloque na Desenvolvedora
+
+# Relacionamentos
+
+Relacionamentos são associações entre **entidades**.  
+No banco, eles se tornam **JOINs** entre tabelas. 
+
+Usaremos sempre a entidade `Jogo` nos exercícios a seguir.
+
+## @ManyToMany
+
+> #### Anote `plataformas`
+> Uma Plataforma possui vários Jogos; um jogo pode ser de várias plataformas.  
+> `@OrderBy` serve para carregar os valores em ordem.
 
 ```java
-@OneToMany(mappedBy = "desenvolvedora")
+@ManyToMany
 @OrderBy("nome")
-public List<Jogo> getJogos() {
+public List<Plataforma> getPlataformas() {
 ...
 ```
 
-> #### Entre nas demais entidades e descomente as anotações de relacionamento.
+## @ManyToOne
+
+> #### Anote `desenvolvedora`
+> Uma Desenvolvedora cria vários jogos; um Jogo é criado por uma Desenvolvedora (para simplificar).
+
+```java
+@ManyToOne
+public Desenvolvedora getDesenvolvedora() {
+...
+```
+
+## @OneToMany
+
+> #### Anote `imagens`
+> Um Jogo possui várias Imagens; uma Imagem pertence a um Jogo.  
+> **Cascade:** ao criar um Jogo, cria também a imagem. ALL vale para edição e remoção também.   
+> **fetch:** ao carregar um Jogo, devo carregar as imagens também?  
+> **orphanRemoval:** ao remover uma entidade da lista de imagens (e deixá-la órfã), devo removê-la do banco? 
+
+```java
+@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+public List<Imagem> getImagens() {
+...
+```
+
+## mappedBy
+
+Sempre que tivermos um relacionamento **bidirecional**, devemos marcar o _lado fraco_ com **mappedBy**.  
+O lado fraco é lado que não tem a coluna no banco. Normalmente o lado many.  
+O **mappedBy** é importanto para que o Hibernate saiba como fazer o **JOIN**.
+ 
+> #### Abra a entidade `Desenvolvedora` e anote `jogos`
+> Repare que `Desenvolvedora` mapeia `Jogo` e vice-versa.
+
+```java
+@OneToMany(mappedBy = "desenvolvedora")
+public List<Jogo> getJogos() {
+    return this.jogos;
+}
+```
+
+---
+
+As demais entidades já estão mapeadas.
 
 
 ## Entity Manager
 
-O Entity Manager é o gerenciador das entidades: remove, cria, edita e atualiza (CRUD)A configuração dele é feita no persistence.xml.
+O Entity Manager é o gerenciador das entidades: remove, cria, edita e atualiza (CRUD).  
+A configuração dele é feita no persistence.xml.
 
-> #### Abra o persistence.xml para ver como é.
+> #### Abra o `persistence.xml` para analisarmos
+
+### EntityManagerFactory
+
+Para criarmos um `EntityManager`, usamos um `EntityManagerFactory`
+ 
+> #### Abra `DesenvolvedoraServiceImpl` e adicione
+> Repare que **touch-games** é o nome do **persistece unit** definido no `persistcen.xml`  
+> Por que usamos `static final`?
+
+```java
+public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
+
+    private static final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("touch-games");
+    
+...
+```
+ 
+
 
 ## Transação
 
-Uma transação é uma operação atomica.
+Uma transação é uma operação atômica.
 
 ```java
 this.em.getTransaction().begin();
-...
+
+// executa várias tarefas; se uma falhar, a operação toda deve ser abortada 
+
 this.em.getTransaction().commit();
 ```
 
 ## Service
 
-Services guardam as regras de negócio da aplicação. São a camada de Controle do modelo MVC.Em geral, criamos interfaces para reduzir o acoplamento entre os módulos.
+Services guardam as regras de negócio da aplicação.  
+São a camada de Controle do modelo MVC.  
+Em geral, criamos interfaces para reduzir o acoplamento entre os módulos.
 
 ```java
 public interface DesenvolvedoraService {
@@ -123,7 +215,7 @@ public interface DesenvolvedoraService {
 ```
 
 
-> #### Implementar os metodos do serviço da DesenvolvedoraServiceImpl
+> #### Implemente os métodos do serviço `DesenvolvedoraServiceImpl`
 
 ```java
 @Override
@@ -187,8 +279,32 @@ public List<Desenvolvedora> buscarTodos() {
 }
 ```
 
+## Um pouco mais sobre Queries
 
-> #### Implementar os metodos de busca no `JogoServiceImpl`
+> #### Abra `JogoServiceImpl` e implemente `buscar(String nome)`
+> Busca por LIKE  
+> Transção necessária porque **imagens** é um Lob
+
+```java
+@Override
+public List<Jogo> buscar(String nome) {
+    EntityManager em = EMF.createEntityManager();
+
+    String queryString = "SELECT j FROM Jogo j WHERE UPPER( j.nome) LIKE UPPER(:nome) ORDER BY j.nome";
+    Query query = em.createQuery(queryString);
+    String nomebusca = nome == null ? "" : nome;
+    query.setParameter("nome", "%" + nomebusca + "%");
+
+    em.getTransaction().begin();
+    List<Jogo> jogos = QueryTyper.getResultList(query);
+    em.getTransaction().commit();
+
+    return jogos;
+}
+```
+
+> #### Implemente `buscar(Plataforma plataforma)`
+> Ao buscar por um relacionamento, é preciso carregá-lo antes
 
 ```java
 @Override
@@ -209,20 +325,4 @@ public List<Jogo> buscar(Plataforma plataforma) {
 }
 ```
 
-```java
-@Override
-public List<Jogo> buscar(String nome) {
-    EntityManager em = EMF.createEntityManager();
 
-    String queryString = "SELECT j FROM Jogo j WHERE UPPER( j.nome) LIKE UPPER(:nome) ORDER BY j.nome";
-    Query query = em.createQuery(queryString);
-    String nomebusca = nome == null ? "" : nome;
-    query.setParameter("nome", "%" + nomebusca + "%");
-
-    em.getTransaction().begin();
-    List<Jogo> jogos = QueryTyper.getResultList(query);
-    em.getTransaction().commit();
-
-    return jogos;
-}
-```

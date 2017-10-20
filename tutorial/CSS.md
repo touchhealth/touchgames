@@ -4,31 +4,30 @@ Está na hora de criarmos o esqueleto do nosso e-commerce: a tela de Compras.
 
 # Tag File
 
-Para reaproveitar melhor nosos código, vamos usar uma ferramenta chamada **Tag Files**.
-Tag Files são arquivos JSP reaproveitáveis e que podem ser usados como se fossem uma **Tag Lib**.
-A diferença básica é que Tag Files são apenas arquivos (.tag). Já Tag Libs possuem uma classe Java por trás (Tag).
+Para reaproveitar melhor nosos código, vamos usar uma ferramenta chamada **Tag Files**.  
+Tag Files são arquivos JSP reaproveitáveis e que podem ser usados como se fossem uma **Tag Lib** (como as do TWFC).  
+A diferença básica é que Tag Files são apenas arquivos (.tag).  
+Já Tag Libs possuem uma classe Java por trás (Tag).
 
 Nossa tag file vai renderizar o esqueleto do nosos site:
 
 ![](img/css1.png)
 
-> #### Complete o `body` do aquivo `WEB-INF/tags/screen.tag`
-> `WEB-INF/lib` é o diretório padrão para criarmos tag files
+> #### Complete o `<body>` do aquivo `WEB-INF/tags/screen.tag`
+> `WEB-INF/lib` é o diretório padrão para criarmos tag files  
+> `<jsp:doBody/>`: é onde será renderizado o **corpo** da tag (veremos adiante)
 
 ```html
 <div id="screen">
     <div id="header">
         <jsp:include page="/WEB-INF/tags/header.jsp"/>
-
     </div>
 
     <div id="top-navigation">
         <jsp:include page="/WEB-INF/tags/menu_plataformas.jsp"/>
     </div>
 
-    <%--
-    COTEUDO PASSADO NO CORPO DA TAG
-    --%>
+    <!--CONTEUDO PASSADO NO CORPO DA TAG-->
     <div id="center">
         <jsp:doBody/>
     </div>
@@ -40,30 +39,85 @@ Nossa tag file vai renderizar o esqueleto do nosos site:
 ```
 
 > #### Complete também `WEB-INF/tags/menu_plataformas.jsp`
-> De onde vem `${todasPlataformas}`? Veremos adiante.
-> Veja que `menu_plataformas.jsp` é diferente dos demais jsps que vimos até aqui.
-> É apenas um outro tipo de sintaxe. São equivalentes.
+> De onde vem `${todasPlataformas}`? Veremos adiante.  
+> Veja que `menu_plataformas.jsp` é diferente dos demais jsps que vimos até aqui.  
+> É apenas um outro tipo de sintaxe. São equivalentes.  
 
 ```html
 <ul id="menu-plataformas" class="clearfix">
-	<c:forEach items="${todasPlataformas}" var="plataforma">
-		<li>
-			<a href="${app}/Compras!jogosPorPlataforma.action?plataformaSelecionada.id=${plataforma.id}">${plataforma.nome}</a>
-		</li>
-	</c:forEach>
+    <c:forEach items="${todasPlataformas}" var="plataforma">
+        <li>
+            <a href="${app}/Compras!jogosPorPlataforma.action?plataformaSelecionada.id=${plataforma.id}">${plataforma.nome}</a>
+        </li>
+    </c:forEach>
 </ul>
 ```
 
+> #### Abra `jogos_lista.jsp`
+> Adicione a tag **screen** que acabamos de criar
 
+```html
+<g:screen>
+    Teste
+</g:screen>
+```
 
 > #### Reinicie a aplicação e acesse
-> [/Compras.action]()
+> [/Compras.action]()  
+> Já temos cabeçalho e rodapé.  
+> Repare que o corpo da tag foi renderizado onde invocamos `<jsp:doBody/>`  
+
+---
+
+> #### Ainda em `jogos_lista.jsp`, adicione o conteúdo abaixo dentro da tag *screen*
+> Remova o texto "Teste"
+
+```html
+<div id="jogos-lista">
+    
+    <c:forEach items="${jogos}" var="jogo">
+        <a href="${app}/Compras!jogoDetalhes.action?jogoSelecionado.id=${jogo.id}">
+            <div class="jogo">
+                <img src="${app}/imagens?id=${jogo.imagens[0].id}" onerror="this.src='${app}/img/jogo_padrao.png'"/>
+                
+                <div class="nome">
+                    ${jogo.nome}
+                </div>
+                <div class="preco destaque">
+                    <fmt:setLocale value="pt_BR"/>
+                    <fmt:formatNumber type="currency" value="${jogo.precoComDesconto}" />
+                </div>
+            </div>
+        </a>
+    </c:forEach>
+    
+    <c:if test="${empty jogos}">
+        <c:choose>
+            <c:when test="${not empty nomeDoJogo}">
+                Nenhum jogo foi encontrado para a busca "${nomeDoJogo}".
+            </c:when>
+            <c:when test="${not empty plataformaSelecionada}">
+                Nenhum jogo foi encontrado para essa plataforma.
+            </c:when>
+            <c:otherwise>
+                Nenhum jogo foi encontrado.
+            </c:otherwise>
+        </c:choose>
+    </c:if>
+</div>
+```
+
+> #### Recarregue a página (F5)
+> [/Compras.action]()  
 > Não está muito bonita nossa tela...
 
 
+# NavigationInterceptor
+TODO
+
 # CSS
 
-[Referencia](http://www.w3schools.com/cssref/css_selectors.asp	)
+[Referencia](http://www.w3schools.com/cssref/css_selectors.asp)
 
 CSS adiciona estilos visuais ao HTML
 - HTML → estrutura
@@ -165,7 +219,7 @@ Posiciona elementos na tela
 </head>
 ```
 
-> #### Acesse [/Compras.action]()
+> #### Recarregue [/Compras.action]() (F5)
 > Veja que a tela já está melhor, mas ainda precisamos corrigir algumas coisas
 
 ### Cabeçalho
@@ -178,8 +232,8 @@ Repare que definimos para **#header**:
 - height
 - padding
 
-> #### Descomente `.left {}` e `.right {`
-> Serão afetados o logo Touch Games a caixa de Busca à direita
+> #### Descomente `.left {}` e `.right {}`
+> Serão afetados o logo Touch Games a caixa de Busca à direita  
 > Recarregue a tela
 
 Repare que definimos a propriedade **float**
@@ -187,32 +241,25 @@ Repare que definimos a propriedade **float**
 ### Menu Plataformas
 
 > #### Encontre e descomente a regra `#menu-plataformas li {}`
-> Recarregue a tela
+> Recarregue a tela  
+> Precisamos melhorar
 
-clear
+---
 
-> #### Encontre e decomente e regra `.clearfix:after{}`
-> Recarregue a tela
-> Repare no menu plataformas
+> #### Encontre e descomente e regra `.clearfix:after{}`
+> Recarregue a tela  
+> Repare no menu plataformas      
 
 ### Rodapé
 
-Queremos que o rodapé fica preso no pé da página
+Queremos que o rodapé fique preso no pé da página
 
-> #### Encontre e decomente a regra `#footer {}`
-> Recarregue a tela
-> Dê um scroll na tela. Repare que o rodapé não acompanha
+> #### Encontre e descomente a regra `#footer {}`
+> Recarregue a tela  
+> Dê um scroll na tela. Repare que o rodapé não acompanha  
 
 Faltou uma coisa:
 
 > #### Encontre a regra `#screen {}` e descomente **position**
-> Recarregue a tela
-> Dê um scroll na tela. Agora sim.
-
-
-
-
-
-
-
-
+> Recarregue a tela  
+> Dê um scroll na tela. Agora sim.  

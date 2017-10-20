@@ -40,13 +40,17 @@ public boolean equals(Object obj) {
 }
 ```
 
+> #### Abra `EntidadeRaiz` e sobrescreva `equals()` e `hashCode()` usando o gerador do **Eclipse**.
+
 ## Serializable
 
-Com um objeto seriável, é possivel guardar o seu estado e recuperar de um byte stream.  
-Com isso, por exemplo, podemos salvar um objeto num arquivo e recuperá-lo com o mesmo estado que foi serializado.
+Com um objeto seriável é possivel guardar o seu estado e recuperar de um byte stream.  
+Com isso, podemos salvar um objeto num arquivo e recuperá-lo com o mesmo estado que foi serializado.
 
 ```java
 public class EntidadeRaiz implements Serializable {
+    // número de versao: se vc mudar seu objeto, mude esse numero 
+    // Assim o Java sabe que houve uma alteração
     private static final long serialVersionUID = 1L;
 ```
 
@@ -78,22 +82,16 @@ public enum Genero {
 
 ## toString()
 
-O toString() vem do Object.  
-Ele é usado para representarmos o objeto literalmente.  
-A implementação default simplesmente concatena o nome da classe seguido do hashcode dela em hexadecimal (ex: Object@af21bc). A menos que voce seja um ciborgue, para um humano é dificil a interpretação disso. O que fazemos geralmente é sobrescrever esse metodo e implementar de algum modo que fique facil a identificação do objeto.
+Usamos para mostrar um descrição amigável de um objeto.  
 
-```java
-@Override
-public String toString() {
-    return this.nome;
-}
-```
-
-> #### Implemente os toString() na Desenvolvedora.
+> #### Abra a classe `Desenvolvedora` e sobrescreva `toString()` devolvendo **nome**.
 
 ## Java Beans
 
-Vamos usar esse padrão para expor as propriedades das classes atraves dos getters/setters.
+Java Beans são classes de dados. Possuem propriedades e **getters** e **setters**.  
+Não possuem métodos de negócio.  
+Vários frameworks assumem que estamos usando Java Beans. 
+
 
 ```java
 public cass JavaBean {
@@ -102,8 +100,8 @@ public cass JavaBean {
     public String getTeste(){
         return this.teste;
     }
-    public void setTeste(String value){
-        this.teste = value;
+    public void setTeste(String teste){
+        this.teste = teste;
     }
 }
 ```

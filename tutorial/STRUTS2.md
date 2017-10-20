@@ -1,7 +1,6 @@
 # Struts 2
 
-Usar servlets para desenvolver uma aplicação completa é trabalhoso.
-
+Usar servlets para desenvolver uma aplicação completa é trabalhoso.  
 Em vez disso, usamos _frameworks web_ para nos ajudar. O Struts é um deles.
 
 ![](img/struts1.jpg)
@@ -19,23 +18,18 @@ Em vez disso, usamos _frameworks web_ para nos ajudar. O Struts é um deles.
 > Adicione o Filtro do Struts no `web.xml`
 
 ```xml
+<!-- Todas as nossas requisições que terminam com ".action" sao atendidas pelo struts -->
 <filter>
-	<filter-name>struts2</filter-name>
-	<filter-class>
-		org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
-	</filter-class>
+    <filter-name>struts2</filter-name>
+    <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
 </filter>
-
 <filter-mapping>
-	<filter-name>struts2</filter-name>
-	<url-pattern>*.action</url-pattern>
+    <filter-name>struts2</filter-name>
+    <url-pattern>*.action</url-pattern>
 </filter-mapping>
 ```
 
-> #### Cole o código abaixo na classe HelloStrutsAction
-
-- getters
-- setters
+> #### Abra a classe `HelloStrutsAction` e complete
 
 ```java
 public class HelloStrutsAction extends TWFActionSupport {
@@ -78,7 +72,7 @@ public class HelloStrutsAction extends TWFActionSupport {
 </package>
 ```
 
-> #### Preencha jsp/struts/result.jsp
+> #### Abre `jsp/struts/result.jsp` e adicione dentro da tag `<body>`
 
 ```html
 <p>
@@ -96,35 +90,24 @@ public class HelloStrutsAction extends TWFActionSupport {
 ```
 
 > #### Suba a aplicação e acesse
-[Hello.action?message=Touch]()
+> [Hello.action?message=Touch]()  
+> Por padrão, o método da Action que é invocado é **execute**.  
+> Para chamar outro método, use o operador **!**.
 
-Por padrão, o método da Action que é invocado é **execute**.
-
-Para chamar outro método, use o operador **!**.
+---
 
 > #### Acesse a url abaixo para invocar o metodo goodbye
-
-[Hello!goodbye.action]()
+> [Hello!goodbye.action]()
 
 # DesenvolvedorasAction
 
 Vamos criar uma versão da tela de Desenvolvedoras utilizando Struts em vez
 de Servlets.
 
-> #### Criamos um mapeamento genérico para todas as actions
-> Adicione o código abaixo ao `struts.xml`
-
-```xml
-<package name="default" extends="twf-default">
-    <action name="*" class="br.com.touchtec.games.web.controller.{1}Action">
-        <!-- Os results são retornados diretamente pelas Actions -->
-    </action>
-</package>
-```
+## Implementando a tela inicial
 
 > #### Implemente o método `execute()` da classe `DesenvolvedorasAction`
-
-- Retornamos o nome do JSP
+> Retornamos o nome do JSP
 
 ```java
 private DesenvolvedoraService desenvolvedoraService = new DesenvolvedoraServiceImpl();
@@ -143,36 +126,47 @@ public List<Desenvolvedora> getDesenvolvedoras() {
 ```
 
 > #### Preencha a página `jsp/admin/desenvolvedoras/list.jsp`
-> Repare que não estamos usando tags HTML: usamos tags TWF.
+> Repare que não estamos usando tags HTML: usamos tags **TWF**.
 > Vamos aprender mais sobre elas depois
 
 ```html
 <t:userinterface>
-	<t:title value="Deselvolvedoras"/>
-
-	<t:panel id="list" cssClass="form" collapsible="true">
-		<t:title value="Lista"/>
-
-		<t:table list="%{desenvolvedoras}">
-			<t:tablerowselector name="selectedId" multiple="false" property="id"/>
-			<t:tablecolumn  property="nome" title="Nome"/>
-		</t:table>
-
-		<t:toolbar>
-			<t:ajaxbutton action="Desenvolvedoras!create.action" responseTarget="response" successAction="$t('list').close()" template="create"/>
-			<t:ajaxbutton action="Desenvolvedoras!update.action" responseTarget="response" successAction="$t('list').close()" template="update"/>
-			<t:submitbutton action="Desenvolvedoras!remove.action" template="remove" confirmMsg="Deseja realmente exluir?"/>
-		</t:toolbar>
-	</t:panel>
-
-	<div id="response"><!--  --></div>
+    <t:title value="Deselvolvedoras"/>
+    
+    <t:panel id="list" cssClass="form" collapsible="true">
+        <t:title value="Lista"/>
+        
+        <t:table list="%{desenvolvedoras}">
+            <t:tablerowselector name="selectedId" multiple="false" property="id"/>
+            <t:tablecolumn  property="nome" title="Nome"/>
+        </t:table>
+    
+        <t:toolbar>
+            <t:ajaxbutton action="Desenvolvedoras!create.action" responseTarget="response" successAction="$t('list').close()" template="create"/>
+            <t:ajaxbutton action="Desenvolvedoras!update.action" responseTarget="response" successAction="$t('list').close()" template="update"/>
+            <t:submitbutton action="Desenvolvedoras!remove.action" template="remove" confirmMsg="Deseja realmente exluir?"/>
+        </t:toolbar>
+    </t:panel>
+    
+    <div id="response"><!-- Atualizado por AJAX --></div>
 </t:userinterface>
 ```
 
-> #### Reinicie a aplicação e acesse:
-[/Desenvolvedoras.action]()
+> #### Crie um mapeamento genérico para todas as actions
+> Adicione o código abaixo ao `struts.xml`
 
-Vamos implementar as demais telas
+```xml
+<package name="default" extends="twf-default">
+    <action name="*" class="br.com.touchtec.games.web.controller.{1}Action">
+        <!-- Os results são retornados diretamente pelas Actions -->
+    </action>
+</package>
+```
+
+> #### Reinicie a aplicação e acesse
+> [/Desenvolvedoras.action]()
+
+## Implementando os formulários
 
 > #### Implemente `create()`
 
@@ -210,7 +204,7 @@ public String getFormTitle() {
 ```
 
 > #### Continue preenchendo o método `update()`
-> Repare qle também usa `jsp/admin/desenvolvedoras/form.jsp`
+> Repare que também usa `jsp/admin/desenvolvedoras/form.jsp`
 
 ```java
 // Valor do <t:tablerowselector name="selectedId"> da lista
@@ -266,3 +260,4 @@ public String remove() throws Exception {
 
 > #### Reinicie a aplicação e acesse
 > [/Desenvolvedoras.action]()
+> Teste as operações implementadas

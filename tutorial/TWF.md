@@ -23,7 +23,7 @@ Escrevemos isto:
 </t:panel>
 ```
 
-E gerado isto:
+É gerado isto:
 ```html
 <div ttype="panel" class=”panel”>
     <div class=”content”>
@@ -146,7 +146,7 @@ Vamos implementar o cadastro de Jogos usando componentes do **TWFC**.
 
 ---
 
-> #### Logo abaixo do panel, adicione um **div** para a resposta do AJAX
+> #### Logo abaixo do panel, adicione um `<div>` para a resposta do AJAX
 
 ```html
 <div id="response"><!--  --></div>
@@ -186,7 +186,7 @@ Por fim, adicione a tabela de jogos dentro do panel, acima da toolbar
 </t:table>
 ```
 
-> #### Recarrgue a tela
+> #### Recarregue a tela
 > Abra `JogosAction` e verifique como foi obtido `list="%{jogos}"`
 > O operador `%{}` é equivalente ao `${}`, mas é interpretado pelo TWFC  
 
@@ -315,7 +315,7 @@ Por fim, adicione a tabela de jogos dentro do panel, acima da toolbar
 
 ---
 
-> #### Complete o panel de Preço
+> #### Complete o Panel de Preço
 
 ```html
 <t:field>
