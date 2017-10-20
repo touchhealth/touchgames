@@ -14,6 +14,13 @@ psql -d postgres -U postgres
 alter user postgres with password 'postgres';
 ```
 
+Em produção:
+```
+jdbc:postgresql://timemachine.touchtec.com.br:13000/postgres
+username = password = postgres
+```
+
+
 # Cadastro
 ```
 Fabricante
