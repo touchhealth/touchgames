@@ -1,6 +1,6 @@
 # Spring
 
-O Spring é um framework que nos ajuda a nao ter que lidar com algumas tarefas chatas e repetitivas:
+O Spring é um framework que nos ajuda a não ter que lidar com algumas tarefas chatas e repetitivas:
 
 #### Injeção de dependências
 

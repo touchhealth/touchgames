@@ -5,7 +5,7 @@ Essas classes são executadas automaticamente nos processos de `build` dos proje
 Aqui na Touch, usamos o **Jenkins**, uma ferramenta que gerencia a execução dos testes e nos informa quando eles falham. 
 
 > #### Acesse a página do Jenkins do TWF
-> [http://jenkins.touchtec.com.br:8080/job/twf/]()
+> [http://jenkins.touchtec.com.br:8080/job/twf/](http://jenkins.touchtec.com.br:8080/job/twf/)
 
 # Por que testamos?
 - Protegem-nos de possíveis bugs após refatorações

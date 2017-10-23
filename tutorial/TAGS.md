@@ -12,12 +12,12 @@ Existem duas formas:
 - Criar uma TagFile: arquivo `.tag`
 
 TagLibs são mais complexas para criar, mas também mais robustas. O **TWFC** usa esta forma.   
-TagFiles são bem mais simples e atendem boa partde das nossas necessidades.
+TagFiles são bem mais simples e atendem boa parte das nossas necessidades.
 
 # Tag Files
 
-Para reaproveitar melhor nosos código, vamos usar uma ferramenta chamada **Tag Files**.  
-Nossa tag file vai renderizar o esqueleto do nosso site:
+Para reaproveitar melhor nosso código, vamos usar uma ferramenta chamada **Tag Files**.  
+Nossa tag file vai renderizar o esqueleto do site:
 
 ![](img/css1.png)
 
@@ -72,7 +72,7 @@ Nossa tag file vai renderizar o esqueleto do nosso site:
 
 > #### Reinicie a aplicação e acesse
 > [/Compras.action]()  
-> Já temos cabeçalho e rodapé.  
+> Já temos cabeçalho e rodapé (sem estilos ainda).  
 > Repare que o corpo da tag foi renderizado onde invocamos `<jsp:doBody/>`  
 > Observe que a lista de plataformas não está aparecendo
 

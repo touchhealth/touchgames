@@ -62,6 +62,7 @@ E depois isto:
 - Leiaute
     - panel, toolbar
     - tabbox
+- Grid
     - table
 - Formulário
     - field, label
@@ -90,11 +91,11 @@ O TWFC fornece algumas facilidades para executar requests **AJAX**
 ```
 
 > #### Suba a aplicação e acesse
-> [/Desenvolvedoras.action]()  
+> [/Fabricantes.action]()  
 > Abra o **Chrome Dev Tools** (F12)  
 > Aba Network  
 > Aperte o botão Criar  
-> Clique na request e veja o **preview**: veja que apenas o trecho do formulário (e não a página inteira) é retornado.
+> Clique na request  **Fabricantes!create.action** e veja o **preview**: veja que apenas o trecho do formulário (e não a página inteira) é retornado.
 
 # Usando o TWFC
 
@@ -113,7 +114,7 @@ Vamos implementar o cadastro de Jogos usando componentes do **TWFC**.
 </t:userinterface>
 ```
 
-> #### Acesse 
+> #### Acesse (não é necessário reiniciar a aplicação)
 > [/Jogos.action]()
 
 ---
@@ -187,7 +188,7 @@ Por fim, adicione a tabela de jogos dentro do panel, acima da toolbar
 ```
 
 > #### Recarregue a tela
-> Abra `JogosAction` e verifique como foi obtido `list="%{jogos}"`
+> Abra `JogosAction` e verifique como foi obtido `list="%{jogos}"`  
 > O operador `%{}` é equivalente ao `${}`, mas é interpretado pelo TWFC  
 
 ---
@@ -248,7 +249,7 @@ Por fim, adicione a tabela de jogos dentro do panel, acima da toolbar
 ```
 
 > #### Acesse
-> `/Jogos.action` 
+> [/Jogos.action]()   
 > Use o botão **Criar** para abrir a tela de Criação
 
 ---
