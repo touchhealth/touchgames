@@ -13,7 +13,6 @@ package br.com.touchtec.games.web.controller;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -32,7 +31,6 @@ import br.com.touchtec.games.core.service.PedidoService;
 import br.com.touchtec.games.core.service.impl.JogoServiceImpl;
 import br.com.touchtec.games.web.CarrinhoDeCompras;
 import br.com.touchtec.json.JSONArray;
-import br.com.touchtec.json.JSONObject;
 import br.com.touchtec.twf.core.TWFActionSupport;
 
 
@@ -108,29 +106,10 @@ public class ComprasAction extends TWFActionSupport {
             // ignorar
         }
 
-        this.jogos = this.jogoService.buscar(this.generoSelecionado);
+        // EXERCICIO
 
-        Collections.shuffle(this.jogos);
-
-        JSONArray array = new JSONArray();
-
-        for (Jogo jogo : this.jogos) {
-            JSONObject json = new JSONObject();
-            json.put("id", jogo.getId());
-            json.put("nome", jogo.getNome());
-
-            if (!jogo.getImagens().isEmpty()) {
-                json.put("imagemId", jogo.getImagens().get(0).getId());
-            }
-
-            array.put(json);
-
-            if (array.length() == 2) {
-                break;
-            }
-        }
-
-        return array;
+        // apague
+        return null;
     }
 
     public String buscarPorNome() {

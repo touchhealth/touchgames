@@ -11,17 +11,4 @@
  	<!-- EXERCICIO: mapeie HelloStrutsAction -->
 
 	<!-- EXERCICIO: mapeamento generico -->
-
-	<package name="default" extends="twf-default">
-		<interceptors>
-			<interceptor name="navigation" class="br.com.touchtec.games.web.controller.NavigationInterceptor" />
-		</interceptors>
-
-		<action name="*" class="br.com.touchtec.games.web.controller.{1}Action">
-			<interceptor-ref name="navigation" />
-			<interceptor-ref name="twfDefaultStack" />
-
-			<!-- Os results são retornados diretamente pelas Actions -->
-		</action>
-	</package>
 </struts>

@@ -12,36 +12,24 @@
 package br.com.touchtec.games.web.controller;
 
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
-
-import br.com.touchtec.games.core.model.Plataforma;
-import br.com.touchtec.games.core.service.PlataformaService;
 
 /**
  * @see "struts.xml"
  */
+// EXERCICIO
 public class NavigationInterceptor extends AbstractInterceptor {
 
     private static final long serialVersionUID = 1L;
 
-    @Autowired
-    private PlataformaService plataformaService;
+    // EXERCICIO
 
     @Override
     public String intercept(ActionInvocation invocation) throws Exception {
-        HttpServletRequest request = ServletActionContext.getRequest();
+        // EXERCICIO
 
-        List<Plataforma> plataformas = this.plataformaService.buscarTodos();
-        request.setAttribute("todasPlataformas", plataformas);
-
-        return invocation.invoke();
+        // apague
+        return null;
     }
 }
