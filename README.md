@@ -18,30 +18,31 @@ alter user postgres with password 'postgres';
 
 Em produção:
 ```
-jdbc:postgresql://timemachine.touchtec.com.br:13000/postgres
-username = password = postgres
+Time Machine: touch-games
 ```
 
 
 # Cadastro
 ```
-Fabricante
+Fabricantes
+---
 Microsoft
 Nintendo
 Sony
 Muitos
 
 Plataformas
-SNES		->	Nintendo
-3DS			->	Nintendo
-PS3			->	Sony
-PC			->	Muitos
-XBOX 360	->	Microsoft
-WIIU		->	Nintendo
-
+---
+SNES: Nintendo
+3DS: Nintendo
+PS3: Sony
+PC: Muitos
+XBOX 360: Microsoft
+WIIU: Nintendo
 
 
 Desenvolvedoras
+---
 SquareEnix
 Sony
 Nippon Ichi
@@ -54,6 +55,9 @@ Irrational Games
 Konami
 Nintendo
 
+
+Jogos
+---
 Chrono Trigger -> SquareEnix -> RPG
 SNES
 3DS
