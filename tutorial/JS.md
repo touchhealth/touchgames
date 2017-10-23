@@ -1,5 +1,10 @@
 # Javascript
 
+Javascript adiciona comportamento ao HTML
+- HTML → estrutura
+- CSS → estilos
+- **Javascript → comportamento**
+
 ```js
 
 // VAR
@@ -77,7 +82,7 @@ invokeAnotherFunction(function(){
 
 ```
 
-> #### Abra o Chrome DEV Tools e cole no console
+> #### Abra o Chrome DEV Tools (F12) e cole no console
 
 ```js
 var somaUm = function(n){
@@ -208,7 +213,7 @@ public JSONObject jogo() {
 
 # Tarefa: mostrar jogos recomendados
 
-> #### Abra `jogos_detalhes.jsp` e adicione no fim da página
+> #### Abra `jogo_detalhes.jsp` e adicione no fim da página
 
 ```
     <script src="${app}/js/prototype.js" type="text/javascript" ></script>
@@ -252,7 +257,7 @@ var atualizaJogosRecomendados = function () {
 };
 ```
 
-> #### Adicione a funçao que renderiza a resposta
+> #### Adicione a função que renderiza a resposta
 
 ```js
 /*
@@ -307,6 +312,7 @@ atualizaJogosRecomendados();
 // atualiza a cada 5s
 setInterval(atualizaJogosRecomendados, 5000);
 ```
-> #### Reinicie a aplicaçao
-> Acesse a tela [/Compras.action]() e selecione um Jogo para ver a tela de **Detalhes**.
-> Repare na área abaixo do texto **Você também pode gostar:**
+
+> #### Suba a aplicação (ou Recargue a página se já estiver de pé)
+> Acesse a tela [/Compras.action]() e selecione um Jogo para ver a tela de **Detalhes**.  
+> Repare na área abaixo do texto **"Você também pode gostar:"**
