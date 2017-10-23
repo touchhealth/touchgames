@@ -26,6 +26,53 @@ git clone ssh://$USER@git.touchtec.com.br:29418/touch-games
 ```
 
 
+### Comandos utéis:
+
+> #### Adicionar arquivo no stage
+
+Abra o arquivo index.jsp (touch-games-web/src/main/webapp/index.jsp)
+Edite conforme abaixo:
+
+```html
+<jsp:directive.page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" />
+    <!-- <c:redirect url="/Compras.action"/> -->
+    Eu sou um teste!
+</jsp:root>
+```
+
+Salve, e no terminal, execute o comando abaixo:
+
+```
+git status
+```
+
+Esse comando mostrará que atualizamos o arquivo index.jsp
+Para adicionar ao stage, rode o comando abaixo:
+
+```
+git add -A
+```
+
+> #### Commit no repositorio local
+
+Para salvar suas alterações no repositorio local, use o comando abaixo
+
+```
+git commit -m "comentario"
+```
+
+Pronto! Suas alterações estão salvas no seu repositorio local.
+Por motivo de segurança, não vamos mandar para o repositorio remoto.
+
+---
+:books: Material de apoio
+
+* [Treinamento básico da Touch de Git](http://confluence.touchtec.com.br/display/AMBDEV/Git)
+* [Treinamento mão na massa de Git (recomendado)](http://confluence.touchtec.com.br/pages/viewpage.action?pageId=234295302)
+* [Básico do Git no Code School](https://www.codeschool.com/courses/try-git)
+
+---
+
 ## Eclipse
 
 > #### Importar o projeto no Eclipse
@@ -70,55 +117,9 @@ createuser -s -d -r -l -i -P touch
 createdb -E utf8 -O touch -e touch-games
 ```
 
-Comandos utéis:
-
-> #### Adicionar arquivo no stage
-
-Abra o arquivo index.jsp (touch-games-web/src/main/webapp/index.jsp)
-Edite conforme abaixo:
-
-```html
-<jsp:directive.page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" />
-    <!-- <c:redirect url="/Compras.action"/> -->
-    Eu sou um teste!
-</jsp:root>
-```
-
-Salve, e no terminal, execute o comando abaixo:
-
-```
-git status
-```
-
-Esse comando mostrará que atualizamos o arquivo index.jsp
-Para adicionar ao stage, rode o comando abaixo:
-
-```
-git add -A
-```
-
-> #### Commit no repositorio local
-
-Para salvar suas alterações no repositorio local, use o comando abaixo
-
-```
-git commit -m "comentario"
-```
-
-Pronto! Suas alterações estão salvas no seu repositorio local.
-Por motivo de segurança, não vamos mandar para o repositorio remoto.
-
----
-:books: Material de apoio
-
-* [Treinamento básico da Touch de Git](http://confluence.touchtec.com.br/display/AMBDEV/Git)
-* [Treinamento mão na massa de Git (recomendado)](http://confluence.touchtec.com.br/pages/viewpage.action?pageId=234295302)
-* [Básico do Git no Code School](https://www.codeschool.com/courses/try-git)
----
-
 # Maven
 
-O maven irá nos ajudar no gerenciamento de dependencias e na construção da aplicação.
+O maven irá nos ajudar no gerenciamento de dependencias e na construção da aplicação.  
 O nosso projeto terá a seguinte estrutura maven:
 * **touch-games** é nosso projeto maven;
     * **touch-games-core** é um modulo do nosso projeto, nele temos o modelo, serviços e DTO's.
