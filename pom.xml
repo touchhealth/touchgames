@@ -10,7 +10,7 @@
 	<groupId>br.com.touchtec.games</groupId>
 	<artifactId>touch-games</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 
 	<modules>
 		<module>touch-games-core</module>
@@ -20,6 +20,6 @@
 	<scm>
 		<connection>scm:git:ssh://git.touchtec.com.br:29418/touch-games</connection>
 		<developerConnection>scm:git:ssh://git.touchtec.com.br:29418/touch-games</developerConnection>
- 	   <tag>touch-games-1.0.0</tag>
+ 	   <tag>HEAD</tag>
   </scm>
 </project>
