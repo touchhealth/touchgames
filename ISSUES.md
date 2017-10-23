@@ -1,6 +1,5 @@
 # ISSUES
 
-- Atualizar ambiente
 - [Jogos]: edição remove imagens
 - [CRUD]: Exercicio de Query Filter
 - [CRUD]: Exercicio de Command
