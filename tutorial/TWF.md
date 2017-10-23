@@ -55,7 +55,7 @@ E depois isto:
 É onde consultamos a documentação dos componentes do TWFC
 
 > #### Acesse o showcase e navegue por algumas páginas
-> [Showcase](http://showcase.touchtec.com.br/twfc-showcase)
+> [Showcase](http://showcase.touchtec.com.br:8080/twfc-showcase)
 
 # Componentes principais
 - User Interface
