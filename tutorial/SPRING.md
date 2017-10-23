@@ -182,3 +182,7 @@ private FabricanteService fabricantesService;
 > #### Reinicie a aplicação e acesse
 > [/Fabricante.action]()  
 > OS JSPs são semelhantes aos de **Desenvolvedora** e já foram implementados.
+
+[Next](TWF.md)
+
+[Índice](index.md)

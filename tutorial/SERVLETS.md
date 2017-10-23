@@ -505,3 +505,8 @@ private void preencheJogo(HttpServletRequest request, Jogo jogo) {
 > #### Reinicie a aplicação e acesse
 > [/jogos]()
 > Teste as operações implementadas
+
+
+[Next](STRUTS2.md)
+
+[Índice](index.md)

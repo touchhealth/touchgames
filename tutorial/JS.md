@@ -364,3 +364,8 @@ public JSONArray jogosRecomendados() {
 > #### Suba a aplicação
 > Acesse a tela [/Compras.action]() e selecione um Jogo para ver a tela de **Detalhes**.  
 > Repare na área abaixo do texto **"Você também pode gostar:"**
+
+
+[Next](DALI.md)
+
+[Índice](index.md)

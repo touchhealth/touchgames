@@ -420,3 +420,6 @@ public class JogoDTO implements CrudDTO<Long> {}
 > Crie algum Jogo e observe o log no **console** do Tomcat
 
 Dica: uma forma fácil de consultar os **handlers** e **operações** do CRUD é abrir a classe `DefaultCrudMapper` e consultar o método `mapOperations()`.
+
+
+[Índice](index.md)
