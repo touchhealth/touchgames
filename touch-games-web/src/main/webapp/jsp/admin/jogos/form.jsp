@@ -6,6 +6,11 @@
 
     <t:loadbundle var="i18n" basename="Names" />
 
-    <!-- EXERCICIO -->
+    <t:panel id="jogoForm" cssClass="form">
+        <t:title value="%{formTitle}"/>
+
+        <!-- EXERCICIO -->
+
+    </t:panel>
     
 </jsp:root>
