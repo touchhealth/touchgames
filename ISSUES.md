@@ -6,3 +6,5 @@
 - [CRUD]: Exercicio de Renderer Interceptor
 - [CRUD]: Exercicio de Bidirecional
 - [Spring]: Carrinho de Compars, escopo de sessao
+- [Liquibase]: adicionar ao treinamento
+- [Javascript]: explicar a API TWFC `$t()`

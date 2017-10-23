@@ -1,7 +1,7 @@
 # Servlets
 
-Servlets são classes que respondem a uma chamada HTTP.  
-Elas recebem uma request e devolvem uma response.  
+Servlets são classes que respondem a uma chamada **HTTP**.  
+Elas recebem uma **request** e devolvem uma **response**.  
 Uma response pode ser uma página HTML, um arquivo para download ou um arquivo CSS/JS.
 
 > #### Adicione o código abaixo à classe `HelloServlet`
@@ -23,7 +23,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
             "<title>Servlets</title>" +
             "</head>" +
             "<body>" +
-            "<div>Ola, " + nome + sobrenome + "</div>" +
+            "<div>Ola, " + nome + " " + sobrenome + "</div>" +
             "</body>" +
             "</html>";
 
@@ -48,7 +48,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 ```
 
 > #### Suba a aplicação e acesse
-> [/hello?nome=SEU_NOME&sobrenome_SEU_SOBRENOME]()
+> [/hello?nome=SEU_NOME&sobrenome_SEU_SOBRENOME]()  
+> Verfique a resposta
 
 # JSP (Java Server Pages)
 
@@ -76,6 +77,7 @@ public class HelloJSPServlet extends HttpServlet {
 ```
 
 > #### Adicione o código abaixo ao arquivo `jsp/servlet/result.jsp`
+> Para recuperar um valor da **request**, usamos a sintaxe `${}` (JSTL).
 
 ```html
 <html>
@@ -105,7 +107,8 @@ public class HelloJSPServlet extends HttpServlet {
 ```
 
 > #### Reinicie a aplicação e acesse
-> [/hellojsp]()
+> [/hellojsp]()  
+> Repare que a variável `${app}` não foi impressa
 
 # Filters
 
@@ -136,7 +139,9 @@ chain.doFilter(request, response);
 </filter-mapping>
 ```
 
-> #### Acesse novamente [/hellojsp]() e observe o valor do context path
+> #### Reinicie a aplicação e acesse 
+> [/hellojsp]()  
+> Observe o valor do **context path**
 
 
 # JogosServlet
@@ -173,7 +178,7 @@ private JogoService jogoService = new JogoServiceImpl();
 private DesenvolvedoraService desenvolvedoraService = new DesenvolvedoraServiceImpl();
 ```
 
-> #### Implemente o `doGet()` (operações que nao modificam o estado da aplicação)
+> #### Implemente o `doGet()` (operações que não modificam o estado da aplicação)
 
 - tela inicial: LISTA
 - tela de edição: UPDATE

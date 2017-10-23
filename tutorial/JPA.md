@@ -4,7 +4,7 @@ JPA é uma _especificação_ que nos permite trabalhar com objetos para acessar 
 Com ela, praticamente não precisamos executar código **SQL**.  
 A _implementação_ mais popular é o **Hibernate**.
 
-# O Modelo UML do nosso e commerce
+# O Modelo UML do nosso e-commerce
 
 ![](img/jpa1.jpg)
 
@@ -13,12 +13,13 @@ A _implementação_ mais popular é o **Hibernate**.
 
 Define uma Entidade. Entidades equivalem às Tabelas de um banco.
 
-> #### Abra a classe `Jogo` e adicione
+> #### Abra a classe `Jogo` e adicione o código abaixo
 > `@Table` é opcional. Sem ela, o **Hibernate** usa o nome da entidade para criar a tabela.
 
 ```java
 @Entity
 @Table(name = "jogos")
+...
 public class Jogo extends EntidadeRaiz {
 ...
 ```
@@ -93,8 +94,7 @@ public byte[] getBytes() {
 # Relacionamentos
 
 Relacionamentos são associações entre **entidades**.  
-No banco, eles se tornam **JOINs** entre tabelas. 
-
+No banco, eles se tornam **JOINs** entre tabelas.  
 Usaremos sempre a entidade `Jogo` nos exercícios a seguir.
 
 ## @ManyToMany
@@ -138,14 +138,15 @@ public List<Imagem> getImagens() {
 ## mappedBy
 
 Sempre que tivermos um relacionamento **bidirecional**, devemos marcar o _lado fraco_ com **mappedBy**.  
-O lado fraco é lado que não tem a coluna no banco. Normalmente o lado many.  
-O **mappedBy** é importanto para que o Hibernate saiba como fazer o **JOIN**.
+O lado fraco é o lado que não tem a coluna no banco. Normalmente o lado **one**.  
+O **mappedBy** é importante para que o Hibernate saiba como fazer o **JOIN**.
  
 > #### Abra a entidade `Desenvolvedora` e anote `jogos`
 > Repare que `Desenvolvedora` mapeia `Jogo` e vice-versa.
 
 ```java
 @OneToMany(mappedBy = "desenvolvedora")
+...
 public List<Jogo> getJogos() {
     return this.jogos;
 }
@@ -159,7 +160,7 @@ As demais entidades já estão mapeadas.
 ## Entity Manager
 
 O Entity Manager é o gerenciador das entidades: remove, cria, edita e atualiza (CRUD).  
-A configuração dele é feita no persistence.xml.
+A configuração dele é feita no `persistence.xml`.
 
 > #### Abra o `persistence.xml` para analisarmos
 
@@ -167,7 +168,7 @@ A configuração dele é feita no persistence.xml.
 
 Para criarmos um `EntityManager`, usamos um `EntityManagerFactory`
  
-> #### Abra `DesenvolvedoraServiceImpl` e adicione
+> #### Abra `DesenvolvedoraServiceImpl` e adicione o código abaixo
 > Repare que **touch-games** é o nome do **persistece unit** definido no `persistcen.xml`  
 > Por que usamos `static final`?
 
@@ -283,7 +284,8 @@ public List<Desenvolvedora> buscarTodos() {
 
 > #### Abra `JogoServiceImpl` e implemente `buscar(String nome)`
 > Busca por LIKE  
-> Transção necessária porque **imagens** é um Lob
+> Transação necessária porque **imagens** é um Lob  
+> Repare que a sintaxe que usamos é parecida com **SQL**: é chamada de **JPQL**
 
 ```java
 @Override

@@ -72,7 +72,7 @@ public class HelloStrutsAction extends TWFActionSupport {
 </package>
 ```
 
-> #### Abre `jsp/struts/result.jsp` e adicione dentro da tag `<body>`
+> #### Abra `jsp/struts/result.jsp` e adicione dentro da tag `<body>`
 
 ```html
 <p>
