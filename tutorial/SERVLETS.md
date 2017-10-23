@@ -23,7 +23,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
             "<title>Servlets</title>" +
             "</head>" +
             "<body>" +
-            "<div>Olá, " + nome + sobrenome + "</div>" +
+            "<div>Ola, " + nome + sobrenome + "</div>" +
             "</body>" +
             "</html>";
 
