@@ -132,6 +132,6 @@ O nosso projeto terá a seguinte estrutura maven:
 ---
 
 
-[Next](JAVA.md)
+[Next [Java]](JAVA.md)
 
 [Índice](index.md)

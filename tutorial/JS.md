@@ -366,6 +366,6 @@ public JSONArray jogosRecomendados() {
 > Repare na área abaixo do texto **"Você também pode gostar:"**
 
 
-[Next](DALI.md)
+[Next [Dali]](DALI.md)
 
 [Índice](index.md)

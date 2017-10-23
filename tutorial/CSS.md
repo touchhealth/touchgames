@@ -148,6 +148,6 @@ Faltou uma coisa:
 > Dê um scroll na tela. Agora sim.  
 
 
-[Next](JS.md)
+[Next [Javascript]](JS.md)
 
 [Índice](index.md)
