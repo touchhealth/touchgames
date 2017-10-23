@@ -56,7 +56,7 @@ public class JogosAction extends TWFActionSupport {
 
     private List<Jogo> jogos;
 
-    private DesenvolvedoraService desenvolvedoraService = new DesenvolvedoraServiceImpl();
+    private DesenvolvedoraServiceImpl desenvolvedoraService = new DesenvolvedoraServiceImpl();
 
     private List<Desenvolvedora> desenvolvedoras;
 

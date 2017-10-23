@@ -21,7 +21,7 @@ import br.com.touchtec.games.core.service.impl.JogoServiceImpl;
 @Component
 public class Populator {
 
-    private DesenvolvedoraService desenvolvedoraService = new DesenvolvedoraServiceImpl();
+    private DesenvolvedoraServiceImpl desenvolvedoraService = new DesenvolvedoraServiceImpl();
 
     private JogoService jogoService = new JogoServiceImpl();
 
