@@ -213,6 +213,9 @@ public JSONObject jogo() {
 
 # Tarefa: mostrar jogos recomendados
 
+
+## Lado do Cliente
+
 > #### Abra `jogo_detalhes.jsp` e adicione no fim da página
 
 ```
@@ -313,6 +316,51 @@ atualizaJogosRecomendados();
 setInterval(atualizaJogosRecomendados, 5000);
 ```
 
-> #### Suba a aplicação (ou Recargue a página se já estiver de pé)
+## Lado do Servidor
+
+Ainda falta implementar a Action que responde ao AJAX
+
+> #### Abra `ComprasAction` e procure o método `jogosRecomendados()` (Ctrl+O no Eclipse)  
+> Busque todos os jogos e embaralhe-os para simular um algoritmo de recomendações
+
+```java
+public JSONArray jogosRecomendados() {
+    ...
+    this.jogos = this.jogoService.buscar(this.generoSelecionado);
+    
+    Collections.shuffle(this.jogos);
+    ...
+```
+
+
+> #### Converta a lista de jogos para o formato **JSON**
+> Vamos devolver os dois primeiros jogos apenas  
+> Para cada jogo, vamos devolver a primeira imagem
+
+```java
+    ...
+    JSONArray array = new JSONArray();
+
+    for (Jogo jogo : this.jogos) {
+        JSONObject json = new JSONObject();
+        json.put("id", jogo.getId());
+        json.put("nome", jogo.getNome());
+
+        if (!jogo.getImagens().isEmpty()) {
+            json.put("imagemId", jogo.getImagens().get(0).getId());
+        }
+
+        array.put(json);
+
+        if (array.length() == 2) {
+            break;
+        }
+    }
+
+    return array;
+```
+
+
+> #### Suba a aplicação
 > Acesse a tela [/Compras.action]() e selecione um Jogo para ver a tela de **Detalhes**.  
 > Repare na área abaixo do texto **"Você também pode gostar:"**

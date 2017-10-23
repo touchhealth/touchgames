@@ -74,10 +74,76 @@ Nossa tag file vai renderizar o esqueleto do nosso site:
 > [/Compras.action]()  
 > Já temos cabeçalho e rodapé.  
 > Repare que o corpo da tag foi renderizado onde invocamos `<jsp:doBody/>`  
+> Observe que a lista de plataformas não está aparecendo
+
+## Struts Interceptors
+
+Respondendo de onde vem `${todasPlataformas}`.  
+Interceptadores são como **Servlet Filters**, servem para executar algum código que precise ser compartilhado por várias Actions.  
+
+> #### Abra `ComprasAction`
+> Repare que não existe um `getTodasPlataformas()`  
+> Mais adiante, vocês verão que outra action precisa da propridade **todasPlataformas**: `CarrinhoAction`  
+> Por este motivo, vamos criar um **Interceptor** para carregar esta propriedade
 
 ---
 
-> #### Ainda em `jogos_lista.jsp`, adicione o conteúdo abaixo dentro da tag *screen*
+> #### Abra `NavigationInterceptor`
+> Transforme-o em um bean spring e injete `PlataformaService`
+
+```java
+@Component
+public class NavigationInterceptor extends AbstractInterceptor {
+   ...
+   
+   @Autowired
+   private PlataformaService plataformaService;
+}
+```
+
+> #### Implemente `intercept()`
+> Repare que `request.setAttribute()` para disponibilizar a propriedade ao operador `${}` no JSP
+
+```java
+@Override
+public String intercept(ActionInvocation invocation) throws Exception {
+    HttpServletRequest request = ServletActionContext.getRequest();
+
+    List<Plataforma> plataformas = this.plataformaService.buscarTodos();
+    request.setAttribute("todasPlataformas", plataformas);
+
+    // prossegue a chain
+    return invocation.invoke();
+}
+```
+
+> #### Abra `struts.xml`e mapeie o interceptor
+> Modifique `<package name="default">` para ficar conforme abaixo
+
+```xml
+<package name="default" extends="twf-default">
+    <!-- adicione -->
+    <interceptors>
+        <interceptor name="navigation" class="br.com.touchtec.games.web.controller.NavigationInterceptor" />
+    </interceptors>
+
+    <action name="*" class="br.com.touchtec.games.web.controller.{1}Action">
+        <!-- adicione -->
+        <interceptor-ref name="navigation" />
+        <interceptor-ref name="twfDefaultStack" />
+
+        <!-- Os results são retornados diretamente pelas Actions -->
+    </action>
+</package>
+```
+
+> #### Reinicie a aplicação e acesse
+> [/Compras.action]()  
+> Repare que 
+
+## Finalizando nossa tela
+
+> #### Abra `jogos_lista.jsp`, adicione o conteúdo abaixo dentro da tag *screen*
 > Remova o texto "Teste"
 
 ```html
@@ -118,7 +184,3 @@ Nossa tag file vai renderizar o esqueleto do nosso site:
 > #### Recarregue a página (F5)
 > [/Compras.action]()  
 > Não está muito bonita nossa tela...
-
-
-# NavigationInterceptor
-TODO
