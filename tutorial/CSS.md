@@ -64,7 +64,7 @@ Informa se um elemento deve ser **exibido** e **como**.
 - **none:** esconde um elemento
 - **inline-block:** iguais aos inline, mas podem ter altura e largura
 
-> #### Veja exemplos: [https://www.w3schools.com/css/css_display_visibility.asp]()
+> #### Veja exemplos: [W3Schools](https://www.w3schools.com/css/css_display_visibility.asp)
 
 ## Position
 
@@ -75,7 +75,7 @@ Posiciona elementos na tela
 - **absolute:** relativo ao seu ancestral posicionado mais próximo
 - **fixed:** relativo ao _viewport_ (área que o usuário esta vendo). Não muda de posição com o _scroll_.
 
-> #### Veja exemplos: [https://www.w3schools.com/css/css_positioning.asp]()
+> #### Veja exemplos: [W3Schools](https://www.w3schools.com/css/css_positioning.asp)
 
 ## Pseudo classes
 
