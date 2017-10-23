@@ -326,6 +326,6 @@ public List<Jogo> buscar(Plataforma plataforma) {
 ```
 
 
-[Next](TESTES.md)
+[Next [Testes]](TESTES.md)
 
 [Índice](index.md)

@@ -219,11 +219,11 @@ Vamos usar alguns recursos do **Dali** para mudar a forma como renderizamos essa
 > #### Adicione mais um @View à classe `JogoDTO` (dentro de @Views)
 
 ```java
-        @View(ids = {CREATE, UPDATE}, config = "{ " +
-                "geral [nome; descricao; genero; desenvolvedora; plataformas; dataLancamento]," +
-                "preco [preco; desconto], " +
-                "imagens [imagens] " +
-        "}")
+    @View(ids = {CREATE, UPDATE}, config = "{ " +
+            "geral [nome; descricao; genero; desenvolvedora; plataformas; dataLancamento]," +
+            "preco [preco; desconto], " +
+            "imagens [imagens] " +
+    "}")
                 
 ```
 

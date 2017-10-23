@@ -507,6 +507,6 @@ private void preencheJogo(HttpServletRequest request, Jogo jogo) {
 > Teste as operações implementadas
 
 
-[Next](STRUTS2.md)
+[Next [Struts 2]](STRUTS2.md)
 
 [Índice](index.md)

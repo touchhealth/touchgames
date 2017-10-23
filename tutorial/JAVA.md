@@ -107,6 +107,6 @@ public cass JavaBean {
 ```
 
 
-[Next](JPA.md)
+[Next [JPA]](JPA.md)
 
 [Índice](index.md)
