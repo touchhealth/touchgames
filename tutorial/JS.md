@@ -110,7 +110,7 @@ calcula(99, somaUm);
 - utilitários para manipular a DOM
 - DOM?
 - $('header') → document.getElementById('header')
-- $$('seletor_css') → $$('#header .game')
+- $$('#header .game') → document.querySelectorAll('#header .game')
 
 [Documentaçao oficial](http://api.prototypejs.org/)
 

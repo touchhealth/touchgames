@@ -139,7 +139,7 @@ public String intercept(ActionInvocation invocation) throws Exception {
 
 > #### Reinicie a aplicação e acesse
 > [/Compras.action]()  
-> Repare que 
+> Repare que as plataformas aparecem no menu
 
 ## Finalizando nossa tela
 
