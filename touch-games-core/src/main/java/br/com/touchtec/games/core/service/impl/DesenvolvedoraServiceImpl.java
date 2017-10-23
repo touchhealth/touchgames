@@ -15,35 +15,34 @@ package br.com.touchtec.games.core.service.impl;
 import java.util.List;
 
 import br.com.touchtec.games.core.model.Desenvolvedora;
-import br.com.touchtec.games.core.service.DesenvolvedoraService;
 
 
-public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
+public class DesenvolvedoraServiceImpl { // EXERCICIO
 
     // EXERCICIO
 
-    @Override
+    //    @Override
     public void criar(Desenvolvedora desenvolvedora) {
         // EXERCICIO
     }
 
-    @Override
+    //    @Override
     public void remover(Desenvolvedora desenvolvedora) {
         // EXERCICIO
     }
 
-    @Override
+    //    @Override
     public void editar(Desenvolvedora desenvolvedora) {
         // EXERCICIO
     }
 
-    @Override
+    //    @Override
     public Desenvolvedora recuperar(Long id) {
         // EXERCICIO
         return null;
     }
 
-    @Override
+    //    @Override
     public List<Desenvolvedora> buscarTodos() {
         // EXERCICIO
         return null;

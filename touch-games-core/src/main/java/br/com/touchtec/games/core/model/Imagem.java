@@ -16,7 +16,7 @@ import javax.persistence.Entity;
 
 
 @Entity
-public class Imagem extends EntidadeRaiz {
+public class Imagem { // EXERCICIO
 
     private static final long serialVersionUID = 1L;
 
@@ -41,11 +41,6 @@ public class Imagem extends EntidadeRaiz {
 
     public void setBytes(byte[] bytes) {
         this.bytes = bytes;
-    }
-
-    @Override
-    public String toString() {
-        return this.getId() + "";
     }
 
 }

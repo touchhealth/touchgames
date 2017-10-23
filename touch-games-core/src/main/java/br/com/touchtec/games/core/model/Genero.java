@@ -18,9 +18,6 @@ import br.com.touchtec.message.Named;
 @SuppressWarnings("javadoc")
 @Named(key = "Genero")
 public enum Genero {
-    ACAO,
 
-    ESPORTE,
-
-    RPG;
+    // EXERCICIO
 }
