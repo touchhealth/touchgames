@@ -381,3 +381,7 @@ Por fim, adicione a tabela de jogos dentro do panel, acima da toolbar
 ```
 
 > #### Aperte o Criar para recarregar
+
+[Next](TAGS.md)
+
+[Índice](index.md)
