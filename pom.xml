@@ -20,5 +20,5 @@
 	<scm>
 		<connection>scm:git:ssh://git.touchtec.com.br:29418/touch-games</connection>
 		<developerConnection>scm:git:ssh://git.touchtec.com.br:29418/touch-games</developerConnection>
- 	 </scm>
+	</scm>
 </project>
