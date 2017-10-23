@@ -1,7 +1,7 @@
 # Dali
 
 Dali é um _framework_ interno da Touch usado para renderizar _Java Beans_.   
-Veja o [Showcase](http://showcase.touchtec.com.br/dali-showcase).   
+Veja o [Showcase](http://showcase.touchtec.com.br:8080/dali-showcase).   
 
 # CRUD
 
@@ -11,7 +11,7 @@ Um dos módulos do Dali é responsável por renderizar **telas de cadastro** (CR
 - Update
 - Delete
 
-[Veja no Showcase](http://showcase.touchtec.com.br/dali-showcase/tutorial/crud.action)
+[Veja no Showcase](http://showcase.touchtec.com.br:8080/dali-showcase/tutorial/crud.action)
 
 ![](img/dali1.png)
 
@@ -233,7 +233,7 @@ O que há de diferente?
 
 > #### Reinicie e veja as alterações nas telas de Criação e Edição
 > [/crud/Jogo.action]()  
-> [Mais detalhes no Showcase](http://showcase.touchtec.com.br/dali-showcase/sintaxe.action)
+> [Mais detalhes no Showcase](http://showcase.touchtec.com.br:8080/dali-showcase/sintaxe.action)
 
 ## @CustomPropertyConverter
 
@@ -301,7 +301,7 @@ Não renderiza exclusivamente HTML. Pode renderizar qualquer coisa. Até Java.
 
 > #### Crie um arquivo com o nome `imagens.ftl` na pasta `webapp/dali-app-resources/jogo/`
 > O Dali vai usar este template para renderizar a propriedade **imagens** do DTO *Jogo* porque seguimos uma convenção: pasta **jogo**, arquivo **imagens.ftl**.
-> Mais detalhes no [Showcase](http://showcase.touchtec.com.br/dali-showcase/template/templates.action)
+> Mais detalhes no [Showcase](http://showcase.touchtec.com.br:8080/dali-showcase/template/templates.action)
 
 ---
 
@@ -380,7 +380,7 @@ E se quiséssemos interceptar as operações que o CRUD faz? Por ex, se quisermo
 O CRUD permite que interceptemos suas **operações** (Criar, Editar, Remover, Buscar) através de **handlers**.  
 Handlers funcionam como **Servlet Filters**, implementando o padrão  [Chain of Responsibility](http://blog.caelum.com.br/compondo-seu-comportamento-heranca-chain-of-responsibility-e-interceptors/).  
 
-Consulte o [Showcase](http://showcase.touchtec.com.br/dali-showcase/operation.action) para mais detalhes.  
+Consulte o [Showcase](http://showcase.touchtec.com.br:8080/dali-showcase/operation.action) para mais detalhes.  
 
 No cadastro de Jogos, vamos interceptar a operação de **criação** e mostrar um **log** no console.
 
