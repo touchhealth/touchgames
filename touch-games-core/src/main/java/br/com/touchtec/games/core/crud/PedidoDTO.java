@@ -39,7 +39,7 @@ import br.com.touchtec.message.Named;
         @View(ids = VIEW, config = "id; data; itens; valorTotal")
 })
 @CrudMapping(entity = Pedido.class)
-@ExcludeCommands({CreateCommand.class, UpdateCommand.class})
+// EXERCICIO
 @Named(key = "Pedido")
 public class PedidoDTO implements CrudDTO<Long> {
 
@@ -72,7 +72,7 @@ public class PedidoDTO implements CrudDTO<Long> {
         this.id = id;
     }
 
-    @CustomClauseBuilder(DataPedidoClauseBuilder.class)
+    // EXERCICIO
     public Date getData() {
         return this.data;
     }

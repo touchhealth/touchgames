@@ -64,7 +64,6 @@
             <div class="content loading"><!-- Será carregado por AJAX --></div>
         </div>
         
-        <script src="${app}/js/prototype.js" type="text/javascript" ></script>
-        <script src="${app}/js/jogos_recomendados.js" type="text/javascript" ></script>
+        <!-- EXERICIO -->
     </g:screen>
 </jsp:root>

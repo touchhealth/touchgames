@@ -12,17 +12,9 @@
 package br.com.touchtec.games.core.crud;
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-
-import org.apache.commons.io.IOUtils;
-
-import br.com.touchtec.dali.crud.converter.ConversionException;
 import br.com.touchtec.dali.crud.converter.PropertyConverter;
 import br.com.touchtec.dali.crud.manager.CrudManager;
 import br.com.touchtec.dali.target.Target;
-import br.com.touchtec.games.core.model.Imagem;
 import br.com.touchtec.games.core.model.Jogo;
 
 /**
@@ -32,23 +24,11 @@ public class ImagemPropertyConverter implements PropertyConverter<JogoDTO, Jogo>
 
     @Override
     public void setToDTO(Target target, Jogo entity, JogoDTO dto, CrudManager manager) {
-        for (Imagem imagem : entity.getImagens()) {
-            // Vamos usar o id da imagem como nome do arquivo
-            File file = new File(imagem.getId().toString());
-            dto.getImagens().add(file);
-        }
+        // EXERCICIO
     }
 
     @Override
     public void setToEntity(Target target, Jogo entity, JogoDTO dto, CrudManager manager) {
-        try {
-            for (File file : dto.getImagens()) {
-                FileInputStream in = new FileInputStream(file);
-                Imagem imagem = new Imagem(IOUtils.toByteArray(in));
-                entity.getImagens().add(imagem);
-            }
-        } catch (IOException e) {
-            throw new ConversionException(e);
-        }
+        // EXERCICIO
     }
 }

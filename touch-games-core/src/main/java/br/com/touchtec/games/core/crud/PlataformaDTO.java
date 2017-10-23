@@ -12,18 +12,11 @@
 package br.com.touchtec.games.core.crud;
 
 
-import br.com.touchtec.dali.crud.api.AssociationDTO;
 import br.com.touchtec.dali.crud.api.CrudDTO;
-import br.com.touchtec.dali.crud.config.CrudMapping;
-import br.com.touchtec.dali.crud.search.OrderBy;
-import br.com.touchtec.dali.view.View;
-import br.com.touchtec.games.core.model.Plataforma;
 import br.com.touchtec.message.Named;
 
 
-@View(config = "nome; fabricante")
-@CrudMapping(entity = Plataforma.class)
-@OrderBy("nome")
+// EXERCICIO
 @Named(key = "Plataforma")
 public class PlataformaDTO implements CrudDTO<Long> {
 
@@ -33,15 +26,7 @@ public class PlataformaDTO implements CrudDTO<Long> {
 
     private String nome;
 
-    private AssociationDTO<Long> fabricante;
-
-    public AssociationDTO<Long> getFabricante() {
-        return this.fabricante;
-    }
-
-    public void setFabricante(AssociationDTO<Long> fabricante) {
-        this.fabricante = fabricante;
-    }
+    // EXERCICIO
 
     @Override
     public Long getId() {
