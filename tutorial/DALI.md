@@ -1,4 +1,5 @@
 # Dali
+
 Dali é um _framework_ interno da Touch usado para renderizar _Java Beans_.   
 Veja o [Showcase](http://showcase.touchtec.com.br/dali-showcase).   
 
@@ -12,11 +13,13 @@ Um dos módulos do Dali é responsável por renderizar **telas de cadastro** (CR
 
 [Veja no Showcase](http://showcase.touchtec.com.br/dali-showcase/tutorial/crud.action)
 
+![](img/dali1.png)
+
 ## DTO e Entidade
 
 Um CRUD DTO é um espelho da Entidade.  
 Cada propriedade da Entidade que se deseje usar tem uma correspondência no DTO.  
-Associações usam um tipo de objeto diferente: **AssociationDTO**
+Associações usam um tipo de objeto diferente: **AssociationDTO**.
 
 
 ```java
@@ -132,7 +135,7 @@ Queremos usar a tela apenas para consulta e remoção.
 public class PedidoDTO implements CrudDTO<Long> { }
 ```
 
-Nao reinicie ainda.
+Não reinicie ainda.
 
 ## @CustomClauseBuilder
 
@@ -142,7 +145,7 @@ E a busca adiciona uma cláusula  `WHERE data = :data`, onde :data é o valor da
 Precisamos informar ao CRUD que queremos buscar por pedidos efetuados no **mesmo dia** da data informada na tela.
 
 > #### Altere a cláusula de busca para usar um intervalo
-> Abra `DataPedidoClauseBuilder` e preencha
+> Abra `DataPedidoClauseBuilder` e implemente `buildClause()`
 
 ```java
 @Override
@@ -178,14 +181,14 @@ public Date getData() {
 
 ## @Template
 
-Vamos alterar alguns templates padrão do CRUD.
+Vamos alterar alguns templates padrão jdo CRUD.
 
 > #### Acesse o casdastro de Jogos
 > [/crud/Jogo.action]()
 
 ---
 
-> #### Modifique o campo **Gênero** para usar um **radio** em vez de **select**
+> #### Em `JogoDTO`, modifique o campo **Gênero** para usar um **radio** em vez de **select**
 
 ```java
     @Template(views = INPUT, value = DaliTemplates.RADIO_SELECT)
@@ -194,7 +197,7 @@ Vamos alterar alguns templates padrão do CRUD.
     }
 ```
 
-O campo de **preço** não está no formatado para mostrar 2 casas decimais. Façamos.
+O campo de **preço** não está formatado para mostrar 2 casas decimais. Façamos.
 
 > #### Altere o formato nemérico do campo **preco**
 > Repare que aqui não alteramos o template sm si; apenas passamos um parâmetro.
@@ -239,30 +242,34 @@ O CRUD não soube renderizá-la porque não soube converter o tipo `File` que es
 Poderíamos ter usado `Imagem` no DTO também para a conversão ficar automática. Fizemos assim apenas para exercitar o conceito de `PropertyConverter`.  
 Precismos ensinar ao CRUD como se converte `File` em `Imagem` e vice-versa.
 
-> #### Abra a classe `ImagemPropertyConverter` e complete com o código abaixo
+> #### Abra a classe `ImagemPropertyConverter` e implemente a conevrsão do **DTO**
 
 ```java
-    @Override
-    public void setToDTO(Target target, Jogo entity, JogoDTO dto, CrudManager manager) {
-        for (Imagem imagem : entity.getImagens()) {
-            // Vamos usar o id da imagem como nome do arquivo
-            File file = new File(imagem.getId().toString());
-            dto.getImagens().add(file);
-        }
+@Override
+public void setToDTO(Target target, Jogo entity, JogoDTO dto, CrudManager manager) {
+    for (Imagem imagem : entity.getImagens()) {
+        // Vamos usar o id da imagem como nome do arquivo
+        File file = new File(imagem.getId().toString());
+        dto.getImagens().add(file);
     }
+}
+```
 
-    @Override
-    public void setToEntity(Target target, Jogo entity, JogoDTO dto, CrudManager manager) {
-        try {
-            for (File file : dto.getImagens()) {
-                FileInputStream in = new FileInputStream(file);
-                Imagem imagem = new Imagem(IOUtils.toByteArray(in));
-                entity.getImagens().add(imagem);
-            }
-        } catch (IOException e) {
-            throw new ConversionException(e);
+> #### Em seguida, implemente a conversão da **Entidade**
+
+```java
+@Override
+public void setToEntity(Target target, Jogo entity, JogoDTO dto, CrudManager manager) {
+    try {
+        for (File file : dto.getImagens()) {
+            FileInputStream in = new FileInputStream(file);
+            Imagem imagem = new Imagem(IOUtils.toByteArray(in));
+            entity.getImagens().add(imagem);
         }
+    } catch (IOException e) {
+        throw new ConversionException(e);
     }
+}
 ```
 
 > #### Marque a propriedade **imagens** para usar o conversor acima
@@ -378,7 +385,7 @@ Consulte o [Showcase](http://showcase.touchtec.com.br/dali-showcase/operation.ac
 No cadastro de Jogos, vamos interceptar a operação de **criação** e mostrar um **log** no console.
 
 
-> #### Abra a classe `LogCriacaoRegistrosHandler` e complete com o código abaixo
+> #### Abra a classe `LogCriacaoRegistrosHandler` e implemente o método `handle()`
 
 ```java
     @Override
