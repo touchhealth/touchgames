@@ -1,12 +1,13 @@
 # Java
 
+Vamos abordar alguns conceitos importantes da linguagem que serão usados no treinamento.
+
 ## Equals/Hashcode
 
-*Equals* faz a comparação entre objetos.
-
+*Equals* faz a comparação entre objetos.  
 *Hashcode* Faz o calculo do hash do objeto.
 
-Exemplos abaixo do equals e hashcode da EntidadeRaiz:
+> #### Abra `EntidadeRaiz` e sobrescreva `equals()` e `hashCode()` usando o gerador do **Eclipse**.
 
 ```java
 @Override
@@ -40,7 +41,6 @@ public boolean equals(Object obj) {
 }
 ```
 
-> #### Abra `EntidadeRaiz` e sobrescreva `equals()` e `hashCode()` usando o gerador do **Eclipse**.
 
 ## Serializable
 
@@ -54,7 +54,29 @@ public class EntidadeRaiz implements Serializable {
     private static final long serialVersionUID = 1L;
 ```
 
-## Intefaces e classes abstratas
+## Super Classes e Interfaces
+
+**Super Classes**: fornecem implementações de métodos que podem ser usados pelos filhos.  
+**Interfaces**: definem um __contrato__ (assinatura de métodos) que **devem** ser implementados pelos filhos.
+
+> #### Abra a entidade `Imagem` e faça-a sobrescrever `EntidadeRaiz`
+
+```java
+...
+public class Imagem extends EntidadeRaiz {
+   ...
+```
+
+
+> #### Abra `DesenvolvedoraServiceImpl` e implemente `DesenvolvedoraService`
+> Descomente as anotações `@Override` dos métodos  
+> Implementaremos os métodos nos próximos exercícios
+
+```java
+public class DesenvolvedoraServiceImpl implements DesenvolvedoraService {
+    ...
+```
+
 
 ---
 :books: Material de apoio
@@ -67,9 +89,15 @@ public class EntidadeRaiz implements Serializable {
 
 Enum é um tipo de dado em java que representa um conjunto de constantes.
 
+> #### Abra a classe `Genero` e adicione as opções abaixo 
+
 ```java
 public enum Genero {
-    ACAO, ESPORTE, RPG;
+    ACAO, 
+    
+    ESPORTE, 
+    
+    RPG;
 }
 ```
 
@@ -84,7 +112,7 @@ public enum Genero {
 
 Usamos para mostrar um descrição amigável de um objeto.  
 
-> #### Abra a classe `Desenvolvedora` e sobrescreva `toString()` devolvendo **nome**.
+> #### Abra a classe `Desenvolvedora` e sobrescreva `toString()` devolvendo **nome**
 
 ## Java Beans
 
@@ -94,7 +122,7 @@ Vários frameworks assumem que estamos usando Java Beans.
 
 
 ```java
-public cass JavaBean {
+public class JavaBean {
     private String teste;
 
     public String getTeste(){
