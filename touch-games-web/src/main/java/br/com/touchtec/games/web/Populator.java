@@ -1,8 +1,7 @@
 package br.com.touchtec.games.web;
 
-import static com.google.common.collect.Lists.newArrayList;
-
-import java.util.List;
+import static br.com.touchtec.games.core.model.Genero.ACAO;
+import static br.com.touchtec.games.core.model.Genero.RPG;
 
 import javax.annotation.PostConstruct;
 
@@ -10,91 +9,70 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.touchtec.games.core.model.Desenvolvedora;
+import br.com.touchtec.games.core.model.Genero;
 import br.com.touchtec.games.core.model.Jogo;
 import br.com.touchtec.games.core.model.Plataforma;
-import br.com.touchtec.games.core.service.DesenvolvedoraService;
-import br.com.touchtec.games.core.service.JogoService;
-import br.com.touchtec.games.core.service.PlataformaService;
-import br.com.touchtec.games.core.service.impl.DesenvolvedoraServiceImpl;
-import br.com.touchtec.games.core.service.impl.JogoServiceImpl;
+import br.com.touchtec.log.ANSIColor;
+import br.com.touchtec.persistence.dao.GenericDAO;
 
 @Component
 public class Populator {
 
-    private DesenvolvedoraServiceImpl desenvolvedoraService = new DesenvolvedoraServiceImpl();
-
-    private JogoService jogoService = new JogoServiceImpl();
-
     @Autowired
-    private PlataformaService plataformaService;
+    private GenericDAO dao;
 
-    private static final List<String> DESENVOLVEDORAS = newArrayList(
-            "Bethesda",
-            "Blizzard",
-            "Firaxis Games",
-            "Irrational Games",
-            "Konami",
-            "Nintendo",
-            "Nippon Ichi",
-            "Number None",
-            "Playground Games",
-            "SquareEnix",
-            "Sony"
-    );
-
-    private static final List<String> JOGOS = newArrayList(
-            "Chrono Trigger",
-            "Final Fantasy VI",
-            "FIFA"
-    );
-
-    private static final List<String> PLATAFORMAS = newArrayList(
-            "Atari",
-            "SNES"
-    );
 
     @PostConstruct
     public void populateOnStartup() {
-        List<Desenvolvedora> desenvolvedoras = desenvolvedoraService.buscarTodos();
-        if (!desenvolvedoras.isEmpty()) {
+        Long totalJogos = dao.count(Jogo.class, null);
+        if (totalJogos > 0) {
             return;
         }
 
-        System.out.println("Criando registros no banco...");
+        System.out.println(ANSIColor.info("Criando registros no banco..."));
 
-        for (String desenvolvedora : DESENVOLVEDORAS) {
-            desenvolvedoraService.criar(newDesenvolvedora(desenvolvedora));
-            System.out.println(desenvolvedora + " persistida.");
-        }
+        Desenvolvedora namco = createDesenvolvedora("Namco");
+        Desenvolvedora squareEnix = createDesenvolvedora("SquareEnix");
+        Desenvolvedora nintendo = createDesenvolvedora("Nintendo");
+        Desenvolvedora sega = createDesenvolvedora("Sega");
 
-        for (String jogo : JOGOS) {
-            jogoService.criar(newJogo(jogo));
-            System.out.println(jogo + " persistido.");
-        }
+        Plataforma atari = createPlataforma("Atari");
+        Plataforma megaDrive = createPlataforma("Mega Drive");
+        Plataforma snes = createPlataforma("SNES");
 
-        for (String plataforma : PLATAFORMAS) {
-            plataformaService.criar(newPlataforma(plataforma));
-            System.out.println(plataforma + " persistida.");
-        }
+        createJogo("Pacman", ACAO, namco, atari);
+        createJogo("Chrono Trigger", RPG, squareEnix, snes);
+        createJogo("Final Fantasy VI", RPG, squareEnix, snes);
+        createJogo("Super Mario World", ACAO, nintendo, snes);
+        createJogo("Sonic II", ACAO, sega, megaDrive);
+
     }
 
-    private static Desenvolvedora newDesenvolvedora(String nome) {
-        Desenvolvedora desenvolvedora = new Desenvolvedora();
-        desenvolvedora.setNome(nome);
-        return desenvolvedora;
-    }
-
-    private static Jogo newJogo(String nome) {
+    private Jogo createJogo(String nome, Genero genero, Desenvolvedora desenvolvedora, Plataforma plataforma) {
         Jogo jogo = new Jogo();
         jogo.setNome(nome);
         jogo.setPreco(140F);
-        return jogo;
+        jogo.setGenero(genero);
+
+        jogo.setDesenvolvedora(desenvolvedora);
+
+        jogo.getPlataformas().add(plataforma);
+
+        return dao.save(jogo);
     }
 
-    private static Plataforma newPlataforma(String nome) {
+
+    private Desenvolvedora createDesenvolvedora(String nome) {
+        Desenvolvedora desenvolvedora = new Desenvolvedora();
+        desenvolvedora.setNome(nome);
+        return dao.save(desenvolvedora);
+    }
+
+
+    private Plataforma createPlataforma(String nome) {
         Plataforma plataforma = new Plataforma();
         plataforma.setNome(nome);
-        return plataforma;
+        return dao.save(plataforma);
     }
 
 }

@@ -28,7 +28,7 @@ public class Jogo extends EntidadeRaiz {
 
     private String descricao;
 
-    private List<Plataforma> plataformas;
+    private List<Plataforma> plataformas = new ArrayList<>();
 
     private Genero genero;
 
