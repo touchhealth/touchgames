@@ -30,7 +30,7 @@
 			<!--
 			Nao costumamos deixar 'update' nas nossas aplicações de verdade; deixamos 'none' ou 'validade'.
 			'update' cria as tabelas e colunas automaticamente a paritr das entidades.
-			Nas nossas aplicações reais usamos uma ferramenta chamda 'liquibase'.
+			Nas nossas aplicações reais usamos uma ferramenta chamada 'liquibase'.
 			-->
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 
