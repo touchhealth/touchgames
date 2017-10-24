@@ -1,9 +1,9 @@
 # Tutorial
 
 - [Ambiente](AMBIENTE.md)
-- [Java](JAVA.md)
-- [JPA](JPA.md)
-- [Testes](TESTES.md)
+- [Java](JAVA.md) (1h)
+- [JPA](JPA.md) (2h30m)
+- [Testes](TESTES.md) (30m)
 - [Servlets](SERVLETS.md)
 - [Struts 2](STRUTS2.md)
 - [Spring](SPRING.md)
