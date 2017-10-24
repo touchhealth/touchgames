@@ -23,6 +23,9 @@
 			<property name="hibernate.connection.username" value="touch" />
 			<property name="hibernate.connection.password" value="touch" />
 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost/touch-games" />
+			<!--<property name="hibernate.connection.username" value="postgres" />-->
+			<!--<property name="hibernate.connection.password" value="postgres" />-->
+			<!--<property name="hibernate.connection.url" value="jdbc:postgresql://timemachine.touchtec.com.br:13000/postgres" />-->
 
 			<!--
 			Nao costumamos deixar 'update' nas nossas aplicações de verdade; deixamos 'none' ou 'validade'.
