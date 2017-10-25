@@ -455,13 +455,8 @@ private void preencheJogo(HttpServletRequest request, Jogo jogo) {
             <div>
                 <div>Desenvolvedora:</div>
                 <select name="desenvolvedora">
-                    <c:if test="${not empty jogo.desenvolvedora}">
-                        <option value=""></option>
-                    </c:if>
-                    <c:if test="${empty jogo.desenvolvedora}">
-                        <option value="" selected=""></option>
-                    </c:if>
-                
+                    <option value=""><!-- Opção vazia --></option>
+               
                     <c:forEach items="${desenvolvedoras}" var="desenvolvedora">
                         <c:if test="${jogo.desenvolvedora!=desenvolvedora}">
                             <option value="${desenvolvedora.id}">${desenvolvedora.nome}</option>
