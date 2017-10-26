@@ -110,7 +110,7 @@ Escopos WEB:
 > Não seria necessário fazer desta forma, mas fazer assim facilitou a migração do **EJB** para **Spring**.
   
 ```xml
-<context:component-scan base-package="br.com.touchtec.games.web" name-generator="br.com.touchtec.spring.FullQualifiedNameGenerator" />
+<context:component-scan base-package="br.com.touchtec.games.core" name-generator="br.com.touchtec.spring.FullQualifiedNameGenerator" />
 ```
 
 
@@ -162,7 +162,7 @@ public Fabricante recuperar(Long id) {}
 public List<Fabricante> buscarTodos() {}
 ```
 
-> #### Transforme `FabricanteAction` em um bean Spring
+> #### Transforme `FabricantesAction` em um bean Spring
 > Precisamos fazer isso para que possamos **injetar** FabricanteService  
 > Repare que o escopo é **request**. Por quê?
 
@@ -176,7 +176,7 @@ public class FabricantesAction extends TWFActionSupport { }
 
 ```java
 @Autowired
-private FabricanteService fabricantesService;
+private FabricanteService fabricanteService;
 ```
 
 > #### Reinicie a aplicação e acesse
