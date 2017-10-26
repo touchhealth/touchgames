@@ -123,7 +123,7 @@ Vamos implementar o cadastro de Jogos usando componentes do **TWFC**.
 > Repare que usamos dois tipos de botões: **ajaxbutton** e **submitbutton** 
 
 ```html
-<t:panel id="list" cssClass="form" collapsible="true">
+<t:panel id="list" collapsible="true">
     <t:title value="Lista"/>
 
     <!-- tabela -->   
