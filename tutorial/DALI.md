@@ -181,7 +181,7 @@ public Date getData() {
 
 ## @Template
 
-Vamos alterar alguns templates padrão jdo CRUD.
+Vamos alterar alguns templates padrão do CRUD.
 
 > #### Acesse o casdastro de Jogos
 > [/crud/Jogo.action]()
@@ -242,7 +242,7 @@ O CRUD não soube renderizá-la porque não soube converter o tipo `File` que es
 Poderíamos ter usado `Imagem` no DTO também para a conversão ficar automática. Fizemos assim apenas para exercitar o conceito de `PropertyConverter`.  
 Precismos ensinar ao CRUD como se converte `File` em `Imagem` e vice-versa.
 
-> #### Abra a classe `ImagemPropertyConverter` e implemente a conevrsão do **DTO**
+> #### Abra a classe `ImagemPropertyConverter` e implemente a conversão do **DTO**
 
 ```java
 @Override
