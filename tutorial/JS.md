@@ -233,7 +233,7 @@ $(document).observe("dom:loaded", function(){
 
      // nosso código vem aqui
 
-}
+});
 ```
 
 > #### Primeiro, selecionamos o alvo
