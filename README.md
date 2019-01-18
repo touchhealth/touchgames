@@ -21,6 +21,8 @@ Em produção:
 Time Machine: touch-games
 ```
 
+## Docker
+`docker run -it --rm -v $PWD/touch-games-web/target/:/opt/apache-tomcat-7.0.78/webapps -p 8081:8080 --link postgres docker.touchtec.com.br:5000/tomcat-cas-client:2.1.0`
 
 # Cadastro
 ```
